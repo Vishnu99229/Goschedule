@@ -1,4 +1,5 @@
 import { ArrowRight, Play } from 'lucide-react';
+import HeroAnimation from './HeroAnimation';
 
 export default function Hero() {
     return (
@@ -32,32 +33,23 @@ export default function Hero() {
                         </div>
 
                         {/* Trust Line */}
-                        <div>
+                        <div className="trusted-by-section">
                             <p className="body-sm" style={{ marginBottom: 'var(--space-2)', textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: 12 }}>
                                 Trusted by founders and operators
                             </p>
-                            <div className="flex items-center gap-5" style={{ opacity: 0.35 }}>
-                                <span style={{ fontSize: 16, fontWeight: 700, letterSpacing: '-0.03em' }}>SaaSWorks</span>
-                                <span style={{ fontSize: 16, fontWeight: 700, fontStyle: 'italic' }}>VentureScale</span>
-                                <span style={{ fontSize: 16, fontWeight: 700, fontFamily: 'monospace' }}>AcmeTech</span>
-                                <span style={{ fontSize: 16, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Apex</span>
+                            <div className="trusted-by-list">
+                                <span className="trusted-by-item" style={{ animationDelay: '0.1s' }}>DataviCloud</span>
+                                <span className="trusted-by-item" style={{ animationDelay: '0.2s' }}>Vinfer.ai</span>
+                                <span className="trusted-by-item" style={{ animationDelay: '0.3s' }}>Crown Security</span>
+                                <span className="trusted-by-item" style={{ animationDelay: '0.4s' }}>ClickUp</span>
+                                <span className="trusted-by-item" style={{ animationDelay: '0.5s' }}>Freshsales</span>
                             </div>
                         </div>
                     </div>
 
-                    {/* Right Column: Gradient Orb Visual */}
+                    {/* Right Column: Animated Visualization */}
                     <div className="col-6" style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '500px' }}>
-                        <div className="gradient-orb"></div>
-                        {/* Subtle grid overlay on orb area */}
-                        <div style={{
-                            position: 'absolute',
-                            inset: 0,
-                            backgroundImage: 'linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)',
-                            backgroundSize: '48px 48px',
-                            borderRadius: '50%',
-                            maskImage: 'radial-gradient(circle, black 30%, transparent 70%)',
-                            WebkitMaskImage: 'radial-gradient(circle, black 30%, transparent 70%)',
-                        }}></div>
+                        <HeroAnimation />
                     </div>
 
                 </div>
