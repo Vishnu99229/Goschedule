@@ -887,3 +887,78 @@ button {
     box-shadow: 0 0 20px rgba(124, 58, 237, 0.15), 0 4px 12px rgba(0, 0, 0, 0.3);
   }
 }
+
+/* ═══════════════════════════════════════════
+   Legal Pages (Terms & Privacy)
+   ═══════════════════════════════════════════ */
+
+.legal-content {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+.legal-content p {
+  margin-bottom: 12px;
+}
+
+.legal-content p:last-child {
+  margin-bottom: 0;
+}
+
+.legal-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 4px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.legal-content ul li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--text-secondary);
+}
+
+.legal-content ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-purple);
+  opacity: 0.7;
+}
+
+.legal-content ul li strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.legal-content a {
+  color: #A5B4FC;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.2s;
+}
+
+.legal-content a:hover {
+  color: #C4B5FD;
+}
+
+@media (max-width: 768px) {
+  .legal-content {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .legal-content ul li {
+    font-size: 14px;
+    padding-left: 16px;
+  }
+}
