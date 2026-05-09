@@ -11,6 +11,8 @@ import Footer from './components/Footer'
 import TermsAndConditions from './components/TermsAndConditions'
 import PrivacyPolicy from './components/PrivacyPolicy'
 import ScrollToTop from './components/ScrollToTop'
+import OrlenaPage from './pages/OrlenaPage'
+import ReplykaroPage from './pages/ReplykaroPage'
 
 function HomePage() {
   return (
@@ -33,6 +35,8 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/products/orlena" element={<OrlenaPage />} />
+        <Route path="/products/replykaro" element={<ReplykaroPage />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
       </Routes>

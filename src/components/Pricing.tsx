@@ -1,4 +1,5 @@
-import { Check } from 'lucide-react';
+import { Check } from 'lucide-react'
+import Reveal from './Reveal'
 
 export default function Pricing() {
     const tiers = [
@@ -28,14 +29,16 @@ export default function Pricing() {
     return (
         <section id="pricing" className="section" style={{ background: 'var(--bg-raised)' }}>
             <div className="container">
-                <h2 className="h2 text-center" style={{ marginBottom: 'var(--space-3)' }}>
-                    Performance Based Growth
-                </h2>
-                <p className="body-lg text-center mx-auto" style={{ maxWidth: 480, marginBottom: 'var(--space-8)' }}>
-                    If we don't generate SQLs, you don't pay.
-                </p>
+                <Reveal>
+                    <h2 className="h2 text-center" style={{ marginBottom: 'var(--space-3)' }}>
+                        Performance Based Growth
+                    </h2>
+                    <p className="body-lg text-center mx-auto" style={{ maxWidth: 480, marginBottom: 'var(--space-8)' }}>
+                        If we don't generate SQLs, you don't pay.
+                    </p>
+                </Reveal>
 
-                <div className="grid-12">
+                <Reveal stagger className="grid-12">
                     {tiers.map((tier, i) => (
                         <div key={i} className="col-4">
                             <div className="card">
@@ -63,8 +66,8 @@ export default function Pricing() {
                             </div>
                         </div>
                     ))}
-                </div>
+                </Reveal>
             </div>
         </section>
-    );
+    )
 }

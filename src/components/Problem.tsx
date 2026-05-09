@@ -1,4 +1,5 @@
-import { X, Check } from 'lucide-react';
+import { X, Check } from 'lucide-react'
+import Reveal from './Reveal'
 
 export default function Problem() {
     const traditional = [
@@ -20,13 +21,16 @@ export default function Problem() {
     return (
         <section className="section" style={{ background: 'var(--bg-raised)' }}>
             <div className="container">
-                <h2 className="h2 text-center" style={{ marginBottom: 'var(--space-8)' }}>
-                    Why Most B2B Companies Burn Cash
-                </h2>
+                <Reveal>
+                    <h2 className="h2 text-center" style={{ marginBottom: 'var(--space-8)' }}>
+                        Why Most B2B Companies Burn Cash
+                    </h2>
+                </Reveal>
 
                 <div className="grid-12">
                     {/* Left: Traditional */}
                     <div className="col-6">
+                        <Reveal delayMs={0}>
                         <div className="card" style={{ background: 'var(--bg-base)' }}>
                             <h3 className="h3" style={{ marginBottom: 'var(--space-4)', color: 'var(--text-secondary)' }}>
                                 Traditional Agency Model
@@ -42,10 +46,12 @@ export default function Problem() {
                                 ))}
                             </div>
                         </div>
+                        </Reveal>
                     </div>
 
                     {/* Right: Goschedule */}
                     <div className="col-6">
+                        <Reveal delayMs={100}>
                         <div className="card" style={{ borderColor: 'rgba(124,58,237,0.15)', position: 'relative' }}>
                             <div style={{ position: 'absolute', top: 0, right: 0, width: 200, height: 200, background: 'radial-gradient(circle, rgba(124,58,237,0.1) 0%, transparent 70%)', pointerEvents: 'none' }}></div>
                             <h3 className="h3" style={{ marginBottom: 'var(--space-4)', color: '#fff' }}>
@@ -62,9 +68,10 @@ export default function Problem() {
                                 ))}
                             </div>
                         </div>
+                        </Reveal>
                     </div>
                 </div>
             </div>
         </section>
-    );
+    )
 }

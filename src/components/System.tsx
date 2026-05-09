@@ -1,52 +1,81 @@
-import { LayoutTemplate, Cpu, Filter } from 'lucide-react';
+import type { ReactNode } from 'react'
+import Reveal from './Reveal'
+import { OrganicNetworkIcon, OutboundRadarIcon, QualificationFunnelIcon } from './system-icons/SystemAnimationIcons'
+
+const CARDS: { icon: ReactNode; title: string; desc: ReactNode }[] = [
+    {
+        icon: <OrganicNetworkIcon />,
+        title: 'Organic Positioning Engine',
+        desc: (
+            <>
+                Founders are positioned as authorities by analyzing thousands of high-performing posts in their niche. Powered by{' '}
+                <strong>LSTM engagement predictors</strong>, <strong>BERT topic embeddings</strong>, and{' '}
+                <strong>GPT-4o content synthesis</strong> — every draft is scored before it goes live.
+            </>
+        ),
+    },
+    {
+        icon: <OutboundRadarIcon />,
+        title: 'Smart AI Outbound',
+        desc: (
+            <>
+                Personalized outreach driven by deep research workflows. A <strong>Q-learning agent</strong> picks the optimal
+                channel, message variant, and timing per lead. Built on <strong>multi-agent orchestration</strong>,{' '}
+                <strong>Claude Sonnet 4</strong> reasoning, and <strong>vector-embedded prospect memory</strong>.
+            </>
+        ),
+    },
+    {
+        icon: <QualificationFunnelIcon />,
+        title: 'Automated Qualification',
+        desc: (
+            <>
+                Leads filtered against strict SQL criteria using a stacked classification pipeline — <strong>XGBoost</strong> for hard
+                signals, <strong>fine-tuned transformers</strong> for intent extraction, and a rule-based override for compliance.
+                The model retrains weekly on your closed-won data.
+            </>
+        ),
+    },
+]
 
 export default function System() {
-    const cards = [
-        {
-            icon: <LayoutTemplate style={{ width: 28, height: 28, color: '#A5B4FC' }} />,
-            title: "Organic Positioning Engine",
-            desc: "We position founders as authorities using strategic content and AI distribution channels."
-        },
-        {
-            icon: <Cpu style={{ width: 28, height: 28, color: '#A5B4FC' }} />,
-            title: "Smart AI Outbound",
-            desc: "Personalized, research-driven outreach powered by intelligent AI data workflows."
-        },
-        {
-            icon: <Filter style={{ width: 28, height: 28, color: '#A5B4FC' }} />,
-            title: "Automated Qualification",
-            desc: "Leads are filtered and scored against strict SQL criteria before reaching your calendar."
-        }
-    ];
-
     return (
         <section id="approach" className="section">
             <div className="container">
-                <h2 className="h2 text-center" style={{ marginBottom: 'var(--space-8)' }}>
-                    How We Generate SQLs Without Ads
-                </h2>
+                <Reveal>
+                    <h2 className="h2 text-center" style={{ marginBottom: 'var(--space-8)' }}>
+                        How We Generate SQLs Without Ads
+                    </h2>
+                </Reveal>
 
-                <div className="grid-12">
-                    {cards.map((card, i) => (
+                <Reveal stagger className="grid-12">
+                    {CARDS.map((card, i) => (
                         <div key={i} className="col-4">
-                            <div className="card">
-                                <div className="flex items-center justify-center" style={{
-                                    width: 56,
-                                    height: 56,
-                                    borderRadius: 16,
-                                    background: 'rgba(124,58,237,0.08)',
-                                    border: '1px solid rgba(124,58,237,0.15)',
-                                    marginBottom: 'var(--space-4)'
-                                }}>
+                            <div className="card" style={{ height: '100%' }}>
+                                <div
+                                    className="flex items-center justify-center ecosystem-card__icon-wrap"
+                                    style={{
+                                        width: 64,
+                                        height: 64,
+                                        borderRadius: 16,
+                                        background: 'rgba(139,92,246,0.08)',
+                                        border: '1px solid rgba(139,92,246,0.18)',
+                                        marginBottom: 'var(--space-4)',
+                                    }}
+                                >
                                     {card.icon}
                                 </div>
-                                <h3 className="h3" style={{ marginBottom: 'var(--space-2)' }}>{card.title}</h3>
-                                <p className="body-lg flex-grow">{card.desc}</p>
+                                <h3 className="h3" style={{ marginBottom: 'var(--space-2)' }}>
+                                    {card.title}
+                                </h3>
+                                <p className="body-lg flex-grow" style={{ marginBottom: 0 }}>
+                                    {card.desc}
+                                </p>
                             </div>
                         </div>
                     ))}
-                </div>
+                </Reveal>
             </div>
         </section>
-    );
+    )
 }
