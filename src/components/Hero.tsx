@@ -18,18 +18,18 @@ export default function Hero() {
                                 Helping B2B founders grow without ad spend
                             </div>
 
-                            <h1 className="h1" style={{ marginBottom: 'var(--space-3)' }}>
-                                Sales Qualified Leads. <br />
-                                <span style={{ color: 'var(--text-tertiary)' }}>Or You Don't Pay.</span>
+                            <h1 className="hero-title">
+                                <span className="hero-title__line1">Sales Qualified Leads.</span>
+                                <span className="hero-title__line2">Or You Don&apos;t Pay.</span>
                             </h1>
 
-                            <p className="body-lg" style={{ marginBottom: 'var(--space-5)', maxWidth: '520px' }}>
-                                We build organic, AI-powered sales systems that generate real SQLs. No ads, no per-lead pricing,
-                                no spray-and-pray.
+                            <p className="hero-sub">
+                                We build organic, AI-powered sales systems that generate real SQLs. No ads, no per-lead pricing, no
+                                spray-and-pray.
                             </p>
 
                             <div className="flex items-center gap-3" style={{ marginBottom: 'var(--space-6)' }}>
-                                <a href="#book" className="btn btn-primary">
+                                <a href="#book" className="btn btn-primary btn-hero-primary">
                                     Get Qualified Leads <ArrowRight style={{ width: 18, height: 18, marginLeft: 8 }} />
                                 </a>
                                 <a href="#approach" className="btn btn-ghost">

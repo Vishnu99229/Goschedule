@@ -75,15 +75,11 @@ export default function Navbar() {
             <div className="container flex items-center justify-between nav-root" style={{ height: '100%' }}>
                 <Link
                     to="/"
+                    className="brand-link"
                     style={{
                         fontSize: '20px',
                         fontWeight: 700,
                         letterSpacing: '-0.02em',
-                        textDecoration: 'none',
-                        color: 'inherit',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '10px',
                     }}
                 >
                     <img
