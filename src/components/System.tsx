@@ -65,7 +65,7 @@ export default function System() {
                                 >
                                     {card.icon}
                                 </div>
-                                <h3 className="h3" style={{ marginBottom: 'var(--space-2)' }}>
+                                <h3 className="card-title" style={{ marginBottom: 'var(--space-2)' }}>
                                     {card.title}
                                 </h3>
                                 <p className="body-lg flex-grow" style={{ marginBottom: 0 }}>

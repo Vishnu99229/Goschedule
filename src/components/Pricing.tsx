@@ -43,10 +43,10 @@ export default function Pricing() {
                         <div key={i} className="col-4">
                             <div className="card">
                                 <div>
-                                    <h3 className="h3" style={{ marginBottom: 'var(--space-1)' }}>{tier.name}</h3>
+                                    <h3 className="card-title" style={{ marginBottom: 'var(--space-1)' }}>{tier.name}</h3>
                                     <p className="body-sm" style={{ marginBottom: 'var(--space-4)' }}>{tier.desc}</p>
                                     <div className="flex items-center" style={{ marginBottom: 'var(--space-4)', gap: '4px' }}>
-                                        <span style={{ fontSize: 38, fontWeight: 700, color: '#fff', letterSpacing: '-0.03em' }}>{tier.price}</span>
+                                        <span className="pricing-tier-price">{tier.price}</span>
                                         <span className="body-sm" style={{ alignSelf: 'flex-end', paddingBottom: '6px' }}>/ month</span>
                                     </div>
                                 </div>
@@ -59,7 +59,7 @@ export default function Pricing() {
                                     {tier.features.map((feat, j) => (
                                         <div key={j} className="flex items-center gap-3">
                                             <Check style={{ width: 18, height: 18, color: 'var(--text-tertiary)', flexShrink: 0 }} />
-                                            <span style={{ fontSize: 15, color: 'var(--text-secondary)' }}>{feat}</span>
+                                            <span style={{ fontSize: 'var(--text-base)', color: 'var(--text-secondary)' }}>{feat}</span>
                                         </div>
                                     ))}
                                 </div>

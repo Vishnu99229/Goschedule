@@ -71,7 +71,7 @@ export default function Ecosystem() {
                                     {tool.icon}
                                 </div>
                                 <div style={{ minWidth: 0 }}>
-                                    <div style={{ fontSize: 16, fontWeight: 600, color: '#fff' }}>{tool.name}</div>
+                                    <div className="card-title ecosystem-card__name">{tool.name}</div>
                                     <div className="body-sm">{tool.label}</div>
                                 </div>
                             </div>
