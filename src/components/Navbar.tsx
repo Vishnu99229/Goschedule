@@ -7,14 +7,16 @@ function ProductRow({
     title,
     subtitle,
     icon,
+    onClick,
 }: {
     to: string
     title: string
     subtitle: string
     icon: ReactNode
+    onClick?: () => void
 }) {
     return (
-        <Link to={to} className="nav-products__item">
+        <Link to={to} className="nav-products__item" onClick={onClick}>
             <div className="nav-products__icon" aria-hidden>
                 {icon}
             </div>
@@ -29,10 +31,12 @@ function ProductRow({
 export default function Navbar() {
     const [mobileOpen, setMobileOpen] = useState(false)
     const [mobileProductsOpen, setMobileProductsOpen] = useState(false)
+    const [productsOpen, setProductsOpen] = useState(false)
 
     const closeAll = useCallback(() => {
         setMobileOpen(false)
         setMobileProductsOpen(false)
+        setProductsOpen(false)
     }, [])
 
     useEffect(() => {
@@ -40,6 +44,8 @@ export default function Navbar() {
             if (window.matchMedia('(min-width: 768px)').matches) {
                 setMobileOpen(false)
                 setMobileProductsOpen(false)
+            } else {
+                setProductsOpen(false)
             }
         }
         window.addEventListener('resize', onResize)
@@ -113,25 +119,45 @@ export default function Navbar() {
                                 Platform
                             </a>
                         </li>
-                        <li className="nav-products">
-                            <span className="nav-products__trigger" style={{ cursor: 'default', padding: '8px 4px' }}>
+                        <li
+                            className={`nav-products ${productsOpen ? 'nav-products--open' : ''}`}
+                            onMouseEnter={() => setProductsOpen(true)}
+                            onMouseLeave={() => setProductsOpen(false)}
+                            onFocus={() => setProductsOpen(true)}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Escape') {
+                                    setProductsOpen(false)
+                                }
+                            }}
+                        >
+                            <button
+                                type="button"
+                                className="nav-products__trigger"
+                                aria-expanded={productsOpen}
+                                aria-haspopup="menu"
+                                onClick={() => setProductsOpen(true)}
+                            >
                                 Products
                                 <ChevronDown className="nav-products__chevron" aria-hidden />
-                            </span>
-                            <div className="nav-products__panel" role="menu">
-                                <ProductRow
-                                    to="/products/orlena"
-                                    title="Orlena"
-                                    subtitle="AI QR menus that increase café revenue"
-                                    icon={<Coffee style={{ width: 20, height: 20 }} />}
-                                />
-                                <ProductRow
-                                    to="/products/replykaro"
-                                    title="Replykaro"
-                                    subtitle="24/7 AI agent for WhatsApp & voice automation"
-                                    icon={<MessageCircle style={{ width: 20, height: 20 }} />}
-                                />
-                            </div>
+                            </button>
+                            {productsOpen && (
+                                <div className="nav-products__panel" role="menu">
+                                    <ProductRow
+                                        to="/products/orlena"
+                                        title="Orlena"
+                                        subtitle="AI QR menus that increase café revenue"
+                                        icon={<Coffee style={{ width: 20, height: 20 }} />}
+                                        onClick={() => setProductsOpen(false)}
+                                    />
+                                    <ProductRow
+                                        to="/products/replykaro"
+                                        title="Replykaro"
+                                        subtitle="24/7 AI agent for WhatsApp & voice automation"
+                                        icon={<MessageCircle style={{ width: 20, height: 20 }} />}
+                                        onClick={() => setProductsOpen(false)}
+                                    />
+                                </div>
+                            )}
                         </li>
                         <li>
                             <a href="/#pricing" className="nav-link-plain">

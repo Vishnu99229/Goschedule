@@ -5,12 +5,12 @@ import Reveal from './Reveal'
 
 export default function Hero() {
     return (
-        <section className="section" style={{ paddingTop: '160px', position: 'relative' }}>
+        <section className="section hero" style={{ position: 'relative' }}>
             <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-                <div className="grid-12" style={{ alignItems: 'center' }}>
+                <div className="grid-12 hero-content">
 
                     {/* Left Column: Content */}
-                    <div className="col-6" style={{ position: 'relative', zIndex: 1 }}>
+                    <div className="col-6 hero-copy">
                         <HeroParallaxBg />
                         <Reveal>
                             <div className="badge" style={{ marginBottom: 'var(--space-4)' }}>
@@ -38,7 +38,7 @@ export default function Hero() {
                             </div>
 
                             <div className="trusted-by-section">
-                                <p className="body-sm" style={{ marginBottom: 'var(--space-2)', textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: 12 }}>
+                                <p className="trusted-by-label">
                                     Trusted by founders shipping in production
                                 </p>
                                 <div className="trusted-by-list">
@@ -53,7 +53,7 @@ export default function Hero() {
                     </div>
 
                     {/* Right Column: Dashboard mockup */}
-                    <div className="col-6" style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '500px' }}>
+                    <div className="col-6 hero-visual">
                         <Reveal delayMs={300} className="w-full">
                             <HeroDashboard />
                         </Reveal>
