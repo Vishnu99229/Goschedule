@@ -3,6 +3,14 @@ import HeroDashboard from './HeroDashboard'
 import HeroParallaxBg from './HeroParallaxBg'
 import Reveal from './Reveal'
 
+const trustedLogos = [
+    'REPLYKARO.AI',
+    'ASTRAL LTD',
+    'CAFE MUZIRIS',
+    'ARROWHEAD.AI',
+    'CROWN SECURITY',
+]
+
 export default function Hero() {
     return (
         <section className="section hero" style={{ position: 'relative' }}>
@@ -37,16 +45,20 @@ export default function Hero() {
                                 </a>
                             </div>
 
-                            <div className="trusted-by-section">
-                                <p className="trusted-by-label">
+                            <div className="trusted-by">
+                                <p className="trusted-by__label">
                                     Trusted by founders shipping in production
                                 </p>
-                                <div className="trusted-by-list">
-                                    <span className="trusted-by-item" style={{ animationDelay: '0.1s' }}>Replyka.ai</span>
-                                    <span className="trusted-by-item" style={{ animationDelay: '0.15s' }}>Astral Ltd</span>
-                                    <span className="trusted-by-item" style={{ animationDelay: '0.2s' }}>Cafe Muziris</span>
-                                    <span className="trusted-by-item" style={{ animationDelay: '0.25s' }}>Arrowhead.ai</span>
-                                    <span className="trusted-by-item" style={{ animationDelay: '0.3s' }}>eShipz</span>
+                                <div className="trusted-by__logos">
+                                    {trustedLogos.map((logo, index) => (
+                                        <span
+                                            key={logo}
+                                            className="trusted-by__logo"
+                                            style={{ animationDelay: `${0.1 + index * 0.05}s` }}
+                                        >
+                                            {logo}
+                                        </span>
+                                    ))}
                                 </div>
                             </div>
                         </Reveal>

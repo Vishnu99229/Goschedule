@@ -786,17 +786,67 @@ section.section-cta {
   }
 }
 
-/* ── Tech badges (System section) ── */
-.tech-badge {
-  display: inline-flex;
+/* ── Animation-first system cards ── */
+.system-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  height: 100%;
+  padding: 40px 32px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: linear-gradient(180deg, rgba(139, 92, 246, 0.03), rgba(0, 0, 0, 0.2));
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.system-card:hover {
+  border-color: rgba(139, 92, 246, 0.25);
+  transform: translateY(-4px);
+}
+
+.system-card__animation {
+  width: 140px;
+  height: 140px;
+  display: flex;
   align-items: center;
-  padding: 4px 10px;
-  border-radius: 6px;
-  font-size: var(--text-xs);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
-  background: rgba(124, 58, 237, 0.12);
-  border: 1px solid rgba(124, 58, 237, 0.3);
-  color: #c4b5fd;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.system-card__title {
+  font-size: var(--text-xl);
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+
+.system-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.system-tag {
+  font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  color: rgba(167, 139, 250, 0.95);
+  white-space: nowrap;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.system-tag:hover {
+  background: rgba(139, 92, 246, 0.15);
+  border-color: rgba(139, 92, 246, 0.35);
 }
 
 /* ── Ecosystem cards polish ── */
@@ -874,50 +924,47 @@ section.section-cta {
 }
 
 /* ── Trusted By Section ── */
-.trusted-by-section {
+.trusted-by {
   width: 100%;
   margin-top: 60px;
-  padding-top: 40px;
+  padding-top: 32px;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.trusted-by-label {
+.trusted-by__label {
   font-size: 11px;
   font-weight: 500;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.4);
-  margin-bottom: 24px;
+  margin-bottom: 28px;
 }
 
-.trusted-by-list {
+.trusted-by__logos {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  /* Aligns with Left Column content */
   gap: 48px;
-  /* Safe, minimum 40-60px gap */
+  row-gap: 24px;
   flex-wrap: wrap;
 }
 
-.trusted-by-item {
-  font-family: var(--font-sans);
+.trusted-by__logo {
+  font-family: var(--font-hero-display);
   font-size: 16px;
   font-weight: 500;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.55);
   cursor: default;
-  transition: color 0.2s ease;
-
-  /* Staggered fade in animation */
+  transition: color 0.3s ease;
+  white-space: nowrap;
   opacity: 0;
   animation: heroTrustFadeIn 0.6s ease-out forwards;
 }
 
-/* Option B: Soft hover effect */
-.trusted-by-item:hover {
-  color: rgba(255, 255, 255, 0.8);
+.trusted-by__logo:hover {
+  color: rgba(255, 255, 255, 0.85);
 }
 
 @keyframes heroTrustFadeIn {
