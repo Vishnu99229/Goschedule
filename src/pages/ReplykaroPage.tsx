@@ -199,12 +199,15 @@ export default function ReplykaroPage() {
                     className="rk-hero"
                 >
                     <div>
+                        <div className="badge" style={{ marginBottom: 18 }}>
+                            Inbound Sales AI Agent
+                        </div>
                         <h1 style={{ fontSize: 'clamp(30px, 4.5vw, 46px)', fontWeight: 700, lineHeight: 1.1, marginBottom: 20 }}>
-                            Never lose another lead to silence
+                            Replykaro — The AI Agent That Never Misses a Lead
                         </h1>
                         <p className="body-lg" style={{ color: TEXT_MUTED, maxWidth: 520, marginBottom: 28 }}>
-                            Replykaro is a 24/7 AI agent that handles inbound calls and WhatsApp in Malayalam, English, and Hindi. It
-                            answers questions, checks live stock, books visits, and routes hot leads — instantly.
+                            24/7 inbound call and WhatsApp handling in Malayalam, English, and Hindi. Qualifies, books, and routes —
+                            instantly.
                         </p>
                         <a href={DEMO_HREF} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ display: 'inline-flex' }}>
                             Book a demo

@@ -449,6 +449,110 @@ section.section-cta {
   text-transform: none;
 }
 
+/* ── Agent categories ── */
+.agents-section {
+  padding: 100px 24px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.agents-section__title {
+  font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-align: center;
+  margin-bottom: 16px;
+  font-family: var(--font-hero-display);
+}
+
+.agents-section__subtitle {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 60px;
+  line-height: 1.5;
+}
+
+.agents-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.agent-card {
+  padding: 32px 28px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: linear-gradient(180deg, rgba(139, 92, 246, 0.03), rgba(0, 0, 0, 0.2));
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.agent-card:hover {
+  border-color: rgba(139, 92, 246, 0.25);
+  transform: translateY(-4px);
+}
+
+.agent-card__icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 20px;
+}
+
+.agent-card__title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.agent-card__tagline {
+  font-size: 14px;
+  color: rgba(167, 139, 250, 0.9);
+  font-style: italic;
+  margin-bottom: 14px;
+}
+
+.agent-card__description {
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 16px;
+}
+
+.agent-card__examples {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.agent-card__example {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(139, 92, 246, 0.08);
+  border: 1px solid rgba(139, 92, 246, 0.15);
+  color: rgba(167, 139, 250, 0.8);
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 968px) {
+  .agents-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .agents-section {
+    padding: 80px 24px;
+  }
+
+  .agents-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ── Utility ── */
 .text-center {
   text-align: center;
@@ -821,6 +925,13 @@ section.section-cta {
   margin: 0;
   letter-spacing: -0.01em;
   line-height: 1.25;
+}
+
+.system-card__description {
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.62);
+  margin: -8px 0 0;
 }
 
 .system-card__tags {

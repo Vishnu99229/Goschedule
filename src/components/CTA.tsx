@@ -21,11 +21,11 @@ export default function CTA() {
                 <Reveal>
                     <div className="text-center mx-auto" style={{ maxWidth: 900 }}>
                         <h2 className="cta-headline" style={{ marginBottom: 'var(--space-4)' }}>
-                            Stop Paying For Noise.<br />
-                            <span className="text-gradient">Start Closing Qualified Buyers.</span>
+                            Deploy AI Agents Into Real Workflows.<br />
+                            <span className="text-gradient">Ship Outcomes, Not Dashboards.</span>
                         </h2>
                         <a href="https://cal.com/vishnu-rajan-3siibd/goschedule" target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-                            Book Strategy Call <ArrowRight style={{ width: 18, height: 18, marginLeft: 8 }} />
+                            Deploy an AI Agent <ArrowRight style={{ width: 18, height: 18, marginLeft: 8 }} />
                         </a>
                     </div>
                 </Reveal>

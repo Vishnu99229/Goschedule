@@ -2,10 +2,10 @@ import Reveal from './Reveal'
 
 export default function Results() {
     const metrics = [
-        { value: "100+", label: "SQLs Generated" },
-        { value: "$0", label: "Ad Spend Required" },
-        { value: "3\u20135x", label: "Pipeline Growth" },
-        { value: "70%+", label: "Meeting Quality Rate" }
+        { value: "24/7", label: "Agent Coverage" },
+        { value: "6+", label: "Agent Categories" },
+        { value: "3\u20135x", label: "Workflow Throughput" },
+        { value: "End-to-end", label: "Process Ownership" }
     ]
 
     return (

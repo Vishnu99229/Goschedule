@@ -287,12 +287,15 @@ export default function OrlenaPage() {
                     className="orlena-hero-grid"
                 >
                     <div>
+                        <div className="badge" style={{ marginBottom: 18 }}>
+                            Hospitality AI Agent
+                        </div>
                         <h1 style={{ fontSize: 'clamp(32px, 4.5vw, 48px)', fontWeight: 700, lineHeight: 1.1, marginBottom: 20 }}>
-                            AI QR menus that increase café revenue by 23%
+                            Orlena — The AI Agent That Upsells For Cafés
                         </h1>
                         <p className="body-lg" style={{ color: TEXT_MUTED, maxWidth: 520, marginBottom: 28 }}>
-                            Plug Orlena into your QR menu. No staff training. Customers see smart, personalized upsells at every
-                            order — like a great server, working at every table simultaneously.
+                            Plug Orlena into your QR menu. The agent suggests the right pairing, the right upgrade, the right
+                            hospitality moment — 23% lift in average order value, zero training.
                         </p>
                         <a
                             href="https://orlena.talk"

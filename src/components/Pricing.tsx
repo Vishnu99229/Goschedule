@@ -5,23 +5,23 @@ export default function Pricing() {
     const tiers = [
         {
             name: "Starter",
-            desc: "For early stage founders.",
+            desc: "Launch one high-leverage agent.",
             price: "$400",
-            features: ["Outbound system setup", "Organic positioning base", "Performance aligned pricing"],
-            cta: "Get Started"
+            features: ["Workflow mapping", "Single-agent deployment", "Tool integration setup"],
+            cta: "Deploy Starter Agent"
         },
         {
             name: "Growth",
-            desc: "Scaling system with content.",
+            desc: "Run multiple revenue workflows.",
             price: "$800",
-            features: ["Full outbound + content engine", "Qualification automation", "Monthly performance model"],
-            cta: "Apply Now"
+            features: ["Outbound + inbound agents", "Qualification automation", "Continuous optimization"],
+            cta: "Build Agent Stack"
         },
         {
             name: "Scale",
-            desc: "Full AI sales engine.",
+            desc: "Agent platform across teams.",
             price: "$1000",
-            features: ["CRM & ATS integration", "Voice AI follow-ups", "Advanced automation stack"],
+            features: ["Revenue + ops agents", "Voice and workflow automation", "Advanced orchestration layer"],
             cta: "Talk to Us"
         }
     ];
@@ -31,10 +31,10 @@ export default function Pricing() {
             <div className="container">
                 <Reveal>
                     <h2 className="h2 text-center" style={{ marginBottom: 'var(--space-3)' }}>
-                        Performance Based Growth
+                        AI Agent Deployment Plans
                     </h2>
                     <p className="body-lg text-center mx-auto" style={{ maxWidth: 480, marginBottom: 'var(--space-8)' }}>
-                        If we don't generate SQLs, you don't pay.
+                        Start with one agent, then expand into a full operating layer across revenue, sales, and operations.
                     </p>
                 </Reveal>
 

@@ -3,19 +3,19 @@ import Reveal from './Reveal'
 
 export default function Problem() {
     const traditional = [
-        "High ad spend with low quality leads",
-        "SDRs calling unqualified prospects",
-        "Manual outreach with low response rates",
-        "Marketing that generates MQLs but not SQLs",
-        "No accountability on outcomes"
+        "Manual processes buried across tools",
+        "Teams waiting on humans for every handoff",
+        "Generic automations that break outside scripts",
+        "Data stuck in inboxes, calls, CRMs, and sheets",
+        "Dashboards that report work instead of doing it"
     ];
 
     const goschedule = [
-        "AI powered lead research at scale",
-        "Hyper personalized outbound sequences",
-        "Organic positioning and authority building",
-        "Automated qualification filtering",
-        "Sales ready conversations only"
+        "AI agents deployed into your live workflows",
+        "Revenue, sales, ops, and admin processes handled 24/7",
+        "Tool-integrated agents that act across your stack",
+        "Continuous learning from outcomes and operator feedback",
+        "Business processes shipped end to end"
     ];
 
     return (
@@ -23,7 +23,7 @@ export default function Problem() {
             <div className="container">
                 <Reveal>
                     <h2 className="h2 text-center" style={{ marginBottom: 'var(--space-8)' }}>
-                        Why Most B2B Companies Burn Cash
+                        Why Most B2B Teams Still Run On Manual Work
                     </h2>
                 </Reveal>
 
@@ -33,7 +33,7 @@ export default function Problem() {
                         <Reveal delayMs={0}>
                         <div className="card" style={{ background: 'var(--bg-base)' }}>
                             <h3 className="card-title" style={{ marginBottom: 'var(--space-4)', color: 'var(--text-secondary)' }}>
-                                Traditional Agency Model
+                                Manual Operating Model
                             </h3>
                             <div className="flex flex-col gap-3">
                                 {traditional.map((item, i) => (
@@ -55,7 +55,7 @@ export default function Problem() {
                         <div className="card" style={{ borderColor: 'rgba(124,58,237,0.15)', position: 'relative' }}>
                             <div style={{ position: 'absolute', top: 0, right: 0, width: 200, height: 200, background: 'radial-gradient(circle, rgba(124,58,237,0.1) 0%, transparent 70%)', pointerEvents: 'none' }}></div>
                             <h3 className="card-title" style={{ marginBottom: 'var(--space-4)', color: '#fff' }}>
-                                The Goschedule Model
+                                The Goschedule Agent Model
                             </h3>
                             <div className="flex flex-col gap-3" style={{ position: 'relative', zIndex: 1 }}>
                                 {goschedule.map((item, i) => (

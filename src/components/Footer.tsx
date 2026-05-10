@@ -4,11 +4,14 @@ export default function Footer() {
     return (
         <footer className="footer" style={{ borderTop: '1px solid var(--border-subtle)', padding: 'var(--space-6) 0' }}>
             <div className="container flex items-center justify-between" style={{ flexWrap: 'wrap', gap: 'var(--space-3)' }}>
-                <Link to="/" className="brand-link footer-text" style={{ fontWeight: 600 }}>
-                    <span style={{ color: '#fff' }}>Goschedule</span><span style={{ color: '#7C3AED' }}>.ai</span>
-                </Link>
+                <div>
+                    <Link to="/" className="brand-link footer-text" style={{ fontWeight: 600, marginBottom: 6 }}>
+                        <span style={{ color: '#fff' }}>Goschedule</span><span style={{ color: '#7C3AED' }}>.ai</span>
+                    </Link>
+                    <div className="footer-text">Deploying AI agents for revenue, ops &amp; growth</div>
+                </div>
                 <div className="footer-text">
-                    &copy; {new Date().getFullYear()} Goschedule.ai &middot; Performance Aligned Growth Infrastructure
+                    &copy; {new Date().getFullYear()} Goschedule.ai &middot; AI Agents Deployment Platform
                 </div>
                 <div className="flex gap-5">
                     <Link to="/terms-and-conditions" className="footer-text" style={{ transition: 'color 0.2s' }}

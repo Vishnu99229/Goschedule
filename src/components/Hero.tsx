@@ -23,25 +23,25 @@ export default function Hero() {
                         <Reveal>
                             <div className="badge" style={{ marginBottom: 'var(--space-4)' }}>
                                 <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#7C3AED' }}></span>
-                                Helping B2B founders grow without ad spend
+                                Deploying AI agents for revenue, ops &amp; growth
                             </div>
 
                             <h1 className="hero-title">
-                                <span className="hero-title__line1">Sales Qualified Leads.</span>
-                                <span className="hero-title__line2">Or You Don&apos;t Pay.</span>
+                                <span className="hero-title__line1">AI Agents That Run</span>
+                                <span className="hero-title__line2">Your Revenue Engine.</span>
                             </h1>
 
                             <p className="hero-sub">
-                                We build organic, AI-powered sales systems that generate real SQLs. No ads, no per-lead pricing, no
-                                spray-and-pray.
+                                From outbound sales and inbound qualification to operations and back-office workflows — we deploy AI
+                                agents that work 24/7, learn continuously, and ship outcomes, not dashboards.
                             </p>
 
                             <div className="flex items-center gap-3" style={{ marginBottom: 'var(--space-6)' }}>
                                 <a href="#book" className="btn btn-primary btn-hero-primary">
-                                    Get Qualified Leads <ArrowRight style={{ width: 18, height: 18, marginLeft: 8 }} />
+                                    Deploy an AI Agent <ArrowRight style={{ width: 18, height: 18, marginLeft: 8 }} />
                                 </a>
-                                <a href="#approach" className="btn btn-ghost">
-                                    <Play style={{ width: 16, height: 16, marginRight: 8, color: '#A5B4FC' }} /> See How It Works
+                                <a href="#agents" className="btn btn-ghost">
+                                    <Play style={{ width: 16, height: 16, marginRight: 8, color: '#A5B4FC' }} /> See Our Agents
                                 </a>
                             </div>
 

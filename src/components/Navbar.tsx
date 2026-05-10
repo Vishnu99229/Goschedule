@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
 import { useCallback, useEffect, useState, type ReactNode } from 'react'
-import { ChevronDown, Coffee, MessageCircle, Menu, X } from 'lucide-react'
+import { Bot, ChevronDown, Coffee, MessageCircle, Menu, Settings2, Target, X, Zap } from 'lucide-react'
 
-function ProductRow({
+function NavMenuRow({
     to,
     title,
     subtitle,
@@ -15,8 +15,8 @@ function ProductRow({
     icon: ReactNode
     onClick?: () => void
 }) {
-    return (
-        <Link to={to} className="nav-products__item" onClick={onClick}>
+    const content = (
+        <>
             <div className="nav-products__icon" aria-hidden>
                 {icon}
             </div>
@@ -24,18 +24,36 @@ function ProductRow({
                 <div className="nav-products__title">{title}</div>
                 <div className="nav-products__subtitle">{subtitle}</div>
             </div>
+        </>
+    )
+
+    if (to.startsWith('/#')) {
+        return (
+            <a href={to} className="nav-products__item" onClick={onClick}>
+                {content}
+            </a>
+        )
+    }
+
+    return (
+        <Link to={to} className="nav-products__item" onClick={onClick}>
+            {content}
         </Link>
     )
 }
 
 export default function Navbar() {
     const [mobileOpen, setMobileOpen] = useState(false)
+    const [mobileAgentsOpen, setMobileAgentsOpen] = useState(false)
     const [mobileProductsOpen, setMobileProductsOpen] = useState(false)
+    const [agentsOpen, setAgentsOpen] = useState(false)
     const [productsOpen, setProductsOpen] = useState(false)
 
     const closeAll = useCallback(() => {
         setMobileOpen(false)
+        setMobileAgentsOpen(false)
         setMobileProductsOpen(false)
+        setAgentsOpen(false)
         setProductsOpen(false)
     }, [])
 
@@ -43,8 +61,10 @@ export default function Navbar() {
         const onResize = () => {
             if (window.matchMedia('(min-width: 768px)').matches) {
                 setMobileOpen(false)
+                setMobileAgentsOpen(false)
                 setMobileProductsOpen(false)
             } else {
+                setAgentsOpen(false)
                 setProductsOpen(false)
             }
         }
@@ -109,15 +129,59 @@ export default function Navbar() {
                             alignItems: 'center',
                         }}
                     >
-                        <li>
-                            <a href="/#approach" className="nav-link-plain">
-                                SQL Model
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/#ecosystem" className="nav-link-plain">
-                                Platform
-                            </a>
+                        <li
+                            className={`nav-products ${agentsOpen ? 'nav-products--open' : ''}`}
+                            onMouseEnter={() => setAgentsOpen(true)}
+                            onMouseLeave={() => setAgentsOpen(false)}
+                            onFocus={() => setAgentsOpen(true)}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Escape') {
+                                    setAgentsOpen(false)
+                                }
+                            }}
+                        >
+                            <button
+                                type="button"
+                                className="nav-products__trigger"
+                                aria-expanded={agentsOpen}
+                                aria-haspopup="menu"
+                                onClick={() => setAgentsOpen(true)}
+                            >
+                                Agents
+                                <ChevronDown className="nav-products__chevron" aria-hidden />
+                            </button>
+                            {agentsOpen && (
+                                <div className="nav-products__panel" role="menu">
+                                    <NavMenuRow
+                                        to="/#outbound-agent"
+                                        title="Outbound"
+                                        subtitle="Cold outreach that books meetings"
+                                        icon={<Target style={{ width: 20, height: 20 }} />}
+                                        onClick={() => setAgentsOpen(false)}
+                                    />
+                                    <NavMenuRow
+                                        to="/#inbound-agent"
+                                        title="Inbound"
+                                        subtitle="24/7 lead qualification"
+                                        icon={<Bot style={{ width: 20, height: 20 }} />}
+                                        onClick={() => setAgentsOpen(false)}
+                                    />
+                                    <NavMenuRow
+                                        to="/#ops-agent"
+                                        title="Ops"
+                                        subtitle="Back-office workflow automation"
+                                        icon={<Settings2 style={{ width: 20, height: 20 }} />}
+                                        onClick={() => setAgentsOpen(false)}
+                                    />
+                                    <NavMenuRow
+                                        to="/#custom-agent"
+                                        title="Custom"
+                                        subtitle="Agents built for your process"
+                                        icon={<Zap style={{ width: 20, height: 20 }} />}
+                                        onClick={() => setAgentsOpen(false)}
+                                    />
+                                </div>
+                            )}
                         </li>
                         <li
                             className={`nav-products ${productsOpen ? 'nav-products--open' : ''}`}
@@ -142,14 +206,14 @@ export default function Navbar() {
                             </button>
                             {productsOpen && (
                                 <div className="nav-products__panel" role="menu">
-                                    <ProductRow
+                                    <NavMenuRow
                                         to="/products/orlena"
                                         title="Orlena"
                                         subtitle="AI QR menus that increase café revenue"
                                         icon={<Coffee style={{ width: 20, height: 20 }} />}
                                         onClick={() => setProductsOpen(false)}
                                     />
-                                    <ProductRow
+                                    <NavMenuRow
                                         to="/products/replykaro"
                                         title="Replykaro"
                                         subtitle="24/7 AI agent for WhatsApp & voice automation"
@@ -158,6 +222,11 @@ export default function Navbar() {
                                     />
                                 </div>
                             )}
+                        </li>
+                        <li>
+                            <a href="/#approach" className="nav-link-plain">
+                                Approach
+                            </a>
                         </li>
                         <li>
                             <a href="/#pricing" className="nav-link-plain">
@@ -178,7 +247,7 @@ export default function Navbar() {
                         {mobileOpen ? <X style={{ width: 22, height: 22 }} /> : <Menu style={{ width: 22, height: 22 }} />}
                     </button>
                     <a href="/#book" className="btn btn-primary" style={{ padding: '10px 20px', fontSize: '15px' }}>
-                        Get Started
+                        Deploy Agent
                     </a>
                 </div>
             </div>
@@ -200,12 +269,38 @@ export default function Navbar() {
                     }
                 }}
             >
-                <a href="/#approach" className="nav-link-plain">
-                    SQL Model
-                </a>
-                <a href="/#ecosystem" className="nav-link-plain">
-                    Platform
-                </a>
+                <div className={`nav-mobile-products ${mobileAgentsOpen ? 'nav-mobile-products--open' : ''}`}>
+                    <button
+                        type="button"
+                        className="nav-mobile-products__toggle"
+                        aria-expanded={mobileAgentsOpen}
+                        onClick={() => setMobileAgentsOpen((v) => !v)}
+                    >
+                        <span>Agents</span>
+                        <ChevronDown
+                            style={{
+                                width: 16,
+                                height: 16,
+                                transform: mobileAgentsOpen ? 'rotate(180deg)' : 'rotate(0)',
+                                transition: 'transform 0.25s ease',
+                            }}
+                        />
+                    </button>
+                    <div className="nav-mobile-products__sub">
+                        <a href="/#outbound-agent" className="nav-link-plain">
+                            Outbound
+                        </a>
+                        <a href="/#inbound-agent" className="nav-link-plain">
+                            Inbound
+                        </a>
+                        <a href="/#ops-agent" className="nav-link-plain">
+                            Ops
+                        </a>
+                        <a href="/#custom-agent" className="nav-link-plain">
+                            Custom
+                        </a>
+                    </div>
+                </div>
                 <div className={`nav-mobile-products ${mobileProductsOpen ? 'nav-mobile-products--open' : ''}`}>
                     <button
                         type="button"
@@ -232,6 +327,9 @@ export default function Navbar() {
                         </Link>
                     </div>
                 </div>
+                <a href="/#approach" className="nav-link-plain">
+                    Approach
+                </a>
                 <a href="/#pricing" className="nav-link-plain">
                     Pricing
                 </a>

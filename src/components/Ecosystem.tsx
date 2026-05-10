@@ -40,10 +40,10 @@ export default function Ecosystem() {
             <div className="container">
                 <Reveal>
                     <h2 className="h2 text-center" style={{ marginBottom: 'var(--space-3)' }}>
-                        Powered by Modern Revenue Infrastructure
+                        Powered by Modern Agent Infrastructure
                     </h2>
                     <p className="body-lg text-center mx-auto" style={{ maxWidth: 560, marginBottom: 'var(--space-8)' }}>
-                        We deploy as your AI systems architect. Not an agency running campaigns.
+                        We deploy as your AI systems architect, wiring agents into the tools your team already uses.
                     </p>
                 </Reveal>
 

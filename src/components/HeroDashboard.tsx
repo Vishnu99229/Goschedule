@@ -6,13 +6,13 @@ const LINE_PATH = 'M 0 72 L 120 58 L 240 38 L 400 18'
 const FILL_PATH = 'M 0 100 L 0 72 L 120 58 L 240 38 L 400 18 L 400 100 Z'
 
 const ROTATING_ACTIVITIES = [
-    'New SQL: VP Marketing at FinTech Co — just now',
-    'Reply received: CTO at SaaS Startup — 1 min ago',
-    'Demo booked: Founder at D2C Brand — 3 min ago',
-    'New SQL: Head of Growth at HRTech — 5 min ago',
-    'Reply received: COO at LogisticsCo — 8 min ago',
-    'Demo booked: Co-Founder at FinTech — 12 min ago',
-    'New SQL: CMO at SaaS — 15 min ago',
+    'Outbound agent booked a meeting — just now',
+    'Inbound agent qualified a WhatsApp lead — 1 min ago',
+    'Ops agent synced invoice workflow — 3 min ago',
+    'Revenue agent enriched CRM record — 5 min ago',
+    'Assistant agent prepared meeting brief — 8 min ago',
+    'Custom agent routed approval task — 12 min ago',
+    'Voice agent handled inbound call — 15 min ago',
 ]
 
 const DELTA_DELAY_MS = 1500
@@ -67,7 +67,7 @@ export default function HeroDashboard() {
             </div>
             <div className="hero-dash__stats">
                 <div className="hero-dash__stat">
-                    <div className="hero-dash__stat-label">SQLs This Week</div>
+                    <div className="hero-dash__stat-label">Agent Tasks</div>
                     <div className="hero-dash__stat-row">
                         <span className="hero-dash__stat-num">{sqlDisplay}</span>
                         <motion.span
@@ -84,7 +84,7 @@ export default function HeroDashboard() {
                     </div>
                 </div>
                 <div className="hero-dash__stat">
-                    <div className="hero-dash__stat-label">Reply Rate</div>
+                    <div className="hero-dash__stat-label">Automation Rate</div>
                     <div className="hero-dash__stat-row">
                         <span className="hero-dash__stat-num">{replyDisplay.toFixed(1)}%</span>
                         <motion.span
@@ -101,7 +101,7 @@ export default function HeroDashboard() {
                     </div>
                 </div>
                 <div className="hero-dash__stat">
-                    <div className="hero-dash__stat-label">Pipeline Value</div>
+                    <div className="hero-dash__stat-label">Revenue Impact</div>
                     <div className="hero-dash__stat-row">
                         <span className="hero-dash__stat-num">₹{pipeDisplay}L</span>
                         <motion.span
@@ -121,7 +121,7 @@ export default function HeroDashboard() {
 
             <div className="hero-dash__chart-wrap">
                 <div className="hero-dash__chart-head">
-                    <span>SQL trajectory · 4 weeks</span>
+                    <span>Agent outcomes · 4 weeks</span>
                 </div>
                 <svg className="hero-dash__chart" viewBox="0 0 400 120" preserveAspectRatio="none" aria-hidden="true">
                     <defs>
