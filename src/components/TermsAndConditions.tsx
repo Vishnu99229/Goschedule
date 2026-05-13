@@ -1,14 +1,13 @@
-import { useEffect } from 'react'
+import SEO from './SEO'
 
 export default function TermsAndConditions() {
-    useEffect(() => {
-        document.title = 'Terms and Conditions | Goschedule.ai'
-        const meta = document.querySelector('meta[name="description"]')
-        if (meta) meta.setAttribute('content', 'Read the Terms and Conditions governing the use of Goschedule.ai services, including AI-powered lead generation, automation setup, and consulting.')
-    }, [])
-
     return (
         <main style={{ padding: 'var(--space-10) 0', minHeight: '100vh' }}>
+            <SEO
+                title="Terms and Conditions | Goschedule.ai"
+                description="Terms and conditions for using Goschedule.ai products and services."
+                canonical="https://www.goschedule.ai/terms-and-conditions"
+            />
             <div className="container" style={{ maxWidth: '800px' }}>
 
                 {/* Header */}

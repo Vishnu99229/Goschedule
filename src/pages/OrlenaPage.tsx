@@ -1,6 +1,7 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { useCountUp } from '../hooks/useCountUp'
+import SEO from '../components/SEO'
 
 const ACCENT = '#8b5cf6'
 const ACCENT_SOFT = '#a78bfa'
@@ -275,6 +276,11 @@ function StatsStrip() {
 export default function OrlenaPage() {
     return (
         <main style={{ background: BG, color: TEXT, minHeight: '80vh', paddingTop: 48, paddingBottom: 100 }}>
+            <SEO
+                title="Orlena — AI Upselling Agent for Cafes | Goschedule.ai"
+                description="Orlena is an AI agent that runs inside your QR menu, reading every order and suggesting the perfect pairing. Lift AOV 10-20% with zero training, zero hardware."
+                canonical="https://www.goschedule.ai/products/orlena"
+            />
             {/* Hero */}
             <section className="container" style={{ paddingBottom: 72 }}>
                 <div

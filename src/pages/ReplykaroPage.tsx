@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { MessageCircle, Phone } from 'lucide-react'
+import SEO from '../components/SEO'
 
 const ACCENT = '#8b5cf6'
 const ACCENT_SOFT = '#a78bfa'
@@ -192,6 +193,11 @@ function FeatureVisualFlowFixed() {
 export default function ReplykaroPage() {
     return (
         <main style={{ background: BG, color: TEXT, minHeight: '80vh', paddingTop: 48, paddingBottom: 100 }}>
+            <SEO
+                title="ReplyKaro — AI Inbound Response Agent | Goschedule.ai"
+                description="ReplyKaro is an AI agent that responds to every inbound lead within seconds. Enriches contact data, qualifies intent, and books meetings — automatically."
+                canonical="https://www.goschedule.ai/products/replykaro"
+            />
             {/* Hero */}
             <section className="container" style={{ paddingBottom: 56 }}>
                 <div

@@ -1,14 +1,13 @@
-import { useEffect } from 'react'
+import SEO from './SEO'
 
 export default function PrivacyPolicy() {
-    useEffect(() => {
-        document.title = 'Privacy Policy | Goschedule.ai'
-        const meta = document.querySelector('meta[name="description"]')
-        if (meta) meta.setAttribute('content', 'Goschedule.ai Privacy Policy. Learn how we collect, use, store, and protect your personal and business data in compliance with global standards and Indian IT laws.')
-    }, [])
-
     return (
         <main style={{ padding: 'var(--space-10) 0', minHeight: '100vh' }}>
+            <SEO
+                title="Privacy Policy | Goschedule.ai"
+                description="Privacy policy for Goschedule.ai. Learn how we collect, use, and protect your data."
+                canonical="https://www.goschedule.ai/privacy-policy"
+            />
             <div className="container" style={{ maxWidth: '800px' }}>
 
                 {/* Header */}

@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
+import SEO from './components/SEO'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Agents from './components/Agents'
@@ -18,6 +19,11 @@ import ReplykaroPage from './pages/ReplykaroPage'
 function HomePage() {
   return (
     <main>
+      <SEO
+        title="Goschedule.ai — AI Agents for Revenue, Sales & Operations"
+        description="Deploy AI agents that run your revenue engine. From outbound sales to operations — 24/7, learning, outcome-driven."
+        canonical="https://www.goschedule.ai/"
+      />
       <Hero />
       <Agents />
       <Problem />
