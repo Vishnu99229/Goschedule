@@ -1,3 +1,20 @@
 {
+  "redirects": [
+    {
+      "source": "/html/aboutus.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/html/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/html/:path*",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
