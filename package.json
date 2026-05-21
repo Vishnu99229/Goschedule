@@ -1,7 +1,10 @@
 {
-  "name": "goschedule-ai",
+  "name": "goschedule",
+  "description": "GoSchedule - Scheduling AI for businesses",
+  "author": "Vishnu",
+  "license": "MIT",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
