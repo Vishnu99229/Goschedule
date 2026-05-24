@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Playwright / verification artifacts (local-only)
+.playwright-mcp/
+verify-*.png
+v-*-*.png
+375-fold*.png

@@ -9,7 +9,7 @@ export default function Results() {
     ]
 
     return (
-        <section className="section" style={{ background: 'var(--bg-raised)', borderTop: '1px solid var(--border-subtle)', borderBottom: '1px solid var(--border-subtle)' }}>
+        <section className="section" style={{ background: 'var(--bg-base)', borderTop: '1px solid var(--border-subtle)', borderBottom: '1px solid var(--border-subtle)' }}>
             <div className="container">
                 <Reveal stagger className="grid-12">
                     {metrics.map((m, i) => (

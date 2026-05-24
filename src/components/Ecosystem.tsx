@@ -62,10 +62,10 @@ export default function Ecosystem() {
                                     style={{
                                         width: 48,
                                         height: 48,
-                                        borderRadius: 14,
-                                        background: 'rgba(124,58,237,0.08)',
-                                        border: '1px solid rgba(124,58,237,0.12)',
-                                        color: '#A5B4FC',
+                                        borderRadius: 12,
+                                        background: 'rgba(139,92,246,0.10)',
+                                        border: '1px solid rgba(139,92,246,0.20)',
+                                        color: 'var(--accent)',
                                     }}
                                 >
                                     {tool.icon}

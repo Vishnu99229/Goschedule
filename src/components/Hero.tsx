@@ -1,13 +1,10 @@
 import { ArrowRight, Play } from 'lucide-react'
 import HeroDashboard from './HeroDashboard'
-import HeroParallaxBg from './HeroParallaxBg'
 import Reveal from './Reveal'
 
 const trustedLogos = [
-    'REPLYKARO.AI',
     'ASTRAL LTD',
     'CAFE MUZIRIS',
-    'ARROWHEAD.AI',
     'CROWN SECURITY',
 ]
 
@@ -19,16 +16,9 @@ export default function Hero() {
 
                     {/* Left Column: Content */}
                     <div className="col-6 hero-copy">
-                        <HeroParallaxBg />
                         <Reveal>
-                            <div className="badge" style={{ marginBottom: 'var(--space-4)' }}>
-                                <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#7C3AED' }}></span>
-                                Deploying AI agents for revenue, ops &amp; growth
-                            </div>
-
                             <h1 className="hero-title">
-                                <span className="hero-title__line1">AI Agents That Run</span>
-                                <span className="hero-title__line2">Your Revenue Engine.</span>
+                                AI Agents That Run Your Revenue Engine.
                             </h1>
 
                             <p className="hero-sub">
@@ -36,12 +26,12 @@ export default function Hero() {
                                 agents that work 24/7, learn continuously, and ship outcomes, not dashboards.
                             </p>
 
-                            <div className="flex items-center gap-3" style={{ marginBottom: 'var(--space-6)' }}>
+                            <div className="hero-cta-row">
                                 <a href="#book" className="btn btn-primary btn-hero-primary">
                                     Deploy an AI Agent <ArrowRight style={{ width: 18, height: 18, marginLeft: 8 }} />
                                 </a>
-                                <a href="#agents" className="btn btn-ghost">
-                                    <Play style={{ width: 16, height: 16, marginRight: 8, color: '#A5B4FC' }} /> See Our Agents
+                                <a href="#agents" className="btn btn-ghost btn-hero-secondary">
+                                    <Play style={{ width: 16, height: 16, marginRight: 8 }} /> See Our Agents
                                 </a>
                             </div>
 

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useCallback, useEffect, useState, type ReactNode } from 'react'
 import { Bot, ChevronDown, Coffee, MessageCircle, Menu, Settings2, Target, X, Zap } from 'lucide-react'
+import Logo from './Logo'
 
 function NavMenuRow({
     to,
@@ -93,30 +94,12 @@ export default function Navbar() {
                 zIndex: 100,
                 height: 'var(--nav-height)',
                 borderBottom: '1px solid var(--border-subtle)',
-                background: 'rgba(11, 11, 18, 0.8)',
-                backdropFilter: 'blur(16px)',
-                WebkitBackdropFilter: 'blur(16px)',
+                background: 'var(--bg-base)',
             }}
         >
             <div className="container flex items-center justify-between nav-root" style={{ height: '100%' }}>
-                <Link
-                    to="/"
-                    className="brand-link"
-                    style={{
-                        fontSize: '20px',
-                        fontWeight: 700,
-                        letterSpacing: '-0.02em',
-                    }}
-                >
-                    <img
-                        src="/favicon.png"
-                        alt="Goschedule.ai logo"
-                        style={{ width: '32px', height: '32px', borderRadius: '6px' }}
-                    />
-                    <span>
-                        <span style={{ color: '#fff' }}>Goschedule</span>
-                        <span style={{ color: '#7C3AED' }}>.ai</span>
-                    </span>
+                <Link to="/" className="brand-link" aria-label="Goschedule.ai home">
+                    <Logo size={26} />
                 </Link>
 
                 <nav id="desktop-nav" aria-label="Main">
@@ -246,7 +229,7 @@ export default function Navbar() {
                     >
                         {mobileOpen ? <X style={{ width: 22, height: 22 }} /> : <Menu style={{ width: 22, height: 22 }} />}
                     </button>
-                    <a href="/#book" className="btn btn-primary" style={{ padding: '10px 20px', fontSize: '15px' }}>
+                    <a href="/#book" className="btn btn-primary nav-cta" style={{ padding: '10px 18px', fontSize: '14px' }}>
                         Deploy Agent
                     </a>
                 </div>
@@ -332,6 +315,9 @@ export default function Navbar() {
                 </a>
                 <a href="/#pricing" className="nav-link-plain">
                     Pricing
+                </a>
+                <a href="/#book" className="btn btn-primary" style={{ marginTop: 16, width: '100%' }}>
+                    Deploy Agent
                 </a>
             </div>
         </header>

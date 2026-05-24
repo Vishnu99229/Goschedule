@@ -27,7 +27,7 @@ export default function Pricing() {
     ];
 
     return (
-        <section id="pricing" className="section" style={{ background: 'var(--bg-raised)' }}>
+        <section id="pricing" className="section" style={{ background: 'var(--bg-base)' }}>
             <div className="container">
                 <Reveal>
                     <h2 className="h2 text-center" style={{ marginBottom: 'var(--space-3)' }}>
