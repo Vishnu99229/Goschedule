@@ -1,43 +1,41 @@
 /**
- * Client attribution cards.
+ * Hero customer logo wall.
  *
- * Replaces the previous metric-dashboard mockup. Three static cards, one
- * per client, no metrics, no numbers, no animation. The component name
- * is preserved (`HeroDashboard`) so existing imports keep working.
+ * Renders the 6 customer logos in a flat grid. Replaces the previous
+ * client attribution cards (no use-case copy, no product tags, no
+ * outcome lines — logos only). Component name is preserved
+ * (`HeroDashboard`) so the existing `Hero.tsx` import keeps working.
+ *
+ * All six SVGs in `public/logos/` are placeholders — swap them in
+ * place with real brand artwork when available.
  */
 
-type Attribution = {
-  client: string
-  product: string
-  outcome: string
+type Customer = {
+  name: string
+  src: string
 }
 
-const ATTRIBUTIONS: Attribution[] = [
-  {
-    client: 'ASTRAL LTD',
-    product: 'Custom Agent',
-    outcome: 'Operational automation for account management',
-  },
-  {
-    client: 'CAFE MUZIRIS',
-    product: 'Orlena',
-    outcome: 'Upsells on every QR menu order',
-  },
-  {
-    client: 'CROWN SECURITY',
-    product: 'ReplyKaro',
-    outcome: 'Qualifies inbound enquiries',
-  },
+const CUSTOMERS: Customer[] = [
+  { name: 'Astral Ltd',     src: '/logos/astral.svg' },
+  { name: 'Cafe Muziris',   src: '/logos/cafe-muziris.svg' },
+  { name: 'Crown Security', src: '/logos/crown-security.svg' },
+  { name: 'verifast.ai',    src: '/logos/verifast.svg' },
+  { name: 'Bestq',          src: '/logos/bestq.svg' },
+  { name: 'Sonexis',        src: '/logos/sonexis.svg' },
 ]
 
 export default function HeroDashboard() {
   return (
-    <div className="attribution-grid">
-      {ATTRIBUTIONS.map((a) => (
-        <div key={a.client} className="attribution-card">
-          <span className="attribution-card-eyebrow">{a.client}</span>
-          <div className="attribution-card-product">{a.product}</div>
-          <p className="attribution-card-outcome">{a.outcome}</p>
+    <div className="logo-wall" aria-label="Customers">
+      {CUSTOMERS.map((c) => (
+        <div key={c.name} className="logo-wall__cell" title={c.name}>
+          <img
+            className="logo-wall__img"
+            src={c.src}
+            alt={c.name}
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       ))}
     </div>
