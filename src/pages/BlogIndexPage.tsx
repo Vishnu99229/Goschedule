@@ -1,0 +1,113 @@
+/**
+ * Blog index page. Lists all posts as cards, newest first.
+ */
+
+import { Link } from 'react-router-dom'
+import SEO from '../components/SEO'
+import { getAllPosts, formatPostDate } from '../blog/posts'
+
+const SITE = 'https://www.goschedule.ai'
+
+export default function BlogIndexPage() {
+  const posts = getAllPosts()
+
+  const blogJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    name: 'Goschedule.ai Blog',
+    description:
+      'Insights on AI agents for revenue, sales, and operations from the team at Goschedule.ai.',
+    url: `${SITE}/blog`,
+    publisher: {
+      '@type': 'Organization',
+      name: 'Goschedule.ai',
+      url: SITE,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${SITE}/favicon.svg`,
+      },
+    },
+    blogPost: posts.map((p) => ({
+      '@type': 'BlogPosting',
+      headline: p.frontmatter.title,
+      description: p.frontmatter.description,
+      url: `${SITE}/blog/${p.frontmatter.slug}`,
+      datePublished: p.frontmatter.date,
+      author: {
+        '@type': 'Organization',
+        name: p.frontmatter.author,
+      },
+    })),
+  }
+
+  return (
+    <main>
+      <SEO
+        title="Blog | Goschedule.ai"
+        description="Insights on AI agents for revenue, sales, and operations — how to deploy them, what they replace, and what they unlock for your business."
+        canonical={`${SITE}/blog`}
+        ogType="website"
+        jsonLd={blogJsonLd}
+      />
+
+      <section className="section">
+        <div className="container">
+          <header className="blog-header">
+            <p className="blog-eyebrow">Blog</p>
+            <h1 className="blog-title">
+              Notes from the team building agents that run revenue.
+            </h1>
+            <p className="blog-sub">
+              How AI agents work in the real world — what they replace, what
+              they unlock, and the patterns we keep seeing across our customers.
+            </p>
+          </header>
+
+          {posts.length === 0 ? (
+            <p className="blog-empty">No posts yet. Check back soon.</p>
+          ) : (
+            <ul className="blog-grid">
+              {posts.map((post) => {
+                const fm = post.frontmatter
+                const href = `/blog/${fm.slug}`
+                return (
+                  <li key={fm.slug}>
+                    <Link to={href} className="blog-card">
+                      {fm.coverImage ? (
+                        <div className="blog-card__media">
+                          <img
+                            src={fm.coverImage}
+                            alt={fm.coverAlt ?? fm.title}
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </div>
+                      ) : (
+                        <div className="blog-card__media blog-card__media--fallback" aria-hidden>
+                          <span>{fm.title.slice(0, 1)}</span>
+                        </div>
+                      )}
+                      <div className="blog-card__body">
+                        <h2 className="blog-card__title">{fm.title}</h2>
+                        <p className="blog-card__excerpt">
+                          {fm.excerpt ?? post.body.slice(0, 160).trim() + '…'}
+                        </p>
+                        <div className="blog-card__meta">
+                          <time dateTime={fm.date}>
+                            {formatPostDate(fm.date)}
+                          </time>
+                          <span aria-hidden>·</span>
+                          <span>{post.readingMinutes} min read</span>
+                        </div>
+                      </div>
+                    </Link>
+                  </li>
+                )
+              })}
+            </ul>
+          )}
+        </div>
+      </section>
+    </main>
+  )
+}

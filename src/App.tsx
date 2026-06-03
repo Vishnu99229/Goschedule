@@ -15,6 +15,8 @@ import PrivacyPolicy from './components/PrivacyPolicy'
 import ScrollToTop from './components/ScrollToTop'
 import OrlenaPage from './pages/OrlenaPage'
 import ReplykaroPage from './pages/ReplykaroPage'
+import BlogIndexPage from './pages/BlogIndexPage'
+import BlogPostPage from './pages/BlogPostPage'
 
 function HomePage() {
   return (
@@ -45,6 +47,8 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/products/orlena" element={<OrlenaPage />} />
         <Route path="/products/replykaro" element={<ReplykaroPage />} />
+        <Route path="/blog" element={<BlogIndexPage />} />
+        <Route path="/blog/:slug" element={<BlogPostPage />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
       </Routes>
