@@ -18,6 +18,11 @@ import ResoundPage from './pages/ResoundPage'
 import ReplykaroPage from './pages/ReplykaroPage'
 import BlogIndexPage from './pages/BlogIndexPage'
 import BlogPostPage from './pages/BlogPostPage'
+import DocsPage from './pages/DocsPage'
+import DocsTechnicalNotePage from './pages/DocsTechnicalNotePage'
+import DocsMorningBriefPage from './pages/DocsMorningBriefPage'
+import DocsReplyKaroPage from './pages/DocsReplyKaroPage'
+import DocsResoundPage from './pages/DocsResoundPage'
 
 function HomePage() {
   return (
@@ -51,6 +56,11 @@ function App() {
         <Route path="/products/replykaro" element={<ReplykaroPage />} />
         <Route path="/blog" element={<BlogIndexPage />} />
         <Route path="/blog/:slug" element={<BlogPostPage />} />
+        <Route path="/docs" element={<DocsPage />} />
+        <Route path="/docs/technical-note" element={<DocsTechnicalNotePage />} />
+        <Route path="/docs/morning-brief" element={<DocsMorningBriefPage />} />
+        <Route path="/docs/replykaro" element={<DocsReplyKaroPage />} />
+        <Route path="/docs/resound" element={<DocsResoundPage />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
       </Routes>

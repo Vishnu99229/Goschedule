@@ -219,6 +219,11 @@ export default function Navbar() {
                             </Link>
                         </li>
                         <li>
+                            <Link to="/docs" className="nav-link-plain">
+                                Docs
+                            </Link>
+                        </li>
+                        <li>
                             <a href="/#approach" className="nav-link-plain">
                                 Approach
                             </a>
@@ -327,6 +332,9 @@ export default function Navbar() {
                 </div>
                 <Link to="/blog" className="nav-link-plain">
                     Blogs
+                </Link>
+                <Link to="/docs" className="nav-link-plain">
+                    Docs
                 </Link>
                 <a href="/#approach" className="nav-link-plain">
                     Approach

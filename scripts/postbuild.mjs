@@ -77,6 +77,55 @@ const MARKETING_ROUTES = [
     changefreq: 'weekly',
   },
   {
+    path: '/docs',
+    title: 'Documentation | GoSchedule.ai',
+    description: 'Technical documentation for GoSchedule.ai products.',
+    canonical: `${SITE}/docs`,
+    ogType: 'website',
+    priority: 0.7,
+    changefreq: 'monthly',
+  },
+  {
+    path: '/docs/technical-note',
+    title: 'Our Technical Note | GoSchedule.ai',
+    description:
+      'How GoSchedule.ai builds vertical AI agents that drive real business outcomes, not generic assistants.',
+    canonical: `${SITE}/docs/technical-note`,
+    ogType: 'website',
+    priority: 0.6,
+    changefreq: 'monthly',
+  },
+  {
+    path: '/docs/morning-brief',
+    title: 'Morning Brief Documentation | GoSchedule.ai',
+    description:
+      'Technical documentation for Morning Brief. A personalized AI news agent that calls you every morning with only the stories that matter.',
+    canonical: `${SITE}/docs/morning-brief`,
+    ogType: 'website',
+    priority: 0.6,
+    changefreq: 'monthly',
+  },
+  {
+    path: '/docs/replykaro',
+    title: 'ReplyKaro Documentation | GoSchedule.ai',
+    description:
+      'Technical documentation for ReplyKaro. An AI receptionist for clinics that answers calls, handles WhatsApp, and books appointments.',
+    canonical: `${SITE}/docs/replykaro`,
+    ogType: 'website',
+    priority: 0.6,
+    changefreq: 'monthly',
+  },
+  {
+    path: '/docs/resound',
+    title: 'Resound.ai Documentation | GoSchedule.ai',
+    description:
+      'Technical documentation for Resound.ai. A multi-tenant outbound sales automation platform with AI reply handling and voice qualification.',
+    canonical: `${SITE}/docs/resound`,
+    ogType: 'website',
+    priority: 0.6,
+    changefreq: 'monthly',
+  },
+  {
     path: '/terms-and-conditions',
     title: 'Terms and Conditions | Goschedule.ai',
     description:
