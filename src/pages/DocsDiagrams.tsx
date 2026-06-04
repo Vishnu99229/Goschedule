@@ -24,14 +24,6 @@ const captionStyle: CSSProperties = {
   marginBottom: 14,
 }
 
-const sideLabelStyle: CSSProperties = {
-  fontSize: 12,
-  color: 'var(--text-muted)',
-  fontStyle: 'italic',
-  marginTop: 10,
-  textAlign: 'center',
-}
-
 function Box({
   color,
   title,
@@ -80,61 +72,6 @@ function SideBox({ children }: { children: ReactNode }) {
       }}
     >
       {children}
-    </div>
-  )
-}
-
-function Arrow({ direction = 'down' }: { direction?: 'down' | 'right' }) {
-  if (direction === 'down') {
-    return (
-      <div
-        aria-hidden
-        style={{
-          alignSelf: 'center',
-          width: 2,
-          height: 22,
-          background: 'var(--border-hover)',
-          position: 'relative',
-        }}
-      >
-        <span
-          style={{
-            position: 'absolute',
-            left: '50%',
-            bottom: -6,
-            transform: 'translateX(-50%) rotate(45deg)',
-            width: 8,
-            height: 8,
-            borderRight: '2px solid var(--border-hover)',
-            borderBottom: '2px solid var(--border-hover)',
-          }}
-        />
-      </div>
-    )
-  }
-  return (
-    <div
-      aria-hidden
-      style={{
-        alignSelf: 'center',
-        height: 2,
-        flex: '0 0 28px',
-        background: 'var(--border-hover)',
-        position: 'relative',
-      }}
-    >
-      <span
-        style={{
-          position: 'absolute',
-          top: '50%',
-          right: -6,
-          transform: 'translateY(-50%) rotate(45deg)',
-          width: 8,
-          height: 8,
-          borderRight: '2px solid var(--border-hover)',
-          borderTop: '2px solid var(--border-hover)',
-        }}
-      />
     </div>
   )
 }
