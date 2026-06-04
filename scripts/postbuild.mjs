@@ -37,11 +37,11 @@ const MARKETING_ROUTES = [
     changefreq: 'weekly',
   },
   {
-    path: '/products/orlena',
-    title: 'Orlena — AI Upselling Agent for Cafes | Goschedule.ai',
+    path: '/products/morning-brief',
+    title: 'Morning Brief | GoSchedule.ai',
     description:
-      'Orlena is an AI agent that runs inside your QR menu, reading every order and suggesting the perfect pairing. Lift AOV 10-20% with zero training, zero hardware.',
-    canonical: `${SITE}/products/orlena`,
+      'A personalized AI news agent that calls you every morning with only the stories that matter to you.',
+    canonical: `${SITE}/products/morning-brief`,
     ogType: 'website',
     priority: 0.8,
     changefreq: 'monthly',
@@ -52,6 +52,16 @@ const MARKETING_ROUTES = [
     description:
       'ReplyKaro is an AI agent that responds to every inbound lead within seconds. Enriches contact data, qualifies intent, and books meetings — automatically.',
     canonical: `${SITE}/products/replykaro`,
+    ogType: 'website',
+    priority: 0.8,
+    changefreq: 'monthly',
+  },
+  {
+    path: '/products/resound',
+    title: 'Resound.ai | GoSchedule.ai',
+    description:
+      'Multi-tenant outbound sales automation with AI reply handling and voice AI that qualifies leads and books meetings.',
+    canonical: `${SITE}/products/resound`,
     ogType: 'website',
     priority: 0.8,
     changefreq: 'monthly',

@@ -13,7 +13,8 @@ import Footer from './components/Footer'
 import TermsAndConditions from './components/TermsAndConditions'
 import PrivacyPolicy from './components/PrivacyPolicy'
 import ScrollToTop from './components/ScrollToTop'
-import OrlenaPage from './pages/OrlenaPage'
+import MorningBriefPage from './pages/MorningBriefPage'
+import ResoundPage from './pages/ResoundPage'
 import ReplykaroPage from './pages/ReplykaroPage'
 import BlogIndexPage from './pages/BlogIndexPage'
 import BlogPostPage from './pages/BlogPostPage'
@@ -45,7 +46,8 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/products/orlena" element={<OrlenaPage />} />
+        <Route path="/products/morning-brief" element={<MorningBriefPage />} />
+        <Route path="/products/resound" element={<ResoundPage />} />
         <Route path="/products/replykaro" element={<ReplykaroPage />} />
         <Route path="/blog" element={<BlogIndexPage />} />
         <Route path="/blog/:slug" element={<BlogPostPage />} />

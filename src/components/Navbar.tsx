@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useCallback, useEffect, useState, type ReactNode } from 'react'
-import { Bot, ChevronDown, Coffee, MessageCircle, Menu, Settings2, Target, X, Zap } from 'lucide-react'
+import { Bot, ChevronDown, MessageCircle, Menu, Newspaper, Send, Settings2, Target, X, Zap } from 'lucide-react'
 import Logo from './Logo'
 
 function NavMenuRow({
@@ -190,10 +190,10 @@ export default function Navbar() {
                             {productsOpen && (
                                 <div className="nav-products__panel" role="menu">
                                     <NavMenuRow
-                                        to="/products/orlena"
-                                        title="Orlena"
-                                        subtitle="AI QR menus that increase café revenue"
-                                        icon={<Coffee style={{ width: 20, height: 20 }} />}
+                                        to="/products/morning-brief"
+                                        title="Morning Brief"
+                                        subtitle="Personalized morning news, called in"
+                                        icon={<Newspaper style={{ width: 20, height: 20 }} />}
                                         onClick={() => setProductsOpen(false)}
                                     />
                                     <NavMenuRow
@@ -201,6 +201,13 @@ export default function Navbar() {
                                         title="Replykaro"
                                         subtitle="24/7 AI agent for WhatsApp & voice automation"
                                         icon={<MessageCircle style={{ width: 20, height: 20 }} />}
+                                        onClick={() => setProductsOpen(false)}
+                                    />
+                                    <NavMenuRow
+                                        to="/products/resound"
+                                        title="Resound.ai"
+                                        subtitle="Outbound sales, automated end to end (Early access)"
+                                        icon={<Send style={{ width: 20, height: 20 }} />}
                                         onClick={() => setProductsOpen(false)}
                                     />
                                 </div>
@@ -307,11 +314,14 @@ export default function Navbar() {
                         />
                     </button>
                     <div className="nav-mobile-products__sub">
-                        <Link to="/products/orlena" className="nav-link-plain">
-                            Orlena
+                        <Link to="/products/morning-brief" className="nav-link-plain">
+                            Morning Brief
                         </Link>
                         <Link to="/products/replykaro" className="nav-link-plain">
                             Replykaro
+                        </Link>
+                        <Link to="/products/resound" className="nav-link-plain">
+                            Resound.ai (Early access)
                         </Link>
                     </div>
                 </div>
