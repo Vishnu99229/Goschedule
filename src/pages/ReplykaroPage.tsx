@@ -3,11 +3,13 @@ import { useEffect, useState } from 'react'
 import { MessageCircle, Phone } from 'lucide-react'
 import SEO from '../components/SEO'
 
-const ACCENT = '#8b5cf6'
-const ACCENT_SOFT = '#a78bfa'
-const BG = '#050508'
-const TEXT = '#ffffff'
-const TEXT_MUTED = '#a1a1aa'
+const ACCENT = '#7C3AED'
+const ACCENT_SOFT = '#A78BFA'
+const BG = '#FAF8F4'
+const TEXT = '#1A1614'
+const TEXT_MUTED = '#57514A'
+const SURFACE_LIGHT = '#F2EEE6'
+const BORDER_LIGHT = '#E5DFD3'
 
 const DEMO_HREF = 'https://cal.com/vishnu-rajan-3siibd/goschedule'
 
@@ -53,7 +55,7 @@ function ReplykaroHeroVisual() {
                     maxWidth: 200,
                     zIndex: 2,
                 }}
-                animate={{ scale: [1, 1.04, 1], boxShadow: [`0 0 0 rgba(139,92,246,0)`, `0 0 28px rgba(139,92,246,0.25)`, `0 0 0 rgba(139,92,246,0)`] }}
+                animate={{ scale: [1, 1.04, 1], boxShadow: [`0 0 0 rgba(124,58,237,0)`, `0 0 28px rgba(124,58,237,0.15)`, `0 0 0 rgba(124,58,237,0)`] }}
                 transition={{ duration: pulse, repeat: Infinity, ease: 'easeInOut' }}
             >
                 <MessageCircle style={{ width: 22, height: 22, color: '#25d366', flexShrink: 0 }} />
@@ -130,8 +132,8 @@ function FeatureVisual({ type }: { type: 'sparkle' | 'chat' | 'grid' }) {
                     margin: '0 auto',
                     padding: '10px 12px',
                     borderRadius: 12,
-                    background: 'rgba(139,92,246,0.12)',
-                    border: `1px solid rgba(139,92,246,0.25)`,
+                    background: 'rgba(124,58,237,0.10)',
+                    border: `1px solid rgba(124,58,237,0.25)`,
                     fontSize: 12,
                     color: TEXT,
                 }}
@@ -153,7 +155,7 @@ function FeatureVisual({ type }: { type: 'sparkle' | 'chat' | 'grid' }) {
                         style={{
                             height: 14,
                             borderRadius: 3,
-                            background: i % 3 === 0 ? 'rgba(239,68,68,0.35)' : 'rgba(139,92,246,0.35)',
+                            background: i % 3 === 0 ? 'rgba(220,38,38,0.40)' : 'rgba(124,58,237,0.40)',
                         }}
                         animate={{ opacity: [0.5, 1, 0.5] }}
                         transition={{ duration: 1.8, repeat: Infinity, delay: i * 0.08 }}
@@ -234,8 +236,8 @@ export default function ReplykaroPage() {
                     style={{
                         padding: '40px 28px',
                         borderRadius: 24,
-                        background: 'linear-gradient(180deg, rgba(139,92,246,0.08) 0%, rgba(0,0,0,0.5) 100%)',
-                        border: '1px solid rgba(139,92,246,0.2)',
+                        background: SURFACE_LIGHT,
+                        border: `1px solid ${BORDER_LIGHT}`,
                         textAlign: 'center',
                     }}
                     initial={{ opacity: 0, y: 20 }}
@@ -276,8 +278,8 @@ export default function ReplykaroPage() {
                             style={{
                                 padding: 24,
                                 borderRadius: 20,
-                                background: 'rgba(255,255,255,0.03)',
-                                border: '1px solid rgba(255,255,255,0.06)',
+                                background: SURFACE_LIGHT,
+                                border: `1px solid ${BORDER_LIGHT}`,
                                 minHeight: 220,
                             }}
                         >
@@ -308,8 +310,8 @@ export default function ReplykaroPage() {
                             style={{
                                 padding: '10px 18px',
                                 borderRadius: 999,
-                                border: '1px solid rgba(139,92,246,0.35)',
-                                background: 'rgba(139,92,246,0.08)',
+                                border: '1px solid rgba(124,58,237,0.30)',
+                                background: 'rgba(124,58,237,0.08)',
                                 fontSize: 14,
                                 color: TEXT,
                             }}
@@ -327,8 +329,8 @@ export default function ReplykaroPage() {
                         textAlign: 'center',
                         padding: '48px 24px',
                         borderRadius: 24,
-                        background: 'linear-gradient(135deg, rgba(139,92,246,0.12) 0%, rgba(20,18,35,0.95) 100%)',
-                        border: '1px solid rgba(139,92,246,0.22)',
+                        background: 'linear-gradient(135deg, rgba(124,58,237,0.10) 0%, rgba(124,58,237,0.02) 100%)',
+                        border: '1px solid rgba(124,58,237,0.22)',
                     }}
                     initial={{ opacity: 0.7, y: 16 }}
                     whileInView={{ opacity: 1, y: 0 }}

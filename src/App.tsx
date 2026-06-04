@@ -6,7 +6,7 @@ import Agents from './components/Agents'
 import Problem from './components/Problem'
 import System from './components/System'
 import Results from './components/Results'
-import Ecosystem from './components/Ecosystem'
+import AgentInAction from './components/AgentInAction'
 import Pricing from './components/Pricing'
 import CTA from './components/CTA'
 import Footer from './components/Footer'
@@ -31,7 +31,7 @@ function HomePage() {
       <Problem />
       <System />
       <Results />
-      <Ecosystem />
+      <AgentInAction />
       <Pricing />
       <CTA />
     </main>

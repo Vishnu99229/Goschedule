@@ -2,12 +2,6 @@ import { ArrowRight, Play } from 'lucide-react'
 import HeroDashboard from './HeroDashboard'
 import Reveal from './Reveal'
 
-const trustedLogos = [
-    'ASTRAL LTD',
-    'CAFE MUZIRIS',
-    'CROWN SECURITY',
-]
-
 export default function Hero() {
     return (
         <section className="section hero" style={{ position: 'relative' }}>
@@ -22,8 +16,7 @@ export default function Hero() {
                             </h1>
 
                             <p className="hero-sub">
-                                From outbound sales and inbound qualification to operations and back-office workflows — we deploy AI
-                                agents that work 24/7, learn continuously, and ship outcomes, not dashboards.
+                                Ship Outcomes, Not Dashboards.
                             </p>
 
                             <div className="hero-cta-row">
@@ -34,27 +27,10 @@ export default function Hero() {
                                     <Play style={{ width: 16, height: 16, marginRight: 8 }} /> See Our Agents
                                 </a>
                             </div>
-
-                            <div className="trusted-by">
-                                <p className="trusted-by__label">
-                                    Trusted by founders shipping in production
-                                </p>
-                                <div className="trusted-by__logos">
-                                    {trustedLogos.map((logo, index) => (
-                                        <span
-                                            key={logo}
-                                            className="trusted-by__logo"
-                                            style={{ animationDelay: `${0.1 + index * 0.05}s` }}
-                                        >
-                                            {logo}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
                         </Reveal>
                     </div>
 
-                    {/* Right Column: Dashboard mockup */}
+                    {/* Right Column: Customer logo wall */}
                     <div className="col-6 hero-visual">
                         <Reveal delayMs={300} className="w-full">
                             <HeroDashboard />

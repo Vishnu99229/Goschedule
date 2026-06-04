@@ -147,7 +147,7 @@ export default function TermsAndConditions() {
                             marginTop: 'var(--space-2)',
                         }}>
                             <p style={{ color: 'var(--text-primary)', fontWeight: 600, marginBottom: '8px' }}>Goschedule.ai</p>
-                            <p>Email: <a href="mailto:hello@goschedule.ai" style={{ color: '#A5B4FC', textDecoration: 'underline' }}>hello@goschedule.ai</a></p>
+                            <p>Email: <a href="mailto:hello@goschedule.ai" style={{ color: 'var(--accent-text)', textDecoration: 'underline' }}>hello@goschedule.ai</a></p>
                             <p>Website: <a href="https://goschedule.ai" style={{ color: '#A5B4FC', textDecoration: 'underline' }}>goschedule.ai</a></p>
                         </div>
                     </Section>

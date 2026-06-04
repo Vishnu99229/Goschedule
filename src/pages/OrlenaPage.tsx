@@ -3,11 +3,15 @@ import { useRef } from 'react'
 import { useCountUp } from '../hooks/useCountUp'
 import SEO from '../components/SEO'
 
-const ACCENT = '#8b5cf6'
-const ACCENT_SOFT = '#a78bfa'
-const BG = '#050508'
-const TEXT = '#ffffff'
-const TEXT_MUTED = '#a1a1aa'
+const ACCENT = '#7C3AED'
+const ACCENT_SOFT = '#A78BFA'
+const BG = '#FAF8F4'
+const TEXT = '#1A1614'
+const TEXT_MUTED = '#57514A'
+const SURFACE_LIGHT = '#F2EEE6'
+const BORDER_LIGHT = '#E5DFD3'
+const DEVICE_BEZEL = '#1A1614'
+const DEVICE_SCREEN = '#0F0C0A'
 
 function QrMorphVisual() {
     return (
@@ -68,18 +72,18 @@ function QrMorphVisual() {
             >
                 <div
                     style={{
-                        background: 'linear-gradient(145deg, rgba(139,92,246,0.35) 0%, rgba(55,48,100,0.55) 100%)',
-                        border: `1px solid rgba(139,92,246,0.35)`,
+                        background: 'rgba(124,58,237,0.10)',
+                        border: `1px solid rgba(124,58,237,0.30)`,
                         borderRadius: 18,
                         padding: '16px 18px',
                         maxWidth: 280,
-                        boxShadow: `0 0 40px rgba(139,92,246,0.2)`,
+                        boxShadow: `0 8px 24px rgba(124,58,237,0.10)`,
                     }}
                 >
                     <p style={{ color: TEXT, fontSize: 14, lineHeight: 1.5, margin: 0 }}>
                         Try our hazelnut latte with that croissant?
                     </p>
-                    <div style={{ marginTop: 8, fontSize: 11, color: ACCENT_SOFT }}>Suggested by Orlena</div>
+                    <div style={{ marginTop: 8, fontSize: 11, color: ACCENT }}>Suggested by Orlena</div>
                 </div>
             </motion.div>
         </div>
@@ -104,8 +108,8 @@ function StepCard({
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
             style={{
-                background: 'rgba(255,255,255,0.03)',
-                border: '1px solid rgba(139,92,246,0.15)',
+                background: SURFACE_LIGHT,
+                border: `1px solid ${BORDER_LIGHT}`,
                 borderRadius: 20,
                 padding: 28,
                 height: '100%',
@@ -124,12 +128,12 @@ function PhoneQrPreview() {
             <div
                 style={{
                     borderRadius: 24,
-                    border: '2px solid rgba(139,92,246,0.3)',
+                    border: '2px solid rgba(124,58,237,0.3)',
                     padding: 12,
-                    background: '#0a0a0a',
+                    background: DEVICE_BEZEL,
                 }}
             >
-                <div style={{ width: 64, height: 64, background: '#111', borderRadius: 8, margin: '0 auto' }} />
+                <div style={{ width: 64, height: 64, background: DEVICE_SCREEN, borderRadius: 8, margin: '0 auto' }} />
             </div>
             <motion.div
                 style={{
@@ -200,8 +204,8 @@ function UpsellBubblePreview() {
     return (
         <motion.div
             style={{
-                background: 'linear-gradient(180deg, rgba(139,92,246,0.25) 0%, rgba(40,30,70,0.6) 100%)',
-                border: `1px solid rgba(139,92,246,0.35)`,
+                background: 'rgba(124,58,237,0.10)',
+                border: `1px solid rgba(124,58,237,0.30)`,
                 borderRadius: 14,
                 padding: '10px 14px',
                 maxWidth: 200,
@@ -230,8 +234,8 @@ function StatsStrip() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
             style={{
-                borderTop: '1px solid rgba(255,255,255,0.06)',
-                borderBottom: '1px solid rgba(255,255,255,0.06)',
+                borderTop: `1px solid ${BORDER_LIGHT}`,
+                borderBottom: `1px solid ${BORDER_LIGHT}`,
                 padding: '40px 0',
                 marginTop: 48,
             }}
@@ -361,8 +365,8 @@ export default function OrlenaPage() {
                         textAlign: 'center',
                         padding: '48px 24px',
                         borderRadius: 24,
-                        background: 'linear-gradient(135deg, rgba(139,92,246,0.15) 0%, rgba(30,27,50,0.9) 100%)',
-                        border: '1px solid rgba(139,92,246,0.25)',
+                        background: 'linear-gradient(135deg, rgba(124,58,237,0.10) 0%, rgba(124,58,237,0.02) 100%)',
+                        border: '1px solid rgba(124,58,237,0.25)',
                     }}
                     initial={{ opacity: 0.6, y: 16 }}
                     whileInView={{ opacity: 1, y: 0 }}

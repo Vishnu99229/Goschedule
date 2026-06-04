@@ -111,7 +111,7 @@ export default function PrivacyPolicy() {
                             <li><strong>Right to Withdraw Consent:</strong> Where processing is based on consent, you may withdraw it at any time without affecting the lawfulness of prior processing.</li>
                         </ul>
                         <p>
-                            To exercise any of these rights, please contact us at <a href="mailto:hello@goschedule.ai" style={{ color: '#A5B4FC', textDecoration: 'underline' }}>hello@goschedule.ai</a>. We will respond to your request within thirty (30) days.
+                            To exercise any of these rights, please contact us at <a href="mailto:hello@goschedule.ai" style={{ color: 'var(--accent-text)', textDecoration: 'underline' }}>hello@goschedule.ai</a>. We will respond to your request within thirty (30) days.
                         </p>
                     </Section>
 
@@ -165,7 +165,7 @@ export default function PrivacyPolicy() {
                             marginTop: 'var(--space-2)',
                         }}>
                             <p style={{ color: 'var(--text-primary)', fontWeight: 600, marginBottom: '8px' }}>Goschedule.ai - Data Protection</p>
-                            <p>Email: <a href="mailto:hello@goschedule.ai" style={{ color: '#A5B4FC', textDecoration: 'underline' }}>hello@goschedule.ai</a></p>
+                            <p>Email: <a href="mailto:hello@goschedule.ai" style={{ color: 'var(--accent-text)', textDecoration: 'underline' }}>hello@goschedule.ai</a></p>
                             <p>Website: <a href="https://goschedule.ai" style={{ color: '#A5B4FC', textDecoration: 'underline' }}>goschedule.ai</a></p>
                         </div>
                     </Section>
