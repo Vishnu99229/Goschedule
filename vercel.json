@@ -14,6 +14,31 @@
       "source": "/html/:path*",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/replykaro.html",
+      "destination": "/products/replykaro",
+      "permanent": true
+    },
+    {
+      "source": "/orlena.html",
+      "destination": "/products/morning-brief",
+      "permanent": true
+    },
+    {
+      "source": "/orlena",
+      "destination": "/products/morning-brief",
+      "permanent": true
+    },
+    {
+      "source": "/waitlist",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/waitlist.html",
+      "destination": "/",
+      "permanent": true
     }
   ],
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
