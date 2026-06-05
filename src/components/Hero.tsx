@@ -1,50 +1,43 @@
-import { ArrowRight, Play } from 'lucide-react'
 import HeroDashboard from './HeroDashboard'
 import Reveal from './Reveal'
-import { DEPLOY_AGENT_URL } from '../constants/links'
+import AgentDemo from './AgentDemo'
 
 export default function Hero() {
     return (
+        <>
+        {/* ── Hero: headline left, Live Demo right ── */}
         <section className="section hero" style={{ position: 'relative' }}>
             <div className="container" style={{ position: 'relative', zIndex: 1 }}>
                 <div className="grid-12 hero-content">
 
-                    {/* Left Column: Content */}
-                    <div className="col-6 hero-copy">
+                    {/* Left: headline + subtext only */}
+                    <div className="col-5 hero-copy">
                         <Reveal>
                             <h1 className="hero-title">
                                 AI Agents That Run Your Revenue Engine.
                             </h1>
-
-                            <p className="hero-sub">
+                            <p className="hero-sub" style={{ marginBottom: 0 }}>
                                 Ship Outcomes, Not Dashboards.
                             </p>
-
-                            <div className="hero-cta-row">
-                                <a
-                                    href={DEPLOY_AGENT_URL}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="btn btn-primary btn-hero-primary"
-                                >
-                                    Deploy an AI Agent <ArrowRight style={{ width: 18, height: 18, marginLeft: 8 }} />
-                                </a>
-                                <a href="#agents" className="btn btn-ghost btn-hero-secondary">
-                                    <Play style={{ width: 16, height: 16, marginRight: 8 }} /> See Our Agents
-                                </a>
-                            </div>
                         </Reveal>
                     </div>
 
-                    {/* Right Column: Customer logo wall */}
-                    <div className="col-6 hero-visual">
-                        <Reveal delayMs={300} className="w-full">
-                            <HeroDashboard />
-                        </Reveal>
+                    {/* Right: Live Demo (full AgentDemo component) */}
+                    <div className="col-7 hero-demo-col">
+                        <AgentDemo />
                     </div>
 
                 </div>
             </div>
         </section>
+
+        {/* ── Trusted-by logos — moved here from old standalone Live Demo slot ── */}
+        <section className="logos-section">
+            <div className="container">
+                <p className="logos-label">Trusted by teams shipping outcomes</p>
+                <HeroDashboard />
+            </div>
+        </section>
+        </>
     )
 }

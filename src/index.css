@@ -218,8 +218,18 @@ h2.section-heading,
   min-width: 0;
 }
 
+.col-5 {
+  grid-column: span 5;
+  min-width: 0;
+}
+
 .col-6 {
   grid-column: span 6;
+  min-width: 0;
+}
+
+.col-7 {
+  grid-column: span 7;
   min-width: 0;
 }
 
@@ -237,7 +247,9 @@ h2.section-heading,
 
   .col-3,
   .col-4,
+  .col-5,
   .col-6,
+  .col-7,
   .col-12 {
     grid-column: 1 / -1;
   }
@@ -326,7 +338,7 @@ h2.section-heading,
 
 /* Homepage hero headline — single typeface, single weight, no italic, no serif */
 .hero-title {
-  font-size: clamp(28px, 3.6vw, 42px);
+  font-size: clamp(22px, 2.6vw, 32px);
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.022em;
@@ -381,7 +393,7 @@ h2.section-heading,
 
 .hero {
   padding-top: 64px;
-  padding-bottom: 96px;
+  padding-bottom: 40px;
   min-height: auto;
   display: flex;
   align-items: center;
@@ -410,7 +422,7 @@ h2.section-heading,
 @media (min-width: 968px) {
   .hero {
     padding-top: 80px;
-    padding-bottom: 96px;
+    padding-bottom: 40px;
   }
   .hero-visual {
     min-height: 360px;
@@ -432,6 +444,41 @@ h2.section-heading,
   .hero-visual {
     min-height: auto;
   }
+}
+
+/* ── Live Demo embedded in hero right column ── */
+.hero-demo-col {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Strip AgentDemo's inline section padding when inside hero */
+.hero-demo-col > section {
+  padding-bottom: 0 !important;
+}
+
+.hero-demo-col > section > .container {
+  padding-left: 0;
+  padding-right: 0;
+  max-width: none;
+}
+
+/* ── Trusted-by logos section (below hero) ── */
+.logos-section {
+  padding-top: 0;
+  padding-bottom: 64px;
+}
+
+.logos-label {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 20px;
 }
 
 /* Bottom CTA band */
@@ -540,7 +587,7 @@ a.footer-text:hover {
 
 @media (max-width: 640px) {
   .hero-title {
-    font-size: 26px;
+    font-size: 22px;
     line-height: 1.12;
   }
 
@@ -564,7 +611,7 @@ a.footer-text:hover {
 
 @media (max-width: 380px) {
   .hero-title {
-    font-size: 22px;
+    font-size: 20px;
   }
 }
 
@@ -901,8 +948,8 @@ a.footer-text:hover {
   max-height: 100%;
   width: auto;
   height: auto;
-  filter: grayscale(1) brightness(1.15);
-  opacity: 0.78;
+  filter: grayscale(1) brightness(0.6);
+  opacity: 0.9;
   transition: opacity 0.2s ease, filter 0.2s ease;
 }
 
@@ -1860,7 +1907,7 @@ a.footer-text:hover {
 
 .blog-header {
   max-width: 720px;
-  margin: 0 auto var(--space-7) auto;
+  margin: 0 auto 56px auto;
   text-align: center;
 }
 
@@ -1871,6 +1918,7 @@ a.footer-text:hover {
   text-transform: uppercase;
   color: var(--accent-text);
   margin: 0 0 16px 0;
+  text-align: center;
 }
 
 .blog-title {
@@ -1880,6 +1928,7 @@ a.footer-text:hover {
   letter-spacing: -0.02em;
   color: var(--text-primary);
   margin: 0 0 16px 0;
+  text-align: center;
 }
 
 .blog-sub {
@@ -1887,6 +1936,7 @@ a.footer-text:hover {
   line-height: 1.6;
   color: var(--text-secondary);
   margin: 0;
+  text-align: center;
 }
 
 @media (max-width: 640px) {
