@@ -1,5 +1,6 @@
 import { Check } from 'lucide-react'
 import Reveal from './Reveal'
+import { DEPLOY_AGENT_URL } from '../constants/links'
 
 export default function Pricing() {
     const tiers = [
@@ -8,21 +9,27 @@ export default function Pricing() {
             desc: "Launch one high-leverage agent.",
             price: "$400",
             features: ["Workflow mapping", "Single-agent deployment", "Tool integration setup"],
-            cta: "Deploy Starter Agent"
+            cta: "Deploy Starter Agent",
+            href: DEPLOY_AGENT_URL,
+            external: true,
         },
         {
             name: "Growth",
             desc: "Run multiple revenue workflows.",
             price: "$800",
             features: ["Outbound + inbound agents", "Qualification automation", "Continuous optimization"],
-            cta: "Build Agent Stack"
+            cta: "Build Agent Stack",
+            href: "#book",
+            external: false,
         },
         {
             name: "Scale",
             desc: "Agent platform across teams.",
             price: "$1000",
             features: ["Revenue + ops agents", "Voice and workflow automation", "Advanced orchestration layer"],
-            cta: "Talk to Us"
+            cta: "Talk to Us",
+            href: "#book",
+            external: false,
         }
     ];
 
@@ -51,7 +58,13 @@ export default function Pricing() {
                                     </div>
                                 </div>
 
-                                <a href="#book" className="btn btn-ghost w-full" style={{ marginBottom: 'var(--space-4)' }}>
+                                <a
+                                    href={tier.href}
+                                    target={tier.external ? '_blank' : undefined}
+                                    rel={tier.external ? 'noopener noreferrer' : undefined}
+                                    className="btn btn-ghost w-full"
+                                    style={{ marginBottom: 'var(--space-4)' }}
+                                >
                                     {tier.cta}
                                 </a>
 

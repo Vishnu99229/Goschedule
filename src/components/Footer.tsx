@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import Logo from './Logo'
+import { CLAUDE_PARTNER_NETWORK_URL } from '../constants/links'
 
 export default function Footer() {
     return (
@@ -49,8 +50,30 @@ export default function Footer() {
                         <Link to="/privacy-policy" className="footer-text">Privacy Policy</Link>
                         <a href="mailto:hello@goschedule.ai" className="footer-text">Contact</a>
                     </div>
-                    <div className="footer-text">
-                        &copy; {new Date().getFullYear()} Goschedule.ai
+                    <div
+                        style={{
+                            display: 'flex',
+                            flexWrap: 'wrap',
+                            alignItems: 'center',
+                            gap: 16,
+                        }}
+                    >
+                        <div className="footer-text">
+                            &copy; {new Date().getFullYear()} Goschedule.ai
+                        </div>
+                        <a
+                            href={CLAUDE_PARTNER_NETWORK_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="claude-partner-badge"
+                            aria-label="Claude Partner Network"
+                        >
+                            <img
+                                src="/images/claude-partner-network.png"
+                                alt="Claude Partner Network - Goschedule.ai (Partner)"
+                                className="claude-partner-badge__image"
+                            />
+                        </a>
                     </div>
                 </div>
             </div>

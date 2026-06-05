@@ -1,6 +1,7 @@
 import { ArrowRight, Play } from 'lucide-react'
 import HeroDashboard from './HeroDashboard'
 import Reveal from './Reveal'
+import { DEPLOY_AGENT_URL } from '../constants/links'
 
 export default function Hero() {
     return (
@@ -20,7 +21,12 @@ export default function Hero() {
                             </p>
 
                             <div className="hero-cta-row">
-                                <a href="#book" className="btn btn-primary btn-hero-primary">
+                                <a
+                                    href={DEPLOY_AGENT_URL}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="btn btn-primary btn-hero-primary"
+                                >
                                     Deploy an AI Agent <ArrowRight style={{ width: 18, height: 18, marginLeft: 8 }} />
                                 </a>
                                 <a href="#agents" className="btn btn-ghost btn-hero-secondary">

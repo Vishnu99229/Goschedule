@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { MessageCircle, Phone } from 'lucide-react'
 import SEO from '../components/SEO'
+import { DEPLOY_AGENT_URL } from '../constants/links'
 
 const ACCENT = '#7C3AED'
 const ACCENT_SOFT = '#A78BFA'
@@ -11,7 +12,7 @@ const TEXT_MUTED = '#57514A'
 const SURFACE_LIGHT = '#F2EEE6'
 const BORDER_LIGHT = '#E5DFD3'
 
-const DEMO_HREF = 'https://cal.com/vishnu-rajan-3siibd/goschedule'
+const DEMO_HREF = DEPLOY_AGENT_URL
 
 function ReplykaroHeroVisual() {
     const pulse = 2.4

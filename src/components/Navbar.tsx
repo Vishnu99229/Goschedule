@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { useCallback, useEffect, useState, type ReactNode } from 'react'
 import { Bot, ChevronDown, MessageCircle, Menu, Newspaper, Send, Settings2, Target, X, Zap } from 'lucide-react'
 import Logo from './Logo'
+import { DEPLOY_AGENT_URL } from '../constants/links'
 
 function NavMenuRow({
     to,
@@ -246,7 +247,13 @@ export default function Navbar() {
                     >
                         {mobileOpen ? <X style={{ width: 22, height: 22 }} /> : <Menu style={{ width: 22, height: 22 }} />}
                     </button>
-                    <a href="/#book" className="btn btn-primary nav-cta" style={{ padding: '10px 18px', fontSize: '14px' }}>
+                    <a
+                        href={DEPLOY_AGENT_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn btn-primary nav-cta"
+                        style={{ padding: '10px 18px', fontSize: '14px' }}
+                    >
                         Deploy Agent
                     </a>
                 </div>
@@ -342,7 +349,13 @@ export default function Navbar() {
                 <a href="/#pricing" className="nav-link-plain">
                     Pricing
                 </a>
-                <a href="/#book" className="btn btn-primary" style={{ marginTop: 16, width: '100%' }}>
+                <a
+                    href={DEPLOY_AGENT_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-primary"
+                    style={{ marginTop: 16, width: '100%' }}
+                >
                     Deploy Agent
                 </a>
             </div>

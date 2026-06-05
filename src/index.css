@@ -485,6 +485,24 @@ a.footer-text:hover {
   color: var(--text-secondary);
 }
 
+.claude-partner-badge {
+  display: inline-flex;
+  align-items: center;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.claude-partner-badge:hover {
+  opacity: 1;
+}
+
+.claude-partner-badge__image {
+  display: block;
+  height: 36px;
+  max-width: 220px;
+  object-fit: contain;
+}
+
 @media (min-width: 768px) {
   .footer .footer-bottom {
     flex-direction: row !important;

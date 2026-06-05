@@ -1,5 +1,6 @@
 import { ArrowRight } from 'lucide-react'
 import Reveal from './Reveal'
+import { DEPLOY_AGENT_URL } from '../constants/links'
 
 export default function CTA() {
     return (
@@ -12,7 +13,7 @@ export default function CTA() {
                             <span className="text-accent">Ship Outcomes, Not Dashboards.</span>
                         </h2>
                         <a
-                            href="https://cal.com/vishnu-rajan-3siibd/goschedule"
+                            href={DEPLOY_AGENT_URL}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="btn btn-primary btn-hero-primary cta-button"
