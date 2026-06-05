@@ -23,7 +23,7 @@ const DIST = join(ROOT, 'dist')
 const CONTENT_BLOG = join(ROOT, 'content', 'blog')
 
 const SITE = 'https://www.goschedule.ai'
-const DEFAULT_OG = `${SITE}/og-image.png`
+const DEFAULT_OG = `${SITE}/og-image-v2.png`
 
 const MARKETING_ROUTES = [
   {

@@ -13,7 +13,7 @@ export default function SEO({
   title,
   description,
   canonical,
-  ogImage = 'https://www.goschedule.ai/og-image.png',
+  ogImage = 'https://www.goschedule.ai/og-image-v2.png',
   ogType = 'website',
   jsonLd,
 }: SEOProps) {

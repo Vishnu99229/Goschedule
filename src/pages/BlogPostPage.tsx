@@ -54,7 +54,7 @@ export default function BlogPostPage() {
         ? fm.coverImage.startsWith('http')
           ? fm.coverImage
           : `${SITE}${fm.coverImage}`
-        : `${SITE}/og-image.png`
+        : `${SITE}/og-image-v2.png`
 
   const articleJsonLd = {
     '@context': 'https://schema.org',
