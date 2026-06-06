@@ -32,6 +32,15 @@ function extractText(node: unknown): string {
   return ''
 }
 
+// react-markdown passes a `node` prop (the mdast node) into every component.
+// Spreading it onto a DOM element leaks `node="[object Object]"` into the HTML,
+// so strip it from the rest props before spreading. Operates on the already-
+// destructured rest object (a copy), so this never mutates react-markdown state.
+function rm<T extends object>(rest: T): T {
+  delete (rest as { node?: unknown }).node
+  return rest
+}
+
 export default function Markdown({ children }: MarkdownProps) {
   return (
     <div className="markdown">
@@ -41,7 +50,7 @@ export default function Markdown({ children }: MarkdownProps) {
           h1: ({ children, ...rest }) => {
             const id = slugify(extractText(children))
             return (
-              <h1 id={id} className="markdown__h1" {...rest}>
+              <h1 id={id} className="markdown__h1" {...rm(rest)}>
                 {children}
               </h1>
             )
@@ -49,7 +58,7 @@ export default function Markdown({ children }: MarkdownProps) {
           h2: ({ children, ...rest }) => {
             const id = slugify(extractText(children))
             return (
-              <h2 id={id} className="markdown__h2" {...rest}>
+              <h2 id={id} className="markdown__h2" {...rm(rest)}>
                 {children}
               </h2>
             )
@@ -57,33 +66,33 @@ export default function Markdown({ children }: MarkdownProps) {
           h3: ({ children, ...rest }) => {
             const id = slugify(extractText(children))
             return (
-              <h3 id={id} className="markdown__h3" {...rest}>
+              <h3 id={id} className="markdown__h3" {...rm(rest)}>
                 {children}
               </h3>
             )
           },
           p: ({ children, ...rest }) => (
-            <p className="markdown__p" {...rest}>
+            <p className="markdown__p" {...rm(rest)}>
               {children}
             </p>
           ),
           ul: ({ children, ...rest }) => (
-            <ul className="markdown__ul" {...rest}>
+            <ul className="markdown__ul" {...rm(rest)}>
               {children}
             </ul>
           ),
           ol: ({ children, ...rest }) => (
-            <ol className="markdown__ol" {...rest}>
+            <ol className="markdown__ol" {...rm(rest)}>
               {children}
             </ol>
           ),
           li: ({ children, ...rest }) => (
-            <li className="markdown__li" {...rest}>
+            <li className="markdown__li" {...rm(rest)}>
               {children}
             </li>
           ),
           blockquote: ({ children, ...rest }) => (
-            <blockquote className="markdown__blockquote" {...rest}>
+            <blockquote className="markdown__blockquote" {...rm(rest)}>
               {children}
             </blockquote>
           ),
@@ -100,33 +109,33 @@ export default function Markdown({ children }: MarkdownProps) {
                 {...(isExternal
                   ? { target: '_blank', rel: 'noopener noreferrer' }
                   : {})}
-                {...rest}
+                {...rm(rest)}
               >
                 {children}
               </a>
             )
           },
           strong: ({ children, ...rest }) => (
-            <strong className="markdown__strong" {...rest}>
+            <strong className="markdown__strong" {...rm(rest)}>
               {children}
             </strong>
           ),
           em: ({ children, ...rest }) => (
-            <em className="markdown__em" {...rest}>
+            <em className="markdown__em" {...rm(rest)}>
               {children}
             </em>
           ),
           code: ({ children, ...rest }) => (
-            <code className="markdown__code" {...rest}>
+            <code className="markdown__code" {...rm(rest)}>
               {children}
             </code>
           ),
           pre: ({ children, ...rest }) => (
-            <pre className="markdown__pre" {...rest}>
+            <pre className="markdown__pre" {...rm(rest)}>
               {children}
             </pre>
           ),
-          hr: (props) => <hr className="markdown__hr" {...props} />,
+          hr: ({ ...props }) => <hr className="markdown__hr" {...rm(props)} />,
           img: ({ alt, src, ...rest }: ComponentPropsWithoutRef<'img'>) => (
             <img
               alt={alt ?? ''}
@@ -134,12 +143,12 @@ export default function Markdown({ children }: MarkdownProps) {
               loading="lazy"
               decoding="async"
               className="markdown__img"
-              {...rest}
+              {...rm(rest)}
             />
           ),
           table: ({ children, ...rest }) => (
             <div className="markdown__table-wrap">
-              <table className="markdown__table" {...rest}>
+              <table className="markdown__table" {...rm(rest)}>
                 {children}
               </table>
             </div>

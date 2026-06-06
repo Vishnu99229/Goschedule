@@ -1,6 +1,7 @@
 import HeroDashboard from './HeroDashboard'
 import Reveal from './Reveal'
 import AgentDemo from './AgentDemo'
+import ClientOnly from './ClientOnly'
 
 export default function Hero() {
     return (
@@ -22,9 +23,20 @@ export default function Hero() {
                         </Reveal>
                     </div>
 
-                    {/* Right: Live Demo (full AgentDemo component) */}
+                    {/* Right: Live Demo (full AgentDemo component) — client-only
+                        island so the static prerender doesn't run its browser-only
+                        code; mounts and works identically after hydration. */}
                     <div className="col-7 hero-demo-col">
-                        <AgentDemo />
+                        <ClientOnly
+                            fallback={
+                                <div
+                                    aria-hidden
+                                    style={{ minHeight: 480, width: '100%' }}
+                                />
+                            }
+                        >
+                            <AgentDemo />
+                        </ClientOnly>
                     </div>
 
                 </div>
