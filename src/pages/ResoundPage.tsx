@@ -100,9 +100,34 @@ export default function ResoundPage() {
     return (
         <main style={{ background: BG, color: TEXT, minHeight: '80vh', paddingTop: 48, paddingBottom: 100 }}>
             <SEO
-                title="Resound.ai | GoSchedule.ai"
+                title="Resound.ai — Outbound Sales Automation, End to End | Goschedule.ai"
                 description="Multi-tenant outbound sales automation with AI reply handling and voice AI that qualifies leads and books meetings."
                 canonical="https://www.goschedule.ai/products/resound"
+                jsonLd={[
+                    {
+                        '@context': 'https://schema.org',
+                        '@type': 'SoftwareApplication',
+                        name: 'Resound.ai',
+                        applicationCategory: 'BusinessApplication',
+                        operatingSystem: 'Web',
+                        url: 'https://www.goschedule.ai/products/resound',
+                        description:
+                            'Multi-tenant outbound sales automation with AI reply handling and voice AI that qualifies leads and books meetings.',
+                        publisher: {
+                            '@type': 'Organization',
+                            name: 'Goschedule.ai',
+                            url: 'https://www.goschedule.ai/',
+                        },
+                    },
+                    {
+                        '@context': 'https://schema.org',
+                        '@type': 'BreadcrumbList',
+                        itemListElement: [
+                            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.goschedule.ai/' },
+                            { '@type': 'ListItem', position: 2, name: 'Resound.ai', item: 'https://www.goschedule.ai/products/resound' },
+                        ],
+                    },
+                ]}
             />
             {/* Hero */}
             <section className="container" style={{ paddingBottom: 56 }}>

@@ -200,6 +200,31 @@ export default function ReplykaroPage() {
                 title="ReplyKaro — AI Inbound Response Agent | Goschedule.ai"
                 description="ReplyKaro is an AI agent that responds to every inbound lead within seconds. Enriches contact data, qualifies intent, and books meetings — automatically."
                 canonical="https://www.goschedule.ai/products/replykaro"
+                jsonLd={[
+                    {
+                        '@context': 'https://schema.org',
+                        '@type': 'SoftwareApplication',
+                        name: 'ReplyKaro',
+                        applicationCategory: 'BusinessApplication',
+                        operatingSystem: 'Web',
+                        url: 'https://www.goschedule.ai/products/replykaro',
+                        description:
+                            'ReplyKaro is an AI agent that responds to every inbound lead within seconds. Enriches contact data, qualifies intent, and books meetings — automatically.',
+                        publisher: {
+                            '@type': 'Organization',
+                            name: 'Goschedule.ai',
+                            url: 'https://www.goschedule.ai/',
+                        },
+                    },
+                    {
+                        '@context': 'https://schema.org',
+                        '@type': 'BreadcrumbList',
+                        itemListElement: [
+                            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.goschedule.ai/' },
+                            { '@type': 'ListItem', position: 2, name: 'ReplyKaro', item: 'https://www.goschedule.ai/products/replykaro' },
+                        ],
+                    },
+                ]}
             />
             {/* Hero */}
             <section className="container" style={{ paddingBottom: 56 }}>

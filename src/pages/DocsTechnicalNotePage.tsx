@@ -10,8 +10,8 @@ const SITE = 'https://www.goschedule.ai'
 export default function DocsTechnicalNotePage() {
   return (
     <DocsArticleLayout
-      title="Our Technical Note | GoSchedule.ai"
-      description="How GoSchedule.ai builds vertical AI agents that drive real business outcomes, not generic assistants."
+      title="Our Technical Note | Goschedule.ai"
+      description="How Goschedule.ai builds vertical AI agents that drive real business outcomes, not generic assistants."
       canonical={`${SITE}/docs/technical-note`}
       heading="Our Technical Note"
     >

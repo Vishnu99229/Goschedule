@@ -24,6 +24,25 @@ import DocsMorningBriefPage from './pages/DocsMorningBriefPage'
 import DocsReplyKaroPage from './pages/DocsReplyKaroPage'
 import DocsResoundPage from './pages/DocsResoundPage'
 
+const SITE = 'https://www.goschedule.ai'
+
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Goschedule.ai',
+  url: `${SITE}/`,
+  logo: `${SITE}/favicon.png`,
+  description:
+    'Goschedule.ai deploys AI agents that run revenue, sales, and operations for businesses — 24/7, learning, and outcome-driven.',
+}
+
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Goschedule.ai',
+  url: `${SITE}/`,
+}
+
 function HomePage() {
   return (
     <main>
@@ -31,6 +50,7 @@ function HomePage() {
         title="Goschedule.ai — AI Agents for Revenue, Sales & Operations"
         description="Deploy AI agents that run your revenue engine. From outbound sales to operations — 24/7, learning, outcome-driven."
         canonical="https://www.goschedule.ai/"
+        jsonLd={[organizationJsonLd, websiteJsonLd]}
       />
       <Hero />
       <Agents />

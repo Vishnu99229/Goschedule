@@ -27,6 +27,33 @@ export default function Footer() {
                     </Link>
                 </div>
 
+                <nav
+                    aria-label="Footer"
+                    className="footer-nav"
+                    style={{
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                        gap: '32px 64px',
+                    }}
+                >
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                        <div style={{ fontSize: 13, fontWeight: 600, opacity: 0.7 }}>Products</div>
+                        <Link to="/products/morning-brief" className="footer-text">Morning Brief</Link>
+                        <Link to="/products/replykaro" className="footer-text">ReplyKaro</Link>
+                        <Link to="/products/resound" className="footer-text">Resound.ai</Link>
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                        <div style={{ fontSize: 13, fontWeight: 600, opacity: 0.7 }}>Resources</div>
+                        <Link to="/blog" className="footer-text">Blog</Link>
+                        <Link to="/docs" className="footer-text">Docs</Link>
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                        <div style={{ fontSize: 13, fontWeight: 600, opacity: 0.7 }}>Company</div>
+                        <a href="/#approach" className="footer-text">Approach</a>
+                        <a href="/#pricing" className="footer-text">Pricing</a>
+                    </div>
+                </nav>
+
                 <div
                     className="footer-bottom"
                     style={{

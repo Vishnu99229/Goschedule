@@ -6,10 +6,12 @@ const SITE = 'https://www.goschedule.ai'
 export default function DocsMorningBriefPage() {
   return (
     <DocsArticleLayout
-      title="Morning Brief Documentation | GoSchedule.ai"
+      title="Morning Brief Documentation | Goschedule.ai"
       description="Technical documentation for Morning Brief. A personalized AI news agent that calls you every morning with only the stories that matter."
       canonical={`${SITE}/docs/morning-brief`}
       heading="Morning Brief Documentation"
+      relatedHref="/products/morning-brief"
+      relatedLabel="Explore Morning Brief"
     >
       <h2 className="markdown__h2">Overview</h2>
       <p className="markdown__p">

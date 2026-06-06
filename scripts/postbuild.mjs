@@ -15,6 +15,7 @@
 import { readFileSync, writeFileSync, mkdirSync, readdirSync } from 'fs'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
+import { execSync } from 'child_process'
 import matter from 'gray-matter'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -24,6 +25,67 @@ const CONTENT_BLOG = join(ROOT, 'content', 'blog')
 
 const SITE = 'https://www.goschedule.ai'
 const DEFAULT_OG = `${SITE}/og-image-v2.png`
+
+// ── Shared JSON-LD builders (mirror the client-side <SEO jsonLd> values so
+//    the same schema appears in the raw static HTML, not only after hydration) ──
+const ORG_JSONLD = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Goschedule.ai',
+  url: `${SITE}/`,
+  logo: `${SITE}/favicon.png`,
+  description:
+    'Goschedule.ai deploys AI agents that run revenue, sales, and operations for businesses — 24/7, learning, and outcome-driven.',
+}
+
+const WEBSITE_JSONLD = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Goschedule.ai',
+  url: `${SITE}/`,
+}
+
+function softwareAppJsonLd({ name, url, description }) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name,
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'Web',
+    url,
+    description,
+    publisher: { '@type': 'Organization', name: 'Goschedule.ai', url: `${SITE}/` },
+  }
+}
+
+function productBreadcrumbJsonLd(name, url) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
+      { '@type': 'ListItem', position: 2, name, item: url },
+    ],
+  }
+}
+
+// Real per-page last-modified from git (committer date, YYYY-MM-DD). Returns
+// null when git is unavailable so the sitemap falls back to today's date —
+// this keeps the existing behaviour intact while removing build-date churn for
+// pages that have not actually changed.
+function gitLastmod(relPath) {
+  try {
+    const out = execSync(`git log -1 --format=%cs -- "${relPath}"`, {
+      cwd: ROOT,
+      stdio: ['ignore', 'pipe', 'ignore'],
+    })
+      .toString()
+      .trim()
+    return out || null
+  } catch {
+    return null
+  }
+}
 
 const MARKETING_ROUTES = [
   {
@@ -35,16 +97,29 @@ const MARKETING_ROUTES = [
     ogType: 'website',
     priority: 1.0,
     changefreq: 'weekly',
+    source: 'index.html',
+    jsonLd: [ORG_JSONLD, WEBSITE_JSONLD],
   },
   {
     path: '/products/morning-brief',
-    title: 'Morning Brief | GoSchedule.ai',
+    title: 'Morning Brief — Your Personalized AI News Agent, Called In | Goschedule.ai',
     description:
       'A personalized AI news agent that calls you every morning with only the stories that matter to you.',
     canonical: `${SITE}/products/morning-brief`,
     ogType: 'website',
     priority: 0.8,
     changefreq: 'monthly',
+    source: 'src/pages/MorningBriefPage.tsx',
+    imageAlt: 'Morning Brief — a personalized AI news agent that calls you every morning.',
+    jsonLd: [
+      softwareAppJsonLd({
+        name: 'Morning Brief',
+        url: `${SITE}/products/morning-brief`,
+        description:
+          'A personalized AI news agent that calls you every morning with only the stories that matter to you.',
+      }),
+      productBreadcrumbJsonLd('Morning Brief', `${SITE}/products/morning-brief`),
+    ],
   },
   {
     path: '/products/replykaro',
@@ -55,16 +130,38 @@ const MARKETING_ROUTES = [
     ogType: 'website',
     priority: 0.8,
     changefreq: 'monthly',
+    source: 'src/pages/ReplykaroPage.tsx',
+    imageAlt: 'ReplyKaro — an AI agent that answers inbound calls and WhatsApp and books meetings.',
+    jsonLd: [
+      softwareAppJsonLd({
+        name: 'ReplyKaro',
+        url: `${SITE}/products/replykaro`,
+        description:
+          'ReplyKaro is an AI agent that responds to every inbound lead within seconds. Enriches contact data, qualifies intent, and books meetings — automatically.',
+      }),
+      productBreadcrumbJsonLd('ReplyKaro', `${SITE}/products/replykaro`),
+    ],
   },
   {
     path: '/products/resound',
-    title: 'Resound.ai | GoSchedule.ai',
+    title: 'Resound.ai — Outbound Sales Automation, End to End | Goschedule.ai',
     description:
       'Multi-tenant outbound sales automation with AI reply handling and voice AI that qualifies leads and books meetings.',
     canonical: `${SITE}/products/resound`,
     ogType: 'website',
     priority: 0.8,
     changefreq: 'monthly',
+    source: 'src/pages/ResoundPage.tsx',
+    imageAlt: 'Resound.ai — outbound sales automation that books meetings end to end.',
+    jsonLd: [
+      softwareAppJsonLd({
+        name: 'Resound.ai',
+        url: `${SITE}/products/resound`,
+        description:
+          'Multi-tenant outbound sales automation with AI reply handling and voice AI that qualifies leads and books meetings.',
+      }),
+      productBreadcrumbJsonLd('Resound.ai', `${SITE}/products/resound`),
+    ],
   },
   {
     path: '/blog',
@@ -75,55 +172,62 @@ const MARKETING_ROUTES = [
     ogType: 'website',
     priority: 0.7,
     changefreq: 'weekly',
+    source: 'src/pages/BlogIndexPage.tsx',
   },
   {
     path: '/docs',
-    title: 'Documentation | GoSchedule.ai',
-    description: 'Technical documentation for GoSchedule.ai products.',
+    title: 'Documentation — Guides for Goschedule.ai AI Agents | Goschedule.ai',
+    description:
+      "Technical guides for Goschedule.ai's AI agents — ReplyKaro, Resound.ai, and Morning Brief — covering architecture, setup, and how each agent works.",
     canonical: `${SITE}/docs`,
     ogType: 'website',
     priority: 0.7,
     changefreq: 'monthly',
+    source: 'src/pages/DocsPage.tsx',
   },
   {
     path: '/docs/technical-note',
-    title: 'Our Technical Note | GoSchedule.ai',
+    title: 'Our Technical Note | Goschedule.ai',
     description:
-      'How GoSchedule.ai builds vertical AI agents that drive real business outcomes, not generic assistants.',
+      'How Goschedule.ai builds vertical AI agents that drive real business outcomes, not generic assistants.',
     canonical: `${SITE}/docs/technical-note`,
     ogType: 'website',
     priority: 0.6,
     changefreq: 'monthly',
+    source: 'src/pages/DocsTechnicalNotePage.tsx',
   },
   {
     path: '/docs/morning-brief',
-    title: 'Morning Brief Documentation | GoSchedule.ai',
+    title: 'Morning Brief Documentation | Goschedule.ai',
     description:
       'Technical documentation for Morning Brief. A personalized AI news agent that calls you every morning with only the stories that matter.',
     canonical: `${SITE}/docs/morning-brief`,
     ogType: 'website',
     priority: 0.6,
     changefreq: 'monthly',
+    source: 'src/pages/DocsMorningBriefPage.tsx',
   },
   {
     path: '/docs/replykaro',
-    title: 'ReplyKaro Documentation | GoSchedule.ai',
+    title: 'ReplyKaro Documentation | Goschedule.ai',
     description:
       'Technical documentation for ReplyKaro. An AI receptionist for clinics that answers calls, handles WhatsApp, and books appointments.',
     canonical: `${SITE}/docs/replykaro`,
     ogType: 'website',
     priority: 0.6,
     changefreq: 'monthly',
+    source: 'src/pages/DocsReplyKaroPage.tsx',
   },
   {
     path: '/docs/resound',
-    title: 'Resound.ai Documentation | GoSchedule.ai',
+    title: 'Resound.ai Documentation | Goschedule.ai',
     description:
       'Technical documentation for Resound.ai. A multi-tenant outbound sales automation platform with AI reply handling and voice qualification.',
     canonical: `${SITE}/docs/resound`,
     ogType: 'website',
     priority: 0.6,
     changefreq: 'monthly',
+    source: 'src/pages/DocsResoundPage.tsx',
   },
   {
     path: '/terms-and-conditions',
@@ -134,6 +238,7 @@ const MARKETING_ROUTES = [
     ogType: 'website',
     priority: 0.4,
     changefreq: 'yearly',
+    source: 'src/components/TermsAndConditions.tsx',
   },
   {
     path: '/privacy-policy',
@@ -144,6 +249,7 @@ const MARKETING_ROUTES = [
     ogType: 'website',
     priority: 0.4,
     changefreq: 'yearly',
+    source: 'src/components/PrivacyPolicy.tsx',
   },
 ]
 
@@ -197,6 +303,14 @@ function injectMeta(html, route) {
     /<meta\s+property="og:image"\s+content="[^"]*"\s*\/?>/,
     `<meta property="og:image" content="${escapeHtml(ogImage)}" />`
   )
+  // Per-route og:image:alt — only override when the route supplies one, so
+  // routes without imageAlt keep the base (homepage) alt exactly as before.
+  if (route.imageAlt) {
+    result = result.replace(
+      /<meta\s+property="og:image:alt"\s+content="[^"]*"\s*\/?>/,
+      `<meta property="og:image:alt" content="${escapeHtml(route.imageAlt)}" />`
+    )
+  }
   result = result.replace(
     /<meta\s+property="og:type"\s+content="[^"]*"\s*\/?>/,
     `<meta property="og:type" content="${escapeHtml(route.ogType ?? 'website')}" />`
@@ -327,6 +441,7 @@ function buildPostRoute(post) {
     canonical,
     ogType: 'article',
     ogImage,
+    imageAlt: fm.coverAlt,
     priority: 0.7,
     changefreq: 'monthly',
     lastmod: fm.date,
@@ -354,6 +469,13 @@ function generateSitemap(routes) {
 
 // ── Main ──────────────────────────────────────────────────────────────
 const baseHtml = readFileSync(join(DIST, 'index.html'), 'utf-8')
+
+// Populate real per-page lastmod from git for marketing routes (blog posts
+// already carry lastmod = frontmatter date). Falls back to today via
+// generateSitemap when git is unavailable or the file has no history.
+for (const r of MARKETING_ROUTES) {
+  if (!r.lastmod && r.source) r.lastmod = gitLastmod(r.source)
+}
 
 const posts = loadBlogPosts()
 const postRoutes = posts.map(buildPostRoute)

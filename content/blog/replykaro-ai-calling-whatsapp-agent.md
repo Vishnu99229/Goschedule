@@ -99,4 +99,4 @@ Yes. ReplyKaro runs all day and all night, so you capture leads even when your t
 
 Your next customer is already trying to reach you. The only question is whether anyone answers in time. With ReplyKaro, the answer is always yes.
 
-Let ReplyKaro answer every call, reply to every message, and fill your calendar with real bookings. Get started today and turn every conversation into a customer.
+Let [ReplyKaro](/products/replykaro) answer every call, reply to every message, and fill your calendar with real bookings. Want the technical details? Read [how ReplyKaro works under the hood](/docs/replykaro). Otherwise, get started today and turn every conversation into a customer.

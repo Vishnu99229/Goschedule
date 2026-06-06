@@ -209,8 +209,8 @@ export default function DocsPage() {
   return (
     <main>
       <SEO
-        title="Documentation | GoSchedule.ai"
-        description="Technical documentation for GoSchedule.ai products."
+        title="Documentation — Guides for Goschedule.ai AI Agents | Goschedule.ai"
+        description="Technical guides for Goschedule.ai's AI agents — ReplyKaro, Resound.ai, and Morning Brief — covering architecture, setup, and how each agent works."
         canonical={`${SITE}/docs`}
       />
 

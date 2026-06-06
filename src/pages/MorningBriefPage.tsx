@@ -102,9 +102,34 @@ export default function MorningBriefPage() {
     return (
         <main style={{ background: BG, color: TEXT, minHeight: '80vh', paddingTop: 48, paddingBottom: 100 }}>
             <SEO
-                title="Morning Brief | GoSchedule.ai"
+                title="Morning Brief — Your Personalized AI News Agent, Called In | Goschedule.ai"
                 description="A personalized AI news agent that calls you every morning with only the stories that matter to you."
                 canonical="https://www.goschedule.ai/products/morning-brief"
+                jsonLd={[
+                    {
+                        '@context': 'https://schema.org',
+                        '@type': 'SoftwareApplication',
+                        name: 'Morning Brief',
+                        applicationCategory: 'BusinessApplication',
+                        operatingSystem: 'Web',
+                        url: 'https://www.goschedule.ai/products/morning-brief',
+                        description:
+                            'A personalized AI news agent that calls you every morning with only the stories that matter to you.',
+                        publisher: {
+                            '@type': 'Organization',
+                            name: 'Goschedule.ai',
+                            url: 'https://www.goschedule.ai/',
+                        },
+                    },
+                    {
+                        '@context': 'https://schema.org',
+                        '@type': 'BreadcrumbList',
+                        itemListElement: [
+                            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.goschedule.ai/' },
+                            { '@type': 'ListItem', position: 2, name: 'Morning Brief', item: 'https://www.goschedule.ai/products/morning-brief' },
+                        ],
+                    },
+                ]}
             />
             {/* Hero */}
             <section className="container" style={{ paddingBottom: 56 }}>

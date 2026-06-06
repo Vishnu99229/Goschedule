@@ -9,10 +9,12 @@ const SITE = 'https://www.goschedule.ai'
 export default function DocsReplyKaroPage() {
   return (
     <DocsArticleLayout
-      title="ReplyKaro Documentation | GoSchedule.ai"
+      title="ReplyKaro Documentation | Goschedule.ai"
       description="Technical documentation for ReplyKaro. An AI receptionist for clinics that answers calls, handles WhatsApp, and books appointments."
       canonical={`${SITE}/docs/replykaro`}
       heading="ReplyKaro Documentation"
+      relatedHref="/products/replykaro"
+      relatedLabel="Explore ReplyKaro"
     >
       <h2 className="markdown__h2">Overview</h2>
       <p className="markdown__p">

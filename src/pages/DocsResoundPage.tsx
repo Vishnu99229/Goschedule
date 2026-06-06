@@ -6,11 +6,13 @@ const SITE = 'https://www.goschedule.ai'
 export default function DocsResoundPage() {
   return (
     <DocsArticleLayout
-      title="Resound.ai Documentation | GoSchedule.ai"
+      title="Resound.ai Documentation | Goschedule.ai"
       description="Technical documentation for Resound.ai. A multi-tenant outbound sales automation platform with AI reply handling and voice qualification."
       canonical={`${SITE}/docs/resound`}
       heading="Resound.ai Documentation"
       badge="Early access"
+      relatedHref="/products/resound"
+      relatedLabel="Explore Resound.ai"
     >
       <h2 className="markdown__h2">Overview</h2>
       <p className="markdown__p">
