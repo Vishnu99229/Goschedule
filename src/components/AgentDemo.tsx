@@ -28,7 +28,7 @@ interface SubDemoProps {
 }
 
 interface ErrorMsg {
-  type: 'input' | 'rate_limit'
+  type: 'rate_limit'
   message: string
 }
 
@@ -673,29 +673,17 @@ export default function AgentDemo() {
   const [currentStep, setCurrentStep] = useState(0)
   const [completedSteps, setCompletedSteps] = useState<number[]>([])
   const [errorMsg, setErrorMsg] = useState<ErrorMsg | null>(null)
-  const inputRef = useRef<HTMLInputElement>(null)
 
-  const handleSubmit = async (text: string) => {
-    const trimmed = text.trim()
-
-    // Client-side input validation
-    if (!trimmed) {
-      setErrorMsg({ type: 'input', message: 'Please describe what you want your agent to do.' })
-      return
-    }
-    if (trimmed.length > 500) {
-      setErrorMsg({ type: 'input', message: 'Please keep your description under 500 characters.' })
-      return
-    }
-
+  // Chip click immediately starts the demo build with that chip's full prompt.
+  const handleChipClick = async (chipPrompt: string) => {
     setErrorMsg(null)
-    setPrompt(trimmed)
+    setPrompt(chipPrompt)
     setState('building')
     setCurrentStep(0)
     setCompletedSteps([])
 
     try {
-      const [result] = await Promise.all([fetchDemo(trimmed), sleep(6000)])
+      const [result] = await Promise.all([fetchDemo(chipPrompt), sleep(6000)])
       setDemo(result)
       setState('result')
     } catch (err) {
@@ -703,7 +691,7 @@ export default function AgentDemo() {
         setErrorMsg({ type: 'rate_limit', message: err.msg })
         setState('idle')
       } else {
-        setDemo(getMockForPrompt(trimmed))
+        setDemo(getMockForPrompt(chipPrompt))
         setState('result')
       }
     }
@@ -716,7 +704,6 @@ export default function AgentDemo() {
     setCurrentStep(0)
     setCompletedSteps([])
     setErrorMsg(null)
-    setTimeout(() => inputRef.current?.focus(), 80)
   }
 
   // Advance build steps
@@ -736,8 +723,6 @@ export default function AgentDemo() {
     return () => timers.forEach(clearTimeout)
   }, [state])
 
-  const overLimit = prompt.length > 500
-
   return (
     <section style={{ padding: '0 0 80px' }}>
       <div className="container">
@@ -749,7 +734,7 @@ export default function AgentDemo() {
             Build Your AI Agent in 10 Seconds
           </h2>
           <p style={{ color: 'var(--text-secondary)', fontSize: 16 }}>
-            Describe your use case and watch your agent come to life.
+            Pick a use case and watch your agent come to life.
           </p>
         </div>
 
@@ -765,56 +750,16 @@ export default function AgentDemo() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -6 }}
                   transition={{ duration: 0.25 }}
+                  style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '8px 0 4px' }}
                 >
-                  <label style={{ display: 'block', fontSize: 13, fontWeight: 500, color: 'var(--text-secondary)', marginBottom: 10 }}>
-                    What should your AI agent do?
-                  </label>
-
-                  <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-                    <input
-                      ref={inputRef}
-                      type="text"
-                      value={prompt}
-                      onChange={e => { setPrompt(e.target.value); if (errorMsg?.type === 'input') setErrorMsg(null) }}
-                      onKeyDown={e => e.key === 'Enter' && handleSubmit(prompt)}
-                      placeholder="Recover abandoned carts, confirm COD orders, qualify leads..."
-                      style={{
-                        flex: '1 1 220px', padding: '11px 14px',
-                        border: `1px solid ${overLimit ? 'var(--danger)' : 'var(--border-subtle)'}`,
-                        borderRadius: 10, fontSize: 14, background: 'var(--bg-base)', color: 'var(--text-primary)',
-                        fontFamily: 'inherit', outline: 'none', transition: 'border-color 0.18s',
-                      }}
-                      onFocus={e => { if (!overLimit) e.currentTarget.style.borderColor = 'var(--accent)' }}
-                      onBlur={e => { if (!overLimit) e.currentTarget.style.borderColor = 'var(--border-subtle)' }}
-                    />
-                    <button
-                      onClick={() => handleSubmit(prompt)}
-                      disabled={overLimit}
-                      className="btn btn-primary"
-                      style={{ flexShrink: 0, gap: 6, opacity: prompt.trim() && !overLimit ? 1 : 0.45, cursor: prompt.trim() && !overLimit ? 'pointer' : 'default' }}
-                    >
-                      <Sparkles style={{ width: 15, height: 15 }} />
-                      Build Agent
-                    </button>
-                  </div>
-
-                  {/* Character counter */}
-                  {prompt.length > 0 && (
-                    <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 5 }}>
-                      <span style={{ fontSize: 11, color: overLimit ? 'var(--danger)' : 'var(--text-muted)' }}>
-                        {prompt.length}/500
-                      </span>
-                    </div>
-                  )}
-
-                  {/* Example chips */}
-                  <div style={{ marginTop: prompt.length > 0 ? 10 : 14, display: 'flex', flexWrap: 'wrap', gap: 8, alignItems: 'center' }}>
-                    <span style={{ fontSize: 12, color: 'var(--text-muted)' }}>Try:</span>
+                  {/* Chips are the sole trigger. Visual centerpiece of the idle card. */}
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, justifyContent: 'center', maxWidth: 560 }}>
                     {EXAMPLE_CHIPS.map(chip => (
                       <button
                         key={chip.label}
-                        onClick={() => handleSubmit(chip.prompt)}
-                        style={{ padding: '5px 12px', borderRadius: 20, fontSize: 13, fontWeight: 450, border: '1px solid var(--accent-soft-border)', background: 'var(--accent-soft)', color: 'var(--accent)', cursor: 'pointer', fontFamily: 'inherit', transition: 'background 0.15s' }}
+                        type="button"
+                        onClick={() => handleChipClick(chip.prompt)}
+                        style={{ padding: '8px 14px', borderRadius: 20, fontSize: 13, fontWeight: 500, border: '1px solid var(--accent-soft-border)', background: 'var(--accent-soft)', color: 'var(--accent)', cursor: 'pointer', fontFamily: 'inherit', transition: 'background 0.15s' }}
                         onMouseEnter={e => (e.currentTarget.style.background = 'rgba(124,58,237,0.16)')}
                         onMouseLeave={e => (e.currentTarget.style.background = 'var(--accent-soft)')}
                       >
@@ -823,23 +768,21 @@ export default function AgentDemo() {
                     ))}
                   </div>
 
-                  {/* Inline error messages */}
+                  {/* Rate-limit / error friendly card */}
                   <AnimatePresence>
                     {errorMsg && (
                       <motion.div
                         initial={{ opacity: 0, y: 6 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0 }}
-                        style={{ marginTop: 16, padding: '12px 16px', background: errorMsg.type === 'rate_limit' ? 'var(--accent-soft)' : 'rgba(220,38,38,0.06)', border: `1px solid ${errorMsg.type === 'rate_limit' ? 'var(--accent-soft-border)' : 'rgba(220,38,38,0.2)'}`, borderRadius: 10 }}
+                        style={{ marginTop: 20, width: '100%', padding: '12px 16px', background: 'var(--accent-soft)', border: '1px solid var(--accent-soft-border)', borderRadius: 10, textAlign: 'left' }}
                       >
-                        <p style={{ fontSize: 13, color: 'var(--text-primary)', marginBottom: errorMsg.type === 'rate_limit' ? 10 : 0 }}>
+                        <p style={{ fontSize: 13, color: 'var(--text-primary)', marginBottom: 10 }}>
                           {errorMsg.message}
                         </p>
-                        {errorMsg.type === 'rate_limit' && (
-                          <a href={DEPLOY_AGENT_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ fontSize: 13, padding: '8px 18px', display: 'inline-flex', gap: 6 }}>
-                            Book a Call <ArrowRight style={{ width: 14, height: 14 }} />
-                          </a>
-                        )}
+                        <a href={DEPLOY_AGENT_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ fontSize: 13, padding: '8px 18px', display: 'inline-flex', gap: 6 }}>
+                          Book a Call <ArrowRight style={{ width: 14, height: 14 }} />
+                        </a>
                       </motion.div>
                     )}
                   </AnimatePresence>
