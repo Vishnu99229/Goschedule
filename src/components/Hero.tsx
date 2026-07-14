@@ -3,23 +3,36 @@ import Reveal from './Reveal'
 import AgentDemo from './AgentDemo'
 import ClientOnly from './ClientOnly'
 
+const CAPABILITIES = [
+  'AI voice agent',
+  'WhatsApp automation',
+  'Books appointments',
+  'Syncs to your CRM',
+]
+
 export default function Hero() {
     return (
         <>
-        {/* ── Hero: headline left, Live Demo right ── */}
+        {/* ── Hero: voice/WhatsApp copy left, Live Demo right ── */}
         <section className="section hero" style={{ position: 'relative' }}>
             <div className="container" style={{ position: 'relative', zIndex: 1 }}>
                 <div className="grid-12 hero-content">
 
-                    {/* Left: headline + subtext only */}
+                    {/* Left: LIVE WORKFLOW copy */}
                     <div className="col-5 hero-copy">
                         <Reveal>
+                            <span className="hero-eyebrow">Live Workflow</span>
                             <h1 className="hero-title">
-                                AI Agents That Run Your Revenue Engine.
+                                Voice and WhatsApp, working as one agent.
                             </h1>
-                            <p className="hero-sub" style={{ marginBottom: 0 }}>
-                                Ship Outcomes, Not Dashboards.
+                            <p className="hero-sub">
+                                An AI voice agent picks up every inbound call. A WhatsApp automation runs every chat. Every conversation ends with a booked appointment on your calendar.
                             </p>
+                            <div className="hero-caps" aria-label="Capabilities">
+                                {CAPABILITIES.map((label) => (
+                                    <span key={label}>{label}</span>
+                                ))}
+                            </div>
                         </Reveal>
                     </div>
 
