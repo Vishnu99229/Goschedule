@@ -38,9 +38,9 @@ export default function Footer() {
                 >
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                         <div style={{ fontSize: 13, fontWeight: 600, opacity: 0.7 }}>Products</div>
-                        <Link to="/products/morning-brief" className="footer-text">Morning Brief</Link>
                         <Link to="/products/replykaro" className="footer-text">ReplyKaro</Link>
-                        <Link to="/products/resound" className="footer-text">Resound.ai</Link>
+                        <Link to="/products/fde-services" className="footer-text">FDE Services</Link>
+                        <Link to="/products/free-setup" className="footer-text">Free Setup</Link>
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                         <div style={{ fontSize: 13, fontWeight: 600, opacity: 0.7 }}>Resources</div>

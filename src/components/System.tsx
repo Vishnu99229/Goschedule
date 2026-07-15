@@ -5,21 +5,21 @@ import { OrganicNetworkIcon, OutboundRadarIcon, QualificationFunnelIcon } from '
 const CARDS: { icon: ReactNode; title: string; desc: string; tags: string[] }[] = [
     {
         icon: <OrganicNetworkIcon />,
-        title: 'Context Engine',
-        desc: 'Every agent ingests your domain, voice, and historical wins via embeddings + fine-tuned models — so it sounds and decides like your best operator.',
-        tags: ['LSTM', 'BERT', 'GPT-4o', 'Vector Memory'],
+        title: 'Conversation Layer',
+        desc: 'Voice agents built on Vapi with Indian English and Hinglish support. WhatsApp automations via Twilio and Meta Cloud API. Each conversation is routed through Claude Sonnet for reasoning, with fallback prompts for reliability.',
+        tags: ['Vapi', 'Twilio', 'Meta WhatsApp API', 'Claude Sonnet 4.5'],
     },
     {
         icon: <OutboundRadarIcon />,
-        title: 'Decision Engine',
-        desc: 'A multi-agent orchestration layer powered by Q-learning picks the optimal action per task — channel, message, timing, escalation.',
-        tags: ['Q-Learning', 'Multi-Agent', 'Claude Sonnet 4', 'Reasoning'],
+        title: 'Orchestration Layer',
+        desc: 'Workflows run on self-hosted n8n with Instance-level MCP exposed to LLM clients. Every agent action, from calendar booking to CRM update, runs as a modular workflow with typed inputs and error handling.',
+        tags: ['n8n', 'MCP', 'Railway', 'Webhooks'],
     },
     {
         icon: <QualificationFunnelIcon />,
-        title: 'Outcome Engine',
-        desc: 'Stacked classifiers + rule-based overrides ensure every action meets your standards. Models retrain weekly on closed-won data.',
-        tags: ['XGBoost', 'Fine-Tuned Transformers', 'Compliance Layer', 'Weekly Retraining'],
+        title: 'Data and Integrations Layer',
+        desc: 'Structured data lives in Supabase and Google Sheets. CRM enrichment via Apollo. Calendar sync via Google Calendar API. Every conversation, booking, and outcome is logged and queryable for continuous improvement.',
+        tags: ['Supabase', 'Apollo', 'Google Calendar', 'Google Sheets'],
     },
 ]
 
@@ -32,7 +32,7 @@ export default function System() {
                         How Our Agents Work
                     </h2>
                     <p className="body-lg text-center mx-auto" style={{ maxWidth: 620, marginBottom: 'var(--space-8)' }}>
-                        Every Goschedule agent runs on the same infrastructure.
+                        Every Goschedule agent runs on the same production stack. No proprietary black boxes. Real tools, real observability, real reliability.
                     </p>
                 </Reveal>
 

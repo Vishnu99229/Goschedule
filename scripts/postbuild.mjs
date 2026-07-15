@@ -143,6 +143,60 @@ const MARKETING_ROUTES = [
     ],
   },
   {
+    path: '/products/fde-services',
+    title: 'FDE Services — Goschedule.ai',
+    description:
+      'Forward Deployed Engineering. We embed with your team, deploy AI agents into your live workflows, and stay on until outcomes ship.',
+    canonical: `${SITE}/products/fde-services`,
+    ogType: 'website',
+    priority: 0.8,
+    changefreq: 'monthly',
+    source: 'src/pages/FdeServicesPage.tsx',
+    imageAlt: 'FDE Services — forward deployed engineering for AI agents.',
+    jsonLd: [
+      softwareAppJsonLd({
+        name: 'FDE Services',
+        url: `${SITE}/products/fde-services`,
+        description:
+          'Forward Deployed Engineering. We embed with your team, deploy AI agents into your live workflows, and stay on until outcomes ship.',
+      }),
+      productBreadcrumbJsonLd('FDE Services', `${SITE}/products/fde-services`),
+    ],
+  },
+  {
+    path: '/products/free-setup',
+    title: 'Free Setup — Goschedule.ai',
+    description:
+      'Get a working AI agent deployed for free. We build the first agent at zero cost. You only pay if you decide to keep it live.',
+    canonical: `${SITE}/products/free-setup`,
+    ogType: 'website',
+    priority: 0.8,
+    changefreq: 'monthly',
+    source: 'src/pages/FreeSetupPage.tsx',
+    imageAlt: 'Free Setup — get your first AI agent deployed at zero upfront cost.',
+    jsonLd: [
+      softwareAppJsonLd({
+        name: 'Free Setup',
+        url: `${SITE}/products/free-setup`,
+        description:
+          'Get a working AI agent deployed for free. We build the first agent at zero cost. You only pay if you decide to keep it live.',
+      }),
+      productBreadcrumbJsonLd('Free Setup', `${SITE}/products/free-setup`),
+    ],
+  },
+  {
+    path: '/case-studies/cafe-muziris',
+    title: 'Cafe Muziris Case Study — Goschedule.ai',
+    description:
+      'How Goschedule deployed a voice and WhatsApp agent for Cafe Muziris that increased customer footfall by 9 percent and eliminated missed reservations across peak weeks.',
+    canonical: `${SITE}/case-studies/cafe-muziris`,
+    ogType: 'website',
+    priority: 0.7,
+    changefreq: 'monthly',
+    source: 'src/pages/CafeMuzirisCaseStudyPage.tsx',
+    imageAlt: 'Cafe Muziris case study — 9 percent footfall increase with AI voice and WhatsApp.',
+  },
+  {
     path: '/products/resound',
     title: 'Resound.ai — Outbound Sales Automation, End to End | Goschedule.ai',
     description:

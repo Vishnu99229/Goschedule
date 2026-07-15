@@ -7,12 +7,16 @@ import Problem from './components/Problem'
 import System from './components/System'
 import Results from './components/Results'
 import AgentInAction from './components/AgentInAction'
+import CaseStudies from './components/CaseStudies'
 import Pricing from './components/Pricing'
 import CTA from './components/CTA'
 import Footer from './components/Footer'
 import TermsAndConditions from './components/TermsAndConditions'
 import PrivacyPolicy from './components/PrivacyPolicy'
 import ScrollToTop from './components/ScrollToTop'
+import FdeServicesPage from './pages/FdeServicesPage'
+import FreeSetupPage from './pages/FreeSetupPage'
+import CafeMuzirisCaseStudyPage from './pages/CafeMuzirisCaseStudyPage'
 import MorningBriefPage from './pages/MorningBriefPage'
 import ResoundPage from './pages/ResoundPage'
 import ReplykaroPage from './pages/ReplykaroPage'
@@ -58,6 +62,7 @@ function HomePage() {
       <System />
       <Results />
       <AgentInAction />
+      <CaseStudies />
       <Pricing />
       <CTA />
     </main>
@@ -74,6 +79,9 @@ function App() {
         <Route path="/products/morning-brief" element={<MorningBriefPage />} />
         <Route path="/products/resound" element={<ResoundPage />} />
         <Route path="/products/replykaro" element={<ReplykaroPage />} />
+        <Route path="/products/fde-services" element={<FdeServicesPage />} />
+        <Route path="/products/free-setup" element={<FreeSetupPage />} />
+        <Route path="/case-studies/cafe-muziris" element={<CafeMuzirisCaseStudyPage />} />
         <Route path="/blog" element={<BlogIndexPage />} />
         <Route path="/blog/:slug" element={<BlogPostPage />} />
         <Route path="/docs" element={<DocsPage />} />
