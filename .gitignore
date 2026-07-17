@@ -30,3 +30,4 @@ v-*-*.png
 375-fold*.png
 prod-*.png
 supabase/.temp/
+supabase/.env.local
