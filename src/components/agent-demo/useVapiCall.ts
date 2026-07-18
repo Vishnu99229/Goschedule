@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Vapi from '@vapi-ai/web'
-import type { AssistantConfig, DemoCallState, DemoErrorCode } from './types'
+import type { AssistantConfig, DemoCallState, DemoErrorCode, DemoLanguage } from './types'
 import { DemoConfigError, messageForErrorCode } from './types'
 import { fetchAgentConfig } from './fetchAgentConfig'
 
@@ -9,6 +9,7 @@ const CALL_DURATION_SECONDS = 120
 const DEMO_CONFIG_CODES = new Set([
   'rate_limited',
   'invalid_prompt',
+  'invalid_language',
   'too_short',
   'too_long',
   'edge_fn_error',
@@ -41,7 +42,7 @@ export interface UseVapiCallResult {
   errorCode: DemoErrorCode | null
   errorMessage: string | null
   retryAfterMinutes: number | undefined
-  startCall: (prompt: string) => Promise<void>
+  startCall: (prompt: string, language?: DemoLanguage) => Promise<void>
   endCall: () => void
   toggleMute: () => void
   cancelStartup: () => void
@@ -189,7 +190,7 @@ export function useVapiCall(): UseVapiCallResult {
   }, [])
 
   const startCall = useCallback(
-    async (prompt: string) => {
+    async (prompt: string, language: DemoLanguage = 'english') => {
       abortRef.current = false
       setErrorCode(null)
       setErrorMessage(null)
@@ -219,7 +220,7 @@ export function useVapiCall(): UseVapiCallResult {
 
       let config: AssistantConfig
       try {
-        config = await fetchAgentConfig(prompt)
+        config = await fetchAgentConfig(prompt, language)
       } catch (err) {
         if (abortRef.current) return
         console.error(err)

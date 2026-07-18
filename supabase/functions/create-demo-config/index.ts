@@ -1,6 +1,6 @@
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
-import { buildWrappedSystemPrompt, FIRST_MESSAGE } from './prompts.ts'
-import { validatePrompt } from './validate.ts'
+import { buildWrappedSystemPrompt } from './prompts.ts'
+import { validatePrompt, type DemoLanguage } from './validate.ts'
 import { checkRateLimit } from './rate-limit.ts'
 
 const ALLOWED_ORIGINS = [
@@ -9,6 +9,94 @@ const ALLOWED_ORIGINS = [
   'http://localhost:5173',
   'http://localhost:4173',
 ]
+
+const LANGUAGE_CONFIG = {
+  english: {
+    transcriber: { provider: 'deepgram', model: 'nova-2', language: 'en' },
+    voice: { provider: 'vapi', voiceId: 'Elliot' },
+    responseInstruction: null as string | null,
+    firstMessage:
+      "Hi! I'm the agent you just described. What would you like to try first?",
+    endCallMessage:
+      'Thanks for trying the demo. Sign up on GoSchedule to build your own agent.',
+    endCallPhrases: ['goodbye', 'bye', 'end call', 'hang up'],
+  },
+  hindi: {
+    transcriber: {
+      provider: 'soniox',
+      model: 'stt-rt-v5',
+      language: 'en',
+      languages: ['en'],
+    },
+    voice: {
+      provider: 'cartesia',
+      voiceId: 'a81fccdc-5595-4dfc-ae76-4de6a515b8a2',
+      model: 'sonic-3.5',
+    },
+    responseInstruction:
+      "Respond entirely in Hindi (हिन्दी). The user's description above is in English but you must conduct this entire voice conversation in fluent, natural Hindi. Do not switch to English unless the caller explicitly asks you to.",
+    firstMessage:
+      'नमस्ते! मैं वही एजेंट हूँ जिसका आपने अभी वर्णन किया। आप क्या करना चाहेंगे?',
+    endCallMessage:
+      'डेमो ट्राई करने के लिए धन्यवाद। अपना खुद का एजेंट बनाने के लिए GoSchedule पर साइन अप करें।',
+    endCallPhrases: ['अलविदा', 'बाय', 'goodbye', 'bye'],
+  },
+  malayalam: {
+    transcriber: {
+      provider: 'soniox',
+      model: 'stt-rt-v5',
+      language: 'en',
+      languages: ['en'],
+    },
+    voice: {
+      provider: 'cartesia',
+      voiceId: 'b426013c-002b-4e89-8874-8cd20b68373a',
+      model: 'sonic-3.5',
+    },
+    responseInstruction:
+      "Respond entirely in Malayalam (മലയാളം). The user's description above is in English but you must conduct this entire voice conversation in fluent, natural Malayalam. Do not switch to English unless the caller explicitly asks you to.",
+    firstMessage:
+      'നമസ്കാരം! നിങ്ങൾ ഇപ്പോൾ വിവരിച്ച ഏജന്റ് ഞാനാണ്. നിങ്ങൾ എന്ത് ചെയ്യാൻ ആഗ്രഹിക്കുന്നു?',
+    endCallMessage:
+      'ഡെമോ പരീക്ഷിച്ചതിന് നന്ദി. നിങ്ങളുടെ സ്വന്തം ഏജന്റ് നിർമ്മിക്കാൻ GoSchedule-ൽ സൈൻ അപ്പ് ചെയ്യുക.',
+    endCallPhrases: ['വിട', 'goodbye', 'bye'],
+  },
+  kannada: {
+    transcriber: {
+      provider: 'soniox',
+      model: 'stt-rt-v5',
+      language: 'en',
+      languages: ['en'],
+    },
+    voice: {
+      provider: 'cartesia',
+      voiceId: '7c6219d2-e8d2-462c-89d8-7ecba7c75d65',
+      model: 'sonic-3.5',
+    },
+    responseInstruction:
+      "Respond entirely in Kannada (ಕನ್ನಡ). The user's description above is in English but you must conduct this entire voice conversation in fluent, natural Kannada. Do not switch to English unless the caller explicitly asks you to.",
+    firstMessage:
+      'ನಮಸ್ಕಾರ! ನೀವು ಈಗ ವಿವರಿಸಿದ ಏಜೆಂಟ್ ನಾನೇ. ನೀವು ಏನು ಮಾಡಲು ಬಯಸುತ್ತೀರಿ?',
+    endCallMessage:
+      'ಡೆಮೋ ಪ್ರಯತ್ನಿಸಿದ್ದಕ್ಕಾಗಿ ಧನ್ಯವಾದಗಳು. ನಿಮ್ಮ ಸ್ವಂತ ಏಜೆಂಟ್ ನಿರ್ಮಿಸಲು GoSchedule ನಲ್ಲಿ ಸೈನ್ ಅಪ್ ಮಾಡಿ.',
+    endCallPhrases: ['ವಿದಾಯ', 'goodbye', 'bye'],
+  },
+} as const satisfies Record<
+  DemoLanguage,
+  {
+    transcriber: {
+      provider: string
+      model: string
+      language: string
+      languages?: readonly string[]
+    }
+    voice: { provider: string; voiceId: string; model?: string }
+    responseInstruction: string | null
+    firstMessage: string
+    endCallMessage: string
+    endCallPhrases: readonly string[]
+  }
+>
 
 // ── helpers (mirrors generate-agent-demo) ──
 
@@ -32,19 +120,6 @@ function getClientIp(req: Request): string {
   const forwarded = req.headers.get('x-forwarded-for')
   if (forwarded) return forwarded.split(',')[0].trim()
   return 'unknown'
-}
-
-function buildVoiceConfig(): { provider: string; voiceId: string; model?: string } {
-  const provider = (Deno.env.get('VOICE_PROVIDER') ?? '11labs').toLowerCase()
-
-  if (provider === 'vapi') {
-    console.log(JSON.stringify({ event: 'voice_provider', provider: 'vapi', voiceId: 'Elliot' }))
-    return { provider: 'vapi', voiceId: 'Elliot' }
-  }
-
-  // Default / "11labs"
-  console.log(JSON.stringify({ event: 'voice_provider', provider: '11labs', voiceId: 'andrea' }))
-  return { provider: '11labs', voiceId: 'andrea', model: 'eleven_turbo_v2_5' }
 }
 
 // ── handler ──
@@ -84,14 +159,25 @@ serve(async (req: Request) => {
       body && typeof body === 'object' && 'prompt' in body
         ? (body as { prompt: unknown }).prompt
         : undefined
+    const rawLanguage =
+      body && typeof body === 'object' && 'language' in body
+        ? (body as { language: unknown }).language
+        : undefined
 
-    const validation = validatePrompt(rawPrompt)
+    const validation = validatePrompt(rawPrompt, rawLanguage)
     if (!validation.ok) {
       return jsonResponse({ error: validation.error }, 400, origin)
     }
 
-    const { prompt } = validation
-    const voice = buildVoiceConfig()
+    const { prompt, language } = validation
+    const langConfig = LANGUAGE_CONFIG[language]
+
+    console.log(JSON.stringify({
+      event: 'voice_provider',
+      language,
+      provider: langConfig.voice.provider,
+      voiceId: langConfig.voice.voiceId,
+    }))
 
     const config = {
       model: {
@@ -99,23 +185,21 @@ serve(async (req: Request) => {
         model: 'gpt-4o-mini',
         temperature: 0.7,
         messages: [
-          { role: 'system', content: buildWrappedSystemPrompt(prompt) },
+          {
+            role: 'system',
+            content: buildWrappedSystemPrompt(prompt, langConfig.responseInstruction),
+          },
         ],
       },
-      voice,
-      transcriber: {
-        provider: 'deepgram',
-        model: 'nova-2',
-        language: 'en',
-      },
-      firstMessage: FIRST_MESSAGE,
+      voice: langConfig.voice,
+      transcriber: langConfig.transcriber,
+      firstMessage: langConfig.firstMessage,
       firstMessageMode: 'assistant-speaks-first',
       maxDurationSeconds: 120,
       silenceTimeoutSeconds: 15,
       recordingEnabled: false,
-      endCallMessage:
-        'Thanks for trying the demo. Sign up on GoSchedule to build your own agent.',
-      endCallPhrases: ['goodbye', 'bye', 'end call', 'hang up'],
+      endCallMessage: langConfig.endCallMessage,
+      endCallPhrases: [...langConfig.endCallPhrases],
       backgroundSound: 'off',
     }
 
@@ -124,6 +208,7 @@ serve(async (req: Request) => {
       event: 'config_generated',
       ip,
       prompt_length: prompt.length,
+      language,
     }))
 
     return jsonResponse({ config }, 200, origin)

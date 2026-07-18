@@ -1,12 +1,19 @@
 import { useState, type CSSProperties, type KeyboardEvent } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { ArrowRight, Loader2, Mic, MicOff, PhoneOff, RefreshCw, X } from 'lucide-react'
+import { ArrowRight, Languages, Loader2, Mic, MicOff, PhoneOff, RefreshCw, X } from 'lucide-react'
 import { DEPLOY_AGENT_URL } from '../constants/links'
 import { useVapiCall } from './agent-demo/useVapiCall'
 import VoiceOrb from './agent-demo/VoiceOrb'
-import type { DemoErrorCode } from './agent-demo/types'
+import type { DemoErrorCode, DemoLanguage } from './agent-demo/types'
 
 const PROMPT_MAX_LENGTH = 2000
+
+const LANGUAGE_OPTIONS: { value: DemoLanguage; label: string }[] = [
+  { value: 'english', label: 'English' },
+  { value: 'hindi', label: 'Hindi' },
+  { value: 'malayalam', label: 'Malayalam' },
+  { value: 'kannada', label: 'Kannada' },
+]
 
 const PROMPT_PLACEHOLDER =
   'Describe the agent you want. For example: A warm, patient AI receptionist for a small dental clinic in Bangalore. She should introduce herself as Priya from Bright Smile Dental, book appointments Monday through Saturday between 9 AM and 7 PM, confirm the patient\'s name and phone number, ask about the reason for the visit (cleaning, filling, emergency), and gently reschedule if the requested slot is taken. She should never mention pricing over the phone — if asked, she offers to have the manager call back. Her tone is calm, unrushed, and reassuring.'
@@ -71,6 +78,7 @@ const iconBtnStyle: CSSProperties = {
  */
 export default function AgentDemo() {
   const [prompt, setPrompt] = useState('')
+  const [language, setLanguage] = useState<DemoLanguage>('english')
   const {
     state,
     volume,
@@ -88,6 +96,8 @@ export default function AgentDemo() {
   const trimmedLen = prompt.trim().length
   const canSubmit =
     trimmedLen >= 10 && trimmedLen <= PROMPT_MAX_LENGTH && state === 'idle'
+  const languageLabel =
+    LANGUAGE_OPTIONS.find((opt) => opt.value === language)?.label ?? 'English'
 
   const handleTalk = () => {
     const trimmed = prompt.trim()
@@ -99,7 +109,7 @@ export default function AgentDemo() {
     ) {
       return
     }
-    void startCall(trimmed)
+    void startCall(trimmed, language)
   }
 
   const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
@@ -173,6 +183,62 @@ export default function AgentDemo() {
                   exit={{ opacity: 0, y: -6 }}
                   transition={{ duration: 0.25 }}
                 >
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'flex-start',
+                      gap: 10,
+                      marginBottom: 14,
+                      flexWrap: 'wrap',
+                    }}
+                  >
+                    <label
+                      htmlFor="agent-demo-language"
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: 6,
+                        fontSize: 13,
+                        fontWeight: 500,
+                        color: 'var(--text-secondary)',
+                        whiteSpace: 'nowrap',
+                      }}
+                    >
+                      <Languages
+                        style={{ width: 14, height: 14, color: 'var(--accent)' }}
+                        aria-hidden
+                      />
+                      Agent speaks in:
+                    </label>
+                    <select
+                      id="agent-demo-language"
+                      aria-label="Agent speaks in"
+                      value={language}
+                      onChange={(e) => setLanguage(e.target.value as DemoLanguage)}
+                      style={{
+                        fontFamily: 'inherit',
+                        fontSize: 13,
+                        fontWeight: 500,
+                        color: 'var(--text-primary)',
+                        background: 'var(--bg-base)',
+                        border: '1px solid var(--border-subtle)',
+                        borderRadius: 10,
+                        padding: '8px 12px',
+                        minHeight: 40,
+                        cursor: 'pointer',
+                        outline: 'none',
+                        maxWidth: '100%',
+                      }}
+                    >
+                      {LANGUAGE_OPTIONS.map((opt) => (
+                        <option key={opt.value} value={opt.value}>
+                          {opt.label}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
                   <textarea
                     id="agent-demo-prompt"
                     aria-label="Describe your agent and the goal"
@@ -203,6 +269,20 @@ export default function AgentDemo() {
                       e.currentTarget.style.borderColor = 'var(--border-subtle)'
                     }}
                   />
+
+                  {language !== 'english' && (
+                    <p
+                      style={{
+                        marginTop: 10,
+                        fontSize: 12,
+                        color: 'var(--text-muted)',
+                        lineHeight: 1.45,
+                      }}
+                    >
+                      Type in English — your agent will respond in {languageLabel}.
+                    </p>
+                  )}
+
                   <div
                     style={{
                       display: 'flex',

@@ -1,9 +1,16 @@
 /**
- * System prompt template + first-message opener for the live Vapi demo.
+ * System prompt template for the live Vapi demo.
  * Kept in its own file so we can iterate on copy without touching the handler.
  */
 
-export function buildWrappedSystemPrompt(userPrompt: string): string {
+export function buildWrappedSystemPrompt(
+  userPrompt: string,
+  responseInstruction?: string | null,
+): string {
+  const languageBlock = responseInstruction
+    ? `\n${responseInstruction}\n`
+    : ''
+
   return `You are a live AI voice agent demo running on GoSchedule.ai, a platform
 for building AI voice agents. A prospective customer has just described
 the agent they want to build, and you are that agent brought to life
@@ -27,10 +34,6 @@ Behavior rules:
   technical stack.
 - After ~90 seconds of conversation or if the caller seems done, wrap
   up warmly and mention they can build their own on GoSchedule.
-
+${languageBlock}
 Now start the conversation naturally based on the described agent.`
 }
-
-// TODO: Replace with a lightweight LLM-generated opener if this feels too generic.
-export const FIRST_MESSAGE =
-  "Hi! I'm the agent you just described. What would you like to try first?"

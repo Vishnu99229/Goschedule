@@ -1,10 +1,18 @@
-import type { AssistantConfig, CreateDemoConfigError, CreateDemoConfigResponse } from './types'
+import type {
+  AssistantConfig,
+  CreateDemoConfigError,
+  CreateDemoConfigResponse,
+  DemoLanguage,
+} from './types'
 import { DemoConfigError } from './types'
 
 /**
  * Fetch a transient Vapi assistant config from the create-demo-config edge function.
  */
-export async function fetchAgentConfig(prompt: string): Promise<AssistantConfig> {
+export async function fetchAgentConfig(
+  prompt: string,
+  language: DemoLanguage = 'english',
+): Promise<AssistantConfig> {
   const baseUrl = import.meta.env.VITE_SUPABASE_URL as string | undefined
   const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined
 
@@ -21,7 +29,7 @@ export async function fetchAgentConfig(prompt: string): Promise<AssistantConfig>
         Authorization: `Bearer ${anonKey}`,
         apikey: anonKey,
       },
-      body: JSON.stringify({ prompt }),
+      body: JSON.stringify({ prompt, language }),
     })
   } catch {
     throw new DemoConfigError('edge_fn_error', 'Something went wrong — try again.')
@@ -52,6 +60,9 @@ export async function fetchAgentConfig(prompt: string): Promise<AssistantConfig>
 
     if (code === 'invalid_prompt') {
       throw new DemoConfigError(code, 'Please describe a real use case for your agent.')
+    }
+    if (code === 'invalid_language') {
+      throw new DemoConfigError(code, 'Please choose a supported language.')
     }
     if (code === 'too_short') {
       throw new DemoConfigError(code, 'Please describe your agent in at least 10 characters.')

@@ -1,6 +1,9 @@
 const MIN_LENGTH = 10
 const MAX_LENGTH = 2000
 
+export const DEMO_LANGUAGES = ['english', 'hindi', 'malayalam', 'kannada'] as const
+export type DemoLanguage = (typeof DEMO_LANGUAGES)[number]
+
 /** Case-insensitive jailbreak / injection patterns. */
 const INJECTION_PATTERNS = [
   /ignore\s+previous\s+instructions/i,
@@ -11,15 +14,35 @@ const INJECTION_PATTERNS = [
 ]
 
 export type ValidationResult =
-  | { ok: true; prompt: string }
+  | { ok: true; prompt: string; language: DemoLanguage }
   | { ok: false; error: string; message: string }
 
+function isDemoLanguage(value: unknown): value is DemoLanguage {
+  return typeof value === 'string' && (DEMO_LANGUAGES as readonly string[]).includes(value)
+}
+
 /**
- * Trim, length-check, and screen for obvious prompt-injection patterns.
- * On jailbreak match returns error code `invalid_prompt` as specified.
+ * Validate prompt + language from the request body.
+ * Missing language defaults to 'english'. Invalid language → invalid_language.
  */
-export function validatePrompt(raw: unknown): ValidationResult {
-  if (typeof raw !== 'string') {
+export function validatePrompt(
+  rawPrompt: unknown,
+  rawLanguage: unknown,
+): ValidationResult {
+  // Language first — independent of prompt so clients get a clear code
+  let language: DemoLanguage = 'english'
+  if (rawLanguage !== undefined && rawLanguage !== null && rawLanguage !== '') {
+    if (!isDemoLanguage(rawLanguage)) {
+      return {
+        ok: false,
+        error: 'invalid_language',
+        message: 'Language must be english, hindi, malayalam, or kannada.',
+      }
+    }
+    language = rawLanguage
+  }
+
+  if (typeof rawPrompt !== 'string') {
     return {
       ok: false,
       error: 'empty_prompt',
@@ -27,7 +50,7 @@ export function validatePrompt(raw: unknown): ValidationResult {
     }
   }
 
-  const prompt = raw.trim()
+  const prompt = rawPrompt.trim()
 
   if (!prompt) {
     return {
@@ -63,5 +86,5 @@ export function validatePrompt(raw: unknown): ValidationResult {
     }
   }
 
-  return { ok: true, prompt }
+  return { ok: true, prompt, language }
 }

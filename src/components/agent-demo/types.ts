@@ -5,11 +5,14 @@
 
 export type DemoCallState = 'idle' | 'connecting' | 'live' | 'ended' | 'error'
 
+export type DemoLanguage = 'english' | 'hindi' | 'malayalam' | 'kannada'
+
 /** Classified error codes for UI messaging. */
 export type DemoErrorCode =
   | 'mic_denied'
   | 'rate_limited'
   | 'invalid_prompt'
+  | 'invalid_language'
   | 'too_short'
   | 'too_long'
   | 'edge_fn_error'
@@ -75,6 +78,8 @@ export function messageForErrorCode(
       return `You've hit the demo limit. Try again in ${retryAfterMinutes ?? 60} minutes.`
     case 'invalid_prompt':
       return 'Please describe a real use case for your agent.'
+    case 'invalid_language':
+      return 'Please choose a supported language.'
     case 'too_short':
       return 'Please describe your agent in at least 10 characters.'
     case 'too_long':
