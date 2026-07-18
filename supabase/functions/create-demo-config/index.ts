@@ -12,9 +12,11 @@ const ALLOWED_ORIGINS = [
 
 const LANGUAGE_CONFIG = {
   english: {
+    voiceGender: 'male' as const,
     transcriber: { provider: 'deepgram', model: 'nova-2', language: 'en' },
     voice: { provider: 'vapi', voiceId: 'Elliot' },
-    responseInstruction: null as string | null,
+    responseInstruction:
+      'Speak as a male agent named Elliot. Keep responses concise, warm, and professional.',
     firstMessage:
       "Hi! I'm the agent you just described. What would you like to try first?",
     endCallMessage:
@@ -22,6 +24,7 @@ const LANGUAGE_CONFIG = {
     endCallPhrases: ['goodbye', 'bye', 'end call', 'hang up'],
   },
   hindi: {
+    voiceGender: 'female' as const,
     transcriber: {
       provider: 'soniox',
       model: 'stt-rt-v5',
@@ -34,7 +37,7 @@ const LANGUAGE_CONFIG = {
       model: 'sonic-3.5',
     },
     responseInstruction:
-      "Respond entirely in Hindi (हिन्दी). The user's description above is in English but you must conduct this entire voice conversation in fluent, natural Hindi. Do not switch to English unless the caller explicitly asks you to.",
+      "Speak as a female agent. Use feminine grammatical forms throughout (e.g., 'मैं जा रही हूँ', 'मैं करती हूँ') — never masculine (मैं जा रहा हूँ, मैं करता हूँ). Even if the caller uses masculine forms, respond in feminine grammar consistently. Respond entirely in Hindi (हिन्दी). The user's description above is in English but you must conduct this entire voice conversation in fluent, natural Hindi. Do not switch to English unless the caller explicitly asks you to.",
     firstMessage:
       'नमस्ते! मैं वही एजेंट हूँ जिसका आपने अभी वर्णन किया। आप क्या करना चाहेंगे?',
     endCallMessage:
@@ -42,6 +45,7 @@ const LANGUAGE_CONFIG = {
     endCallPhrases: ['अलविदा', 'बाय', 'goodbye', 'bye'],
   },
   malayalam: {
+    voiceGender: 'female' as const,
     transcriber: {
       provider: 'soniox',
       model: 'stt-rt-v5',
@@ -54,7 +58,7 @@ const LANGUAGE_CONFIG = {
       model: 'sonic-3.5',
     },
     responseInstruction:
-      "Respond entirely in Malayalam (മലയാളം). The user's description above is in English but you must conduct this entire voice conversation in fluent, natural Malayalam. Do not switch to English unless the caller explicitly asks you to.",
+      "Speak as a female agent. Use feminine grammatical forms and pronouns throughout. Never switch to masculine forms even if the caller does. Respond entirely in Malayalam (മലയാളം). The user's description above is in English but you must conduct this entire voice conversation in fluent, natural Malayalam. Do not switch to English unless the caller explicitly asks you to.",
     firstMessage:
       'നമസ്കാരം! നിങ്ങൾ ഇപ്പോൾ വിവരിച്ച ഏജന്റ് ഞാനാണ്. നിങ്ങൾ എന്ത് ചെയ്യാൻ ആഗ്രഹിക്കുന്നു?',
     endCallMessage:
@@ -62,6 +66,7 @@ const LANGUAGE_CONFIG = {
     endCallPhrases: ['വിട', 'goodbye', 'bye'],
   },
   kannada: {
+    voiceGender: 'female' as const,
     transcriber: {
       provider: 'soniox',
       model: 'stt-rt-v5',
@@ -74,7 +79,7 @@ const LANGUAGE_CONFIG = {
       model: 'sonic-3.5',
     },
     responseInstruction:
-      "Respond entirely in Kannada (ಕನ್ನಡ). The user's description above is in English but you must conduct this entire voice conversation in fluent, natural Kannada. Do not switch to English unless the caller explicitly asks you to.",
+      "Speak as a female agent. Use feminine grammatical forms and pronouns consistently throughout. Never switch to masculine forms even if the caller does. Respond entirely in Kannada (ಕನ್ನಡ). The user's description above is in English but you must conduct this entire voice conversation in fluent, natural Kannada. Do not switch to English unless the caller explicitly asks you to.",
     firstMessage:
       'ನಮಸ್ಕಾರ! ನೀವು ಈಗ ವಿವರಿಸಿದ ಏಜೆಂಟ್ ನಾನೇ. ನೀವು ಏನು ಮಾಡಲು ಬಯಸುತ್ತೀರಿ?',
     endCallMessage:
@@ -84,6 +89,7 @@ const LANGUAGE_CONFIG = {
 } as const satisfies Record<
   DemoLanguage,
   {
+    voiceGender: 'male' | 'female'
     transcriber: {
       provider: string
       model: string
@@ -91,7 +97,7 @@ const LANGUAGE_CONFIG = {
       languages?: readonly string[]
     }
     voice: { provider: string; voiceId: string; model?: string }
-    responseInstruction: string | null
+    responseInstruction: string
     firstMessage: string
     endCallMessage: string
     endCallPhrases: readonly string[]

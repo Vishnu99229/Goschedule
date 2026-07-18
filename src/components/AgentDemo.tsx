@@ -1,4 +1,4 @@
-import { useState, type CSSProperties, type KeyboardEvent } from 'react'
+import { useState, useEffect, type CSSProperties, type KeyboardEvent } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowRight, Languages, Loader2, Mic, MicOff, PhoneOff, RefreshCw, X } from 'lucide-react'
 import { DEPLOY_AGENT_URL } from '../constants/links'
@@ -14,6 +14,14 @@ const LANGUAGE_OPTIONS: { value: DemoLanguage; label: string }[] = [
   { value: 'malayalam', label: 'Malayalam' },
   { value: 'kannada', label: 'Kannada' },
 ]
+
+const LOADING_MESSAGES = [
+  'Creating your demo agent...',
+  'Configuring the transcriber...',
+  'Loading voice model...',
+  'Patching telephony...',
+  'Ready. Connecting your call...',
+] as const
 
 const PROMPT_PLACEHOLDER =
   'Describe the agent you want. For example: A warm, patient AI receptionist for a small dental clinic in Bangalore. She should introduce herself as Priya from Bright Smile Dental, book appointments Monday through Saturday between 9 AM and 7 PM, confirm the patient\'s name and phone number, ask about the reason for the visit (cleaning, filling, emergency), and gently reschedule if the requested slot is taken. She should never mention pricing over the phone — if asked, she offers to have the manager call back. Her tone is calm, unrushed, and reassuring.'
@@ -79,6 +87,7 @@ const iconBtnStyle: CSSProperties = {
 export default function AgentDemo() {
   const [prompt, setPrompt] = useState('')
   const [language, setLanguage] = useState<DemoLanguage>('english')
+  const [loadingStep, setLoadingStep] = useState(0)
   const {
     state,
     volume,
@@ -92,6 +101,21 @@ export default function AgentDemo() {
     cancelStartup,
     reset,
   } = useVapiCall()
+
+  // Progressive fake-loading copy while the real connection runs
+  useEffect(() => {
+    if (state !== 'connecting') {
+      setLoadingStep(0)
+      return
+    }
+
+    setLoadingStep(0)
+    const id = window.setInterval(() => {
+      setLoadingStep((prev) => Math.min(prev + 1, LOADING_MESSAGES.length - 1))
+    }, 900)
+
+    return () => window.clearInterval(id)
+  }, [state])
 
   const trimmedLen = prompt.trim().length
   const canSubmit =
@@ -342,12 +366,26 @@ export default function AgentDemo() {
                   >
                     <Loader2 style={{ width: 28, height: 28, color: 'var(--accent)' }} />
                   </motion.div>
-                  <p style={{ fontSize: 15, fontWeight: 500, color: 'var(--text-primary)' }}>
-                    Connecting…
-                  </p>
-                  <p style={{ fontSize: 13, color: 'var(--text-muted)', textAlign: 'center' }}>
-                    Building your agent and starting the voice call
-                  </p>
+                  <div style={{ minHeight: 22, display: 'flex', alignItems: 'center' }}>
+                    <AnimatePresence mode="wait">
+                      <motion.p
+                        key={loadingStep}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        style={{
+                          fontSize: 15,
+                          fontWeight: 500,
+                          color: 'var(--text-primary)',
+                          textAlign: 'center',
+                          margin: 0,
+                        }}
+                      >
+                        {LOADING_MESSAGES[loadingStep]}
+                      </motion.p>
+                    </AnimatePresence>
+                  </div>
                   <button
                     type="button"
                     onClick={cancelStartup}
@@ -591,6 +629,18 @@ export default function AgentDemo() {
               )}
             </AnimatePresence>
           </div>
+          <p
+            style={{
+              marginTop: 16,
+              fontSize: 12,
+              lineHeight: 1.45,
+              color: 'var(--text-muted)',
+              textAlign: 'center',
+            }}
+          >
+            This is a live demo — voice quality depends on your network. For the best
+            experience, use a stable connection and headphones.
+          </p>
         </div>
       </div>
     </section>
