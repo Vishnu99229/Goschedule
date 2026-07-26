@@ -107,6 +107,31 @@ button {
   background: none;
 }
 
+/* Visually hidden, still read by screen readers and indexed by crawlers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Headings share the logo typeface (--font-sans / Inter) so the brand reads as
+   one system. Body copy, buttons and paragraphs are unchanged — they already
+   use the same stack via body. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-sans);
+}
+
 /* ── Typography Scale — refined, classy, smaller than before ── */
 .h1 {
   font-size: clamp(26px, 3.2vw, 40px);
@@ -446,6 +471,197 @@ h2.section-heading,
   }
 }
 
+/* ── Prompt-to-flow hero animation (left column) ──────────────────────────
+   Transparent background — inherits the hero cream. Heights are reserved so
+   the prerendered static frame and the live animation occupy the same box. */
+.ptf {
+  min-width: 0;
+  width: 100%;
+  max-width: 520px;
+}
+
+.ptf__prompt-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  /* Reserve 3 mono lines so swapping prompts never reflows the flow below */
+  min-height: calc(3 * 1.65em);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.65;
+  margin-bottom: 28px;
+}
+
+.ptf__caret {
+  color: var(--accent);
+  flex-shrink: 0;
+  font-weight: 600;
+}
+
+.ptf__prompt {
+  color: var(--text-primary);
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+.ptf__cursor {
+  color: var(--accent);
+  font-weight: 400;
+  animation: ptf-blink 1s step-end infinite;
+}
+
+@keyframes ptf-blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  50.01%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.ptf__flow {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.ptf__step {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+/* Steps after the first carry a connector — let them absorb the spare width so
+   the connectors stretch across the column instead of collapsing to stubs */
+.ptf__step + .ptf__step {
+  flex: 1 1 auto;
+}
+
+/* The first node never shrinks; connectors absorb the slack */
+.ptf__node {
+  flex-shrink: 0;
+  background: #f3efff;
+  border: 1px solid rgba(124, 58, 237, 0.18);
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.ptf__link {
+  flex: 1 1 auto;
+  min-width: 14px;
+  height: 1.5px;
+  display: flex;
+  align-items: center;
+}
+
+.ptf__link-line {
+  display: block;
+  width: 100%;
+  height: 1.5px;
+  transform-origin: left center;
+  background-image: linear-gradient(
+    to right,
+    rgba(124, 58, 237, 0.4) 0 6px,
+    transparent 6px 12px
+  );
+  background-size: 12px 1.5px;
+  background-repeat: repeat-x;
+  animation: ptf-dash 0.9s linear infinite;
+}
+
+@keyframes ptf-dash {
+  to {
+    background-position: 12px 0;
+  }
+}
+
+/* Tighter type in the narrow two-column band before the mobile stack */
+@media (max-width: 1080px) {
+  .ptf__node {
+    font-size: 11px;
+    padding: 7px 9px;
+    border-radius: 9px;
+  }
+  .ptf__link {
+    min-width: 10px;
+  }
+}
+
+/* Mobile: stack the nodes vertically — 5 across never fits a phone */
+@media (max-width: 640px) {
+  .ptf {
+    max-width: none;
+  }
+
+  .ptf__prompt-wrap {
+    font-size: 12px;
+    margin-bottom: 20px;
+  }
+
+  .ptf__flow,
+  .ptf__step {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Stacked: steps size to content, no vertical stretching */
+  .ptf__step + .ptf__step {
+    flex: 0 0 auto;
+  }
+
+  .ptf__node {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+
+  .ptf__link {
+    flex: 0 0 auto;
+    width: 1.5px;
+    min-width: 0;
+    height: 18px;
+    margin-left: 18px;
+  }
+
+  .ptf__link-line {
+    width: 1.5px;
+    height: 100%;
+    transform-origin: center top;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(124, 58, 237, 0.4) 0 6px,
+      transparent 6px 12px
+    );
+    background-size: 1.5px 12px;
+    background-repeat: repeat-y;
+    animation: ptf-dash-vertical 0.9s linear infinite;
+  }
+}
+
+@keyframes ptf-dash-vertical {
+  to {
+    background-position: 0 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ptf__cursor,
+  .ptf__link-line {
+    animation: none !important;
+  }
+  .ptf__cursor {
+    opacity: 0;
+  }
+}
+
 /* ── Live Demo embedded in hero right column ── */
 .hero-demo-col {
   min-width: 0;
@@ -545,9 +761,32 @@ a.footer-text:hover {
 
 .claude-partner-badge__image {
   display: block;
-  height: 36px;
+  /* 26px — reads as a subtle credential beside the CTA, not a competing element.
+     Was 36px when the badge lived in the footer. */
+  height: 26px;
+  width: auto;
   max-width: 220px;
   object-fit: contain;
+}
+
+/* Navbar placement — sits immediately left of the Deploy Agent CTA.
+   Desktop-only: the badge is ~187px wide and costs the nav bar ~204px with
+   its spacing. Measured minimum bar width is 1088px with the badge vs 884px
+   without, i.e. the bar overflows below a 1136px viewport. So it appears from
+   1160px up (a little headroom for font/zoom variance) rather than at the
+   768px mobile breakpoint, which would break the nav on tablets and small
+   laptops. Below that it is simply hidden — a desktop credibility signal. */
+.claude-partner-badge--nav {
+  display: none;
+  flex-shrink: 0;
+  /* parent cluster already has gap: 12px — this brings it to 16px */
+  margin-right: 4px;
+}
+
+@media (min-width: 1160px) {
+  .claude-partner-badge--nav {
+    display: inline-flex;
+  }
 }
 
 @media (min-width: 768px) {

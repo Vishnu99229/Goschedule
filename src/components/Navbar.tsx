@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { useCallback, useEffect, useState, type ReactNode } from 'react'
 import { Bot, ChevronDown, MessageCircle, Menu, Settings2, Target, Wrench, X, Zap } from 'lucide-react'
 import Logo from './Logo'
-import { DEPLOY_AGENT_URL } from '../constants/links'
+import { CLAUDE_PARTNER_NETWORK_URL, DEPLOY_AGENT_URL } from '../constants/links'
 
 function NavMenuRow({
     to,
@@ -247,6 +247,18 @@ export default function Navbar() {
                     >
                         {mobileOpen ? <X style={{ width: 22, height: 22 }} /> : <Menu style={{ width: 22, height: 22 }} />}
                     </button>
+                    <a
+                        href={CLAUDE_PARTNER_NETWORK_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="claude-partner-badge claude-partner-badge--nav"
+                    >
+                        <img
+                            src="/images/claude-partner-network.png"
+                            alt="Claude Partner Network — Goschedule.ai (Partner)"
+                            className="claude-partner-badge__image"
+                        />
+                    </a>
                     <a
                         href={DEPLOY_AGENT_URL}
                         target="_blank"
