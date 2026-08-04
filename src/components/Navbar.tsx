@@ -224,16 +224,6 @@ export default function Navbar() {
                                 Docs
                             </Link>
                         </li>
-                        <li>
-                            <a href="/#approach" className="nav-link-plain">
-                                Approach
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/#pricing" className="nav-link-plain">
-                                Pricing
-                            </a>
-                        </li>
                     </ul>
                 </nav>
 
@@ -355,12 +345,6 @@ export default function Navbar() {
                 <Link to="/docs" className="nav-link-plain">
                     Docs
                 </Link>
-                <a href="/#approach" className="nav-link-plain">
-                    Approach
-                </a>
-                <a href="/#pricing" className="nav-link-plain">
-                    Pricing
-                </a>
                 <a
                     href={DEPLOY_AGENT_URL}
                     target="_blank"

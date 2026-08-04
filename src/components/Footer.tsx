@@ -46,11 +46,6 @@ export default function Footer() {
                         <Link to="/blog" className="footer-text">Blog</Link>
                         <Link to="/docs" className="footer-text">Docs</Link>
                     </div>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-                        <div style={{ fontSize: 13, fontWeight: 600, opacity: 0.7 }}>Company</div>
-                        <a href="/#approach" className="footer-text">Approach</a>
-                        <a href="/#pricing" className="footer-text">Pricing</a>
-                    </div>
                 </nav>
 
                 <div

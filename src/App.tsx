@@ -1,21 +1,9 @@
 import { Routes, Route } from 'react-router-dom'
 import SEO from './components/SEO'
 import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import HowItWorks from './components/HowItWorks'
-import Channels from './components/Channels'
-import Agents from './components/Agents'
-import Problem from './components/Problem'
-import System from './components/System'
-import Results from './components/Results'
-import AgentInAction from './components/AgentInAction'
-import CaseStudies from './components/CaseStudies'
-import Pricing from './components/Pricing'
-import CTA from './components/CTA'
 import Footer from './components/Footer'
-import TermsAndConditions from './components/TermsAndConditions'
-import PrivacyPolicy from './components/PrivacyPolicy'
 import ScrollToTop from './components/ScrollToTop'
+import HomePage from './pages/HomePage'
 import FdeServicesPage from './pages/FdeServicesPage'
 import FreeSetupPage from './pages/FreeSetupPage'
 import CafeMuzirisCaseStudyPage from './pages/CafeMuzirisCaseStudyPage'
@@ -29,6 +17,8 @@ import DocsTechnicalNotePage from './pages/DocsTechnicalNotePage'
 import DocsMorningBriefPage from './pages/DocsMorningBriefPage'
 import DocsReplyKaroPage from './pages/DocsReplyKaroPage'
 import DocsResoundPage from './pages/DocsResoundPage'
+import TermsAndConditions from './components/TermsAndConditions'
+import PrivacyPolicy from './components/PrivacyPolicy'
 
 const SITE = 'https://www.goschedule.ai'
 
@@ -49,27 +39,17 @@ const websiteJsonLd = {
   url: `${SITE}/`,
 }
 
-function HomePage() {
+function HomeRoute() {
   return (
-    <main>
+    <>
       <SEO
         title="Goschedule.ai — Qualified Leads from AI Agents on WhatsApp, Email & Voice"
         description="Qualified leads from AI agents across WhatsApp, email & voice. We run your outreach by hand first — learning what converts — then agents scale what works."
         canonical="https://www.goschedule.ai/"
         jsonLd={[organizationJsonLd, websiteJsonLd]}
       />
-      <Hero />
-      <HowItWorks />
-      <Channels />
-      <Agents />
-      <Problem />
-      <System />
-      <Results />
-      <AgentInAction />
-      <CaseStudies />
-      <Pricing />
-      <CTA />
-    </main>
+      <HomePage />
+    </>
   )
 }
 
@@ -79,7 +59,7 @@ function App() {
       <ScrollToTop />
       <Navbar />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomeRoute />} />
         <Route path="/products/morning-brief" element={<MorningBriefPage />} />
         <Route path="/products/resound" element={<ResoundPage />} />
         <Route path="/products/replykaro" element={<ReplykaroPage />} />
