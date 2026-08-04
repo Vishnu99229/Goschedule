@@ -3,19 +3,19 @@ import Reveal from './Reveal'
 
 export default function Problem() {
     const traditional = [
-        "Manual processes buried across tools",
-        "Teams waiting on humans for every handoff",
-        "Generic automations that break outside scripts",
-        "Data stuck in inboxes, calls, CRMs, and sheets",
-        "Dashboards that report work instead of doing it"
+        "Generic AI SDR spam that never learned your product",
+        "One-size-fits-all sequences that ignore how your buyers respond",
+        "Automation deployed before anyone knows what converts",
+        "Vanity activity metrics instead of qualified pipeline",
+        "Tools that sell access — not accountability for outcomes",
     ];
 
     const goschedule = [
-        "AI agents deployed into your live workflows",
-        "Revenue, sales, ops, and admin processes handled 24/7",
-        "Tool-integrated agents that act across your stack",
-        "Continuous learning from outcomes and operator feedback",
-        "Business processes shipped end to end"
+        "Manual outreach first — we learn your product and prospects by hand",
+        "Playbooks built from real replies, objections, and wins",
+        "AI agents deployed only after messaging is proven",
+        "WhatsApp, email, and voice running the same validated sequence",
+        "Accountable for qualified leads — not dashboards",
     ];
 
     return (
@@ -23,7 +23,7 @@ export default function Problem() {
             <div className="container">
                 <Reveal>
                     <h2 className="h2 text-center" style={{ marginBottom: 'var(--space-8)' }}>
-                        Why Most B2B Teams Still Run On Manual Work
+                        Why Most AI Outreach Doesn&apos;t Convert
                     </h2>
                 </Reveal>
 
@@ -33,7 +33,7 @@ export default function Problem() {
                         <Reveal delayMs={0}>
                         <div className="card">
                             <h3 className="card-title" style={{ marginBottom: 'var(--space-4)', color: 'var(--text-secondary)' }}>
-                                Manual Operating Model
+                                Generic AI SDR Tools
                             </h3>
                             <div className="flex flex-col gap-3">
                                 {traditional.map((item, i) => (
@@ -54,7 +54,7 @@ export default function Problem() {
                         <Reveal delayMs={100}>
                         <div className="card" style={{ position: 'relative' }}>
                             <h3 className="card-title" style={{ marginBottom: 'var(--space-4)', color: 'var(--text-primary)' }}>
-                                The Goschedule Agent Model
+                                The GoSchedule Approach
                             </h3>
                             <div className="flex flex-col gap-3" style={{ position: 'relative', zIndex: 1 }}>
                                 {goschedule.map((item, i) => (

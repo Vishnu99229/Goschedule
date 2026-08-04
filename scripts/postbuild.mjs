@@ -35,7 +35,7 @@ const ORG_JSONLD = {
   url: `${SITE}/`,
   logo: `${SITE}/favicon.png`,
   description:
-    'Goschedule.ai deploys AI agents that run revenue, sales, and operations for businesses — 24/7, learning, and outcome-driven.',
+    'Goschedule.ai gets you qualified leads with AI agents across WhatsApp, email, and voice — running outreach by hand first, then scaling what works.',
 }
 
 const WEBSITE_JSONLD = {
@@ -90,14 +90,15 @@ function gitLastmod(relPath) {
 const MARKETING_ROUTES = [
   {
     path: '/',
-    title: 'Goschedule.ai — AI Agents for Revenue, Sales & Operations',
+    title: 'Goschedule.ai — Qualified Leads from AI Agents on WhatsApp, Email & Voice',
     description:
-      'Deploy AI agents that run your revenue engine. From outbound sales to operations — 24/7, learning, outcome-driven.',
+      'Qualified leads from AI agents across WhatsApp, email & voice. We run your outreach by hand first — learning what converts — then agents scale what works.',
     canonical: `${SITE}/`,
     ogType: 'website',
     priority: 1.0,
     changefreq: 'weekly',
     source: 'index.html',
+    imageAlt: 'Qualified Leads from AI Agents — WhatsApp, Email & Voice',
     jsonLd: [ORG_JSONLD, WEBSITE_JSONLD],
   },
   {

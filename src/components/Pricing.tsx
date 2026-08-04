@@ -19,7 +19,7 @@ const TIERS = [
     },
     {
         name: 'Growth',
-        desc: 'Run multiple revenue workflows.',
+        desc: 'Scale proven outreach across channels.',
         usdPrice: '$800',
         inrSetup: '₹75,000',
         inrPrice: '₹65,000',
@@ -30,11 +30,11 @@ const TIERS = [
     },
     {
         name: 'Scale',
-        desc: 'Agent platform across teams.',
+        desc: 'Multi-channel qualified-lead engine.',
         usdPrice: '$1000',
         inrSetup: '₹1,50,000',
         inrPrice: '₹85,000',
-        features: ['Revenue + ops agents', 'Voice and workflow automation', 'Advanced orchestration layer'],
+        features: ['WhatsApp + email + voice agents', 'Voice and workflow automation', 'Advanced orchestration layer'],
         cta: 'Talk to Us',
         href: '#book',
         external: false,
@@ -49,10 +49,10 @@ export default function Pricing() {
             <div className="container">
                 <Reveal>
                     <h2 className="h2 text-center" style={{ marginBottom: 'var(--space-3)' }}>
-                        AI Agent Deployment Plans
+                        Plans for qualified-lead generation
                     </h2>
-                    <p className="body-lg text-center mx-auto" style={{ maxWidth: 480, marginBottom: 'var(--space-5)' }}>
-                        Start with one agent, then expand into a full operating layer across revenue, sales, and operations.
+                    <p className="body-lg text-center mx-auto" style={{ maxWidth: 520, marginBottom: 'var(--space-5)' }}>
+                        Start with manual outreach and one proven agent, then expand across WhatsApp, email, and voice as the playbook scales.
                     </p>
 
                     <div

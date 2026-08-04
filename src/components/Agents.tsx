@@ -73,7 +73,7 @@ export default function Agents() {
             <Reveal>
                 <h2 className="agents-section__title">Our AI Agents</h2>
                 <p className="agents-section__subtitle">
-                    We deploy AI agents that run revenue, sales, operations, and other critical business processes — end to end.
+                    After we prove the playbook by hand, these are the agents we deploy to scale qualified-lead generation — across outreach, inbound, and the workflows that keep pipeline moving.
                 </p>
             </Reveal>
 

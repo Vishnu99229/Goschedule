@@ -23,18 +23,18 @@ export default function AgentInAction() {
                     {/* Copy */}
                     <Reveal>
                         <div className="agent-live__copy">
-                            <span className="agent-live__eyebrow">Live Workflow</span>
+                            <span className="agent-live__eyebrow">Agents at work</span>
                             <h2 className="agent-live__heading">
-                                Voice and WhatsApp, working as one agent.
+                                Voice and WhatsApp, running the playbook we proved.
                             </h2>
                             <p className="agent-live__sub">
-                                An AI voice agent picks up every inbound call. A WhatsApp automation runs every chat. Every conversation ends with a booked appointment on your calendar.
+                                After manual validation, agents handle the conversations at scale — qualifying prospects, answering in real time, and booking the meetings that matter.
                             </p>
                             <div className="agent-live__caps">
                                 <span>AI voice agent</span>
-                                <span>WhatsApp automation</span>
-                                <span>Books appointments</span>
-                                <span>Syncs to your CRM</span>
+                                <span>WhatsApp outreach</span>
+                                <span>Qualifies leads</span>
+                                <span>Books meetings</span>
                             </div>
                         </div>
                     </Reveal>

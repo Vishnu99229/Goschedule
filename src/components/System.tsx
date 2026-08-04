@@ -29,10 +29,10 @@ export default function System() {
             <div className="container">
                 <Reveal>
                     <h2 className="h2 text-center" style={{ marginBottom: 'var(--space-3)' }}>
-                        How Our Agents Work
+                        The stack behind every agent
                     </h2>
                     <p className="body-lg text-center mx-auto" style={{ maxWidth: 620, marginBottom: 'var(--space-8)' }}>
-                        Every Goschedule agent runs on the same production stack. No proprietary black boxes. Real tools, real observability, real reliability.
+                        Once the playbook is proven, every GoSchedule agent runs on the same production stack. Real tools, real observability, real reliability.
                     </p>
                 </Reveal>
 

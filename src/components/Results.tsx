@@ -2,10 +2,10 @@ import Reveal from './Reveal'
 
 export default function Results() {
     const metrics = [
-        { value: "24/7", label: "Agent Coverage" },
-        { value: "6+", label: "Agent Categories" },
-        { value: "3\u20135x", label: "Workflow Throughput" },
-        { value: "End-to-end", label: "Process Ownership" }
+        { value: "Manual-first", label: "Before any automation" },
+        { value: "3 channels", label: "WhatsApp · Email · Voice" },
+        { value: "Proven", label: "Playbooks before scale" },
+        { value: "Qualified", label: "Leads — not vanity metrics" }
     ]
 
     return (

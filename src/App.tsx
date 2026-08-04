@@ -2,6 +2,8 @@ import { Routes, Route } from 'react-router-dom'
 import SEO from './components/SEO'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
+import HowItWorks from './components/HowItWorks'
+import Channels from './components/Channels'
 import Agents from './components/Agents'
 import Problem from './components/Problem'
 import System from './components/System'
@@ -37,7 +39,7 @@ const organizationJsonLd = {
   url: `${SITE}/`,
   logo: `${SITE}/favicon.png`,
   description:
-    'Goschedule.ai deploys AI agents that run revenue, sales, and operations for businesses — 24/7, learning, and outcome-driven.',
+    'Goschedule.ai gets you qualified leads with AI agents across WhatsApp, email, and voice — running outreach by hand first, then scaling what works.',
 }
 
 const websiteJsonLd = {
@@ -51,12 +53,14 @@ function HomePage() {
   return (
     <main>
       <SEO
-        title="Goschedule.ai — AI Agents for Revenue, Sales & Operations"
-        description="Deploy AI agents that run your revenue engine. From outbound sales to operations — 24/7, learning, outcome-driven."
+        title="Goschedule.ai — Qualified Leads from AI Agents on WhatsApp, Email & Voice"
+        description="Qualified leads from AI agents across WhatsApp, email & voice. We run your outreach by hand first — learning what converts — then agents scale what works."
         canonical="https://www.goschedule.ai/"
         jsonLd={[organizationJsonLd, websiteJsonLd]}
       />
       <Hero />
+      <HowItWorks />
+      <Channels />
       <Agents />
       <Problem />
       <System />

@@ -8,17 +8,19 @@ export default function CTA() {
             <div className="container" style={{ position: 'relative', zIndex: 1 }}>
                 <Reveal>
                     <div className="text-center mx-auto" style={{ maxWidth: 900 }}>
-                        <h2 className="cta-headline" style={{ marginBottom: 'var(--space-4)' }}>
-                            Deploy AI Agents Into Real Workflows.<br />
-                            <span className="text-accent">Ship Outcomes, Not Dashboards.</span>
+                        <h2 className="cta-headline" style={{ marginBottom: 'var(--space-3)' }}>
+                            Ready for qualified leads that actually convert?
                         </h2>
+                        <p className="body-lg" style={{ marginBottom: 'var(--space-5)', color: 'var(--text-secondary)' }}>
+                            Tell us about your product. We&apos;ll start with manual outreach, learn what works, then deploy AI agents to scale it.
+                        </p>
                         <a
                             href={DEPLOY_AGENT_URL}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="btn btn-primary btn-hero-primary cta-button"
                         >
-                            Deploy an AI Agent <ArrowRight style={{ width: 18, height: 18, marginLeft: 8 }} />
+                            Get Qualified Leads <ArrowRight style={{ width: 18, height: 18, marginLeft: 8 }} />
                         </a>
                     </div>
                 </Reveal>

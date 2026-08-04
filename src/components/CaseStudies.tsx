@@ -11,7 +11,7 @@ export default function CaseStudies() {
                         Real Deployments, Real Numbers
                     </h2>
                     <p className="body-lg text-center mx-auto" style={{ maxWidth: 520, marginBottom: 'var(--space-6)' }}>
-                        Every agent we ship gets measured. Here is one we can talk about publicly.
+                        Every engagement gets measured on outcomes. Here is one we can talk about publicly.
                     </p>
                 </Reveal>
 
