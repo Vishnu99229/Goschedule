@@ -1,33 +1,44 @@
 :root {
-  /* ── Color System — warm cream light theme ── */
-  --bg-base: #FAF8F4;
-  --bg-elevated: #F2EEE6;
-  --bg-raised: #F2EEE6;
-  --bg-surface: #F2EEE6;
-  --border-subtle: #E5DFD3;
-  --border-hover: #D4CCBC;
+  /* ── Color System — dark editorial (site-wide) ── */
+  --bg: #0a0a0a;
+  --bg-raised: #111111;
+  --surface: #141414;
+  --text: #f5f1e8;
+  --text-muted: rgba(245, 241, 232, 0.62);
+  --text-faint: rgba(245, 241, 232, 0.42);
+  --accent: #f5a524;
+  --accent-hover: #ffb84a;
+  --border: rgba(245, 241, 232, 0.16);
 
-  --text-primary: #1A1614;
-  --text-secondary: #57514A;
-  --text-muted: #8C847A;
-  --text-tertiary: #8C847A;
+  /* Legacy aliases — keep existing components on the same tokens */
+  --bg-base: var(--bg);
+  --bg-elevated: var(--bg-raised);
+  --bg-surface: var(--surface);
+  --border-subtle: var(--border);
+  --border-hover: rgba(245, 241, 232, 0.28);
 
-  --surface-hover: rgba(26, 22, 20, 0.04);
+  --text-primary: var(--text);
+  --text-secondary: var(--text-muted);
+  --text-muted-legacy: var(--text-faint);
+  --text-tertiary: var(--text-faint);
 
-  /* ── Accent System (purple = accent only, never background) ── */
-  --accent: #7C3AED;
-  --accent-hover: #6D28D9;
-  --accent-text: #6D28D9;
-  --accent-soft: rgba(124, 58, 237, 0.10);
-  --accent-soft-border: rgba(124, 58, 237, 0.20);
-  --accent-purple: #7C3AED;
-  --success: #059669;
-  --danger: #DC2626;
+  --surface-hover: rgba(245, 241, 232, 0.06);
 
-  /* ── Typography (single typeface — Inter — across the entire site) ── */
+  /* Accent (amber) — retired purple site-wide */
+  --accent-text: var(--accent);
+  --accent-soft: rgba(245, 165, 36, 0.12);
+  --accent-soft-border: rgba(245, 165, 36, 0.28);
+  --accent-purple: var(--accent);
+  --accent-on: #0a0a0a;
+  --success: #34d399;
+  --danger: #f87171;
+
+  /* ── Typography ── */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-hero-display: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-hero-serif: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-hero-display: var(--font-serif);
+  --font-hero-serif: var(--font-serif);
 
   /* Type scale — refined, medium-sized, founder-grade */
   --text-xs: 12px;
@@ -120,25 +131,23 @@ button {
   border: 0;
 }
 
-/* Headings share the logo typeface (--font-sans / Inter) so the brand reads as
-   one system. Body copy, buttons and paragraphs are unchanged — they already
-   use the same stack via body. */
+/* Headings use Fraunces (editorial serif). Body stays Inter via body/font-sans. */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-sans);
+  font-family: var(--font-serif);
 }
 
 /* ── Typography Scale — refined, classy, smaller than before ── */
 .h1 {
   font-size: clamp(26px, 3.2vw, 40px);
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1.12;
   letter-spacing: -0.022em;
-  font-family: var(--font-sans);
+  font-family: var(--font-serif);
   color: var(--text-primary);
 }
 
@@ -147,9 +156,9 @@ h2.section-heading,
 .h2 {
   font-size: clamp(22px, 2.6vw, 32px);
   line-height: 1.15;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: -0.018em;
-  font-family: var(--font-sans);
+  font-family: var(--font-serif);
   color: var(--text-primary);
 }
 
@@ -315,13 +324,14 @@ h2.section-heading,
 
 .btn-primary {
   background: var(--accent);
-  color: #fff;
+  color: var(--accent-on);
   border: 1px solid var(--accent);
 }
 
 .btn-primary:hover {
   background: var(--accent-hover);
   border-color: var(--accent-hover);
+  color: var(--accent-on);
 }
 
 .btn-ghost,
@@ -855,6 +865,7 @@ section.section-cta {
   font-size: var(--text-sm);
   color: var(--text-muted);
   font-weight: 400;
+  background: var(--bg);
 }
 
 .footer-text {
@@ -866,13 +877,13 @@ section.section-cta {
 }
 
 a.footer-text:hover {
-  color: var(--text-secondary);
+  color: var(--accent);
 }
 
 .claude-partner-badge {
   display: inline-flex;
   align-items: center;
-  opacity: 0.7;
+  opacity: 0.85;
   transition: opacity 0.2s ease;
 }
 
@@ -888,6 +899,8 @@ a.footer-text:hover {
   width: auto;
   max-width: 220px;
   object-fit: contain;
+  /* Lighten dark badge artwork so it stays legible on near-black nav */
+  filter: brightness(1.15) contrast(1.05);
 }
 
 /* Navbar placement — sits immediately left of the Deploy Agent CTA.
@@ -2053,7 +2066,7 @@ a.footer-text:hover {
   gap: 6px;
   font-size: 15px;
   font-weight: 500;
-  color: var(--text-secondary);
+  color: var(--text-muted);
   background: none;
   border: none;
   padding: 8px 0;
@@ -2152,7 +2165,7 @@ a.footer-text:hover {
   font-size: var(--text-sm);
   font-weight: 500;
   letter-spacing: -0.005em;
-  color: var(--text-secondary);
+  color: var(--text-muted);
   transition: color 0.2s;
 }
 
@@ -3205,24 +3218,13 @@ a.footer-text:hover {
   }
 }
 /* ═══════════════════════════════════════════════════════════════════════════
-   Homepage outbound landing (dark, editorial) — scoped to .home-lp only.
-   Other routes keep the global light theme.
+   Homepage outbound landing — layout/components only.
+   Colors come from the global dark tokens in :root.
    ═══════════════════════════════════════════════════════════════════════════ */
 
 .home-lp {
-  --lp-bg: #0a0a0a;
-  --lp-bg-raised: #111111;
-  --lp-text: #f5f1e8;
-  --lp-text-muted: rgba(245, 241, 232, 0.62);
-  --lp-text-faint: rgba(245, 241, 232, 0.42);
-  --lp-border: rgba(245, 241, 232, 0.16);
-  --lp-amber: #f5a524;
-  --lp-amber-hover: #ffb84a;
-  --lp-serif: 'Fraunces', Georgia, 'Times New Roman', serif;
-  --lp-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-
-  background: var(--lp-bg);
-  color: var(--lp-text);
+  background: var(--bg);
+  color: var(--text);
   min-width: 0;
   width: 100%;
   padding-bottom: 40px;
@@ -3248,12 +3250,12 @@ a.footer-text:hover {
   align-items: center;
   gap: 8px 10px;
   margin: 0 0 40px;
-  font-family: var(--lp-mono);
+  font-family: var(--font-mono);
   font-size: 12px;
   font-weight: 400;
   letter-spacing: 0.02em;
   line-height: 1.5;
-  color: var(--lp-text-faint);
+  color: var(--text-faint);
   min-width: 0;
 }
 
@@ -3261,7 +3263,7 @@ a.footer-text:hover {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #34d399;
+  background: var(--success);
   box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.55);
   animation: home-lp-pulse 2.2s ease-out infinite;
   flex-shrink: 0;
@@ -3291,21 +3293,21 @@ a.footer-text:hover {
 
 .home-lp__label {
   margin: 0 0 20px;
-  font-family: var(--lp-mono);
+  font-family: var(--font-mono);
   font-size: 13px;
   font-weight: 400;
   letter-spacing: 0.01em;
-  color: var(--lp-text-muted);
+  color: var(--text-muted);
 }
 
 .home-lp__h1 {
-  font-family: var(--lp-serif);
+  font-family: var(--font-serif);
   font-size: clamp(32px, 5.4vw, 56px);
   font-weight: 500;
   font-style: normal;
   line-height: 1.12;
   letter-spacing: -0.02em;
-  color: var(--lp-text);
+  color: var(--text);
   margin: 0 0 24px;
   max-width: 16ch;
   min-width: 0;
@@ -3315,10 +3317,10 @@ a.footer-text:hover {
 }
 
 .home-lp__accent-italic {
-  font-family: var(--lp-serif);
+  font-family: var(--font-serif);
   font-style: italic;
   font-weight: 500;
-  color: var(--lp-amber);
+  color: var(--accent);
 }
 
 .home-lp__sub {
@@ -3326,7 +3328,7 @@ a.footer-text:hover {
   font-size: clamp(16px, 1.6vw, 18px);
   font-weight: 400;
   line-height: 1.55;
-  color: var(--lp-text-muted);
+  color: var(--text-muted);
   margin: 0 0 32px;
   max-width: 52ch;
   min-width: 0;
@@ -3358,26 +3360,26 @@ a.footer-text:hover {
 }
 
 .home-lp__btn--primary {
-  background: var(--lp-amber);
-  color: #0a0a0a;
-  border: 1px solid var(--lp-amber);
+  background: var(--accent);
+  color: var(--accent-on);
+  border: 1px solid var(--accent);
 }
 
 .home-lp__btn--primary:hover {
-  background: var(--lp-amber-hover);
-  border-color: var(--lp-amber-hover);
-  color: #0a0a0a;
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: var(--accent-on);
 }
 
 .home-lp__btn--secondary {
   background: transparent;
-  color: var(--lp-text);
-  border: 1px solid var(--lp-border);
+  color: var(--text);
+  border: 1px solid var(--border);
 }
 
 .home-lp__btn--secondary:hover {
   border-color: rgba(245, 241, 232, 0.35);
-  color: var(--lp-text);
+  color: var(--text);
 }
 
 .home-lp__proof {
@@ -3386,16 +3388,16 @@ a.footer-text:hover {
 
 .home-lp__proof-line {
   margin: 0;
-  font-family: var(--lp-mono);
+  font-family: var(--font-mono);
   font-size: 12px;
   line-height: 1.65;
-  color: var(--lp-text-faint);
+  color: var(--text-faint);
   max-width: 68ch;
 }
 
 .home-lp__rule {
   border: 0;
-  border-top: 1px solid var(--lp-border);
+  border-top: 1px solid var(--border);
   margin: 0 auto;
   max-width: 920px;
   width: calc(100% - 48px);
@@ -3408,20 +3410,20 @@ a.footer-text:hover {
 
 .home-lp__section-num {
   margin: 0 0 12px;
-  font-family: var(--lp-mono);
+  font-family: var(--font-mono);
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.08em;
-  color: var(--lp-amber);
+  color: var(--accent);
 }
 
 .home-lp__h2 {
-  font-family: var(--lp-serif);
+  font-family: var(--font-serif);
   font-size: clamp(28px, 3.6vw, 40px);
   font-weight: 500;
   line-height: 1.15;
   letter-spacing: -0.02em;
-  color: var(--lp-text);
+  color: var(--text);
   margin: 0 0 40px;
   max-width: 18ch;
   min-width: 0;
@@ -3436,7 +3438,7 @@ a.footer-text:hover {
   font-family: var(--font-sans);
   font-size: 16px;
   line-height: 1.5;
-  color: var(--lp-text-muted);
+  color: var(--text-muted);
   margin: -24px 0 36px;
 }
 
@@ -3452,20 +3454,20 @@ a.footer-text:hover {
 
 .home-lp__step-num {
   display: block;
-  font-family: var(--lp-mono);
+  font-family: var(--font-mono);
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.08em;
-  color: var(--lp-amber);
+  color: var(--accent);
   margin-bottom: 14px;
 }
 
 .home-lp__step-title {
-  font-family: var(--lp-serif);
+  font-family: var(--font-serif);
   font-size: 22px;
   font-weight: 500;
   line-height: 1.25;
-  color: var(--lp-text);
+  color: var(--text);
   margin: 0 0 12px;
 }
 
@@ -3473,7 +3475,7 @@ a.footer-text:hover {
   font-family: var(--font-sans);
   font-size: 15px;
   line-height: 1.55;
-  color: var(--lp-text-muted);
+  color: var(--text-muted);
   margin: 0;
 }
 
@@ -3487,18 +3489,18 @@ a.footer-text:hover {
   min-width: 0;
   padding: 24px;
   border-radius: 10px;
-  border: 1px solid var(--lp-border);
-  background: var(--lp-bg-raised);
+  border: 1px solid var(--border);
+  background: var(--bg-raised);
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
 .home-lp__card-title {
-  font-family: var(--lp-serif);
+  font-family: var(--font-serif);
   font-size: 20px;
   font-weight: 500;
-  color: var(--lp-text);
+  color: var(--text);
   margin: 0;
 }
 
@@ -3506,15 +3508,15 @@ a.footer-text:hover {
   font-family: var(--font-sans);
   font-size: 14px;
   line-height: 1.5;
-  color: var(--lp-text-muted);
+  color: var(--text-muted);
   margin: 0;
 }
 
 .home-lp__card-stat {
-  font-family: var(--lp-mono);
+  font-family: var(--font-mono);
   font-size: 12px;
   line-height: 1.45;
-  color: var(--lp-text-faint);
+  color: var(--text-faint);
   margin: 0;
 }
 
@@ -3524,12 +3526,12 @@ a.footer-text:hover {
   font-family: var(--font-sans);
   font-size: 14px;
   font-weight: 500;
-  color: var(--lp-amber);
+  color: var(--accent);
   text-decoration: none;
 }
 
 .home-lp__card-link:hover {
-  color: var(--lp-amber-hover);
+  color: var(--accent-hover);
 }
 
 .home-lp__demo-section .home-lp__container {
@@ -3561,7 +3563,7 @@ a.footer-text:hover {
   font-family: var(--font-sans);
   font-size: 16px;
   line-height: 1.5;
-  color: var(--lp-text-muted);
+  color: var(--text-muted);
   margin: 0 0 28px;
   max-width: 42ch;
 }
