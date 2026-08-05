@@ -5,17 +5,14 @@ import { DEPLOY_AGENT_URL, LINKEDIN_URL } from '../constants/links'
 
 const STEPS = [
   {
-    num: '01',
     title: 'I do it by hand.',
     body: 'I run WhatsApp, email, and voice outbound to your ICP myself. I read every reply and note what starts a real conversation versus silence.',
   },
   {
-    num: '02',
     title: 'I learn what works for your product.',
     body: 'I map the objections, the channels that convert, and what a qualified lead looks like for your ACV and buyer. No generic playbook.',
   },
   {
-    num: '03',
     title: 'I deploy agents that scale what worked.',
     body: 'Once the playbook is proven, I hand it to AI agents. WhatsApp automation, voice callers, and email sequences keep running the plays that got replies.',
   },
@@ -68,20 +65,9 @@ function CtaPair({ className = '' }: { className?: string }) {
 export default function HomePage() {
   return (
     <main className="home-lp">
-      {/* ── A + B. Status line + Hero ── */}
+      {/* ── Hero ── */}
       <section className="home-lp__hero">
         <div className="home-lp__container">
-          <p className="home-lp__status" aria-label="Availability">
-            <span className="home-lp__status-dot" aria-hidden="true" />
-            shipping qualified leads from bangalore
-            <span className="home-lp__status-sep" aria-hidden="true">
-              ·
-            </span>
-            open to 2 new clients this month
-          </p>
-
-          <p className="home-lp__label">&gt; vishnu rajan, gtm consultant, bangalore</p>
-
           <h1 className="home-lp__h1">
             Qualified leads for B2B teams that need <em className="home-lp__accent-italic">pipeline</em>, not
             another tool.
@@ -97,7 +83,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── C. Proof strip ── */}
+      {/* ── Proof strip ── */}
       <section className="home-lp__proof" aria-label="Background">
         <div className="home-lp__container">
           <p className="home-lp__proof-line">
@@ -109,20 +95,14 @@ export default function HomePage() {
 
       <hr className="home-lp__rule" />
 
-      {/* ── D. Section 01: How I actually work ── */}
+      {/* ── How I actually work ── */}
       <section className="home-lp__section" id="how">
         <div className="home-lp__container">
-          <p className="home-lp__section-num" aria-hidden="true">
-            01
-          </p>
           <h2 className="home-lp__h2">How I actually work</h2>
 
           <div className="home-lp__steps">
             {STEPS.map((step) => (
-              <article key={step.num} className="home-lp__step">
-                <span className="home-lp__step-num" aria-hidden="true">
-                  {step.num}
-                </span>
+              <article key={step.title} className="home-lp__step">
                 <h3 className="home-lp__step-title">{step.title}</h3>
                 <p className="home-lp__step-body">{step.body}</p>
               </article>
@@ -133,12 +113,9 @@ export default function HomePage() {
 
       <hr className="home-lp__rule" />
 
-      {/* ── E. Section 02: What I've built ── */}
+      {/* ── What I've built ── */}
       <section className="home-lp__section" id="built">
         <div className="home-lp__container">
-          <p className="home-lp__section-num" aria-hidden="true">
-            02
-          </p>
           <h2 className="home-lp__h2">What I&apos;ve built</h2>
 
           <div className="home-lp__cards">
@@ -160,12 +137,9 @@ export default function HomePage() {
 
       <hr className="home-lp__rule" />
 
-      {/* ── F. Section 03: Try what I build (AgentDemo) ── */}
+      {/* ── Try what I build (AgentDemo) ── */}
       <section className="home-lp__section home-lp__demo-section" id="try">
         <div className="home-lp__container">
-          <p className="home-lp__section-num" aria-hidden="true">
-            03
-          </p>
           <h2 className="home-lp__h2">See the kind of agents I ship.</h2>
           <p className="home-lp__section-sub">Pick a use case. Watch it come to life.</p>
 
@@ -183,12 +157,9 @@ export default function HomePage() {
 
       <hr className="home-lp__rule" />
 
-      {/* ── G. Section 04: Closing CTA ── */}
+      {/* ── Closing CTA ── */}
       <section className="home-lp__section home-lp__close" id="book">
         <div className="home-lp__container home-lp__close-inner">
-          <p className="home-lp__section-num" aria-hidden="true">
-            04
-          </p>
           <h2 className="home-lp__h2 home-lp__h2--close">
             If you need pipeline and want to talk to someone who actually replies, let&apos;s have a
             call.

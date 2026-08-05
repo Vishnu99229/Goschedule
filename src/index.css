@@ -3240,64 +3240,8 @@ a.footer-text:hover {
 }
 
 .home-lp__hero {
-  padding: 48px 0 56px;
+  padding: 56px 0 48px;
   min-width: 0;
-}
-
-.home-lp__status {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px 10px;
-  margin: 0 0 40px;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 0.02em;
-  line-height: 1.5;
-  color: var(--text-faint);
-  min-width: 0;
-}
-
-.home-lp__status-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--success);
-  box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.55);
-  animation: home-lp-pulse 2.2s ease-out infinite;
-  flex-shrink: 0;
-}
-
-@keyframes home-lp-pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.45);
-  }
-  70% {
-    box-shadow: 0 0 0 8px rgba(52, 211, 153, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(52, 211, 153, 0);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .home-lp__status-dot {
-    animation: none;
-  }
-}
-
-.home-lp__status-sep {
-  opacity: 0.55;
-}
-
-.home-lp__label {
-  margin: 0 0 20px;
-  font-family: var(--font-mono);
-  font-size: 13px;
-  font-weight: 400;
-  letter-spacing: 0.01em;
-  color: var(--text-muted);
 }
 
 .home-lp__h1 {
@@ -3408,15 +3352,6 @@ a.footer-text:hover {
   min-width: 0;
 }
 
-.home-lp__section-num {
-  margin: 0 0 12px;
-  font-family: var(--font-mono);
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  color: var(--accent);
-}
-
 .home-lp__h2 {
   font-family: var(--font-serif);
   font-size: clamp(28px, 3.6vw, 40px);
@@ -3424,7 +3359,7 @@ a.footer-text:hover {
   line-height: 1.15;
   letter-spacing: -0.02em;
   color: var(--text);
-  margin: 0 0 40px;
+  margin: 0 0 36px;
   max-width: 18ch;
   min-width: 0;
 }
@@ -3439,7 +3374,7 @@ a.footer-text:hover {
   font-size: 16px;
   line-height: 1.5;
   color: var(--text-muted);
-  margin: -24px 0 36px;
+  margin: -20px 0 36px;
 }
 
 .home-lp__steps {
@@ -3450,16 +3385,6 @@ a.footer-text:hover {
 
 .home-lp__step {
   min-width: 0;
-}
-
-.home-lp__step-num {
-  display: block;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  color: var(--accent);
-  margin-bottom: 14px;
 }
 
 .home-lp__step-title {
@@ -3582,7 +3507,7 @@ a.footer-text:hover {
 
 @media (max-width: 640px) {
   .home-lp__hero {
-    padding: 32px 0 40px;
+    padding: 40px 0 40px;
   }
 
   .home-lp__section {
