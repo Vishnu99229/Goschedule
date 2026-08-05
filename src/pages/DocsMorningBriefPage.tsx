@@ -10,7 +10,7 @@ export default function DocsMorningBriefPage() {
       description="Technical documentation for Morning Brief. A personalized AI news agent that calls you every morning with only the stories that matter."
       canonical={`${SITE}/docs/morning-brief`}
       heading="Morning Brief Documentation"
-      relatedHref="/products/morning-brief"
+      relatedHref="/work"
       relatedLabel="Explore Morning Brief"
     >
       <h2 className="markdown__h2">Overview</h2>

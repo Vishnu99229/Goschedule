@@ -132,6 +132,6 @@ For a clinic owner, this shows up as outcomes you actually track:
 
 ## Getting started
 
-The practical way to do all of this is [ReplyKaro](/products/replykaro) — an AI agent that handles both the voice calls and the WhatsApp follow-ups end to end. It answers every inbound call, books directly into your calendar, and runs the confirmation, reminder, and reschedule flows on WhatsApp automatically, in your patients' language, around the clock. If you want the technical details on integration, escalation, and setup, see the [ReplyKaro documentation](/docs/replykaro).
+The practical way to do all of this is [ReplyKaro](/work/replykaro) — an AI agent that handles both the voice calls and the WhatsApp follow-ups end to end. It answers every inbound call, books directly into your calendar, and runs the confirmation, reminder, and reschedule flows on WhatsApp automatically, in your patients' language, around the clock. If you want the technical details on integration, escalation, and setup, see the [ReplyKaro documentation](/docs/replykaro).
 
 The math is simple: the calls you are missing and the slots sitting empty already cost more than fixing them would. The next patient is dialing right now — the only question is whether anyone answers. Book a quick demo and see it handle a live call for your clinic.

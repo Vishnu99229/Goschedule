@@ -11,7 +11,7 @@ export default function DocsResoundPage() {
       canonical={`${SITE}/docs/resound`}
       heading="Resound.ai Documentation"
       badge="Early access"
-      relatedHref="/products/resound"
+      relatedHref="/work/resound"
       relatedLabel="Explore Resound.ai"
     >
       <h2 className="markdown__h2">Overview</h2>

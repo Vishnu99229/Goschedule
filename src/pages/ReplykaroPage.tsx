@@ -1,18 +1,16 @@
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { MessageCircle, Phone } from 'lucide-react'
 import SEO from '../components/SEO'
-import { DEPLOY_AGENT_URL } from '../constants/links'
 
-const ACCENT = '#7C3AED'
-const ACCENT_SOFT = '#A78BFA'
-const BG = '#FAF8F4'
-const TEXT = '#1A1614'
-const TEXT_MUTED = '#57514A'
-const SURFACE_LIGHT = '#F2EEE6'
-const BORDER_LIGHT = '#E5DFD3'
-
-const DEMO_HREF = DEPLOY_AGENT_URL
+const ACCENT = 'var(--accent)'
+const ACCENT_SOFT = 'var(--accent-hover)'
+const BG = 'var(--bg)'
+const TEXT = 'var(--text)'
+const TEXT_MUTED = 'var(--text-muted)'
+const SURFACE_LIGHT = 'var(--bg-raised)'
+const BORDER_LIGHT = 'var(--border)'
 
 function ReplykaroHeroVisual() {
     const pulse = 2.4
@@ -82,23 +80,23 @@ function LeadsCounter() {
 
 const features = [
     {
-        title: 'Answers every call, 24/7',
-        body: 'Never let voicemail kill another deal.',
+        title: 'Answered every call, 24/7',
+        body: 'Voice handling so inbound never hit voicemail.',
         visual: 'sparkle' as const,
     },
     {
-        title: 'Replies to WhatsApp instantly',
-        body: 'Natural language, your tone, your policies.',
+        title: 'Replied to WhatsApp instantly',
+        body: 'Natural language, clinic tone, clinic policies.',
         visual: 'chat' as const,
     },
     {
-        title: 'Checks live store stock',
-        body: 'Connect inventory so replies stay accurate.',
+        title: 'Checked live store stock',
+        body: 'Inventory connected so replies stayed accurate.',
         visual: 'grid' as const,
     },
     {
-        title: 'Routes hot leads to managers',
-        body: 'Escalate warm conversations in real time.',
+        title: 'Routed hot leads to managers',
+        body: 'Warm conversations escalated in real time.',
         visual: 'flow' as const,
     },
 ]
@@ -197,9 +195,9 @@ export default function ReplykaroPage() {
     return (
         <main style={{ background: BG, color: TEXT, minHeight: '80vh', paddingTop: 48, paddingBottom: 100 }}>
             <SEO
-                title="ReplyKaro — AI Inbound Response Agent | Goschedule.ai"
-                description="ReplyKaro is an AI agent that responds to every inbound lead within seconds. Enriches contact data, qualifies intent, and books meetings — automatically."
-                canonical="https://www.goschedule.ai/products/replykaro"
+                title="ReplyKaro — Built and shipped | Work"
+                description="WhatsApp and voice AI receptionist for Indian clinics. Built end to end and deployed to production."
+                canonical="https://www.goschedule.ai/work/replykaro"
                 jsonLd={[
                     {
                         '@context': 'https://schema.org',
@@ -207,9 +205,9 @@ export default function ReplykaroPage() {
                         name: 'ReplyKaro',
                         applicationCategory: 'BusinessApplication',
                         operatingSystem: 'Web',
-                        url: 'https://www.goschedule.ai/products/replykaro',
+                        url: 'https://www.goschedule.ai/work/replykaro',
                         description:
-                            'ReplyKaro is an AI agent that responds to every inbound lead within seconds. Enriches contact data, qualifies intent, and books meetings — automatically.',
+                            'WhatsApp and voice AI receptionist for Indian clinics. Built end to end and deployed to production.',
                         publisher: {
                             '@type': 'Organization',
                             name: 'Goschedule.ai',
@@ -221,7 +219,8 @@ export default function ReplykaroPage() {
                         '@type': 'BreadcrumbList',
                         itemListElement: [
                             { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.goschedule.ai/' },
-                            { '@type': 'ListItem', position: 2, name: 'ReplyKaro', item: 'https://www.goschedule.ai/products/replykaro' },
+                            { '@type': 'ListItem', position: 2, name: 'Work', item: 'https://www.goschedule.ai/work' },
+                            { '@type': 'ListItem', position: 3, name: 'ReplyKaro', item: 'https://www.goschedule.ai/work/replykaro' },
                         ],
                     },
                 ]}
@@ -234,18 +233,19 @@ export default function ReplykaroPage() {
                 >
                     <div>
                         <div className="badge" style={{ marginBottom: 18 }}>
-                            Inbound Sales AI Agent
+                            Built and shipped
                         </div>
                         <h1 style={{ fontSize: 'clamp(30px, 4.5vw, 46px)', fontWeight: 700, lineHeight: 1.1, marginBottom: 20 }}>
-                            Replykaro — The AI Agent That Never Misses a Lead
+                            ReplyKaro. WhatsApp and voice receptionist for Indian clinics.
                         </h1>
                         <p className="body-lg" style={{ color: TEXT_MUTED, maxWidth: 520, marginBottom: 28 }}>
-                            24/7 inbound call and WhatsApp handling in Malayalam, English, and Hindi. Qualifies, books, and routes —
-                            instantly.
+                            Built end to end and deployed to production. Handled inbound calls and WhatsApp in
+                            Malayalam, English, and Hindi. Qualified, booked, and routed — without a human on the
+                            line.
                         </p>
-                        <a href={DEMO_HREF} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ display: 'inline-flex' }}>
-                            Book a demo
-                        </a>
+                        <Link to="/engagements" className="btn btn-primary" style={{ display: 'inline-flex' }}>
+                            See how we work together
+                        </Link>
                     </div>
                     <ReplykaroHeroVisual />
                 </div>
@@ -280,7 +280,7 @@ export default function ReplykaroPage() {
 
             {/* What Replykaro does */}
             <section className="container" style={{ paddingBottom: 48 }}>
-                <h2 style={{ fontSize: 26, fontWeight: 600, marginBottom: 28, textAlign: 'center' }}>What Replykaro does</h2>
+                <h2 style={{ fontSize: 26, fontWeight: 600, marginBottom: 28, textAlign: 'center' }}>What ReplyKaro did</h2>
                 <motion.div
                     style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 20 }}
                     initial="hidden"
@@ -348,27 +348,28 @@ export default function ReplykaroPage() {
                 </div>
             </section>
 
-            {/* CTA */}
+            {/* CTA → engagements, not product sales */}
             <section className="container">
                 <motion.div
                     style={{
                         textAlign: 'center',
                         padding: '48px 24px',
                         borderRadius: 24,
-                        background: 'linear-gradient(135deg, rgba(124,58,237,0.10) 0%, rgba(124,58,237,0.02) 100%)',
-                        border: '1px solid rgba(124,58,237,0.22)',
+                        background: 'var(--surface)',
+                        border: '1px solid var(--border)',
                     }}
                     initial={{ opacity: 0.7, y: 16 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                 >
-                    <h2 style={{ fontSize: 26, fontWeight: 600, marginBottom: 16 }}>See it handle a real call</h2>
+                    <h2 style={{ fontSize: 26, fontWeight: 600, marginBottom: 16 }}>This is portfolio work.</h2>
                     <p style={{ color: TEXT_MUTED, marginBottom: 24, maxWidth: 460, margin: '0 auto 24px' }}>
-                        Book a short walkthrough — we&apos;ll show WhatsApp and voice in action on your workflows.
+                        ReplyKaro is not for sale as a product. If you want fractional GTM that includes shipping
+                        agents like this, see how we work together.
                     </p>
-                    <a href={DEMO_HREF} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ fontSize: 17, padding: '14px 28px' }}>
-                        Book demo
-                    </a>
+                    <Link to="/engagements" className="btn btn-primary" style={{ fontSize: 17, padding: '14px 28px' }}>
+                        See engagements
+                    </Link>
                 </motion.div>
             </section>
         </main>

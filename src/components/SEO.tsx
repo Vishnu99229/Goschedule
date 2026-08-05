@@ -32,7 +32,7 @@ export default function SEO({
   title,
   description,
   canonical,
-  ogImage = 'https://www.goschedule.ai/og-image-v2.png',
+  ogImage = 'https://www.goschedule.ai/og-image-v3.png',
   ogType = 'website',
 }: SEOProps) {
   useEffect(() => {

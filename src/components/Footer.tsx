@@ -36,14 +36,19 @@ export default function Footer() {
                     }}
                 >
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-                        <div style={{ fontSize: 13, fontWeight: 600, opacity: 0.7 }}>Products</div>
-                        <Link to="/products/replykaro" className="footer-text">ReplyKaro</Link>
-                        <Link to="/products/fde-services" className="footer-text">FDE Services</Link>
-                        <Link to="/products/free-setup" className="footer-text">Free Setup</Link>
+                        <div style={{ fontSize: 13, fontWeight: 600, opacity: 0.7 }}>Work</div>
+                        <Link to="/work" className="footer-text">Portfolio</Link>
+                        <Link to="/work/replykaro" className="footer-text">ReplyKaro</Link>
+                        <Link to="/work/resound" className="footer-text">Resound.ai</Link>
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                        <div style={{ fontSize: 13, fontWeight: 600, opacity: 0.7 }}>Company</div>
+                        <Link to="/engagements" className="footer-text">Engagements</Link>
+                        <a href="/#approach" className="footer-text">Approach</a>
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                         <div style={{ fontSize: 13, fontWeight: 600, opacity: 0.7 }}>Resources</div>
-                        <Link to="/blog" className="footer-text">Blog</Link>
+                        <Link to="/blog" className="footer-text">Writing</Link>
                         <Link to="/docs" className="footer-text">Docs</Link>
                     </div>
                 </nav>

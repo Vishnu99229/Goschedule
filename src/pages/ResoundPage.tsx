@@ -1,16 +1,14 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import { CheckCheck, Phone } from 'lucide-react'
 import SEO from '../components/SEO'
-import { DEPLOY_AGENT_URL } from '../constants/links'
 
-const ACCENT = '#7C3AED'
-const BG = '#FAF8F4'
-const TEXT = '#1A1614'
-const TEXT_MUTED = '#57514A'
-const SURFACE_LIGHT = '#F2EEE6'
-const BORDER_LIGHT = '#E5DFD3'
-
-const DEMO_HREF = DEPLOY_AGENT_URL
+const ACCENT = 'var(--accent)'
+const BG = 'var(--bg)'
+const TEXT = 'var(--text)'
+const TEXT_MUTED = 'var(--text-muted)'
+const SURFACE_LIGHT = 'var(--bg-raised)'
+const BORDER_LIGHT = 'var(--border)'
 
 function ResoundHeroVisual() {
     const pulse = 2.4
@@ -79,20 +77,20 @@ function ResoundHeroVisual() {
 
 const features = [
     {
-        title: 'Connects your CRM and email sending tools',
-        body: 'Plugs into the tools your team already runs.',
+        title: 'Connected CRM and email sending tools',
+        body: 'Plugged into the tools the team already ran.',
     },
     {
-        title: 'AI reply classification with built-in consent capture',
+        title: 'AI reply classification with consent capture',
         body: 'Every reply tagged. Consent captured automatically.',
     },
     {
-        title: 'Voice AI that qualifies leads and books meetings',
-        body: 'Qualified calls land straight on your calendar.',
+        title: 'Voice AI that qualified leads and booked meetings',
+        body: 'Qualified calls landed straight on the calendar.',
     },
     {
         title: 'Multi-tenant, built for teams',
-        body: 'Scale outbound without scaling the team behind it.',
+        body: 'Scaled outbound without scaling headcount behind it.',
     },
 ]
 
@@ -100,9 +98,9 @@ export default function ResoundPage() {
     return (
         <main style={{ background: BG, color: TEXT, minHeight: '80vh', paddingTop: 48, paddingBottom: 100 }}>
             <SEO
-                title="Resound.ai — Outbound Sales Automation, End to End | Goschedule.ai"
-                description="Multi-tenant outbound sales automation with AI reply handling and voice AI that qualifies leads and books meetings."
-                canonical="https://www.goschedule.ai/products/resound"
+                title="Resound.ai — Built and shipped | Work"
+                description="Multi-tenant outbound sales automation with AI reply handling and voice qualification. Built and deployed."
+                canonical="https://www.goschedule.ai/work/resound"
                 jsonLd={[
                     {
                         '@context': 'https://schema.org',
@@ -110,9 +108,9 @@ export default function ResoundPage() {
                         name: 'Resound.ai',
                         applicationCategory: 'BusinessApplication',
                         operatingSystem: 'Web',
-                        url: 'https://www.goschedule.ai/products/resound',
+                        url: 'https://www.goschedule.ai/work/resound',
                         description:
-                            'Multi-tenant outbound sales automation with AI reply handling and voice AI that qualifies leads and books meetings.',
+                            'Multi-tenant outbound sales automation with AI reply handling and voice qualification. Built and deployed.',
                         publisher: {
                             '@type': 'Organization',
                             name: 'Goschedule.ai',
@@ -124,7 +122,8 @@ export default function ResoundPage() {
                         '@type': 'BreadcrumbList',
                         itemListElement: [
                             { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.goschedule.ai/' },
-                            { '@type': 'ListItem', position: 2, name: 'Resound.ai', item: 'https://www.goschedule.ai/products/resound' },
+                            { '@type': 'ListItem', position: 2, name: 'Work', item: 'https://www.goschedule.ai/work' },
+                            { '@type': 'ListItem', position: 3, name: 'Resound.ai', item: 'https://www.goschedule.ai/work/resound' },
                         ],
                     },
                 ]}
@@ -137,17 +136,18 @@ export default function ResoundPage() {
                 >
                     <div>
                         <div className="badge" style={{ marginBottom: 18 }}>
-                            Early access
+                            Built and shipped
                         </div>
                         <h1 style={{ fontSize: 'clamp(30px, 4.5vw, 46px)', fontWeight: 700, lineHeight: 1.1, marginBottom: 20 }}>
-                            Resound.ai. Outbound sales, automated end to end.
+                            Resound.ai. Outbound sales automation, end to end.
                         </h1>
                         <p className="body-lg" style={{ color: TEXT_MUTED, maxWidth: 520, marginBottom: 28 }}>
-                            A multi-tenant platform that runs your outbound motion from first touch to booked meeting.
+                            Built and deployed as a multi-tenant platform that ran outbound from first touch to
+                            booked meeting — CRM, reply classification, consent, and voice qualification.
                         </p>
-                        <a href={DEMO_HREF} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ display: 'inline-flex' }}>
-                            Request early access
-                        </a>
+                        <Link to="/engagements" className="btn btn-primary" style={{ display: 'inline-flex' }}>
+                            See how we work together
+                        </Link>
                     </div>
                     <ResoundHeroVisual />
                 </div>
@@ -173,14 +173,16 @@ export default function ResoundPage() {
                     viewport={{ once: true }}
                 >
                     <p style={{ fontSize: 18, lineHeight: 1.65, color: TEXT, maxWidth: 720, margin: '0 auto' }}>
-                        Resound connects your CRM and email tools, classifies every reply with AI, captures consent, and uses voice AI to qualify leads and book meetings straight back into your CRM. It is built to scale outbound without scaling the headcount behind it.
+                        Resound connected CRM and email tools, classified every reply with AI, captured consent,
+                        and used voice AI to qualify leads and book meetings straight back into the CRM. Built to
+                        scale outbound without scaling the headcount behind it.
                     </p>
                 </motion.div>
             </section>
 
             {/* What Resound does */}
             <section className="container" style={{ paddingBottom: 48 }}>
-                <h2 style={{ fontSize: 26, fontWeight: 600, marginBottom: 28, textAlign: 'center' }}>What Resound does</h2>
+                <h2 style={{ fontSize: 26, fontWeight: 600, marginBottom: 28, textAlign: 'center' }}>What Resound did</h2>
                 <motion.div
                     style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 20 }}
                     initial="hidden"
@@ -219,27 +221,28 @@ export default function ResoundPage() {
         `}</style>
             </section>
 
-            {/* CTA */}
+            {/* CTA → engagements, not product sales */}
             <section className="container">
                 <motion.div
                     style={{
                         textAlign: 'center',
                         padding: '48px 24px',
                         borderRadius: 24,
-                        background: 'linear-gradient(135deg, rgba(124,58,237,0.10) 0%, rgba(124,58,237,0.02) 100%)',
-                        border: '1px solid rgba(124,58,237,0.22)',
+                        background: 'var(--surface)',
+                        border: '1px solid var(--border)',
                     }}
                     initial={{ opacity: 0.7, y: 16 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                 >
-                    <h2 style={{ fontSize: 26, fontWeight: 600, marginBottom: 16 }}>Get early access to Resound</h2>
+                    <h2 style={{ fontSize: 26, fontWeight: 600, marginBottom: 16 }}>This is portfolio work.</h2>
                     <p style={{ color: TEXT_MUTED, marginBottom: 24, maxWidth: 460, margin: '0 auto 24px' }}>
-                        We are onboarding a small set of teams. Tell us about your outbound motion and we will be in touch.
+                        Resound is not for sale as a product. If you want fractional GTM that includes shipping
+                        outbound systems like this, see how we work together.
                     </p>
-                    <a href={DEMO_HREF} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ fontSize: 17, padding: '14px 28px' }}>
-                        Request early access
-                    </a>
+                    <Link to="/engagements" className="btn btn-primary" style={{ fontSize: 17, padding: '14px 28px' }}>
+                        See engagements
+                    </Link>
                 </motion.div>
             </section>
         </main>

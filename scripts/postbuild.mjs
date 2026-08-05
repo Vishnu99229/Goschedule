@@ -24,7 +24,12 @@ const DIST = join(ROOT, 'dist')
 const CONTENT_BLOG = join(ROOT, 'content', 'blog')
 
 const SITE = 'https://www.goschedule.ai'
-const DEFAULT_OG = `${SITE}/og-image-v2.png`
+const DEFAULT_OG = `${SITE}/og-image-v3.png`
+
+const HOME_TITLE =
+  'Fractional GTM for AI companies selling into Indian enterprise — Vishnu Rajan'
+const HOME_DESCRIPTION =
+  'I run GTM for AI companies selling into Indian banks, insurers, and BPOs. Pipeline, pricing, compliance readiness, and the sales motion — two days a week.'
 
 // ── Shared JSON-LD builders (mirror the client-side <SEO jsonLd> values so
 //    the same schema appears in the raw static HTML, not only after hydration) ──
@@ -35,7 +40,7 @@ const ORG_JSONLD = {
   url: `${SITE}/`,
   logo: `${SITE}/favicon.png`,
   description:
-    'Goschedule.ai gets you qualified leads with AI agents across WhatsApp, email, and voice — running outreach by hand first, then scaling what works.',
+    'Fractional GTM for AI companies selling into Indian enterprise — pipeline, pricing, compliance readiness, and the sales motion.',
 }
 
 const WEBSITE_JSONLD = {
@@ -43,6 +48,45 @@ const WEBSITE_JSONLD = {
   '@type': 'WebSite',
   name: 'Goschedule.ai',
   url: `${SITE}/`,
+  description: HOME_DESCRIPTION,
+}
+
+const PERSON_JSONLD = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Vishnu Rajan',
+  url: `${SITE}/`,
+  jobTitle: 'Fractional GTM Lead',
+  description: HOME_DESCRIPTION,
+  sameAs: ['https://www.linkedin.com/in/vishnu-rajan-41515048/'],
+  worksFor: {
+    '@type': 'Organization',
+    name: 'Goschedule.ai',
+    url: `${SITE}/`,
+  },
+}
+
+const PROFESSIONAL_SERVICE_JSONLD = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'Goschedule.ai',
+  url: `${SITE}/`,
+  description: HOME_DESCRIPTION,
+  image: DEFAULT_OG,
+  provider: {
+    '@type': 'Person',
+    name: 'Vishnu Rajan',
+    url: `${SITE}/`,
+  },
+  areaServed: {
+    '@type': 'Country',
+    name: 'India',
+  },
+  serviceType: [
+    'Fractional GTM leadership',
+    'GTM teardown',
+    'Pipeline sprint',
+  ],
 }
 
 function softwareAppJsonLd({ name, url, description }) {
@@ -90,166 +134,101 @@ function gitLastmod(relPath) {
 const MARKETING_ROUTES = [
   {
     path: '/',
-    title: 'Goschedule.ai — Qualified Leads from AI Agents on WhatsApp, Email & Voice',
-    description:
-      'Qualified leads from AI agents across WhatsApp, email & voice. We run your outreach by hand first — learning what converts — then agents scale what works.',
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
     canonical: `${SITE}/`,
     ogType: 'website',
     priority: 1.0,
     changefreq: 'weekly',
     source: 'index.html',
-    imageAlt: 'Qualified Leads from AI Agents — WhatsApp, Email & Voice',
-    jsonLd: [ORG_JSONLD, WEBSITE_JSONLD],
+    imageAlt:
+      'Fractional GTM for AI companies selling into Indian enterprise — Vishnu Rajan',
+    jsonLd: [ORG_JSONLD, WEBSITE_JSONLD, PERSON_JSONLD, PROFESSIONAL_SERVICE_JSONLD],
   },
+  // /products/* and /case-studies/cafe-muziris are 301'd in vercel.json.
   {
-    path: '/products/morning-brief',
-    title: 'Morning Brief — Your Personalized AI News Agent, Called In | Goschedule.ai',
+    path: '/work',
+    title: 'Work — Vishnu Rajan',
     description:
-      'A personalized AI news agent that calls you every morning with only the stories that matter to you.',
-    canonical: `${SITE}/products/morning-brief`,
+      'Portfolio of GTM and product work: Vodex.ai, Epicode, ReplyKaro, Resound.ai.',
+    canonical: `${SITE}/work`,
     ogType: 'website',
-    priority: 0.8,
+    priority: 0.9,
     changefreq: 'monthly',
-    source: 'src/pages/MorningBriefPage.tsx',
-    imageAlt: 'Morning Brief — a personalized AI news agent that calls you every morning.',
-    jsonLd: [
-      softwareAppJsonLd({
-        name: 'Morning Brief',
-        url: `${SITE}/products/morning-brief`,
-        description:
-          'A personalized AI news agent that calls you every morning with only the stories that matter to you.',
-      }),
-      productBreadcrumbJsonLd('Morning Brief', `${SITE}/products/morning-brief`),
-    ],
+    source: 'src/pages/WorkPage.tsx',
+    imageAlt: 'Work portfolio — Vishnu Rajan',
   },
   {
-    path: '/products/replykaro',
-    title: 'ReplyKaro — AI Inbound Response Agent | Goschedule.ai',
+    path: '/work/replykaro',
+    title: 'ReplyKaro — Built and shipped | Work',
     description:
-      'ReplyKaro is an AI agent that responds to every inbound lead within seconds. Enriches contact data, qualifies intent, and books meetings — automatically.',
-    canonical: `${SITE}/products/replykaro`,
-    ogType: 'website',
-    priority: 0.8,
-    changefreq: 'monthly',
-    source: 'src/pages/ReplykaroPage.tsx',
-    imageAlt: 'ReplyKaro — an AI agent that answers inbound calls and WhatsApp and books meetings.',
-    jsonLd: [
-      softwareAppJsonLd({
-        name: 'ReplyKaro',
-        url: `${SITE}/products/replykaro`,
-        description:
-          'ReplyKaro is an AI agent that responds to every inbound lead within seconds. Enriches contact data, qualifies intent, and books meetings — automatically.',
-      }),
-      productBreadcrumbJsonLd('ReplyKaro', `${SITE}/products/replykaro`),
-    ],
-  },
-  {
-    path: '/products/fde-services',
-    title: 'FDE Services — Goschedule.ai',
-    description:
-      'Forward Deployed Engineering. We embed with your team, deploy AI agents into your live workflows, and stay on until outcomes ship.',
-    canonical: `${SITE}/products/fde-services`,
-    ogType: 'website',
-    priority: 0.8,
-    changefreq: 'monthly',
-    source: 'src/pages/FdeServicesPage.tsx',
-    imageAlt: 'FDE Services — forward deployed engineering for AI agents.',
-    jsonLd: [
-      softwareAppJsonLd({
-        name: 'FDE Services',
-        url: `${SITE}/products/fde-services`,
-        description:
-          'Forward Deployed Engineering. We embed with your team, deploy AI agents into your live workflows, and stay on until outcomes ship.',
-      }),
-      productBreadcrumbJsonLd('FDE Services', `${SITE}/products/fde-services`),
-    ],
-  },
-  {
-    path: '/products/free-setup',
-    title: 'Free Setup — Goschedule.ai',
-    description:
-      'Get a working AI agent deployed for free. We build the first agent at zero cost. You only pay if you decide to keep it live.',
-    canonical: `${SITE}/products/free-setup`,
-    ogType: 'website',
-    priority: 0.8,
-    changefreq: 'monthly',
-    source: 'src/pages/FreeSetupPage.tsx',
-    imageAlt: 'Free Setup — get your first AI agent deployed at zero upfront cost.',
-    jsonLd: [
-      softwareAppJsonLd({
-        name: 'Free Setup',
-        url: `${SITE}/products/free-setup`,
-        description:
-          'Get a working AI agent deployed for free. We build the first agent at zero cost. You only pay if you decide to keep it live.',
-      }),
-      productBreadcrumbJsonLd('Free Setup', `${SITE}/products/free-setup`),
-    ],
-  },
-  {
-    path: '/case-studies/cafe-muziris',
-    title: 'Cafe Muziris Case Study — Goschedule.ai',
-    description:
-      'How Goschedule deployed a voice and WhatsApp agent for Cafe Muziris that increased customer footfall by 9 percent and eliminated missed reservations across peak weeks.',
-    canonical: `${SITE}/case-studies/cafe-muziris`,
+      'WhatsApp and voice AI receptionist for Indian clinics. Built end to end and deployed to production.',
+    canonical: `${SITE}/work/replykaro`,
     ogType: 'website',
     priority: 0.7,
     changefreq: 'monthly',
-    source: 'src/pages/CafeMuzirisCaseStudyPage.tsx',
-    imageAlt: 'Cafe Muziris case study — 9 percent footfall increase with AI voice and WhatsApp.',
+    source: 'src/pages/ReplykaroPage.tsx',
+    imageAlt: 'ReplyKaro — built and shipped WhatsApp and voice receptionist',
   },
   {
-    path: '/products/resound',
-    title: 'Resound.ai — Outbound Sales Automation, End to End | Goschedule.ai',
+    path: '/work/resound',
+    title: 'Resound.ai — Built and shipped | Work',
     description:
-      'Multi-tenant outbound sales automation with AI reply handling and voice AI that qualifies leads and books meetings.',
-    canonical: `${SITE}/products/resound`,
+      'Multi-tenant outbound sales automation with AI reply handling and voice qualification. Built and deployed.',
+    canonical: `${SITE}/work/resound`,
     ogType: 'website',
-    priority: 0.8,
+    priority: 0.7,
     changefreq: 'monthly',
     source: 'src/pages/ResoundPage.tsx',
-    imageAlt: 'Resound.ai — outbound sales automation that books meetings end to end.',
-    jsonLd: [
-      softwareAppJsonLd({
-        name: 'Resound.ai',
-        url: `${SITE}/products/resound`,
-        description:
-          'Multi-tenant outbound sales automation with AI reply handling and voice AI that qualifies leads and books meetings.',
-      }),
-      productBreadcrumbJsonLd('Resound.ai', `${SITE}/products/resound`),
-    ],
+    imageAlt: 'Resound.ai — built and shipped outbound sales automation',
+  },
+  {
+    path: '/engagements',
+    title: 'Engagements & Pricing — Fractional GTM',
+    description:
+      'Three ways in: GTM Teardown (₹50,000), Pipeline Sprint (₹1,25,000/month), or Fractional GTM Lead (₹1,50,000/month).',
+    canonical: `${SITE}/engagements`,
+    ogType: 'website',
+    priority: 0.9,
+    changefreq: 'monthly',
+    source: 'src/pages/EngagementsPage.tsx',
+    imageAlt: 'Engagements and pricing — fractional GTM',
   },
   {
     path: '/blog',
-    title: 'Blog | Goschedule.ai',
+    title: 'Writing — Vishnu Rajan | Goschedule.ai',
     description:
-      'Insights on AI agents for revenue, sales, and operations — how to deploy them, what they replace, and what they unlock for your business.',
+      'Notes on GTM, voice AI, and selling into Indian enterprise — from Vishnu Rajan.',
     canonical: `${SITE}/blog`,
     ogType: 'website',
     priority: 0.7,
     changefreq: 'weekly',
     source: 'src/pages/BlogIndexPage.tsx',
+    imageAlt: 'Writing on GTM and voice AI — Goschedule.ai',
   },
   {
     path: '/docs',
-    title: 'Documentation — Guides for Goschedule.ai AI Agents | Goschedule.ai',
+    title: 'Documentation — Shipped agents | Goschedule.ai',
     description:
-      "Technical guides for Goschedule.ai's AI agents — ReplyKaro, Resound.ai, and Morning Brief — covering architecture, setup, and how each agent works.",
+      'Technical notes on ReplyKaro, Resound.ai, and Morning Brief — portfolio agents built end to end.',
     canonical: `${SITE}/docs`,
     ogType: 'website',
     priority: 0.7,
     changefreq: 'monthly',
     source: 'src/pages/DocsPage.tsx',
+    imageAlt: 'Documentation for shipped agents — Goschedule.ai',
   },
   {
     path: '/docs/technical-note',
     title: 'Our Technical Note | Goschedule.ai',
     description:
-      'How Goschedule.ai builds vertical AI agents that drive real business outcomes, not generic assistants.',
+      'How vertical AI agents are built for real business outcomes, not generic assistants.',
     canonical: `${SITE}/docs/technical-note`,
     ogType: 'website',
     priority: 0.6,
     changefreq: 'monthly',
     source: 'src/pages/DocsTechnicalNotePage.tsx',
+    imageAlt: 'Technical note — Goschedule.ai',
   },
   {
     path: '/docs/morning-brief',
@@ -261,6 +240,7 @@ const MARKETING_ROUTES = [
     priority: 0.6,
     changefreq: 'monthly',
     source: 'src/pages/DocsMorningBriefPage.tsx',
+    imageAlt: 'Morning Brief documentation',
   },
   {
     path: '/docs/replykaro',
@@ -272,6 +252,7 @@ const MARKETING_ROUTES = [
     priority: 0.6,
     changefreq: 'monthly',
     source: 'src/pages/DocsReplyKaroPage.tsx',
+    imageAlt: 'ReplyKaro documentation',
   },
   {
     path: '/docs/resound',
@@ -283,17 +264,19 @@ const MARKETING_ROUTES = [
     priority: 0.6,
     changefreq: 'monthly',
     source: 'src/pages/DocsResoundPage.tsx',
+    imageAlt: 'Resound.ai documentation',
   },
   {
     path: '/terms-and-conditions',
     title: 'Terms and Conditions | Goschedule.ai',
     description:
-      'Terms and conditions for using Goschedule.ai products and services.',
+      'Terms and conditions for using Goschedule.ai services.',
     canonical: `${SITE}/terms-and-conditions`,
     ogType: 'website',
     priority: 0.4,
     changefreq: 'yearly',
     source: 'src/components/TermsAndConditions.tsx',
+    imageAlt: 'Terms and conditions — Goschedule.ai',
   },
   {
     path: '/privacy-policy',
@@ -305,6 +288,7 @@ const MARKETING_ROUTES = [
     priority: 0.4,
     changefreq: 'yearly',
     source: 'src/components/PrivacyPolicy.tsx',
+    imageAlt: 'Privacy policy — Goschedule.ai',
   },
 ]
 

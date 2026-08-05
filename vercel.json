@@ -22,17 +22,17 @@
     },
     {
       "source": "/replykaro.html",
-      "destination": "/products/replykaro",
+      "destination": "/work/replykaro",
       "permanent": true
     },
     {
       "source": "/orlena.html",
-      "destination": "/products/morning-brief",
+      "destination": "/work",
       "permanent": true
     },
     {
       "source": "/orlena",
-      "destination": "/products/morning-brief",
+      "destination": "/work",
       "permanent": true
     },
     {
@@ -43,6 +43,41 @@
     {
       "source": "/waitlist.html",
       "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/products/replykaro",
+      "destination": "/work/replykaro",
+      "permanent": true
+    },
+    {
+      "source": "/products/resound",
+      "destination": "/work/resound",
+      "permanent": true
+    },
+    {
+      "source": "/products/fde-services",
+      "destination": "/engagements",
+      "permanent": true
+    },
+    {
+      "source": "/products/free-setup",
+      "destination": "/engagements",
+      "permanent": true
+    },
+    {
+      "source": "/products/morning-brief",
+      "destination": "/work",
+      "permanent": true
+    },
+    {
+      "source": "/products/:path*",
+      "destination": "/work",
+      "permanent": true
+    },
+    {
+      "source": "/case-studies/cafe-muziris",
+      "destination": "/work",
       "permanent": true
     }
   ],

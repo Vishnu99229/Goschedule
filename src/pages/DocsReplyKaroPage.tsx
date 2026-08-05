@@ -13,7 +13,7 @@ export default function DocsReplyKaroPage() {
       description="Technical documentation for ReplyKaro. An AI receptionist for clinics that answers calls, handles WhatsApp, and books appointments."
       canonical={`${SITE}/docs/replykaro`}
       heading="ReplyKaro Documentation"
-      relatedHref="/products/replykaro"
+      relatedHref="/work/replykaro"
       relatedLabel="Explore ReplyKaro"
     >
       <h2 className="markdown__h2">Overview</h2>
