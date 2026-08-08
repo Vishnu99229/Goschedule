@@ -64,8 +64,14 @@ const RESULTS = [
     value: '$600K ARR led as VP Sales. Seed-stage voice AI, Indian BFSI and BPO.',
   },
   {
+    label: 'Crown Security',
+    value:
+      '7 deals closed · ~₹2.4 Cr booked. Inbound sales agent and automated outbound for a physical security services company. 2025.',
+  },
+  {
     label: 'Epicode',
-    value: '[FILL]',
+    value:
+      '₹1.2 Cr closed. Fractional GTM for enterprise telephony middleware selling to Indian voice AI companies. Multi-party enterprise deals including a KYC voicebot for a life insurer.',
   },
   {
     label: 'Portfolio',
@@ -129,7 +135,8 @@ export default function HomePage() {
         <div className="home-lp__container">
           <p className="home-lp__proof-line">
             VP Sales at Vodex.ai — $600K ARR through seed · Currently running GTM at Epicode · Built
-            and shipped ReplyKaro and Resound.ai · Self-taught engineer — Python, Node.js, Go
+            and shipped ReplyKaro and Morning Brief. Resound.ai in progress · Self-taught engineer —
+            Python, Node.js, Go
           </p>
         </div>
       </section>
@@ -197,7 +204,7 @@ export default function HomePage() {
 
       <hr className="home-lp__rule" />
 
-      {/* Numbers — Epicode [FILL] intentional until supplied */}
+      {/* Numbers */}
       <section className="home-lp__section" id="results">
         <div className="home-lp__container">
           <h2 className="home-lp__h2">Numbers.</h2>

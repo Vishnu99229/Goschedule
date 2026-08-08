@@ -16,7 +16,7 @@ export default function BlogIndexPage() {
     '@type': 'Blog',
     name: 'Goschedule.ai Blog',
     description:
-      'Insights on AI agents for revenue, sales, and operations from the team at Goschedule.ai.',
+      'Notes on GTM, voice AI, and selling into Indian enterprise from Vishnu Rajan.',
     url: `${SITE}/blog`,
     publisher: {
       '@type': 'Organization',
@@ -43,8 +43,8 @@ export default function BlogIndexPage() {
   return (
     <main>
       <SEO
-        title="Blog | Goschedule.ai"
-        description="Insights on AI agents for revenue, sales, and operations — how to deploy them, what they replace, and what they unlock for your business."
+        title="Writing — Vishnu Rajan | Goschedule.ai"
+        description="Notes on GTM, voice AI, and selling into Indian enterprise. The clinic-specific posts are from ReplyKaro work."
         canonical={`${SITE}/blog`}
         ogType="website"
         jsonLd={blogJsonLd}
@@ -53,13 +53,11 @@ export default function BlogIndexPage() {
       <section className="section">
         <div className="container">
           <header className="blog-header">
-            <p className="blog-eyebrow">Blog</p>
-            <h1 className="blog-title">
-              Notes from the team building agents that run revenue.
-            </h1>
+            <p className="blog-eyebrow">Writing</p>
+            <h1 className="blog-title">Writing.</h1>
             <p className="blog-sub">
-              How AI agents work in the real world — what they replace, what
-              they unlock, and the patterns we keep seeing across our customers.
+              Notes on GTM, voice AI, and selling into Indian enterprise. The clinic-specific posts
+              below are from my ReplyKaro work.
             </p>
           </header>
 

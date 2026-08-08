@@ -3473,3 +3473,40 @@ a.footer-text:hover {
     padding-bottom: 72px;
   }
 }
+
+/* ── About page ───────────────────────────────────────── */
+
+.about-lp__hero-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.about-lp__hero-copy {
+  flex: 1 1 280px;
+  min-width: 0;
+}
+
+.about-lp__headshot {
+  width: 240px;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-raised);
+  flex: 0 0 auto;
+}
+
+@media (max-width: 640px) {
+  .about-lp__hero-row {
+    flex-direction: column-reverse;
+    gap: 28px;
+  }
+
+  .about-lp__headshot {
+    width: 160px;
+    height: 160px;
+  }
+}

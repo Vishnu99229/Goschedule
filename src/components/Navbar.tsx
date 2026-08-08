@@ -66,6 +66,11 @@ export default function Navbar() {
                             </Link>
                         </li>
                         <li>
+                            <Link to="/about" className="nav-link-plain">
+                                About
+                            </Link>
+                        </li>
+                        <li>
                             <a href="/#approach" className="nav-link-plain">
                                 Approach
                             </a>
@@ -136,6 +141,9 @@ export default function Navbar() {
             >
                 <Link to="/work" className="nav-link-plain">
                     Work
+                </Link>
+                <Link to="/about" className="nav-link-plain">
+                    About
                 </Link>
                 <a href="/#approach" className="nav-link-plain">
                     Approach

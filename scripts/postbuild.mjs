@@ -150,13 +150,25 @@ const MARKETING_ROUTES = [
     path: '/work',
     title: 'Work — Vishnu Rajan',
     description:
-      'Portfolio of GTM and product work: Vodex.ai, Epicode, ReplyKaro, Resound.ai.',
+      'Portfolio of GTM and product work: Vodex.ai, Epicode, ReplyKaro, Morning Brief, Resound.ai.',
     canonical: `${SITE}/work`,
     ogType: 'website',
     priority: 0.9,
     changefreq: 'monthly',
     source: 'src/pages/WorkPage.tsx',
     imageAlt: 'Work portfolio — Vishnu Rajan',
+  },
+  {
+    path: '/about',
+    title: 'About — Vishnu Rajan',
+    description:
+      'Bangalore-based GTM operator and builder. Fifteen years in enterprise sales — Concentrix, EY, VP Sales at Vodex.ai — now independent. Fractional GTM and select full-time roles.',
+    canonical: `${SITE}/about`,
+    ogType: 'website',
+    priority: 0.9,
+    changefreq: 'monthly',
+    source: 'src/pages/AboutPage.tsx',
+    imageAlt: 'About Vishnu Rajan — fractional GTM and builder',
   },
   {
     path: '/work/replykaro',

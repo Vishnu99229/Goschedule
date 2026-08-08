@@ -14,6 +14,7 @@ import DocsMorningBriefPage from './pages/DocsMorningBriefPage'
 import DocsReplyKaroPage from './pages/DocsReplyKaroPage'
 import DocsResoundPage from './pages/DocsResoundPage'
 import WorkPage from './pages/WorkPage'
+import AboutPage from './pages/AboutPage'
 import EngagementsPage from './pages/EngagementsPage'
 import TermsAndConditions from './components/TermsAndConditions'
 import PrivacyPolicy from './components/PrivacyPolicy'
@@ -101,6 +102,7 @@ function App() {
         <Route path="/work" element={<WorkPage />} />
         <Route path="/work/replykaro" element={<ReplykaroPage />} />
         <Route path="/work/resound" element={<ResoundPage />} />
+        <Route path="/about" element={<AboutPage />} />
         <Route path="/engagements" element={<EngagementsPage />} />
         {/* Legacy product routes: vercel.json 301s in prod; kept for local SPA without redirects */}
         <Route path="/products/resound" element={<ResoundPage />} />

@@ -43,6 +43,7 @@ export default function Footer() {
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                         <div style={{ fontSize: 13, fontWeight: 600, opacity: 0.7 }}>Company</div>
+                        <Link to="/about" className="footer-text">About</Link>
                         <Link to="/engagements" className="footer-text">Engagements</Link>
                         <a href="/#approach" className="footer-text">Approach</a>
                     </div>
