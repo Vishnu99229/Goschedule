@@ -21,8 +21,8 @@ const GTM = [
   {
     title: 'Epicode',
     role: 'Fractional GTM (current)',
-    body: 'Running GTM and pre-sales for enterprise telephony middleware serving Indian voice AI companies.',
-    stat: 'Owned accounts, pre-sales engineering, technical and commercial proposals, webinars, and the marketing site. ₹1.2 Cr closed to date. Led multi-party enterprise implementations including a KYC voicebot for a life insurer.',
+    body: 'Running GTM, sales, and marketing for enterprise telephony middleware serving Indian voice AI companies — including the website.',
+    stat: 'Owned accounts, pre-sales engineering, technical and commercial proposals, webinars, and the marketing site. Led multi-party enterprise implementations including a KYC voicebot for a life insurer.',
     href: null,
     status: null,
   },

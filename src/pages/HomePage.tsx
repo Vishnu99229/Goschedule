@@ -71,7 +71,7 @@ const RESULTS = [
   {
     label: 'Epicode',
     value:
-      '₹1.2 Cr closed. Fractional GTM for enterprise telephony middleware selling to Indian voice AI companies. Multi-party enterprise deals including a KYC voicebot for a life insurer.',
+      'Running GTM, sales, and marketing — including the website. Enterprise telephony middleware for Indian voice AI companies. Multi-party deals including a KYC voicebot for a life insurer.',
   },
   {
     label: 'Portfolio',
