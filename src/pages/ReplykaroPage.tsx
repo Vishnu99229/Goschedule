@@ -141,7 +141,7 @@ function FeatureVisual({ type }: { type: 'sparkle' | 'chat' | 'grid' }) {
                 viewport={{ once: true }}
                 transition={{ type: 'spring', stiffness: 200, damping: 20 }}
             >
-                We’re open till 9 — want us to hold a size M?
+                We’re open till 9 - want us to hold a size M?
             </motion.div>
         )
     }
@@ -195,7 +195,7 @@ export default function ReplykaroPage() {
     return (
         <main style={{ background: BG, color: TEXT, minHeight: '80vh', paddingTop: 48, paddingBottom: 100 }}>
             <SEO
-                title="ReplyKaro — Built and shipped | Work"
+                title="ReplyKaro - Built and shipped | Work"
                 description="WhatsApp and voice AI receptionist for Indian clinics. Built end to end and deployed to production."
                 canonical="https://www.goschedule.ai/work/replykaro"
                 jsonLd={[
@@ -240,7 +240,7 @@ export default function ReplykaroPage() {
                         </h1>
                         <p className="body-lg" style={{ color: TEXT_MUTED, maxWidth: 520, marginBottom: 28 }}>
                             Built end to end and deployed to production. Handled inbound calls and WhatsApp in
-                            Malayalam, English, and Hindi. Qualified, booked, and routed — without a human on the
+                            Malayalam, English, and Hindi. Qualified, booked, and routed - without a human on the
                             line.
                         </p>
                         <Link to="/engagements" className="btn btn-primary" style={{ display: 'inline-flex' }}>

@@ -1,9 +1,9 @@
 import SEO from '../components/SEO'
 import { LINKEDIN_URL } from '../constants/links'
 
-const ABOUT_TITLE = 'About — Vishnu Rajan'
+const ABOUT_TITLE = 'About - Vishnu Rajan'
 const ABOUT_DESCRIPTION =
-  'Bangalore-based GTM operator and builder. Fifteen years in enterprise sales — Concentrix, EY, VP Sales at Vodex.ai — now independent. Fractional GTM and select full-time roles.'
+  'Bangalore-based GTM operator and builder. Fifteen years in enterprise sales - Concentrix, EY, VP Sales at Vodex.ai - now independent. Fractional GTM and select full-time roles.'
 
 export default function AboutPage() {
   return (
@@ -42,7 +42,7 @@ export default function AboutPage() {
           <p className="home-lp__closing" style={{ maxWidth: '62ch' }}>
             Economics at Christ University, Bangalore. Started in contact centre operations at
             Concentrix, then risk advisory at EY. Enterprise sales at a global BPO, then VP Sales at
-            Vodex.ai — a seed-stage voice AI company — where I built the enterprise motion from zero
+            Vodex.ai - a seed-stage voice AI company - where I built the enterprise motion from zero
             into Indian BFSI and BPO, closed $600K ARR through the seed round, and contributed to the
             raise.
           </p>
@@ -61,16 +61,16 @@ export default function AboutPage() {
           <div className="home-lp__cards" style={{ gridTemplateColumns: '1fr' }}>
             <article className="home-lp__card">
               <h3 className="home-lp__card-title" style={{ fontSize: 20 }}>
-                2024 — present · Independent
+                2024 - present · Independent
               </h3>
               <p className="home-lp__card-body">
-                Fractional GTM for AI companies selling into Indian enterprise — Epicode,
+                Fractional GTM for AI companies selling into Indian enterprise - Epicode,
                 Arrowhead.ai, eShipz. Building voice and WhatsApp AI products end to end.
               </p>
             </article>
             <article className="home-lp__card">
               <h3 className="home-lp__card-title" style={{ fontSize: 20 }}>
-                2022 — 2024 · VP Sales, Vodex.ai
+                2022 - 2024 · VP Sales, Vodex.ai
               </h3>
               <p className="home-lp__card-body">
                 Built enterprise sales from zero for a seed-stage voice AI company. $600K ARR through
@@ -105,7 +105,7 @@ export default function AboutPage() {
               </h3>
               <p className="home-lp__card-body">
                 Enterprise AI into Indian BFSI, telecom, and BPO. DLT registration, TRAI regulations,
-                InfoSec questionnaires, VAPT, procurement — end to end. Pilot pricing that converts
+                InfoSec questionnaires, VAPT, procurement - end to end. Pilot pricing that converts
                 to production.
               </p>
             </article>
@@ -115,7 +115,7 @@ export default function AboutPage() {
               </h3>
               <p className="home-lp__card-body">
                 Node.js, Python, Go. Voice AI: Vapi, Retell, Twilio, Deepgram, Sarvam. Data: Supabase,
-                Postgres. Automation: n8n. Everything I list, I&apos;ve deployed to production — not
+                Postgres. Automation: n8n. Everything I list, I&apos;ve deployed to production - not
                 slideware.
               </p>
             </article>

@@ -27,7 +27,7 @@ export default function EngagementsPage() {
   return (
     <main className="home-lp">
       <SEO
-        title="Engagements & Pricing — Fractional GTM"
+        title="Engagements & Pricing - Fractional GTM"
         description="Three ways in: GTM Teardown, Pipeline Sprint, or Fractional GTM Lead. Fees from ₹50,000."
         canonical="https://www.goschedule.ai/engagements"
       />

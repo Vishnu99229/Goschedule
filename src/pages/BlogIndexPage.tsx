@@ -43,7 +43,7 @@ export default function BlogIndexPage() {
   return (
     <main>
       <SEO
-        title="Writing — Vishnu Rajan | Goschedule.ai"
+        title="Writing - Vishnu Rajan | Goschedule.ai"
         description="Notes on GTM, voice AI, and selling into Indian enterprise. The clinic-specific posts are from ReplyKaro work."
         canonical={`${SITE}/blog`}
         ogType="website"

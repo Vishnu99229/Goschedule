@@ -27,9 +27,9 @@ const SITE = 'https://www.goschedule.ai'
 const DEFAULT_OG = `${SITE}/og-image-v3.png`
 
 const HOME_TITLE =
-  'Fractional GTM for AI companies selling into Indian enterprise — Vishnu Rajan'
+  'Fractional GTM for AI companies selling into Indian enterprise - Vishnu Rajan'
 const HOME_DESCRIPTION =
-  'I run GTM for AI companies selling into Indian banks, insurers, and BPOs. Pipeline, pricing, compliance readiness, and the sales motion — two days a week.'
+  'I run GTM for AI companies selling into Indian banks, insurers, and BPOs. Pipeline, pricing, compliance readiness, and the sales motion - two days a week.'
 
 // ── Shared JSON-LD builders (mirror the client-side <SEO jsonLd> values so
 //    the same schema appears in the raw static HTML, not only after hydration) ──
@@ -40,7 +40,7 @@ const ORG_JSONLD = {
   url: `${SITE}/`,
   logo: `${SITE}/favicon.png`,
   description:
-    'Fractional GTM for AI companies selling into Indian enterprise — pipeline, pricing, compliance readiness, and the sales motion.',
+    'Fractional GTM for AI companies selling into Indian enterprise - pipeline, pricing, compliance readiness, and the sales motion.',
 }
 
 const WEBSITE_JSONLD = {
@@ -114,7 +114,7 @@ function productBreadcrumbJsonLd(name, url) {
 }
 
 // Real per-page last-modified from git (committer date, YYYY-MM-DD). Returns
-// null when git is unavailable so the sitemap falls back to today's date —
+// null when git is unavailable so the sitemap falls back to today's date -
 // this keeps the existing behaviour intact while removing build-date churn for
 // pages that have not actually changed.
 function gitLastmod(relPath) {
@@ -142,13 +142,13 @@ const MARKETING_ROUTES = [
     changefreq: 'weekly',
     source: 'index.html',
     imageAlt:
-      'Fractional GTM for AI companies selling into Indian enterprise — Vishnu Rajan',
+      'Fractional GTM for AI companies selling into Indian enterprise - Vishnu Rajan',
     jsonLd: [ORG_JSONLD, WEBSITE_JSONLD, PERSON_JSONLD, PROFESSIONAL_SERVICE_JSONLD],
   },
   // /products/* and /case-studies/cafe-muziris are 301'd in vercel.json.
   {
     path: '/work',
-    title: 'Work — Vishnu Rajan',
+    title: 'Work - Vishnu Rajan',
     description:
       'Portfolio of GTM and product work: Vodex.ai, Epicode, ReplyKaro, Morning Brief, Resound.ai.',
     canonical: `${SITE}/work`,
@@ -156,23 +156,23 @@ const MARKETING_ROUTES = [
     priority: 0.9,
     changefreq: 'monthly',
     source: 'src/pages/WorkPage.tsx',
-    imageAlt: 'Work portfolio — Vishnu Rajan',
+    imageAlt: 'Work portfolio - Vishnu Rajan',
   },
   {
     path: '/about',
-    title: 'About — Vishnu Rajan',
+    title: 'About - Vishnu Rajan',
     description:
-      'Bangalore-based GTM operator and builder. Fifteen years in enterprise sales — Concentrix, EY, VP Sales at Vodex.ai — now independent. Fractional GTM and select full-time roles.',
+      'Bangalore-based GTM operator and builder. Fifteen years in enterprise sales - Concentrix, EY, VP Sales at Vodex.ai - now independent. Fractional GTM and select full-time roles.',
     canonical: `${SITE}/about`,
     ogType: 'website',
     priority: 0.9,
     changefreq: 'monthly',
     source: 'src/pages/AboutPage.tsx',
-    imageAlt: 'About Vishnu Rajan — fractional GTM and builder',
+    imageAlt: 'About Vishnu Rajan - fractional GTM and builder',
   },
   {
     path: '/work/replykaro',
-    title: 'ReplyKaro — Built and shipped | Work',
+    title: 'ReplyKaro - Built and shipped | Work',
     description:
       'WhatsApp and voice AI receptionist for Indian clinics. Built end to end and deployed to production.',
     canonical: `${SITE}/work/replykaro`,
@@ -180,11 +180,11 @@ const MARKETING_ROUTES = [
     priority: 0.7,
     changefreq: 'monthly',
     source: 'src/pages/ReplykaroPage.tsx',
-    imageAlt: 'ReplyKaro — built and shipped WhatsApp and voice receptionist',
+    imageAlt: 'ReplyKaro - built and shipped WhatsApp and voice receptionist',
   },
   {
     path: '/work/resound',
-    title: 'Resound.ai — Built and shipped | Work',
+    title: 'Resound.ai - Built and shipped | Work',
     description:
       'Multi-tenant outbound sales automation with AI reply handling and voice qualification. Built and deployed.',
     canonical: `${SITE}/work/resound`,
@@ -192,11 +192,11 @@ const MARKETING_ROUTES = [
     priority: 0.7,
     changefreq: 'monthly',
     source: 'src/pages/ResoundPage.tsx',
-    imageAlt: 'Resound.ai — built and shipped outbound sales automation',
+    imageAlt: 'Resound.ai - built and shipped outbound sales automation',
   },
   {
     path: '/engagements',
-    title: 'Engagements & Pricing — Fractional GTM',
+    title: 'Engagements & Pricing - Fractional GTM',
     description:
       'Three ways in: GTM Teardown (₹50,000), Pipeline Sprint (₹1,25,000/month), or Fractional GTM Lead (₹1,50,000/month).',
     canonical: `${SITE}/engagements`,
@@ -204,31 +204,31 @@ const MARKETING_ROUTES = [
     priority: 0.9,
     changefreq: 'monthly',
     source: 'src/pages/EngagementsPage.tsx',
-    imageAlt: 'Engagements and pricing — fractional GTM',
+    imageAlt: 'Engagements and pricing - fractional GTM',
   },
   {
     path: '/blog',
-    title: 'Writing — Vishnu Rajan | Goschedule.ai',
+    title: 'Writing - Vishnu Rajan | Goschedule.ai',
     description:
-      'Notes on GTM, voice AI, and selling into Indian enterprise — from Vishnu Rajan.',
+      'Notes on GTM, voice AI, and selling into Indian enterprise - from Vishnu Rajan.',
     canonical: `${SITE}/blog`,
     ogType: 'website',
     priority: 0.7,
     changefreq: 'weekly',
     source: 'src/pages/BlogIndexPage.tsx',
-    imageAlt: 'Writing on GTM and voice AI — Goschedule.ai',
+    imageAlt: 'Writing on GTM and voice AI - Goschedule.ai',
   },
   {
     path: '/docs',
-    title: 'Documentation — Shipped agents | Goschedule.ai',
+    title: 'Documentation - Shipped agents | Goschedule.ai',
     description:
-      'Technical notes on ReplyKaro, Resound.ai, and Morning Brief — portfolio agents built end to end.',
+      'Technical notes on ReplyKaro, Resound.ai, and Morning Brief - portfolio agents built end to end.',
     canonical: `${SITE}/docs`,
     ogType: 'website',
     priority: 0.7,
     changefreq: 'monthly',
     source: 'src/pages/DocsPage.tsx',
-    imageAlt: 'Documentation for shipped agents — Goschedule.ai',
+    imageAlt: 'Documentation for shipped agents - Goschedule.ai',
   },
   {
     path: '/docs/technical-note',
@@ -240,7 +240,7 @@ const MARKETING_ROUTES = [
     priority: 0.6,
     changefreq: 'monthly',
     source: 'src/pages/DocsTechnicalNotePage.tsx',
-    imageAlt: 'Technical note — Goschedule.ai',
+    imageAlt: 'Technical note - Goschedule.ai',
   },
   {
     path: '/docs/morning-brief',
@@ -288,7 +288,7 @@ const MARKETING_ROUTES = [
     priority: 0.4,
     changefreq: 'yearly',
     source: 'src/components/TermsAndConditions.tsx',
-    imageAlt: 'Terms and conditions — Goschedule.ai',
+    imageAlt: 'Terms and conditions - Goschedule.ai',
   },
   {
     path: '/privacy-policy',
@@ -300,7 +300,7 @@ const MARKETING_ROUTES = [
     priority: 0.4,
     changefreq: 'yearly',
     source: 'src/components/PrivacyPolicy.tsx',
-    imageAlt: 'Privacy policy — Goschedule.ai',
+    imageAlt: 'Privacy policy - Goschedule.ai',
   },
 ]
 
@@ -354,7 +354,7 @@ function injectMeta(html, route) {
     /<meta\s+property="og:image"\s+content="[^"]*"\s*\/?>/,
     `<meta property="og:image" content="${escapeHtml(ogImage)}" />`
   )
-  // Per-route og:image:alt — only override when the route supplies one, so
+  // Per-route og:image:alt - only override when the route supplies one, so
   // routes without imageAlt keep the base (homepage) alt exactly as before.
   if (route.imageAlt) {
     result = result.replace(

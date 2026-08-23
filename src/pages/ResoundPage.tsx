@@ -98,7 +98,7 @@ export default function ResoundPage() {
     return (
         <main style={{ background: BG, color: TEXT, minHeight: '80vh', paddingTop: 48, paddingBottom: 100 }}>
             <SEO
-                title="Resound.ai — Built and shipped | Work"
+                title="Resound.ai - Built and shipped | Work"
                 description="Multi-tenant outbound sales automation with AI reply handling and voice qualification. Built and deployed."
                 canonical="https://www.goschedule.ai/work/resound"
                 jsonLd={[
@@ -143,7 +143,7 @@ export default function ResoundPage() {
                         </h1>
                         <p className="body-lg" style={{ color: TEXT_MUTED, maxWidth: 520, marginBottom: 28 }}>
                             Built and deployed as a multi-tenant platform that ran outbound from first touch to
-                            booked meeting — CRM, reply classification, consent, and voice qualification.
+                            booked meeting - CRM, reply classification, consent, and voice qualification.
                         </p>
                         <Link to="/engagements" className="btn btn-primary" style={{ display: 'inline-flex' }}>
                             See how we work together

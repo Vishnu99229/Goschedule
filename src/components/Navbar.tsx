@@ -106,7 +106,7 @@ export default function Navbar() {
                     >
                         <img
                             src="/images/claude-partner-network.png"
-                            alt="Claude Partner Network — Goschedule.ai (Partner)"
+                            alt="Claude Partner Network - Goschedule.ai (Partner)"
                             className="claude-partner-badge__image"
                         />
                     </a>

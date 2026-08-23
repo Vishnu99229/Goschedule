@@ -5,7 +5,7 @@ const GTM = [
   {
     title: 'Vodex.ai',
     role: 'VP Sales',
-    body: 'Built enterprise sales from zero for a seed-stage voice AI company. Owned the motion into Indian BFSI and BPO — the compliance path, the pricing, the pilot-to-production conversion. Contributed to the seed raise.',
+    body: 'Built enterprise sales from zero for a seed-stage voice AI company. Owned the motion into Indian BFSI and BPO - the compliance path, the pricing, the pilot-to-production conversion. Contributed to the seed raise.',
     stat: 'Led $600K ARR through the seed round. First enterprise logos in Indian BFSI and BPO.',
     href: null as string | null,
     status: null as string | null,
@@ -21,7 +21,7 @@ const GTM = [
   {
     title: 'Epicode',
     role: 'Fractional GTM (current)',
-    body: 'Running GTM, sales, and marketing for enterprise telephony middleware serving Indian voice AI companies — including the website.',
+    body: 'Running GTM, sales, and marketing for enterprise telephony middleware serving Indian voice AI companies - including the website.',
     stat: 'Owned accounts, pre-sales engineering, technical and commercial proposals, webinars, and the marketing site. Led multi-party enterprise implementations including a KYC voicebot for a life insurer.',
     href: null,
     status: null,
@@ -40,7 +40,7 @@ const PRODUCTS = [
   {
     title: 'Morning Brief',
     role: 'Product · Reviving',
-    body: 'A voice agent that calls you every morning and briefs you on the news that matters to you — filtered by your interests, your holdings, and the people you\'re tracking. RSS + NewsAPI → Claude Sonnet → Vapi.',
+    body: 'A voice agent that calls you every morning and briefs you on the news that matters to you - filtered by your interests, your holdings, and the people you\'re tracking. RSS + NewsAPI → Claude Sonnet → Vapi.',
     stat: 'Built and shipped. Reviving now.',
     href: null,
     status: null,
@@ -97,7 +97,7 @@ export default function WorkPage() {
   return (
     <main className="home-lp">
       <SEO
-        title="Work — Vishnu Rajan"
+        title="Work - Vishnu Rajan"
         description="Portfolio of GTM and product work: Vodex.ai, Epicode, ReplyKaro, Morning Brief, Resound.ai."
         canonical="https://www.goschedule.ai/work"
       />

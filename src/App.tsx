@@ -22,9 +22,9 @@ import PrivacyPolicy from './components/PrivacyPolicy'
 const SITE = 'https://www.goschedule.ai'
 
 const HOME_TITLE =
-  'Fractional GTM for AI companies selling into Indian enterprise — Vishnu Rajan'
+  'Fractional GTM for AI companies selling into Indian enterprise - Vishnu Rajan'
 const HOME_DESCRIPTION =
-  'I run GTM for AI companies selling into Indian banks, insurers, and BPOs. Pipeline, pricing, compliance readiness, and the sales motion — two days a week.'
+  'I run GTM for AI companies selling into Indian banks, insurers, and BPOs. Pipeline, pricing, compliance readiness, and the sales motion - two days a week.'
 
 const organizationJsonLd = {
   '@context': 'https://schema.org',
@@ -33,7 +33,7 @@ const organizationJsonLd = {
   url: `${SITE}/`,
   logo: `${SITE}/favicon.png`,
   description:
-    'Fractional GTM for AI companies selling into Indian enterprise — pipeline, pricing, compliance readiness, and the sales motion.',
+    'Fractional GTM for AI companies selling into Indian enterprise - pipeline, pricing, compliance readiness, and the sales motion.',
 }
 
 const websiteJsonLd = {

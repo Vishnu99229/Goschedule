@@ -1,21 +1,6 @@
 import { Link } from 'react-router-dom'
 import { DEPLOY_AGENT_URL, LINKEDIN_URL } from '../constants/links'
 
-const PROBLEM = [
-  {
-    title: 'It kills it in compliance.',
-    body: 'DLT registration, TRAI regulations, data residency, PII retention policy. Your buyer\'s compliance team asks a question in week six that you can\'t answer, and the deal quietly stops moving.',
-  },
-  {
-    title: 'It kills it in InfoSec.',
-    body: 'A security questionnaire with 180 rows, a VAPT report you don\'t have, and a SOC 2 you haven\'t started. Most AI startups discover this after the champion has already sold internally.',
-  },
-  {
-    title: 'It kills it in procurement.',
-    body: 'Pilot budget is not production budget. The pilot succeeds, everyone is happy, and then the contract sits with a procurement team that has never bought AI before and has no category for it.',
-  },
-]
-
 const OWN = [
   {
     title: 'ICP and segmentation',
@@ -54,7 +39,7 @@ const STEPS = [
   },
   {
     title: 'I deploy agents that scale what worked.',
-    body: 'Once the playbook is proven, I hand it to AI agents — WhatsApp automation, voice callers, email sequences — that keep running the plays that got replies.',
+    body: 'Once the playbook is proven, I hand it to AI agents - WhatsApp automation, voice callers, email sequences - that keep running the plays that got replies.',
   },
 ]
 
@@ -71,7 +56,7 @@ const RESULTS = [
   {
     label: 'Epicode',
     value:
-      'Running GTM, sales, and marketing — including the website. Enterprise telephony middleware for Indian voice AI companies. Multi-party deals including a KYC voicebot for a life insurer.',
+      'Running GTM, sales, and marketing - including the website. Enterprise telephony middleware for Indian voice AI companies. Multi-party deals including a KYC voicebot for a life insurer.',
   },
   {
     label: 'Portfolio',
@@ -122,7 +107,7 @@ export default function HomePage() {
 
           <p className="home-lp__sub home-lp__sub--wide">
             Your demo works. Your pipeline doesn&apos;t. I&apos;ve sold voice AI into Indian banks,
-            insurers, and BPOs — through DLT approvals, InfoSec reviews, and eighteen-week
+            insurers, and BPOs - through DLT approvals, InfoSec reviews, and eighteen-week
             procurement cycles. I do that for two or three companies at a time.
           </p>
 
@@ -134,34 +119,9 @@ export default function HomePage() {
       <section className="home-lp__proof" aria-label="Background">
         <div className="home-lp__container">
           <p className="home-lp__proof-line">
-            VP Sales at Vodex.ai — $600K ARR through seed · Currently running GTM at Epicode · Built
-            and shipped ReplyKaro and Morning Brief. Resound.ai in progress · Self-taught engineer —
+            VP Sales at Vodex.ai - $600K ARR through seed · Currently running GTM at Epicode · Built
+            and shipped ReplyKaro and Morning Brief. Resound.ai in progress · Self-taught engineer -
             Python, Node.js, Go
-          </p>
-        </div>
-      </section>
-
-      <hr className="home-lp__rule" />
-
-      {/* The problem */}
-      <section className="home-lp__section" id="problem">
-        <div className="home-lp__container">
-          <h2 className="home-lp__h2 home-lp__h2--wide">
-            Indian enterprise doesn&apos;t kill your deal on the demo.
-          </h2>
-
-          <div className="home-lp__steps">
-            {PROBLEM.map((item) => (
-              <article key={item.title} className="home-lp__step">
-                <h3 className="home-lp__step-title">{item.title}</h3>
-                <p className="home-lp__step-body">{item.body}</p>
-              </article>
-            ))}
-          </div>
-
-          <p className="home-lp__closing">
-            I&apos;ve been on the vendor side of all three, in this market, repeatedly. That&apos;s
-            the whole offer.
           </p>
         </div>
       </section>
