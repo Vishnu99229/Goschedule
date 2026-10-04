@@ -8,7 +8,6 @@ const GTM = [
     body: 'Built enterprise sales from zero for a seed-stage voice AI company. Owned the motion into Indian BFSI and BPO - the compliance path, the pricing, the pilot-to-production conversion. Contributed to the seed raise.',
     stat: 'Led $600K ARR through the seed round. First enterprise logos in Indian BFSI and BPO.',
     href: null as string | null,
-    status: null as string | null,
   },
   {
     title: 'Crown Security',
@@ -16,15 +15,6 @@ const GTM = [
     body: 'Built an inbound sales agent and automated outbound lead generation for a physical security services company. Seven deals closed through the motion, ~₹2.4 Cr in booked revenue.',
     stat: null,
     href: null,
-    status: null,
-  },
-  {
-    title: 'Epicode',
-    role: 'Fractional GTM (current)',
-    body: 'Running GTM, sales, and marketing for enterprise telephony middleware serving Indian voice AI companies - including the website.',
-    stat: 'Owned accounts, pre-sales engineering, technical and commercial proposals, webinars, and the marketing site. Led multi-party enterprise implementations including a KYC voicebot for a life insurer.',
-    href: null,
-    status: null,
   },
 ]
 
@@ -35,23 +25,13 @@ const PRODUCTS = [
     body: 'WhatsApp and voice AI receptionist for Indian clinics. Node.js, Vapi, Twilio, Supabase, React dashboard. Built end to end and deployed to production.',
     stat: null as string | null,
     href: '/work/replykaro' as string | null,
-    status: null as string | null,
   },
   {
     title: 'Morning Brief',
-    role: 'Product · Reviving',
+    role: 'Reviving',
     body: 'A voice agent that calls you every morning and briefs you on the news that matters to you - filtered by your interests, your holdings, and the people you\'re tracking. RSS + NewsAPI → Claude Sonnet → Vapi.',
-    stat: 'Built and shipped. Reviving now.',
-    href: null,
-    status: null,
-  },
-  {
-    title: 'Resound.ai',
-    role: 'Built and shipped',
-    body: 'Multi-tenant outbound sales automation with AI reply handling and voice qualification. Built and deployed.',
-    stat: null,
-    href: '/work/resound',
-    status: 'In progress',
+    stat: 'Originally built and shipped; bringing it back now.',
+    href: '/docs/morning-brief',
   },
 ]
 
@@ -60,15 +40,7 @@ type Card = (typeof GTM)[number] | (typeof PRODUCTS)[number]
 function CaseCard({ item }: { item: Card }) {
   const inner = (
     <>
-      <p className="home-lp__card-stat" style={{ marginBottom: 4 }}>
-        {item.role}
-        {item.status ? (
-          <>
-            {' · '}
-            <em style={{ fontStyle: 'italic', color: 'var(--text-faint)' }}>{item.status}</em>
-          </>
-        ) : null}
-      </p>
+      <p className="home-lp__card-stat" style={{ marginBottom: 4 }}>{item.role}</p>
       <h3 className="home-lp__card-title" style={{ fontSize: 24 }}>
         {item.title}
       </h3>
@@ -98,7 +70,7 @@ export default function WorkPage() {
     <main className="home-lp">
       <SEO
         title="Work - Vishnu Rajan"
-        description="Portfolio of GTM and product work: Vodex.ai, Epicode, ReplyKaro, Morning Brief, Resound.ai."
+        description="Portfolio of GTM and product work: Vodex.ai, Crown Security, ReplyKaro, and Morning Brief."
         canonical="https://www.goschedule.ai/work"
       />
 

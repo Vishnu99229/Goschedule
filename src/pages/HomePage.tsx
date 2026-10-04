@@ -1,7 +1,50 @@
+import { lazy, Suspense } from 'react'
 import { Link } from 'react-router-dom'
-import { DEPLOY_AGENT_URL, LINKEDIN_URL } from '../constants/links'
+import { getAllPosts, formatPostDate } from '../blog/posts'
+import { BookCallButton } from '../components/voice/VoiceAgent'
 
-const OWN = [
+const VoiceAgent = lazy(() => import('../components/voice/VoiceAgent'))
+import { HOME_HEADLINE, HOME_SUBLINE } from '../constants/copy'
+import { LINKEDIN_URL } from '../constants/links'
+
+const PROOF = [
+  {
+    label: 'Vodex.ai',
+    value: 'VP Sales · $600K ARR through seed. Seed-stage voice AI, Indian BFSI and BPO.',
+  },
+  {
+    label: 'Crown Security',
+    value: '7 deals closed · ~₹2.4 Cr booked. Inbound sales agent and automated outbound, 2025.',
+  },
+  {
+    label: 'ReplyKaro',
+    value: 'WhatsApp and voice receptionist for Indian clinics — built end to end and live.',
+  },
+  {
+    label: 'Builder',
+    value: 'Self-taught engineer: Python, Node.js, Go.',
+  },
+]
+
+const WORK = [
+  {
+    title: 'Vodex.ai',
+    outcome: '$600K ARR through seed as VP Sales.',
+    href: '/work',
+  },
+  {
+    title: 'Crown Security',
+    outcome: '7 deals · ~₹2.4 Cr booked in 2025.',
+    href: '/work',
+  },
+  {
+    title: 'ReplyKaro',
+    outcome: 'WhatsApp and voice receptionist for Indian clinics.',
+    href: '/work/replykaro',
+  },
+]
+
+const SERVICES = [
   {
     title: 'ICP and segmentation',
     body: 'Which Indian enterprise segments will actually buy at your ACV and cycle length, and which will burn six months of runway.',
@@ -16,7 +59,7 @@ const OWN = [
   },
   {
     title: 'Compliance and security readiness',
-    body: 'The artifacts your buyer\'s teams will ask for, prepared before they ask.',
+    body: "The artifacts your buyer's teams will ask for, prepared before they ask.",
   },
   {
     title: 'Pipeline',
@@ -39,106 +82,59 @@ const STEPS = [
   },
   {
     title: 'I deploy agents that scale what worked.',
-    body: 'Once the playbook is proven, I hand it to AI agents - WhatsApp automation, voice callers, email sequences - that keep running the plays that got replies.',
+    body: 'Once the playbook is proven, I hand it to AI agents — WhatsApp automation, voice callers, email sequences — that keep running the plays that got replies.',
   },
 ]
 
-const RESULTS = [
+const PRODUCTS = [
   {
-    label: 'Vodex.ai',
-    value: '$600K ARR led as VP Sales. Seed-stage voice AI, Indian BFSI and BPO.',
-  },
-  {
-    label: 'Crown Security',
-    value:
-      '7 deals closed · ~₹2.4 Cr booked. Inbound sales agent and automated outbound for a physical security services company. 2025.',
-  },
-  {
-    label: 'Epicode',
-    value:
-      'Running GTM, sales, and marketing - including the website. Enterprise telephony middleware for Indian voice AI companies. Multi-party deals including a KYC voicebot for a life insurer.',
-  },
-  {
-    label: 'Portfolio',
-    value: 'Two shipped products (ReplyKaro, Resound.ai). Built end to end in Node, Python, Go.',
+    title: 'ReplyKaro',
+    body: 'WhatsApp and voice AI for clinic front desks — booking, reminders, and inbound that does not hit voicemail.',
+    href: '/work/replykaro',
   },
 ]
-
-const PORTFOLIO = [
-  { title: 'Vodex.ai', href: '/work' },
-  { title: 'Epicode', href: '/work' },
-  { title: 'ReplyKaro', href: '/work/replykaro' },
-  { title: 'Resound.ai', href: '/work/resound' },
-]
-
-function CtaPair({ className = '' }: { className?: string }) {
-  return (
-    <div className={`home-lp__cta-row ${className}`.trim()}>
-      <a
-        href={DEPLOY_AGENT_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="home-lp__btn home-lp__btn--primary"
-      >
-        Book a 20-min call →
-      </a>
-      <a
-        href={LINKEDIN_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="home-lp__btn home-lp__btn--secondary"
-      >
-        Message me on LinkedIn
-      </a>
-    </div>
-  )
-}
 
 export default function HomePage() {
+  const latestPosts = getAllPosts().slice(0, 3)
+
   return (
-    <main className="home-lp">
-      {/* Hero */}
-      <section className="home-lp__hero">
-        <div className="home-lp__container">
-          <h1 className="home-lp__h1 home-lp__h1--wide">
-            Fractional GTM for AI companies selling into{' '}
-            <em className="home-lp__accent-italic">Indian enterprise</em>.
-          </h1>
-
-          <p className="home-lp__sub home-lp__sub--wide">
-            Your demo works. Your pipeline doesn&apos;t. I&apos;ve sold voice AI into Indian banks,
-            insurers, and BPOs - through DLT approvals, InfoSec reviews, and eighteen-week
-            procurement cycles. I do that for two or three companies at a time.
-          </p>
-
-          <CtaPair />
+    <main className="home-lp home-lp--signal">
+      <section className="home-lp__hero home-lp__hero--signal" aria-labelledby="hero-heading">
+        <div className="home-lp__hero-noise" aria-hidden="true" />
+        <div className="home-lp__container home-lp__hero-grid">
+          <div className="home-lp__hero-copy">
+            <h1 id="hero-heading" className="home-lp__h1 home-lp__h1--wide">
+              {HOME_HEADLINE}
+            </h1>
+            <p className="home-lp__sub home-lp__sub--wide">{HOME_SUBLINE}</p>
+            <div className="home-lp__cta-row">
+              <BookCallButton className="home-lp__btn home-lp__btn--secondary" />
+              <a
+                href={LINKEDIN_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="home-lp__btn home-lp__btn--ghost"
+              >
+                LinkedIn
+              </a>
+            </div>
+          </div>
+          <div className="home-lp__hero-voice">
+            <Suspense fallback={<div className="voice-agent voice-agent--placeholder" aria-hidden />}>
+              <VoiceAgent />
+            </Suspense>
+          </div>
         </div>
       </section>
 
-      {/* Credibility strip */}
-      <section className="home-lp__proof" aria-label="Background">
+      <section className="home-lp__proof" aria-label="Proof">
         <div className="home-lp__container">
-          <p className="home-lp__proof-line">
-            VP Sales at Vodex.ai - $600K ARR through seed · Currently running GTM at Epicode · Built
-            and shipped ReplyKaro and Morning Brief. Resound.ai in progress · Self-taught engineer -
-            Python, Node.js, Go
-          </p>
-        </div>
-      </section>
-
-      <hr className="home-lp__rule" />
-
-      {/* What I own */}
-      <section className="home-lp__section" id="own">
-        <div className="home-lp__container">
-          <h2 className="home-lp__h2 home-lp__h2--wide">What a fractional GTM lead actually does.</h2>
-
-          <div className="home-lp__own-grid">
-            {OWN.map((item) => (
-              <article key={item.title} className="home-lp__own-item">
-                <h3 className="home-lp__own-title">{item.title}</h3>
-                <p className="home-lp__own-body">{item.body}</p>
-              </article>
+          <div className="home-lp__results">
+            {PROOF.map((row) => (
+              <div key={row.label} className="home-lp__result-row">
+                <span className="home-lp__result-label">{row.label}</span>
+                <span className="home-lp__result-value">{row.value}</span>
+              </div>
             ))}
           </div>
         </div>
@@ -146,11 +142,42 @@ export default function HomePage() {
 
       <hr className="home-lp__rule" />
 
-      {/* Approach */}
+      <section className="home-lp__section" id="work">
+        <div className="home-lp__container">
+          <h2 className="home-lp__h2">Selected work</h2>
+          <div className="home-lp__cards home-lp__cards--four">
+            {WORK.map((item) => (
+              <Link key={item.title} to={item.href} className="home-lp__card home-lp__card--link">
+                <h3 className="home-lp__card-title">{item.title}</h3>
+                <p className="home-lp__card-body">{item.outcome}</p>
+                <span className="home-lp__card-link">Read more</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <hr className="home-lp__rule" />
+
+      <section className="home-lp__section" id="services">
+        <div className="home-lp__container">
+          <h2 className="home-lp__h2 home-lp__h2--wide">What I do</h2>
+          <div className="home-lp__accordion">
+            {SERVICES.map((item) => (
+              <details key={item.title} className="home-lp__accordion-item">
+                <summary className="home-lp__accordion-summary">{item.title}</summary>
+                <p className="home-lp__accordion-body">{item.body}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <hr className="home-lp__rule" />
+
       <section className="home-lp__section" id="approach">
         <div className="home-lp__container">
-          <h2 className="home-lp__h2 home-lp__h2--wide">I run it by hand before I automate it.</h2>
-
+          <h2 className="home-lp__h2 home-lp__h2--wide">Approach</h2>
           <div className="home-lp__steps">
             {STEPS.map((step) => (
               <article key={step.title} className="home-lp__step">
@@ -164,36 +191,42 @@ export default function HomePage() {
 
       <hr className="home-lp__rule" />
 
-      {/* Numbers */}
-      <section className="home-lp__section" id="results">
-        <div className="home-lp__container">
-          <h2 className="home-lp__h2">Numbers.</h2>
-
-          <div className="home-lp__results">
-            {RESULTS.map((row) => (
-              <div key={row.label} className="home-lp__result-row">
-                <span className="home-lp__result-label">{row.label}</span>
-                <span className="home-lp__result-value">{row.value}</span>
-              </div>
-            ))}
+      <section className="home-lp__section" id="founder">
+        <div className="home-lp__container home-lp__founder">
+          <img
+            className="home-lp__founder-photo"
+            src="/images/vishnu.svg"
+            alt="Vishnu Rajan"
+            width={200}
+            height={200}
+            loading="lazy"
+            decoding="async"
+          />
+          <div>
+            <h2 className="home-lp__h2">You work directly with me</h2>
+            <p className="home-lp__closing">
+              Fractional GTM for AI and B2B software selling into Indian enterprise. I take on two
+              companies at a time — pipeline, pricing, compliance readiness, and the sales motion.
+            </p>
+            <p className="home-lp__closing" style={{ marginTop: 16 }}>
+              <Link to="/about" className="home-lp__card-link">About Vishnu</Link>
+            </p>
           </div>
         </div>
       </section>
 
       <hr className="home-lp__rule" />
 
-      {/* Portfolio teaser */}
-      <section className="home-lp__section" id="work-teaser">
+      <section className="home-lp__section" id="products">
         <div className="home-lp__container">
-          <h2 className="home-lp__h2">Work.</h2>
-
-          <div className="home-lp__cards home-lp__cards--four">
-            {PORTFOLIO.map((item) => (
+          <h2 className="home-lp__h2">Beyond consulting</h2>
+          <p className="home-lp__section-sub">Products I build when the problem is worth owning.</p>
+          <div className="home-lp__cards">
+            {PRODUCTS.map((item) => (
               <Link key={item.title} to={item.href} className="home-lp__card home-lp__card--link">
                 <h3 className="home-lp__card-title">{item.title}</h3>
-                <span className="home-lp__card-link">
-                  See it <span aria-hidden="true">→</span>
-                </span>
+                <p className="home-lp__card-body">{item.body}</p>
+                <span className="home-lp__card-link">View product</span>
               </Link>
             ))}
           </div>
@@ -202,18 +235,60 @@ export default function HomePage() {
 
       <hr className="home-lp__rule" />
 
-      {/* Closing CTA */}
+      <section className="home-lp__section" id="writing">
+        <div className="home-lp__container">
+          <h2 className="home-lp__h2">Writing</h2>
+          <ul className="home-lp__post-list">
+            {latestPosts.map((post) => (
+              <li key={post.frontmatter.slug}>
+                <Link to={`/blog/${post.frontmatter.slug}`} className="home-lp__post-link">
+                  <span className="home-lp__post-title">{post.frontmatter.title}</span>
+                  <span className="home-lp__post-date">{formatPostDate(post.frontmatter.date)}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <p style={{ marginTop: 24 }}>
+            <Link to="/blog" className="home-lp__card-link">All posts</Link>
+          </p>
+        </div>
+      </section>
+
+      <hr className="home-lp__rule" />
+
+      <section className="home-lp__section" id="engagements-teaser">
+        <div className="home-lp__container">
+          <h2 className="home-lp__h2">Engagements</h2>
+          <p className="home-lp__closing">
+            GTM teardown, pipeline sprint, or fractional lead — fees and scope on the engagements
+            page.
+          </p>
+          <p style={{ marginTop: 20 }}>
+            <Link to="/engagements" className="home-lp__btn home-lp__btn--secondary">
+              See engagements and pricing
+            </Link>
+          </p>
+        </div>
+      </section>
+
+      <hr className="home-lp__rule" />
+
       <section className="home-lp__section home-lp__close" id="book">
         <div className="home-lp__container home-lp__close-inner">
           <h2 className="home-lp__h2 home-lp__h2--close home-lp__h2--wide">
-            If you&apos;re selling AI into Indian enterprise and pipeline is the problem,
-            let&apos;s talk.
+            Ready when you are.
           </h2>
           <p className="home-lp__close-sub home-lp__close-sub--wide">
-            Twenty minutes. Bring your current motion and where it&apos;s stalling. I&apos;ll tell
-            you what I&apos;d change whether or not we work together.
+            Talk to the GTM agent or book twenty minutes. Bring your motion and where it is stalling.
           </p>
-          <CtaPair />
+          <div className="home-lp__close-voice">
+            <Suspense fallback={<div className="voice-agent voice-agent--placeholder voice-agent--compact" aria-hidden />}>
+              <VoiceAgent compact />
+            </Suspense>
+          </div>
+          <div className="home-lp__cta-row" style={{ marginTop: 24 }}>
+            <BookCallButton className="home-lp__btn home-lp__btn--primary" />
+          </div>
         </div>
       </section>
     </main>

@@ -1,10 +1,9 @@
-import { Routes, Route } from 'react-router-dom'
+import { Navigate, Routes, Route } from 'react-router-dom'
 import SEO from './components/SEO'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
 import HomePage from './pages/HomePage'
-import ResoundPage from './pages/ResoundPage'
 import ReplykaroPage from './pages/ReplykaroPage'
 import BlogIndexPage from './pages/BlogIndexPage'
 import BlogPostPage from './pages/BlogPostPage'
@@ -12,7 +11,6 @@ import DocsPage from './pages/DocsPage'
 import DocsTechnicalNotePage from './pages/DocsTechnicalNotePage'
 import DocsMorningBriefPage from './pages/DocsMorningBriefPage'
 import DocsReplyKaroPage from './pages/DocsReplyKaroPage'
-import DocsResoundPage from './pages/DocsResoundPage'
 import WorkPage from './pages/WorkPage'
 import AboutPage from './pages/AboutPage'
 import EngagementsPage from './pages/EngagementsPage'
@@ -21,10 +19,7 @@ import PrivacyPolicy from './components/PrivacyPolicy'
 
 const SITE = 'https://www.goschedule.ai'
 
-const HOME_TITLE =
-  'Fractional GTM for AI companies selling into Indian enterprise - Vishnu Rajan'
-const HOME_DESCRIPTION =
-  'I run GTM for AI companies selling into Indian banks, insurers, and BPOs. Pipeline, pricing, compliance readiness, and the sales motion - two days a week.'
+import { DEFAULT_OG_IMAGE, HOME_DESCRIPTION, HOME_TITLE } from './constants/copy'
 
 const organizationJsonLd = {
   '@context': 'https://schema.org',
@@ -65,7 +60,7 @@ const professionalServiceJsonLd = {
   name: 'Goschedule.ai',
   url: `${SITE}/`,
   description: HOME_DESCRIPTION,
-  image: `${SITE}/og-image-v3.png`,
+  image: DEFAULT_OG_IMAGE,
   provider: {
     '@type': 'Person',
     name: 'Vishnu Rajan',
@@ -101,11 +96,11 @@ function App() {
         <Route path="/" element={<HomeRoute />} />
         <Route path="/work" element={<WorkPage />} />
         <Route path="/work/replykaro" element={<ReplykaroPage />} />
-        <Route path="/work/resound" element={<ResoundPage />} />
+        <Route path="/work/resound" element={<Navigate to="/work" replace />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/engagements" element={<EngagementsPage />} />
         {/* Legacy product routes: vercel.json 301s in prod; kept for local SPA without redirects */}
-        <Route path="/products/resound" element={<ResoundPage />} />
+        <Route path="/products/resound" element={<Navigate to="/work" replace />} />
         <Route path="/products/replykaro" element={<ReplykaroPage />} />
         <Route path="/blog" element={<BlogIndexPage />} />
         <Route path="/blog/:slug" element={<BlogPostPage />} />
@@ -113,7 +108,7 @@ function App() {
         <Route path="/docs/technical-note" element={<DocsTechnicalNotePage />} />
         <Route path="/docs/morning-brief" element={<DocsMorningBriefPage />} />
         <Route path="/docs/replykaro" element={<DocsReplyKaroPage />} />
-        <Route path="/docs/resound" element={<DocsResoundPage />} />
+        <Route path="/docs/resound" element={<Navigate to="/docs" replace />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
       </Routes>

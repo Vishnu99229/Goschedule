@@ -45,7 +45,14 @@ export default function PrivacyPolicy() {
                             <li><strong>Cookies &amp; Tracking Technologies:</strong> Information collected through cookies, web beacons, and similar technologies (see Section 6 below).</li>
                         </ul>
 
-                        <h3 style={{ fontSize: '16px', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '8px', marginTop: '16px' }}>2.3 Third-Party Data</h3>
+                        <h3 style={{ fontSize: '16px', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '8px', marginTop: '16px' }}>2.3 Voice conversations on this website</h3>
+                        <ul>
+                            <li><strong>Microphone audio:</strong> If you use the GTM voice agent on goschedule.ai, your microphone audio is streamed in real time to our third-party voice AI provider (currently ElevenLabs) for speech recognition and response generation.</li>
+                            <li><strong>Storage:</strong> We do not store call audio on our servers by default. The provider processes audio according to its own privacy policy and your agent configuration.</li>
+                            <li><strong>Transcripts:</strong> Live captions may appear in your browser during the call. Optional post-call summaries may be sent to internal automation tools if configured.</li>
+                        </ul>
+
+                        <h3 style={{ fontSize: '16px', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '8px', marginTop: '16px' }}>2.4 Third-Party Data</h3>
                         <ul>
                             <li><strong>Publicly Available Data:</strong> Business contact information obtained from publicly available sources for the purpose of lead generation and outreach.</li>
                             <li><strong>Enrichment Data:</strong> Information obtained from third-party data enrichment services (e.g., professional profiles, company intelligence) to enhance lead qualification.</li>

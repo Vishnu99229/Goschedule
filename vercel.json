@@ -52,7 +52,17 @@
     },
     {
       "source": "/products/resound",
-      "destination": "/work/resound",
+      "destination": "/work",
+      "permanent": true
+    },
+    {
+      "source": "/work/resound",
+      "destination": "/work",
+      "permanent": true
+    },
+    {
+      "source": "/docs/resound",
+      "destination": "/docs",
       "permanent": true
     },
     {

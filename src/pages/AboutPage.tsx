@@ -12,7 +12,7 @@ export default function AboutPage() {
         title={ABOUT_TITLE}
         description={ABOUT_DESCRIPTION}
         canonical="https://www.goschedule.ai/about"
-        ogImage="https://www.goschedule.ai/og-image-v3.png"
+        ogImage="https://www.goschedule.ai/og-image-v4.png"
       />
 
       <section className="home-lp__hero">
@@ -27,7 +27,7 @@ export default function AboutPage() {
             </div>
             <img
               className="about-lp__headshot"
-              src="/images/vishnu.jpg"
+              src="/images/vishnu.svg"
               alt="Vishnu Rajan"
               width={240}
               height={240}
@@ -64,8 +64,9 @@ export default function AboutPage() {
                 2024 - present · Independent
               </h3>
               <p className="home-lp__card-body">
-                Fractional GTM for AI companies selling into Indian enterprise - Epicode,
-                Arrowhead.ai, eShipz. Building voice and WhatsApp AI products end to end.
+                Fractional GTM for AI companies selling into Indian enterprise — Arrowhead.ai,
+                eShipz, and select seed-stage AI companies. Building voice and WhatsApp AI products
+                end to end.
               </p>
             </article>
             <article className="home-lp__card">
@@ -127,7 +128,7 @@ export default function AboutPage() {
 
       <section className="home-lp__section">
         <div className="home-lp__container">
-          <h2 className="home-lp__h2">Things I&apos;ve shipped</h2>
+          <h2 className="home-lp__h2">Shipped and live</h2>
           <div className="home-lp__cards" style={{ gridTemplateColumns: '1fr' }}>
             <article className="home-lp__card">
               <h3 className="home-lp__card-title" style={{ fontSize: 20 }}>
@@ -138,22 +139,18 @@ export default function AboutPage() {
                 Supabase, React dashboard.
               </p>
             </article>
+          </div>
+
+          <h2 className="home-lp__h2" style={{ marginTop: 40 }}>Reviving</h2>
+          <div className="home-lp__cards" style={{ gridTemplateColumns: '1fr' }}>
             <article className="home-lp__card">
               <h3 className="home-lp__card-title" style={{ fontSize: 20 }}>
                 Morning Brief
               </h3>
               <p className="home-lp__card-body">
                 Personalised AI voice briefing that calls you each morning with news curated to your
-                interests. RSS + NewsAPI → Claude Sonnet → Vapi.
-              </p>
-            </article>
-            <article className="home-lp__card">
-              <h3 className="home-lp__card-title" style={{ fontSize: 20 }}>
-                Resound.ai
-              </h3>
-              <p className="home-lp__card-body">
-                Multi-tenant outbound sales automation with AI reply handling and voice
-                qualification. In progress.
+                interests. Built and shipped earlier; bringing it back now. RSS + NewsAPI → Claude
+                Sonnet → Vapi.
               </p>
             </article>
           </div>

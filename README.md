@@ -1,40 +1,41 @@
-# GoSchedule
+# GoSchedule (goschedule.ai)
 
-GoSchedule is a scheduling AI platform.
+Personal consulting site for Vishnu Rajan — fractional GTM for AI companies selling into Indian enterprise.
 
 ## Features
-- Agent scheduling and system animations
-- Hero Dashboard for overview
-- Pricing and feature sections
-- Live "Talk to AI Agent" voice demo (Vapi Web SDK)
+
+- Homepage with live ElevenLabs Conversational AI voice demo
+- Work, about, engagements, blog, and product pages
+- Static prerender for SEO
 
 ## Setup
+
 ```bash
 npm install
 cp .env.example .env.local
-# Fill in the three VITE_ values in .env.local
+# Add ELEVENLABS_API_KEY and ELEVENLABS_AGENT_ID for the voice demo
 npm run dev
 ```
 
-## Env vars
+For production-like API routes locally, `npm run dev` proxies `/api/voice-session` via Vite middleware. On Vercel, use the `api/` serverless functions.
 
-These are required for the live voice demo in the hero. All three must also be set in **Vercel → Project → Settings → Environment Variables** for production.
+## Env vars (server — Vercel → Environment Variables)
 
 | Variable | Purpose |
 |----------|---------|
-| `VITE_SUPABASE_URL` | Supabase project URL (e.g. `https://lagzlyizyhagwtnychkt.supabase.co`) |
-| `VITE_SUPABASE_ANON_KEY` | Supabase anon/public key — used to call `create-demo-config` |
-| `VITE_VAPI_PUBLIC_KEY` | Vapi Web SDK public key — starts the browser voice call |
+| `ELEVENLABS_API_KEY` | ElevenLabs API key (never expose to the client) |
+| `ELEVENLABS_AGENT_ID` | Conversational AI agent ID (private mode + signed URL) |
+| `VOICE_COOLDOWN_SECONDS` | Optional cooldown between sessions (default 120) |
+| `N8N_VOICE_WEBHOOK_URL` | Optional post-call webhook |
 
-Copy `.env.example` to `.env.local` for local development. Never commit real keys.
+Optional client: `VITE_VOICE_PROVIDER=elevenlabs`
 
-## Tech Stack
-- React
-- Vite
-- TypeScript
-- Framer Motion
-- Vapi Web SDK (`@vapi-ai/web`)
-- Supabase Edge Functions
+## Tech stack
+
+- React, Vite, TypeScript
+- ElevenLabs `@elevenlabs/client` for the voice widget
+- Vercel serverless for signed session tokens
 
 ## License
+
 MIT

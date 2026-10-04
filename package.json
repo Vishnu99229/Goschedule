@@ -10,9 +10,11 @@
     "dev": "vite",
     "build": "tsc -b && vite build && vite build --ssr src/entry-server.tsx --outDir dist/server && node scripts/postbuild.mjs && node scripts/prerender.mjs",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "generate:og": "npx @resvg/resvg-js-cli public/og-image-v4.svg public/og-image-v4.png"
   },
   "dependencies": {
+    "@elevenlabs/client": "^1.26.0",
     "clsx": "^2.1.1",
     "framer-motion": "^12.38.0",
     "gray-matter": "^4.0.3",
@@ -30,6 +32,7 @@
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
+    "@vercel/node": "^20.0.0",
     "@vitejs/plugin-react": "^5.1.1",
     "eslint": "^9.39.1",
     "eslint-plugin-react-hooks": "^7.0.1",

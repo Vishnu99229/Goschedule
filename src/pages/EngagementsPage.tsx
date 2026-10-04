@@ -17,8 +17,8 @@ const TIERS = [
   },
   {
     title: 'Fractional GTM Lead',
-    meta: 'Three-month minimum · ₹1,50,000/month · 2 slots available',
-    body: 'Two days a week. I own the GTM function: motion, pricing, pipeline, compliance readiness, and your first sales hires. I\'m in your standups, on your calls, and in front of your customers.',
+    meta: 'Three-month minimum · ₹1,50,000/month · two companies at a time',
+    body: 'I own the GTM function: motion, pricing, pipeline, compliance readiness, and your first sales hires. I\'m in your standups, on your calls, and in front of your customers.',
     deliverable: 'Best for: seed to Series A, founder-led sales hitting its ceiling.',
   },
 ]
@@ -71,7 +71,7 @@ export default function EngagementsPage() {
               rel="noopener noreferrer"
               className="home-lp__btn home-lp__btn--primary"
             >
-              Book a 20-min call →
+              Book a 20-min call
             </a>
             <Link to="/work" className="home-lp__btn home-lp__btn--secondary">
               See the work

@@ -39,7 +39,6 @@ export default function Footer() {
                         <div style={{ fontSize: 13, fontWeight: 600, opacity: 0.7 }}>Work</div>
                         <Link to="/work" className="footer-text">Portfolio</Link>
                         <Link to="/work/replykaro" className="footer-text">ReplyKaro</Link>
-                        <Link to="/work/resound" className="footer-text">Resound.ai</Link>
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                         <div style={{ fontSize: 13, fontWeight: 600, opacity: 0.7 }}>Company</div>

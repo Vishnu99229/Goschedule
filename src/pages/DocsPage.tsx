@@ -127,46 +127,6 @@ function ReplyKaroArt() {
   )
 }
 
-function ResoundArt() {
-  return (
-    <svg viewBox="0 0 600 315" preserveAspectRatio="xMidYMid slice" role="img" style={{ width: '100%', height: '100%', display: 'block' }} aria-label="Outbound send with connected arrows">
-      <defs>
-        <linearGradient id="rs-bg" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#F2EEE6" />
-          <stop offset="100%" stopColor="#E8E0CF" />
-        </linearGradient>
-      </defs>
-      <rect width="600" height="315" fill="url(#rs-bg)" />
-      {/* paper plane */}
-      <g transform="translate(100,110)">
-        <polygon points="0,40 110,0 110,30 50,40 110,50 110,80" fill={ACCENT} />
-        <polygon points="110,30 70,40 110,50" fill={ACCENT_DARK} />
-      </g>
-      {/* trajectory dots */}
-      <g fill={ACCENT_SOFT}>
-        <circle cx="260" cy="150" r="4" />
-        <circle cx="280" cy="146" r="4" />
-        <circle cx="300" cy="144" r="4" />
-      </g>
-      {/* fan-out arrows */}
-      <g stroke={ACCENT_INDIGO} strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M 320 158 L 460 80" />
-        <polyline points="446,76 460,80 456,94" />
-        <path d="M 320 158 L 470 158" />
-        <polyline points="458,150 470,158 458,166" />
-        <path d="M 320 158 L 460 240" />
-        <polyline points="456,226 460,240 446,244" />
-      </g>
-      {/* nodes */}
-      <g>
-        <circle cx="470" cy="80" r="14" fill={ACCENT_DARK} />
-        <circle cx="482" cy="158" r="14" fill={ACCENT_DARK} />
-        <circle cx="470" cy="240" r="14" fill={ACCENT_DARK} />
-      </g>
-    </svg>
-  )
-}
-
 const docs: {
   slug: string
   title: string
@@ -195,14 +155,6 @@ const docs: {
       'An AI receptionist for clinics that answers calls, handles WhatsApp, and books appointments.',
     art: <ReplyKaroArt />,
   },
-  {
-    slug: 'resound',
-    title: 'Resound.ai',
-    excerpt:
-      'A multi-tenant outbound sales automation platform with AI reply handling and voice qualification.',
-    art: <ResoundArt />,
-    badge: 'Early access',
-  },
 ]
 
 export default function DocsPage() {
@@ -210,7 +162,7 @@ export default function DocsPage() {
     <main>
       <SEO
         title="Documentation - Guides for Goschedule.ai AI Agents | Goschedule.ai"
-        description="Technical guides for Goschedule.ai's AI agents - ReplyKaro, Resound.ai, and Morning Brief - covering architecture, setup, and how each agent works."
+        description="Technical guides for Goschedule.ai's AI agents - ReplyKaro and Morning Brief - covering architecture, setup, and how each agent works."
         canonical={`${SITE}/docs`}
       />
 

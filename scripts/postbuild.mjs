@@ -24,12 +24,13 @@ const DIST = join(ROOT, 'dist')
 const CONTENT_BLOG = join(ROOT, 'content', 'blog')
 
 const SITE = 'https://www.goschedule.ai'
-const DEFAULT_OG = `${SITE}/og-image-v3.png`
+const DEFAULT_OG = `${SITE}/og-image-v4.png`
 
-const HOME_TITLE =
-  'Fractional GTM for AI companies selling into Indian enterprise - Vishnu Rajan'
+const HOME_TITLE = "Your demo works. Your pipeline doesn't. | Vishnu Rajan"
 const HOME_DESCRIPTION =
-  'I run GTM for AI companies selling into Indian banks, insurers, and BPOs. Pipeline, pricing, compliance readiness, and the sales motion - two days a week.'
+  "Your demo works. Your pipeline doesn't. Fractional GTM for AI and B2B software selling into Indian banks, insurers, and BPOs."
+const DEFAULT_OG_ALT =
+  "Your demo works. Your pipeline doesn't. — Vishnu Rajan, fractional GTM for AI selling into Indian enterprise."
 
 // ── Shared JSON-LD builders (mirror the client-side <SEO jsonLd> values so
 //    the same schema appears in the raw static HTML, not only after hydration) ──
@@ -141,8 +142,7 @@ const MARKETING_ROUTES = [
     priority: 1.0,
     changefreq: 'weekly',
     source: 'index.html',
-    imageAlt:
-      'Fractional GTM for AI companies selling into Indian enterprise - Vishnu Rajan',
+    imageAlt: DEFAULT_OG_ALT,
     jsonLd: [ORG_JSONLD, WEBSITE_JSONLD, PERSON_JSONLD, PROFESSIONAL_SERVICE_JSONLD],
   },
   // /products/* and /case-studies/cafe-muziris are 301'd in vercel.json.
@@ -150,7 +150,7 @@ const MARKETING_ROUTES = [
     path: '/work',
     title: 'Work - Vishnu Rajan',
     description:
-      'Portfolio of GTM and product work: Vodex.ai, Epicode, ReplyKaro, Morning Brief, Resound.ai.',
+      'Portfolio of GTM and product work: Vodex.ai, Crown Security, ReplyKaro, and Morning Brief.',
     canonical: `${SITE}/work`,
     ogType: 'website',
     priority: 0.9,
@@ -183,18 +183,6 @@ const MARKETING_ROUTES = [
     imageAlt: 'ReplyKaro - built and shipped WhatsApp and voice receptionist',
   },
   {
-    path: '/work/resound',
-    title: 'Resound.ai - Built and shipped | Work',
-    description:
-      'Multi-tenant outbound sales automation with AI reply handling and voice qualification. Built and deployed.',
-    canonical: `${SITE}/work/resound`,
-    ogType: 'website',
-    priority: 0.7,
-    changefreq: 'monthly',
-    source: 'src/pages/ResoundPage.tsx',
-    imageAlt: 'Resound.ai - built and shipped outbound sales automation',
-  },
-  {
     path: '/engagements',
     title: 'Engagements & Pricing - Fractional GTM',
     description:
@@ -222,7 +210,7 @@ const MARKETING_ROUTES = [
     path: '/docs',
     title: 'Documentation - Shipped agents | Goschedule.ai',
     description:
-      'Technical notes on ReplyKaro, Resound.ai, and Morning Brief - portfolio agents built end to end.',
+      'Technical notes on ReplyKaro and Morning Brief - portfolio agents built end to end.',
     canonical: `${SITE}/docs`,
     ogType: 'website',
     priority: 0.7,
@@ -265,18 +253,6 @@ const MARKETING_ROUTES = [
     changefreq: 'monthly',
     source: 'src/pages/DocsReplyKaroPage.tsx',
     imageAlt: 'ReplyKaro documentation',
-  },
-  {
-    path: '/docs/resound',
-    title: 'Resound.ai Documentation | Goschedule.ai',
-    description:
-      'Technical documentation for Resound.ai. A multi-tenant outbound sales automation platform with AI reply handling and voice qualification.',
-    canonical: `${SITE}/docs/resound`,
-    ogType: 'website',
-    priority: 0.6,
-    changefreq: 'monthly',
-    source: 'src/pages/DocsResoundPage.tsx',
-    imageAlt: 'Resound.ai documentation',
   },
   {
     path: '/terms-and-conditions',
