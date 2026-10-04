@@ -41,7 +41,7 @@ export default function BlogIndexPage() {
   }
 
   return (
-    <main>
+    <main id="main-content" className="site-main">
       <SEO
         title="Writing - Vishnu Rajan | Goschedule.ai"
         description="Notes on GTM, voice AI, and selling into Indian enterprise. The clinic-specific posts are from ReplyKaro work."
@@ -76,6 +76,8 @@ export default function BlogIndexPage() {
                           <img
                             src={fm.coverImage}
                             alt={fm.coverAlt ?? fm.title}
+                            width={600}
+                            height={315}
                             loading="lazy"
                             decoding="async"
                           />

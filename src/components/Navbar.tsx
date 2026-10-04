@@ -94,6 +94,7 @@ export default function Navbar() {
                         className="nav-mobile-toggle"
                         aria-expanded={mobileOpen}
                         aria-controls="mobile-nav-sheet"
+                        aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
                         onClick={() => setMobileOpen((v) => !v)}
                     >
                         {mobileOpen ? <X style={{ width: 22, height: 22 }} /> : <Menu style={{ width: 22, height: 22 }} />}

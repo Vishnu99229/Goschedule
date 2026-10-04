@@ -101,15 +101,5 @@ export async function fetchElevenLabsSignedUrl(): Promise<VoiceSessionSuccess | 
   }
 }
 
-export async function notifyVoiceEnded(payload: Record<string, unknown>): Promise<void> {
-  const webhook = process.env.N8N_VOICE_WEBHOOK_URL
-  if (!webhook) return
-
-  await fetch(webhook, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload),
-  }).catch(() => {
-    /* optional webhook — ignore failures */
-  })
-}
+export { normalizeVoiceLeadPayload, sendVoiceLeadToN8n } from './voiceLeadPayload'
+export type { VoiceLeadPayload } from './voiceLeadPayload'

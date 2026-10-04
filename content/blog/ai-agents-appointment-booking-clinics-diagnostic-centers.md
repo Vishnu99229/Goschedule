@@ -6,8 +6,8 @@ date: "2026-07-03"
 author: "Goschedule.ai"
 focusKeyword: "AI appointment booking for clinics"
 excerpt: "Every missed call at your clinic is a patient who just booked somewhere else. Here is how AI voice and WhatsApp agents answer every call, slash no-shows with automated reminders, and fill your calendar around the clock."
-coverImage: "/blog/replykaro.png"
-ogImage: "/blog/replykaro.png"
+coverImage: "/blog/replykaro.jpg"
+ogImage: "/blog/replykaro.jpg"
 coverAlt: "AI appointment booking for clinics - a violet phone icon with concentric ripple rings beside a green WhatsApp speech bubble with double check marks, on a dark background."
 faqs:
   - question: "How much can an AI agent reduce no-shows at a clinic?"
@@ -21,8 +21,6 @@ faqs:
   - question: "Does it work after the clinic closes?"
     answer: "Yes. The agent answers calls and WhatsApp messages 24/7, so after-hours and weekend inquiries turn into booked appointments instead of going to a competitor."
 ---
-
-# AI Agents for Appointment Booking at Clinics and Diagnostic Centers
 
 If you run a clinic or a diagnostic lab, your busiest revenue channel is not your waiting room. It is your phone. And it is leaking.
 

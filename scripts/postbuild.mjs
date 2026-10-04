@@ -359,6 +359,13 @@ function injectMeta(html, route) {
     `<meta name="twitter:image" content="${escapeHtml(ogImage)}" />`
   )
 
+  if (route.lcpPreload) {
+    result = result.replace(
+      '</head>',
+      `    <link rel="preload" as="image" href="${escapeHtml(route.lcpPreload)}" fetchpriority="high" />\n  </head>`
+    )
+  }
+
   if (route.jsonLd && route.jsonLd.length > 0) {
     const scripts = route.jsonLd
       .map(

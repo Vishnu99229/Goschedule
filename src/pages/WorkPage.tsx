@@ -67,7 +67,7 @@ function CaseCard({ item }: { item: Card }) {
 
 export default function WorkPage() {
   return (
-    <main className="home-lp">
+    <main id="main-content" className="site-main home-lp">
       <SEO
         title="Work - Vishnu Rajan"
         description="Portfolio of GTM and product work: Vodex.ai, Crown Security, ReplyKaro, and Morning Brief."

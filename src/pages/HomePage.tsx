@@ -1,9 +1,6 @@
-import { lazy, Suspense } from 'react'
 import { Link } from 'react-router-dom'
 import { getAllPosts, formatPostDate } from '../blog/posts'
-import { BookCallButton } from '../components/voice/VoiceAgent'
-
-const VoiceAgent = lazy(() => import('../components/voice/VoiceAgent'))
+import VoiceAgent, { BookCallButton } from '../components/voice/VoiceAgent'
 import { HOME_HEADLINE, HOME_SUBLINE } from '../constants/copy'
 import { LINKEDIN_URL } from '../constants/links'
 
@@ -98,31 +95,29 @@ export default function HomePage() {
   const latestPosts = getAllPosts().slice(0, 3)
 
   return (
-    <main className="home-lp home-lp--signal">
-      <section className="home-lp__hero home-lp__hero--signal" aria-labelledby="hero-heading">
-        <div className="home-lp__hero-noise" aria-hidden="true" />
-        <div className="home-lp__container home-lp__hero-grid">
-          <div className="home-lp__hero-copy">
-            <h1 id="hero-heading" className="home-lp__h1 home-lp__h1--wide">
+    <main id="main-content" className="site-main home-lp">
+      <section className="site-hero home-lp__hero" aria-labelledby="hero-heading">
+        <div className="site-hero-noise home-lp__hero-noise" aria-hidden="true" />
+        <div className="site-container home-lp__container site-hero-grid home-lp__hero-grid">
+          <div className="site-hero-copy home-lp__hero-copy">
+            <h1 id="hero-heading" className="site-h1 home-lp__h1 home-lp__h1--wide">
               {HOME_HEADLINE}
             </h1>
-            <p className="home-lp__sub home-lp__sub--wide">{HOME_SUBLINE}</p>
-            <div className="home-lp__cta-row">
-              <BookCallButton className="home-lp__btn home-lp__btn--secondary" />
-              <a
-                href={LINKEDIN_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="home-lp__btn home-lp__btn--ghost"
-              >
-                LinkedIn
-              </a>
-            </div>
+            <p className="site-lead home-lp__sub home-lp__sub--wide">{HOME_SUBLINE}</p>
           </div>
-          <div className="home-lp__hero-voice">
-            <Suspense fallback={<div className="voice-agent voice-agent--placeholder" aria-hidden />}>
-              <VoiceAgent />
-            </Suspense>
+          <div className="site-hero-voice home-lp__hero-voice">
+            <VoiceAgent />
+          </div>
+          <div className="site-cta-row home-lp__cta-row home-lp__hero-cta">
+            <BookCallButton className="site-btn site-btn--secondary home-lp__btn home-lp__btn--secondary" />
+            <a
+              href={LINKEDIN_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="site-btn site-btn--ghost home-lp__btn home-lp__btn--ghost"
+            >
+              LinkedIn
+            </a>
           </div>
         </div>
       </section>
@@ -145,7 +140,7 @@ export default function HomePage() {
       <section className="home-lp__section" id="work">
         <div className="home-lp__container">
           <h2 className="home-lp__h2">Selected work</h2>
-          <div className="home-lp__cards home-lp__cards--four">
+          <div className="home-lp__cards">
             {WORK.map((item) => (
               <Link key={item.title} to={item.href} className="home-lp__card home-lp__card--link">
                 <h3 className="home-lp__card-title">{item.title}</h3>
@@ -221,7 +216,7 @@ export default function HomePage() {
         <div className="home-lp__container">
           <h2 className="home-lp__h2">Beyond consulting</h2>
           <p className="home-lp__section-sub">Products I build when the problem is worth owning.</p>
-          <div className="home-lp__cards">
+          <div className="home-lp__cards" style={{ gridTemplateColumns: 'minmax(0, 1fr)' }}>
             {PRODUCTS.map((item) => (
               <Link key={item.title} to={item.href} className="home-lp__card home-lp__card--link">
                 <h3 className="home-lp__card-title">{item.title}</h3>
@@ -275,16 +270,12 @@ export default function HomePage() {
 
       <section className="home-lp__section home-lp__close" id="book">
         <div className="home-lp__container home-lp__close-inner">
-          <h2 className="home-lp__h2 home-lp__h2--close home-lp__h2--wide">
-            Ready when you are.
-          </h2>
+          <h2 className="home-lp__h2 home-lp__h2--close home-lp__h2--wide">Ready when you are.</h2>
           <p className="home-lp__close-sub home-lp__close-sub--wide">
             Talk to the GTM agent or book twenty minutes. Bring your motion and where it is stalling.
           </p>
           <div className="home-lp__close-voice">
-            <Suspense fallback={<div className="voice-agent voice-agent--placeholder voice-agent--compact" aria-hidden />}>
-              <VoiceAgent compact />
-            </Suspense>
+            <VoiceAgent compact />
           </div>
           <div className="home-lp__cta-row" style={{ marginTop: 24 }}>
             <BookCallButton className="home-lp__btn home-lp__btn--primary" />

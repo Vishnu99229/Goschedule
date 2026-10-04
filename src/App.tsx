@@ -16,6 +16,7 @@ import AboutPage from './pages/AboutPage'
 import EngagementsPage from './pages/EngagementsPage'
 import TermsAndConditions from './components/TermsAndConditions'
 import PrivacyPolicy from './components/PrivacyPolicy'
+import NotFoundPage from './pages/NotFoundPage'
 
 const SITE = 'https://www.goschedule.ai'
 
@@ -89,7 +90,8 @@ function HomeRoute() {
 
 function App() {
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg-base)', color: 'var(--text-primary)' }}>
+    <div className="app-shell">
+      <a href="#main-content" className="site-skip">Skip to content</a>
       <ScrollToTop />
       <Navbar />
       <Routes>
@@ -111,6 +113,7 @@ function App() {
         <Route path="/docs/resound" element={<Navigate to="/docs" replace />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />
     </div>

@@ -6,7 +6,6 @@ import SEO from '../components/SEO'
 
 const ACCENT = 'var(--accent)'
 const ACCENT_SOFT = 'var(--accent-hover)'
-const BG = 'var(--bg)'
 const TEXT = 'var(--text)'
 const TEXT_MUTED = 'var(--text-muted)'
 const SURFACE_LIGHT = 'var(--bg-raised)'
@@ -193,7 +192,7 @@ function FeatureVisualFlowFixed() {
 
 export default function ReplykaroPage() {
     return (
-        <main style={{ background: BG, color: TEXT, minHeight: '80vh', paddingTop: 48, paddingBottom: 100 }}>
+        <main id="main-content" className="site-main" style={{ minHeight: '80vh', paddingTop: 48, paddingBottom: 100 }}>
             <SEO
                 title="ReplyKaro - Built and shipped | Work"
                 description="WhatsApp and voice AI receptionist for Indian clinics. Built end to end and deployed to production."

@@ -25,7 +25,7 @@ const TIERS = [
 
 export default function EngagementsPage() {
   return (
-    <main className="home-lp">
+    <main id="main-content" className="site-main home-lp">
       <SEO
         title="Engagements & Pricing - Fractional GTM"
         description="Three ways in: GTM Teardown, Pipeline Sprint, or Fractional GTM Lead. Fees from ₹50,000."

@@ -73,16 +73,9 @@ export default function ElevenLabsVoiceAgent({ compact, onStateChange }: Props) 
         setState('ended')
         trackEvent('voice_end', { reason })
       }
-      void fetch('/api/voice-ended', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          reason,
-          transcript: lines.map((l) => ({ role: l.role, text: l.text })),
-        }),
-      })
+      // Post-call n8n integration uses ElevenLabs post_call_transcription → /api/elevenlabs-post-call
     },
-    [lines, setState]
+    [setState]
   )
 
   const openBooking = useCallback((prefill?: BookingPrefill, fromVoice = false) => {

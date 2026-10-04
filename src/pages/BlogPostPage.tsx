@@ -116,7 +116,7 @@ export default function BlogPostPage() {
   if (faqJsonLd) jsonLdBlocks.push(faqJsonLd)
 
   return (
-    <main>
+    <main id="main-content" className="site-main">
       <SEO
         title={fm.title}
         description={fm.description}
@@ -136,6 +136,7 @@ export default function BlogPostPage() {
           </nav>
 
           <header className="blog-article__header">
+            <h1 className="blog-article__title">{fm.title}</h1>
             <div className="blog-article__meta">
               <time dateTime={fm.date}>{formatPostDate(fm.date)}</time>
               <span aria-hidden>·</span>
@@ -145,22 +146,22 @@ export default function BlogPostPage() {
             </div>
           </header>
 
+          <div className="blog-article__body">
+            <Markdown>{body}</Markdown>
+          </div>
+
           {fm.coverImage && (
             <figure className="blog-article__cover">
               <img
                 src={fm.coverImage}
                 alt={fm.coverAlt ?? fm.title}
-                loading="eager"
+                loading="lazy"
                 decoding="async"
                 width={1200}
                 height={630}
               />
             </figure>
           )}
-
-          <div className="blog-article__body">
-            <Markdown>{body}</Markdown>
-          </div>
 
           <footer className="blog-article__footer">
             <Link to="/blog" className="blog-back-link">

@@ -26,7 +26,8 @@ For production-like API routes locally, `npm run dev` proxies `/api/voice-sessio
 | `ELEVENLABS_API_KEY` | ElevenLabs API key (never expose to the client) |
 | `ELEVENLABS_AGENT_ID` | Conversational AI agent ID (private mode + signed URL) |
 | `VOICE_COOLDOWN_SECONDS` | Optional cooldown between sessions (default 120) |
-| `N8N_VOICE_WEBHOOK_URL` | Optional post-call webhook |
+| `N8N_WEBHOOK_URL` | Optional post-call lead payload to n8n (server only) |
+| `ELEVENLABS_WEBHOOK_SECRET` | HMAC secret for `/api/elevenlabs-post-call` (ElevenLabs post-call webhook) |
 
 Optional client: `VITE_VOICE_PROVIDER=elevenlabs`
 

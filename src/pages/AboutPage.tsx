@@ -7,7 +7,7 @@ const ABOUT_DESCRIPTION =
 
 export default function AboutPage() {
   return (
-    <main className="home-lp">
+    <main id="main-content" className="site-main home-lp">
       <SEO
         title={ABOUT_TITLE}
         description={ABOUT_DESCRIPTION}
@@ -189,8 +189,11 @@ export default function AboutPage() {
               LinkedIn
             </a>
             {' · '}
-            <a href="/vishnu-rajan-cv.pdf" className="home-lp__card-link">
-              Download CV (PDF)
+            <a
+              href="mailto:hello@goschedule.ai?subject=CV%20request"
+              className="home-lp__card-link"
+            >
+              Request CV
             </a>
           </p>
         </div>

@@ -6,8 +6,8 @@ date: "2026-06-03"
 author: "Goschedule.ai"
 focusKeyword: "AI calling and WhatsApp agent"
 excerpt: "Every missed call is a missed customer. ReplyKaro answers every inbound call and WhatsApp message in seconds, then turns the conversation into a booked appointment, visit, or demo - 24/7."
-coverImage: "/blog/replykaro.png"
-ogImage: "/blog/replykaro.png"
+coverImage: "/blog/replykaro.jpg"
+ogImage: "/blog/replykaro.jpg"
 coverAlt: "ReplyKaro AI calling and WhatsApp agent - a violet phone icon with concentric ripple rings beside a green WhatsApp speech bubble with double check marks, on a dark background."
 faqs:
   - question: "Can ReplyKaro really handle thousands of calls at the same time?"
@@ -21,8 +21,6 @@ faqs:
   - question: "Does it work after office hours?"
     answer: "Yes. ReplyKaro runs all day and all night, so you capture leads even when your team is offline."
 ---
-
-# ReplyKaro: The AI Agent That Answers Every Call and Books Every Lead
 
 Every missed call is a missed customer. Every slow WhatsApp reply is a lead that goes cold. For most businesses, the problem is not a lack of interest. The problem is that calls and messages come in faster than a small team can handle them.
 

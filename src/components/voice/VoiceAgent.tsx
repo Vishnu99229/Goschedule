@@ -1,31 +1,41 @@
-import ElevenLabsVoiceAgent, { BookCallButton, BookCallLink } from './ElevenLabsVoiceAgent'
+import { lazy, Suspense } from 'react'
+import MockVoiceAgent from './MockVoiceAgent'
 
-export { BookCallButton, BookCallLink }
+export { BookCallButton } from './BookingActions'
 
-export type VoiceProvider = 'elevenlabs' | 'vapi' | 'retell'
+const ElevenLabsVoiceAgent = lazy(() => import('./ElevenLabsVoiceAgent'))
+
+export type VoiceProvider = 'mock' | 'elevenlabs' | 'vapi' | 'retell'
 
 type Props = {
   provider?: VoiceProvider
   compact?: boolean
 }
 
+function VoicePlaceholder({ compact }: { compact?: boolean }) {
+  return (
+    <div
+      className="voice-console voice-console--compact"
+      style={{ minHeight: compact ? 'var(--voice-min-height-compact)' : 'var(--voice-min-height)' }}
+      aria-hidden
+    />
+  )
+}
+
 /**
- * Provider-agnostic entry point for the site voice demo.
- * Swap `provider` (or VITE_VOICE_PROVIDER) to move to Vapi / Retell later.
+ * Provider-agnostic entry. Defaults to mock until ElevenLabs is configured in env.
  */
 export default function VoiceAgent({ provider, compact }: Props) {
-  const resolved =
-    provider ??
-    (import.meta.env.VITE_VOICE_PROVIDER as VoiceProvider | undefined) ??
-    'elevenlabs'
+  const envProvider = import.meta.env.VITE_VOICE_PROVIDER as VoiceProvider | undefined
+  const resolved = provider ?? envProvider ?? 'mock'
 
   if (resolved === 'elevenlabs') {
-    return <ElevenLabsVoiceAgent compact={compact} />
+    return (
+      <Suspense fallback={<VoicePlaceholder compact={compact} />}>
+        <ElevenLabsVoiceAgent compact={compact} />
+      </Suspense>
+    )
   }
 
-  return (
-    <div className="voice-agent voice-agent--fallback" role="status">
-      <p>Voice provider is not available. Book a call or email hello@goschedule.ai.</p>
-    </div>
-  )
+  return <MockVoiceAgent compact={compact} />
 }
