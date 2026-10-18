@@ -120,6 +120,52 @@ export function ClockFace({
   )
 }
 
+export function BillIcon({ className = '', size = 28 }: IconProps) {
+  return (
+    <svg className={className} width={size} height={size} viewBox="0 0 24 28" aria-hidden="true">
+      <rect x="2" y="1" width="20" height="26" rx="3" fill="#fff" stroke="#141c26" strokeWidth="1.4" />
+      <rect x="6" y="6" width="12" height="2.4" rx="1" fill="#c8d0db" />
+      <rect x="6" y="11" width="8" height="2" rx="1" fill="#c8d0db" />
+      <circle cx="12" cy="20" r="3.2" fill="#e8c36a" />
+    </svg>
+  )
+}
+
+export function CalendarIcon({ className = '', size = 26 }: IconProps) {
+  return (
+    <svg className={className} width={size} height={size} viewBox="0 0 24 24" aria-hidden="true">
+      <rect x="2" y="4" width="20" height="18" rx="3" fill="#fff" stroke="#141c26" strokeWidth="1.4" />
+      <rect x="2" y="4" width="20" height="6" rx="3" fill="#141c26" />
+      <rect x="6" y="13" width="4" height="4" rx="0.8" fill="#c8d0db" />
+      <rect x="14" y="13" width="4" height="4" rx="0.8" fill="#0a8f7a" />
+    </svg>
+  )
+}
+
+export function ChatBubbleIcon({ className = '', size = 26 }: IconProps) {
+  return (
+    <svg className={className} width={size} height={size} viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        d="M4 4h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H10l-6 5V6a2 2 0 0 1 2-2z"
+        fill="#141c26"
+      />
+      <rect x="7" y="8" width="10" height="2" rx="1" fill="#c8d0db" />
+      <rect x="7" y="12" width="6" height="2" rx="1" fill="#c8d0db" />
+    </svg>
+  )
+}
+
+export function ReceiptIcon({ className = '', size = 24 }: IconProps) {
+  return (
+    <svg className={className} width={size} height={size * 1.2} viewBox="0 0 22 28" aria-hidden="true">
+      <path d="M2 1h18v24l-3-2-3 2-3-2-3 2-3-2-3 2V1z" fill="#fff" stroke="#141c26" strokeWidth="1.3" />
+      <rect x="6" y="6" width="10" height="2" rx="1" fill="#c8d0db" />
+      <rect x="6" y="11" width="7" height="2" rx="1" fill="#c8d0db" />
+      <rect x="6" y="16" width="8" height="2" rx="1" fill="#c8d0db" />
+    </svg>
+  )
+}
+
 export function EnvelopeIcon({ className = '', size = 28 }: IconProps) {
   return (
     <svg className={className} width={size} height={size * 0.75} viewBox="0 0 32 24" aria-hidden="true">

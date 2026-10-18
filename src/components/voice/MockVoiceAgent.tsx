@@ -5,9 +5,10 @@ import { useMockVoiceSession } from './useMockVoiceSession'
 
 type Props = {
   compact?: boolean
+  variant?: 'default' | 'mic'
 }
 
-export default function MockVoiceAgent({ compact }: Props) {
+export default function MockVoiceAgent({ compact, variant = 'default' }: Props) {
   const session = useMockVoiceSession()
   const [bookingOpen, setBookingOpen] = useState(false)
 
@@ -20,6 +21,7 @@ export default function MockVoiceAgent({ compact }: Props) {
     <>
       <VoiceAgentShell
         compact={compact}
+        variant={variant}
         uiState={session.uiState}
         muted={session.muted}
         lines={session.lines}

@@ -1,4 +1,4 @@
-type Pose = 'phone' | 'smile' | 'phone-smile'
+type Pose = 'phone' | 'smile' | 'phone-smile' | 'overwhelmed' | 'rest'
 
 type Props = {
   className?: string
@@ -7,8 +7,9 @@ type Props = {
 
 /** Simple flat "You" figure — no text. */
 export function YouCharacter({ className = '', pose = 'phone' }: Props) {
-  const smiling = pose === 'smile' || pose === 'phone-smile'
-  const phone = pose === 'phone' || pose === 'phone-smile'
+  const smiling = pose === 'smile' || pose === 'phone-smile' || pose === 'rest'
+  const phone = pose === 'phone' || pose === 'phone-smile' || pose === 'overwhelmed'
+  const worried = pose === 'overwhelmed'
 
   return (
     <svg
@@ -26,7 +27,19 @@ export function YouCharacter({ className = '', pose = 'phone' }: Props) {
       <path d="M24 52c2-12 8-18 16-18s14 6 16 18v28H24V52z" fill="#141c26" />
       <circle cx="40" cy="22" r="13" fill="#f3d3b8" />
       <path d="M28 18c4-10 20-10 24 0-8-2-16-2-24 0z" fill="#141c26" />
-      {smiling ? (
+      {worried ? (
+        <>
+          <path d="M32 16 36 18" fill="none" stroke="#8a5a40" strokeWidth="1.3" strokeLinecap="round" />
+          <path d="M48 16 44 18" fill="none" stroke="#8a5a40" strokeWidth="1.3" strokeLinecap="round" />
+          <path
+            d="M35 28h10"
+            fill="none"
+            stroke="#8a5a40"
+            strokeWidth="1.4"
+            strokeLinecap="round"
+          />
+        </>
+      ) : smiling ? (
         <path
           d="M34 26c2 4 10 4 12 0"
           fill="none"

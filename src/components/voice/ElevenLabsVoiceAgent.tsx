@@ -4,6 +4,7 @@ import { CONTACT_EMAIL, type BookingPrefill } from '../../constants/booking'
 import { DEPLOY_AGENT_URL } from '../../constants/links'
 import { trackEvent } from '../../lib/analytics'
 import BookingModal from './BookingModal'
+import VoiceMicButton from './VoiceMicButton'
 
 export type VoiceUiState = 'idle' | 'mic_prompt' | 'connecting' | 'listening' | 'speaking' | 'ended' | 'error'
 
@@ -19,6 +20,7 @@ const LOCAL_COOLDOWN_MS = 120_000
 
 type Props = {
   compact?: boolean
+  variant?: 'default' | 'mic'
   onStateChange?: (state: VoiceUiState) => void
 }
 
@@ -30,7 +32,7 @@ function mapModeToUi(mode: string | undefined, status: string): VoiceUiState {
   return 'connecting'
 }
 
-export default function ElevenLabsVoiceAgent({ compact, onStateChange }: Props) {
+export default function ElevenLabsVoiceAgent({ compact, variant = 'default', onStateChange }: Props) {
   const [uiState, setUiState] = useState<VoiceUiState>('idle')
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const [muted, setMuted] = useState(false)
@@ -223,6 +225,31 @@ export default function ElevenLabsVoiceAgent({ compact, onStateChange }: Props) 
   }, [])
 
   const showControls = uiState === 'listening' || uiState === 'speaking' || uiState === 'connecting'
+
+  if (variant === 'mic') {
+    return (
+      <>
+        <VoiceMicButton
+          uiState={uiState}
+          muted={muted}
+          lines={lines}
+          errorMessage={errorMessage}
+          onBegin={onPrimaryClick}
+          onConfirmMic={onConfirmMic}
+          onCancelMic={() => setState('idle')}
+          onEnd={() => void endCall('user')}
+          onToggleMute={toggleMute}
+          onBookFallback={() => openBooking()}
+        />
+        <BookingModal
+          open={bookingOpen}
+          onClose={() => setBookingOpen(false)}
+          prefill={bookingPrefill}
+          skipAnalytics
+        />
+      </>
+    )
+  }
 
   return (
     <div className={`voice-agent ${compact ? 'voice-agent--compact' : ''}`}>

@@ -1,4 +1,4 @@
-import { motion, useTransform, type MotionValue } from 'framer-motion'
+import { motion, useMotionValue, useTransform, type MotionValue } from 'framer-motion'
 import { AgentOrb } from '../characters/AgentOrb'
 import { YouAtDesk } from '../characters/YouAtDesk'
 import { CheckIcon } from '../icons/StoryIcons'
@@ -57,6 +57,8 @@ export function SceneTeamSlack({ progress, reduceMotion }: Props) {
   const check2 = useTransform(p, [0.8, 0.86], [0, 1])
   const check3 = useTransform(p, [0.84, 0.9], [0, 1])
   const checks = [check0, check1, check2, check3]
+  const lean = useTransform(p, [0.9, 0.98], [0, 1])
+  const restLean = useMotionValue(1)
 
   const agentLeft = useTransform(
     p,
@@ -100,7 +102,7 @@ export function SceneTeamSlack({ progress, reduceMotion }: Props) {
       </div>
 
       <div className="story-s6__you">
-        <YouAtDesk />
+        <YouAtDesk lean={rm ? restLean : lean} />
       </div>
 
       {rm ? null : (

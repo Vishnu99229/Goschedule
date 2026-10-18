@@ -10,12 +10,23 @@ export type StoryBeat = {
 export const HOME_STORY_SR_TITLE =
   'GoSchedule: an AI agent that handles everyday personal tasks and work, told as a scroll story without on-screen text.'
 
+export const STORY_SCENE_IDS = [
+  'subscription',
+  'mom-bills',
+  'email-meeting',
+  'follow-ups',
+  'draft-review',
+  'team-slack',
+] as const
+
+export type StorySceneId = (typeof STORY_SCENE_IDS)[number]
+
 export const STORY_BEATS: StoryBeat[] = [
   {
     id: 'opening',
     phase: 'morning',
     description:
-      'Opening: morning light. You relax while an AI agent orb appears, ready to help through the day.',
+      'Opening: morning. You wake and pick up your phone. Bills, emails, calendar alerts, chats, and receipts pile up until an agent orb appears and the clutter lines up.',
   },
   {
     id: 'subscription',
@@ -51,12 +62,12 @@ export const STORY_BEATS: StoryBeat[] = [
     id: 'team-slack',
     phase: 'day',
     description:
-      'A channel with four teammates. One large task splits into four smaller cards that fly to each person. Progress rings fill, then a check appears on each, one by one.',
+      'A channel with four teammates. One large task splits into four smaller cards that fly to each person. Progress rings fill, then a check appears on each, one by one. After the last check, You lean back from the desk, relaxed.',
   },
   {
     id: 'ending',
     phase: 'evening',
     description:
-      'Ending: evening calm. You rest while the agent settles nearby; a voice control will appear here in a later stage.',
+      'Ending: evening. You rest on a couch, phone face-down. The agent orb hovers, then shrinks into the GoSchedule mark. A voice button remains.',
   },
 ]

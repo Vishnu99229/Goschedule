@@ -1,6 +1,7 @@
 import type { CSSProperties } from 'react'
 import type { TranscriptLine } from './useMockVoiceSession'
 import { CONTACT_EMAIL } from '../../constants/booking'
+import VoiceMicButton from './VoiceMicButton'
 
 export type VoiceUiState =
   | 'idle'
@@ -13,6 +14,7 @@ export type VoiceUiState =
 
 type Props = {
   compact?: boolean
+  variant?: 'default' | 'mic'
   uiState: VoiceUiState
   muted: boolean
   lines: TranscriptLine[]
@@ -41,6 +43,7 @@ function Waveform({ active, speaking }: { active: boolean; speaking: boolean }) 
 
 export default function VoiceAgentShell({
   compact,
+  variant = 'default',
   uiState,
   muted,
   lines,
@@ -75,6 +78,23 @@ export default function VoiceAgentShell({
 
   const showPrimaryIdle = uiState === 'idle' || uiState === 'ended'
   const showLiveControls = live
+
+  if (variant === 'mic') {
+    return (
+      <VoiceMicButton
+        uiState={uiState}
+        muted={muted}
+        lines={lines}
+        errorMessage={errorMessage}
+        onBegin={onBegin}
+        onConfirmMic={onConfirmMic}
+        onCancelMic={onCancelMic}
+        onEnd={onEnd}
+        onToggleMute={onToggleMute}
+        onBookFallback={onBookFallback}
+      />
+    )
+  }
 
   return (
     <div

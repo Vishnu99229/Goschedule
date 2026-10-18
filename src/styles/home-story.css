@@ -31,6 +31,12 @@
   position: relative;
 }
 
+.home-story__panel--opening {
+  /* One viewport; svh stays put when the mobile address bar collapses. */
+  height: 100vh;
+  height: 100svh;
+}
+
 .home-story__panel--tall {
   height: 280vh;
 }
@@ -39,10 +45,19 @@
   height: 200vh;
 }
 
+.home-story__panel--draft {
+  height: 160vh;
+}
+
+.home-story__panel--ending {
+  height: 140vh;
+}
+
 .home-story__pin {
   position: sticky;
   top: 0;
   height: 100vh;
+  height: 100svh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -758,42 +773,288 @@
   z-index: 4;
 }
 
-.home-story__scene-index {
+.home-story__stage-fallback {
   position: absolute;
-  bottom: 16px;
-  left: 50%;
-  transform: translateX(-50%);
+  inset: 12%;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.12));
 }
 
-.home-story__scene-dot {
+.story-progress {
+  position: fixed;
+  right: 18px;
+  top: 50%;
+  translate: 0 -50%;
+  z-index: 110;
+  pointer-events: none;
+}
+
+.story-progress--hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.story-progress__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.story-progress__dot {
   display: block;
   width: 8px;
   height: 8px;
   border-radius: 50%;
+  border: 1.5px solid rgba(20, 28, 38, 0.35);
+  background: transparent;
+  box-sizing: border-box;
+}
+
+.story-progress__dot--active {
   background: var(--story-agent);
-  opacity: 0.5;
+  border-color: var(--story-agent);
 }
 
-.home-story__ending-mark {
+.story-open,
+.story-end {
   position: absolute;
-  bottom: 8%;
-  left: 50%;
-  transform: translateX(-50%);
+  inset: 0;
 }
 
-.home-story__mic-placeholder {
+.story-open__bed {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  bottom: 8%;
+  height: 22%;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #f4e4d0 0%, #e7d0b6 100%);
+  box-shadow: 0 10px 24px rgba(20, 28, 38, 0.08);
+}
+
+.story-open__bed::after {
+  content: '';
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: -18%;
+  height: 42%;
+  border-radius: 40% 40% 12px 12px;
+  background: #f7eee4;
+}
+
+.story-open__you {
+  position: absolute;
+  left: 50%;
+  bottom: 14%;
+  width: 88px;
+  translate: -50% 0;
+  z-index: 3;
+}
+
+.story-open__you svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.story-open__you-swap {
+  position: absolute;
+  inset: 0;
+}
+
+.story-open__line {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 58%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 4;
+}
+
+.story-open__badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid rgba(20, 28, 38, 0.08);
+  box-shadow: 0 8px 18px rgba(20, 28, 38, 0.08);
+  color: #141c26;
+  will-change: transform, opacity;
+}
+
+.story-open__agent {
+  position: absolute;
+  left: 72%;
+  top: 22%;
+  translate: -50% -50%;
+  z-index: 5;
+}
+
+.story-end__couch {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: 10%;
+  height: 28%;
+  border-radius: 18px 18px 10px 10px;
+  background: linear-gradient(180deg, #6b7a8c 0%, #4a5564 100%);
+}
+
+.story-end__couch::before {
+  content: '';
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  top: -22%;
+  height: 48%;
+  border-radius: 16px;
+  background: #8b98a8;
+}
+
+.story-end__you {
+  position: absolute;
+  left: 28%;
+  bottom: 18%;
+  width: 80px;
+  z-index: 3;
+}
+
+.story-end__you svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.story-end__phone {
+  position: absolute;
+  left: 52%;
+  bottom: 22%;
+  width: 22px;
+  height: 10px;
+  border-radius: 3px;
+  background: #141c26;
+  rotate: -18deg;
+  z-index: 4;
+}
+
+.story-end__orb {
+  position: absolute;
+  left: 68%;
+  top: 38%;
+  translate: -50% -50%;
+  z-index: 5;
+}
+
+.story-end__mark {
+  position: absolute;
+  left: 68%;
+  top: 38%;
+  translate: -50% -50%;
+  color: var(--story-you);
+  z-index: 6;
+}
+
+.story-end__mic {
+  position: absolute;
+  left: 50%;
+  bottom: 6%;
+  translate: -50% 0;
+  z-index: 8;
+  pointer-events: auto;
+}
+
+.voice-mic {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.voice-mic__row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.voice-mic__btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--story-agent);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(10, 143, 122, 0.28);
+}
+
+.voice-mic__btn--ghost {
+  background: #fff;
+  color: #141c26;
+  border: 1.5px solid rgba(20, 28, 38, 0.16);
+  box-shadow: none;
+}
+
+.voice-mic__btn--stop {
+  background: #b42318;
+  box-shadow: none;
+}
+
+.voice-mic__placeholder {
   display: block;
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  border: 2px solid var(--story-agent);
-  background: rgba(10, 143, 122, 0.12);
-  box-shadow: 0 0 0 8px rgba(10, 143, 122, 0.08);
+  background: rgba(10, 143, 122, 0.18);
+}
+
+.voice-mic--pulse .voice-mic__btn--talk {
+  animation: voice-mic-pulse 2.2s ease-out infinite;
+}
+
+@keyframes voice-mic-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(10, 143, 122, 0.45);
+  }
+  55% {
+    box-shadow: 0 0 0 14px rgba(10, 143, 122, 0);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .home-story__agent-orb {
     animation: none !important;
+  }
+
+  .voice-mic--pulse .voice-mic__btn--talk {
+    animation: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .story-progress {
+    right: auto;
+    top: auto;
+    bottom: 14px;
+    left: 50%;
+    translate: -50% 0;
+  }
+
+  .story-progress__list {
+    flex-direction: row;
   }
 }
 
@@ -801,11 +1062,13 @@
   .home-story__stage {
     width: 94vw;
     height: min(68vh, 480px);
+    height: min(68svh, 480px);
   }
 
   .home-story__stage--scene {
     width: 94vw;
     height: min(76vh, 520px);
+    height: min(76svh, 520px);
   }
 
   .home-story__cast {
@@ -918,5 +1181,19 @@
 
   .story-s6__you {
     bottom: 2%;
+  }
+
+  .story-open__you {
+    width: 72px;
+  }
+
+  .story-open__badge {
+    width: 32px;
+    height: 32px;
+  }
+
+  .story-end__you {
+    width: 64px;
+    left: 16%;
   }
 }
