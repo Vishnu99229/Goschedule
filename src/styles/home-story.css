@@ -31,6 +31,10 @@
   position: relative;
 }
 
+.home-story__panel--tall {
+  height: 280vh;
+}
+
 .home-story__pin {
   position: sticky;
   top: 0;
@@ -61,6 +65,12 @@
   border: 1px solid rgba(20, 28, 38, 0.08);
   background: rgba(255, 255, 255, 0.55);
   box-shadow: 0 24px 48px rgba(20, 28, 38, 0.06);
+}
+
+.home-story__stage--scene {
+  width: min(94vw, 560px);
+  height: min(78vh, 560px);
+  overflow: hidden;
 }
 
 .home-story__placeholder-ui {
@@ -115,11 +125,291 @@
 }
 
 .home-story__agent-orb {
+  flex-shrink: 0;
   border-radius: 50%;
   background: radial-gradient(circle at 35% 35%, #5eead4, var(--story-agent) 55%, #066b5c 100%);
   box-shadow:
     0 0 24px var(--story-agent-glow),
     0 0 48px rgba(10, 143, 122, 0.2);
+}
+
+.story-s1,
+.story-s2 {
+  position: absolute;
+  inset: 0;
+}
+
+.story-s1__statement {
+  position: absolute;
+  top: 8%;
+  left: 8%;
+  right: 8%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid rgba(20, 28, 38, 0.08);
+  box-shadow: 0 12px 28px rgba(20, 28, 38, 0.06);
+}
+
+.story-s1__row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 28px;
+}
+
+.story-s1__row .home-story__skeleton {
+  flex: 1;
+}
+
+.story-s1__row--slot {
+  position: relative;
+  min-height: 36px;
+}
+
+.story-s1__problem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 6px 8px;
+  border-radius: 8px;
+  background: #fff1f0;
+  transform-origin: center center;
+}
+
+.story-s1__problem-glow {
+  position: absolute;
+  inset: -4px;
+  border-radius: 10px;
+  border: 2px solid #b42318;
+  box-shadow: 0 0 0 4px rgba(180, 35, 24, 0.18);
+  pointer-events: none;
+}
+
+.story-s1__problem-bar {
+  flex: 1;
+  height: 12px;
+  background: linear-gradient(90deg, #e07a72 0%, #f0b4ae 50%, #e07a72 100%);
+}
+
+.story-s1__repeat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  color: #b42318;
+  background: #fff;
+  flex-shrink: 0;
+}
+
+.story-s1__check-slot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+}
+
+.story-s1__coin {
+  position: absolute;
+  z-index: 5;
+  pointer-events: none;
+  translate: -50% -50%;
+}
+
+.story-s1__wallet {
+  position: absolute;
+  right: 10%;
+  bottom: 10%;
+  z-index: 3;
+}
+
+.story-s1__coin-rest {
+  position: absolute;
+  right: 2px;
+  top: -8px;
+}
+
+.story-s1__you {
+  position: absolute;
+  left: 8%;
+  bottom: 4%;
+  z-index: 3;
+  width: 72px;
+}
+
+.story-s1__you-layer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.story-s1__you-layer:first-child {
+  position: relative;
+}
+
+.story-s1__agent,
+.story-s2__agent {
+  position: absolute;
+  z-index: 7;
+  pointer-events: none;
+  translate: -50% -50%;
+}
+
+.story-s2__house {
+  position: absolute;
+  left: 6%;
+  top: 10%;
+  width: 46%;
+  height: 62%;
+}
+
+.story-s2__roof {
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  top: 0;
+  height: 22%;
+  background: #c4ad90;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+.story-s2__wall {
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  top: 20%;
+  bottom: 0;
+  background: #f4efe6;
+  border: 1px solid rgba(20, 28, 38, 0.08);
+  border-radius: 0 0 8px 8px;
+}
+
+.story-s2__door {
+  position: absolute;
+  left: 22%;
+  bottom: 0;
+  width: 28%;
+  height: 42%;
+  background: #8b6a4a;
+  border-radius: 6px 6px 0 0;
+}
+
+.story-s2__knob {
+  position: absolute;
+  right: 6px;
+  top: 48%;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #e8c36a;
+}
+
+.story-s2__door-check {
+  position: absolute;
+  left: 50%;
+  top: -14px;
+  translate: -50% 0;
+}
+
+.story-s2__window {
+  position: absolute;
+  right: 22%;
+  top: 36%;
+  width: 22%;
+  height: 16%;
+  background: #d6e6f2;
+  border: 2px solid #c4ad90;
+  border-radius: 3px;
+}
+
+.story-s2__mom {
+  position: absolute;
+  right: 4%;
+  bottom: 12%;
+  z-index: 2;
+  width: 42%;
+  max-width: 140px;
+}
+
+.story-s2__mom svg {
+  width: 100%;
+  height: auto;
+}
+
+.story-s2__bills {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.story-s2__bill {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  translate: -50% 0;
+}
+
+.story-s2__bill-face {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  border-radius: 10px;
+  background: #fff;
+  border: 2px solid #b42318;
+  box-shadow: 0 6px 16px rgba(180, 35, 24, 0.18);
+  color: #b42318;
+}
+
+.story-s2__bill-icon {
+  display: flex;
+  width: 22px;
+  height: 22px;
+  align-items: center;
+  justify-content: center;
+}
+
+.story-s2__bill-paid,
+.story-s2__card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+}
+
+.story-s2__you {
+  position: absolute;
+  left: 6%;
+  bottom: 2%;
+  width: 56px;
+  z-index: 3;
+}
+
+.story-s2__you svg,
+.story-s1__you svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.story-s2__heart {
+  position: absolute;
+  left: 38%;
+  bottom: 28%;
+  z-index: 6;
+}
+
+.story-s2__heart--static {
+  bottom: 36%;
 }
 
 .home-story__scene-index {
@@ -167,6 +457,11 @@
     height: min(68vh, 480px);
   }
 
+  .home-story__stage--scene {
+    width: 94vw;
+    height: min(76vh, 520px);
+  }
+
   .home-story__cast {
     gap: 28px;
   }
@@ -174,5 +469,52 @@
   .home-story__you {
     width: 64px;
     height: auto;
+  }
+
+  .story-s1__statement {
+    left: 5%;
+    right: 5%;
+    top: 6%;
+    padding: 12px;
+  }
+
+  .story-s1__you {
+    width: 58px;
+    left: 6%;
+  }
+
+  .story-s1__wallet {
+    right: 8%;
+    bottom: 8%;
+  }
+
+  .story-s2__house {
+    width: 40%;
+    height: 48%;
+    top: 8%;
+    left: 4%;
+  }
+
+  .story-s2__mom {
+    right: 2%;
+    bottom: 18%;
+    width: 48%;
+    max-width: 120px;
+  }
+
+  .story-s2__bills {
+    right: 2%;
+    top: 6%;
+    width: 50%;
+    height: 46%;
+  }
+
+  .story-s2__you {
+    width: 48px;
+  }
+
+  .story-s2__heart {
+    left: 32%;
+    bottom: 36%;
   }
 }

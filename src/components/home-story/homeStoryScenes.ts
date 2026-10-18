@@ -21,13 +21,13 @@ export const STORY_BEATS: StoryBeat[] = [
     id: 'subscription',
     phase: 'morning',
     description:
-      'Scene one placeholder: a forgotten subscription on a bank statement will be caught and cancelled by the agent.',
+      'You sit relaxed on your phone. A bank statement slides in as grey rows. The agent scans them, finds a recurring subscription you did not notice, cancels it, and a coin returns to your wallet. You smile without looking up.',
   },
   {
     id: 'mom-bills',
     phase: 'morning',
     description:
-      "Scene two placeholder: the agent pays household bills before they reach your mother's door.",
+      "Your mother sips tea in her armchair, never looking up. Electricity, water, and wifi bills drift toward her door with clocks running down. The agent pays each one before it arrives. A heart floats between you and her. She never finds out.",
   },
   {
     id: 'email-meeting',
