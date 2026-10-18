@@ -1,7 +1,7 @@
 import { motion, useTransform, type MotionValue } from 'framer-motion'
 import { AgentOrb } from '../characters/AgentOrb'
 import { YouCharacter } from '../characters/YouCharacter'
-import { BillIcon, CalendarIcon, ChatBubbleIcon, EnvelopeIcon, ReceiptIcon, RepeatIcon } from '../icons/StoryIcons'
+import { QUEUE_TASKS } from '../queueTasks'
 
 type Props = {
   progress: MotionValue<number>
@@ -21,6 +21,7 @@ export function SceneOpening({ progress, reduceMotion }: Props) {
   const clutter3 = useTransform(p, [0.15, 0.23], [0, 1])
   const clutter4 = useTransform(p, [0.18, 0.26], [0, 1])
   const clutter5 = useTransform(p, [0.21, 0.28], [0, 1])
+  const clutters = [clutter0, clutter1, clutter2, clutter3, clutter4, clutter5]
 
   const gather = useTransform(p, [0.34, 0.52], [1, 0])
   const c0x = useTransform(gather, (v) => v * -36)
@@ -41,11 +42,31 @@ export function SceneOpening({ progress, reduceMotion }: Props) {
   const c5x = useTransform(gather, (v) => v * -20)
   const c5y = useTransform(gather, (v) => v * -40)
   const c5r = useTransform(gather, (v) => v * -6)
+  const xs = [c0x, c1x, c2x, c3x, c4x, c5x]
+  const ys = [c0y, c1y, c2y, c3y, c4y, c5y]
+  const rs = [c0r, c1r, c2r, c3r, c4r, c5r]
 
   const agentOp = useTransform(p, [0.26, 0.34], [0, 1])
   const agentScale = useTransform(p, [0.26, 0.32, 0.4], [0.2, 1.28, 1])
   const overwhelmed = useTransform(p, [0.12, 0.22, 0.38, 0.5], [0, 1, 1, 0])
   const calm = useTransform(p, [0.4, 0.52], [0, 1])
+
+  const badges = QUEUE_TASKS.map((task, i) => {
+    const Icon = task.Icon
+    return rm ? (
+      <span key={task.id} className="story-open__badge">
+        <Icon size={20} />
+      </span>
+    ) : (
+      <motion.span
+        key={task.id}
+        className="story-open__badge"
+        style={{ opacity: clutters[i], x: xs[i], y: ys[i], rotate: rs[i] }}
+      >
+        <Icon size={20} />
+      </motion.span>
+    )
+  })
 
   if (rm) {
     return (
@@ -54,14 +75,7 @@ export function SceneOpening({ progress, reduceMotion }: Props) {
         <div className="story-open__you">
           <YouCharacter pose="phone-smile" />
         </div>
-        <div className="story-open__line">
-          <span className="story-open__badge"><BillIcon size={22} /></span>
-          <span className="story-open__badge"><EnvelopeIcon size={22} /></span>
-          <span className="story-open__badge"><CalendarIcon size={20} /></span>
-          <span className="story-open__badge"><ChatBubbleIcon size={20} /></span>
-          <span className="story-open__badge"><ReceiptIcon size={18} /></span>
-          <span className="story-open__badge"><RepeatIcon size={18} /></span>
-        </div>
+        <div className="story-open__line">{badges}</div>
         <AgentOrb size={36} className="story-open__agent" />
       </div>
     )
@@ -82,26 +96,7 @@ export function SceneOpening({ progress, reduceMotion }: Props) {
         </motion.div>
       </motion.div>
 
-      <div className="story-open__line">
-        <motion.span className="story-open__badge" style={{ opacity: clutter0, x: c0x, y: c0y, rotate: c0r }}>
-          <BillIcon size={22} />
-        </motion.span>
-        <motion.span className="story-open__badge" style={{ opacity: clutter1, x: c1x, y: c1y, rotate: c1r }}>
-          <EnvelopeIcon size={22} />
-        </motion.span>
-        <motion.span className="story-open__badge" style={{ opacity: clutter2, x: c2x, y: c2y, rotate: c2r }}>
-          <CalendarIcon size={20} />
-        </motion.span>
-        <motion.span className="story-open__badge" style={{ opacity: clutter3, x: c3x, y: c3y, rotate: c3r }}>
-          <ChatBubbleIcon size={20} />
-        </motion.span>
-        <motion.span className="story-open__badge" style={{ opacity: clutter4, x: c4x, y: c4y, rotate: c4r }}>
-          <ReceiptIcon size={18} />
-        </motion.span>
-        <motion.span className="story-open__badge" style={{ opacity: clutter5, x: c5x, y: c5y, rotate: c5r }}>
-          <RepeatIcon size={18} />
-        </motion.span>
-      </div>
+      <div className="story-open__line">{badges}</div>
 
       <AgentOrb size={36} className="story-open__agent" style={{ opacity: agentOp, scale: agentScale }} />
     </div>

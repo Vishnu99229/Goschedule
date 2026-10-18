@@ -1,14 +1,16 @@
 import { motion, useTransform, type MotionValue } from 'framer-motion'
+import { CarryIn } from '../CarryIn'
 import { AgentOrb } from '../characters/AgentOrb'
 import { YouAtDesk } from '../characters/YouAtDesk'
-import { CheckIcon, PaperPlaneIcon } from '../icons/StoryIcons'
+import { CheckIcon, DraftPageIcon, PaperPlaneIcon } from '../icons/StoryIcons'
 
 type Props = {
   progress: MotionValue<number>
   reduceMotion: boolean
+  hideYou?: boolean
 }
 
-export function SceneDraftReview({ progress, reduceMotion }: Props) {
+export function SceneDraftReview({ progress, reduceMotion, hideYou }: Props) {
   const p = progress
   const rm = reduceMotion
 
@@ -42,9 +44,12 @@ export function SceneDraftReview({ progress, reduceMotion }: Props) {
 
   return (
     <div className="story-s5" aria-hidden="true">
-      <div className="story-s5__you">
-        <YouAtDesk />
-      </div>
+      <CarryIn progress={p} reduceMotion={rm} Icon={DraftPageIcon} />
+      {hideYou ? null : (
+        <div className="story-s5__you">
+          <YouAtDesk />
+        </div>
+      )}
 
       {rm ? (
         <div className="story-s5__draft">

@@ -4,17 +4,23 @@ type Props = {
   className?: string
   /** 0 = working at the laptop, 1 = leaned back from the desk. */
   lean?: MotionValue<number>
+  /** 0 = screen open, 1 = lid closed. */
+  lid?: MotionValue<number>
 }
 
-/** You at a laptop — looking at the screen, not the inbox. */
-export function YouAtDesk({ className = '', lean }: Props) {
-  const fallback = useMotionValue(0)
-  const src = lean ?? fallback
-  const rotate = useTransform(src, [0, 1], [0, -18])
-  const x = useTransform(src, [0, 1], [0, -10])
-  const y = useTransform(src, [0, 1], [0, 4])
-  const workMouth = useTransform(src, [0, 0.45], [1, 0])
-  const restMouth = useTransform(src, [0.45, 1], [0, 1])
+/** You at a laptop — same head, hair, and outfit as the standing figure. */
+export function YouAtDesk({ className = '', lean, lid }: Props) {
+  const leanFallback = useMotionValue(0)
+  const lidFallback = useMotionValue(0)
+  const leanSrc = lean ?? leanFallback
+  const lidSrc = lid ?? lidFallback
+  const rotate = useTransform(leanSrc, [0, 1], [0, -18])
+  const x = useTransform(leanSrc, [0, 1], [0, -10])
+  const y = useTransform(leanSrc, [0, 1], [0, 4])
+  const workMouth = useTransform(leanSrc, [0, 0.45], [1, 0])
+  const restMouth = useTransform(leanSrc, [0.45, 1], [0, 1])
+  const screenH = useTransform(lidSrc, [0, 1], [18, 2])
+  const screenOp = useTransform(lidSrc, [0, 0.7], [1, 0])
 
   return (
     <svg
@@ -26,11 +32,11 @@ export function YouAtDesk({ className = '', lean }: Props) {
     >
       <rect x="4" y="72" width="92" height="10" rx="2" fill="#c8d0db" />
       <rect x="28" y="48" width="44" height="26" rx="3" fill="#141c26" />
-      <rect x="32" y="52" width="36" height="18" rx="2" fill="#9aa8b8" />
+      <motion.rect x="32" y="52" width="36" rx="2" fill="#9aa8b8" style={{ height: screenH, opacity: screenOp }} />
       <rect x="22" y="74" width="56" height="4" rx="1" fill="#2a3544" />
       <motion.g style={{ rotate, x, y, originX: 0.5, originY: 0.78 }}>
         <circle cx="50" cy="22" r="11" fill="#f3d3b8" />
-        <path d="M40 18c4-8 16-8 20 0-6-1-14-1-20 0z" fill="#141c26" />
+        <path d="M39 18c4-9 18-9 22 0-7-1.2-15-1.2-22 0z" fill="#141c26" />
         <motion.path
           d="M44 26h12"
           fill="none"

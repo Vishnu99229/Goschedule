@@ -21,7 +21,14 @@ import { HomeStoryLogo } from './components/home-story/HomeStoryLogo'
 
 const SITE = 'https://www.goschedule.ai'
 
-import { DEFAULT_OG_IMAGE, HOME_DESCRIPTION, HOME_TITLE } from './constants/copy'
+import {
+  DEFAULT_OG_IMAGE,
+  HOME_DESCRIPTION,
+  HOME_OG_DESCRIPTION,
+  HOME_OG_TITLE,
+  HOME_TITLE,
+  JSONLD_HOME_DESCRIPTION,
+} from './constants/copy'
 
 const organizationJsonLd = {
   '@context': 'https://schema.org',
@@ -38,7 +45,7 @@ const websiteJsonLd = {
   '@type': 'WebSite',
   name: 'Goschedule.ai',
   url: `${SITE}/`,
-  description: HOME_DESCRIPTION,
+  description: JSONLD_HOME_DESCRIPTION,
 }
 
 const personJsonLd = {
@@ -47,7 +54,7 @@ const personJsonLd = {
   name: 'Vishnu Rajan',
   url: `${SITE}/`,
   jobTitle: 'Fractional GTM Lead',
-  description: HOME_DESCRIPTION,
+  description: JSONLD_HOME_DESCRIPTION,
   sameAs: ['https://www.linkedin.com/in/vishnu-rajan-41515048/'],
   worksFor: {
     '@type': 'Organization',
@@ -61,7 +68,7 @@ const professionalServiceJsonLd = {
   '@type': 'ProfessionalService',
   name: 'Goschedule.ai',
   url: `${SITE}/`,
-  description: HOME_DESCRIPTION,
+  description: JSONLD_HOME_DESCRIPTION,
   image: DEFAULT_OG_IMAGE,
   provider: {
     '@type': 'Person',
@@ -81,6 +88,8 @@ function HomeRoute() {
       <SEO
         title={HOME_TITLE}
         description={HOME_DESCRIPTION}
+        ogTitle={HOME_OG_TITLE}
+        ogDescription={HOME_OG_DESCRIPTION}
         canonical="https://www.goschedule.ai/"
         jsonLd={[organizationJsonLd, websiteJsonLd, personJsonLd, professionalServiceJsonLd]}
       />

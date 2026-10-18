@@ -1,7 +1,8 @@
 import { motion, useTransform, type MotionValue } from 'framer-motion'
+import { CarryIn } from '../CarryIn'
 import { AgentOrb } from '../characters/AgentOrb'
 import { YouCharacter } from '../characters/YouCharacter'
-import { CheckIcon, CoinIcon, RepeatIcon, WalletIcon } from '../icons/StoryIcons'
+import { CheckIcon, CoinIcon, ReceiptIcon, RepeatIcon, WalletIcon } from '../icons/StoryIcons'
 
 type Props = {
   progress: MotionValue<number>
@@ -12,8 +13,12 @@ export function SceneSubscription({ progress, reduceMotion }: Props) {
   const p = progress
   const rm = reduceMotion
 
-  const statementX = useTransform(p, [0, 0.12, 0.26, 1], ['40%', '40%', '0%', '0%'])
-  const statementOp = useTransform(p, [0, 0.12, 0.22, 1], [0, 0, 1, 1])
+  const statementX = useTransform(p, [0, 0.08, 0.22, 1], ['8%', '8%', '0%', '0%'])
+  const statementY = useTransform(p, [0, 0.08, 0.22], ['42%', '42%', '0%'])
+  const statementScale = useTransform(p, [0, 0.08, 0.22], [0.28, 0.32, 1])
+  const statementOp = useTransform(p, [0, 0.04, 0.12, 1], [0, 1, 1, 1])
+  const photoOp = useTransform(p, [0.84, 0.92], [0, 1])
+  const pathOp = useTransform(p, [0.88, 0.96], [0, 1])
 
   const problemGlow = useTransform(p, [0.24, 0.3, 0.38, 0.5, 0.58], [0, 1, 1.12, 1, 0])
   const problemOp = useTransform(p, [0.22, 0.28, 0.52, 0.62], [0, 1, 1, 0])
@@ -39,12 +44,13 @@ export function SceneSubscription({ progress, reduceMotion }: Props) {
 
   return (
     <div className="story-s1" aria-hidden="true">
+      <CarryIn progress={p} reduceMotion={rm} Icon={ReceiptIcon} />
       <motion.div
         className="story-s1__statement"
         style={
           rm
             ? undefined
-            : { x: statementX, opacity: statementOp }
+            : { x: statementX, y: statementY, scale: statementScale, opacity: statementOp, originX: 0, originY: 1 }
         }
       >
         <div className="story-s1__row">
@@ -123,6 +129,24 @@ export function SceneSubscription({ progress, reduceMotion }: Props) {
           </>
         )}
       </div>
+
+      {rm ? null : (
+        <>
+          <motion.div className="story-s1__photo" style={{ opacity: photoOp }}>
+            <span className="story-s1__photo-face" />
+          </motion.div>
+          <motion.svg className="story-s1__path" viewBox="0 0 200 80" style={{ opacity: pathOp }} aria-hidden="true">
+            <path
+              d="M20 70 C 60 10, 140 10, 190 28"
+              fill="none"
+              stroke="#0a8f7a"
+              strokeWidth="2"
+              strokeDasharray="4 6"
+              strokeLinecap="round"
+            />
+          </motion.svg>
+        </>
+      )}
 
       <AgentOrb
         size={32}

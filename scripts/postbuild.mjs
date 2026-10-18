@@ -26,11 +26,15 @@ const CONTENT_BLOG = join(ROOT, 'content', 'blog')
 const SITE = 'https://www.goschedule.ai'
 const DEFAULT_OG = `${SITE}/og-image-v4.png`
 
-const HOME_TITLE = "Your demo works. Your pipeline doesn't. | Vishnu Rajan"
+const HOME_TITLE = 'GoSchedule: AI agent for email, bills and follow-ups'
 const HOME_DESCRIPTION =
+  'An AI agent that replies to email, books meetings, chases follow-ups and assigns team tasks, and quietly handles bills and forgotten subscriptions.'
+const HOME_OG_TITLE = "Put the phone down. The agent's got it."
+const HOME_OG_DESCRIPTION =
+  'Bills, email, follow-ups, drafts, your team channel. Handled. One day with an AI agent.'
+const DEFAULT_OG_ALT = "Put the phone down. The agent's got it. — GoSchedule"
+const JSONLD_HOME_DESCRIPTION =
   "Your demo works. Your pipeline doesn't. Fractional GTM for AI and B2B software selling into Indian banks, insurers, and BPOs."
-const DEFAULT_OG_ALT =
-  "Your demo works. Your pipeline doesn't. — Vishnu Rajan, fractional GTM for AI selling into Indian enterprise."
 
 // ── Shared JSON-LD builders (mirror the client-side <SEO jsonLd> values so
 //    the same schema appears in the raw static HTML, not only after hydration) ──
@@ -49,7 +53,7 @@ const WEBSITE_JSONLD = {
   '@type': 'WebSite',
   name: 'Goschedule.ai',
   url: `${SITE}/`,
-  description: HOME_DESCRIPTION,
+  description: JSONLD_HOME_DESCRIPTION,
 }
 
 const PERSON_JSONLD = {
@@ -58,7 +62,7 @@ const PERSON_JSONLD = {
   name: 'Vishnu Rajan',
   url: `${SITE}/`,
   jobTitle: 'Fractional GTM Lead',
-  description: HOME_DESCRIPTION,
+  description: JSONLD_HOME_DESCRIPTION,
   sameAs: ['https://www.linkedin.com/in/vishnu-rajan-41515048/'],
   worksFor: {
     '@type': 'Organization',
@@ -72,7 +76,7 @@ const PROFESSIONAL_SERVICE_JSONLD = {
   '@type': 'ProfessionalService',
   name: 'Goschedule.ai',
   url: `${SITE}/`,
-  description: HOME_DESCRIPTION,
+  description: JSONLD_HOME_DESCRIPTION,
   image: DEFAULT_OG,
   provider: {
     '@type': 'Person',
@@ -137,6 +141,8 @@ const MARKETING_ROUTES = [
     path: '/',
     title: HOME_TITLE,
     description: HOME_DESCRIPTION,
+    ogTitle: HOME_OG_TITLE,
+    ogDescription: HOME_OG_DESCRIPTION,
     canonical: `${SITE}/`,
     ogType: 'website',
     priority: 1.0,
@@ -316,11 +322,11 @@ function injectMeta(html, route) {
   )
   result = result.replace(
     /<meta\s+property="og:title"\s+content="[^"]*"\s*\/?>/,
-    `<meta property="og:title" content="${escapeHtml(route.title)}" />`
+    `<meta property="og:title" content="${escapeHtml(route.ogTitle ?? route.title)}" />`
   )
   result = result.replace(
     /<meta\s+property="og:description"\s+content="[^"]*"\s*\/?>/,
-    `<meta property="og:description" content="${escapeHtml(route.description)}" />`
+    `<meta property="og:description" content="${escapeHtml(route.ogDescription ?? route.description)}" />`
   )
   result = result.replace(
     /<meta\s+property="og:url"\s+content="[^"]*"\s*\/?>/,
@@ -344,11 +350,11 @@ function injectMeta(html, route) {
   )
   result = result.replace(
     /<meta\s+name="twitter:title"\s+content="[^"]*"\s*\/?>/,
-    `<meta name="twitter:title" content="${escapeHtml(route.title)}" />`
+    `<meta name="twitter:title" content="${escapeHtml(route.ogTitle ?? route.title)}" />`
   )
   result = result.replace(
     /<meta\s+name="twitter:description"\s+content="[^"]*"\s*\/?>/,
-    `<meta name="twitter:description" content="${escapeHtml(route.description)}" />`
+    `<meta name="twitter:description" content="${escapeHtml(route.ogDescription ?? route.description)}" />`
   )
   result = result.replace(
     /<meta\s+name="twitter:url"\s+content="[^"]*"\s*\/?>/,

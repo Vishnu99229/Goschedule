@@ -155,6 +155,18 @@ export function ChatBubbleIcon({ className = '', size = 26 }: IconProps) {
   )
 }
 
+export function DraftPageIcon({ className = '', size = 22 }: IconProps) {
+  return (
+    <svg className={className} width={size} height={size * 1.2} viewBox="0 0 22 28" aria-hidden="true">
+      <path d="M4 1h10l6 6v20H4V1z" fill="#fff" stroke="#141c26" strokeWidth="1.4" />
+      <path d="M14 1v6h6" fill="none" stroke="#141c26" strokeWidth="1.4" />
+      <rect x="7" y="12" width="10" height="1.8" rx="0.8" fill="#c8d0db" />
+      <rect x="7" y="16" width="8" height="1.8" rx="0.8" fill="#c8d0db" />
+      <rect x="7" y="20" width="6" height="1.8" rx="0.8" fill="#c8d0db" />
+    </svg>
+  )
+}
+
 export function ReceiptIcon({ className = '', size = 24 }: IconProps) {
   return (
     <svg className={className} width={size} height={size * 1.2} viewBox="0 0 22 28" aria-hidden="true">

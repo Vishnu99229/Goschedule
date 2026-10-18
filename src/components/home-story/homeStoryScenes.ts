@@ -21,12 +21,14 @@ export const STORY_SCENE_IDS = [
 
 export type StorySceneId = (typeof STORY_SCENE_IDS)[number]
 
+export const WORK_SCENE_IDS = ['email-meeting', 'follow-ups', 'draft-review', 'team-slack'] as const
+
 export const STORY_BEATS: StoryBeat[] = [
   {
     id: 'opening',
     phase: 'morning',
     description:
-      'Opening: morning. You wake and pick up your phone. Bills, emails, calendar alerts, chats, and receipts pile up until an agent orb appears and the clutter lines up.',
+      'Opening: morning. You wake and pick up your phone. Notifications pile up until an agent orb appears and they line up as six tasks for the day.',
   },
   {
     id: 'subscription',
@@ -68,6 +70,6 @@ export const STORY_BEATS: StoryBeat[] = [
     id: 'ending',
     phase: 'evening',
     description:
-      'Ending: evening. You rest on a couch, phone face-down. The agent orb hovers, then shrinks into the GoSchedule mark. A voice button remains.',
+      'Ending: evening. You close the laptop, sit on the couch, and place the phone face-down. All six tasks are checked. The orb gathers the checks, rests beside You, and shrinks into the GoSchedule mark.',
   },
 ]

@@ -1,4 +1,5 @@
 import { motion, useTransform, type MotionValue } from 'framer-motion'
+import { CarryIn } from '../CarryIn'
 import { AgentOrb } from '../characters/AgentOrb'
 import { YouAtDesk } from '../characters/YouAtDesk'
 import { CheckIcon, EnvelopeIcon, PaperPlaneIcon } from '../icons/StoryIcons'
@@ -6,9 +7,10 @@ import { CheckIcon, EnvelopeIcon, PaperPlaneIcon } from '../icons/StoryIcons'
 type Props = {
   progress: MotionValue<number>
   reduceMotion: boolean
+  hideYou?: boolean
 }
 
-export function SceneFollowUps({ progress, reduceMotion }: Props) {
+export function SceneFollowUps({ progress, reduceMotion, hideYou }: Props) {
   const p = progress
   const rm = reduceMotion
 
@@ -46,9 +48,12 @@ export function SceneFollowUps({ progress, reduceMotion }: Props) {
 
   return (
     <div className="story-s4" aria-hidden="true">
-      <div className="story-s4__you">
-        <YouAtDesk />
-      </div>
+      <CarryIn progress={p} reduceMotion={rm} Icon={PaperPlaneIcon} />
+      {hideYou ? null : (
+        <div className="story-s4__you">
+          <YouAtDesk />
+        </div>
+      )}
 
       {rm ? (
         <>

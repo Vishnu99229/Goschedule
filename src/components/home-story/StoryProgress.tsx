@@ -1,58 +1,78 @@
-import { useEffect, useState } from 'react'
-import { STORY_SCENE_IDS } from './homeStoryScenes'
+import { motion, useTransform, type MotionValue } from 'framer-motion'
+import type { ComponentType } from 'react'
+import { CheckIcon } from './icons/StoryIcons'
+import { QUEUE_TASKS } from './queueTasks'
 
-export function StoryProgress() {
-  const [active, setActive] = useState<string | null>(null)
+type IconProps = { className?: string; size?: number }
 
-  useEffect(() => {
-    const nodes = Array.from(document.querySelectorAll<HTMLElement>('[data-scene]'))
-    if (nodes.length === 0) return
+type Props = {
+  progress: MotionValue<number>
+  reduceMotion: boolean
+}
 
-    const ratios = new Map<string, number>()
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          const id = entry.target.getAttribute('data-scene')
-          if (!id) continue
-          ratios.set(id, entry.isIntersecting ? entry.intersectionRatio : 0)
-        }
-
-        let bestId: string | null = null
-        let best = 0
-        for (const id of STORY_SCENE_IDS) {
-          const r = ratios.get(id) ?? 0
-          if (r > best) {
-            best = r
-            bestId = id
-          }
-        }
-        setActive(best > 0.28 ? bestId : null)
-      },
-      { threshold: [0.12, 0.28, 0.45, 0.6, 0.8] },
-    )
-
-    nodes.forEach((n) => io.observe(n))
-    return () => io.disconnect()
-  }, [])
-
-  const visible = active !== null
+function QueueItem({
+  Icon,
+  checked,
+  gather,
+  index,
+  reduceMotion,
+}: {
+  Icon: ComponentType<IconProps>
+  checked: MotionValue<number>
+  gather: MotionValue<number>
+  index: number
+  reduceMotion: boolean
+}) {
+  const iconOp = useTransform(checked, (v) => 1 - v)
+  const gx = useTransform(gather, (v) => v * (2.5 - index) * 8)
+  const gy = useTransform(gather, (v) => v * -16)
 
   return (
-    <nav
-      className={`story-progress${visible ? '' : ' story-progress--hidden'}`}
-      aria-label="Story scenes"
-      aria-hidden={!visible}
-    >
+    <li className="story-progress__item">
+      {reduceMotion ? (
+        <span className="story-progress__icon">
+          <Icon size={16} />
+        </span>
+      ) : (
+        <>
+          <motion.span className="story-progress__icon" style={{ opacity: iconOp }}>
+            <Icon size={16} />
+          </motion.span>
+          <motion.span className="story-progress__check" style={{ opacity: checked, scale: checked, x: gx, y: gy }}>
+            <CheckIcon size={16} />
+          </motion.span>
+        </>
+      )}
+    </li>
+  )
+}
+
+/** Six task icons — the same row that formed in the opening. Checks fill as scenes complete. */
+export function StoryProgress({ progress, reduceMotion }: Props) {
+  const visible = useTransform(progress, [0.04, 0.08], [0, 1])
+  const check0 = useTransform(progress, [0.2, 0.24], [0, 1])
+  const check1 = useTransform(progress, [0.38, 0.42], [0, 1])
+  const check2 = useTransform(progress, [0.52, 0.55], [0, 1])
+  const check3 = useTransform(progress, [0.65, 0.68], [0, 1])
+  const check4 = useTransform(progress, [0.76, 0.78], [0, 1])
+  const check5 = useTransform(progress, [0.88, 0.91], [0, 1])
+  const checks = [check0, check1, check2, check3, check4, check5]
+  const gather = useTransform(progress, [0.93, 0.98], [0, 1])
+
+  return (
+    <motion.nav className="story-progress" aria-label="Day's tasks" style={reduceMotion ? undefined : { opacity: visible }}>
       <ol className="story-progress__list">
-        {STORY_SCENE_IDS.map((id) => (
-          <li key={id}>
-            <span
-              className={`story-progress__dot${active === id ? ' story-progress__dot--active' : ''}`}
-            />
-          </li>
+        {QUEUE_TASKS.map((task, i) => (
+          <QueueItem
+            key={task.id}
+            Icon={task.Icon}
+            checked={checks[i]}
+            gather={gather}
+            index={i}
+            reduceMotion={reduceMotion}
+          />
         ))}
       </ol>
-    </nav>
+    </motion.nav>
   )
 }

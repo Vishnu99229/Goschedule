@@ -1,11 +1,13 @@
 import { motion, useMotionValue, useTransform, type MotionValue } from 'framer-motion'
+import { CarryIn } from '../CarryIn'
 import { AgentOrb } from '../characters/AgentOrb'
 import { YouAtDesk } from '../characters/YouAtDesk'
-import { CheckIcon } from '../icons/StoryIcons'
+import { ChatBubbleIcon, CheckIcon } from '../icons/StoryIcons'
 
 type Props = {
   progress: MotionValue<number>
   reduceMotion: boolean
+  hideYou?: boolean
 }
 
 const TEAM = [
@@ -33,7 +35,7 @@ function ProgressRing({ value }: { value: MotionValue<number> }) {
   )
 }
 
-export function SceneTeamSlack({ progress, reduceMotion }: Props) {
+export function SceneTeamSlack({ progress, reduceMotion, hideYou }: Props) {
   const p = progress
   const rm = reduceMotion
 
@@ -73,6 +75,7 @@ export function SceneTeamSlack({ progress, reduceMotion }: Props) {
 
   return (
     <div className="story-s6" aria-hidden="true">
+      <CarryIn progress={p} reduceMotion={rm} Icon={ChatBubbleIcon} />
       <div className="story-s6__channel">
         <span className="story-s6__rail" />
         {TEAM.map((member, i) => (
@@ -101,9 +104,11 @@ export function SceneTeamSlack({ progress, reduceMotion }: Props) {
         ))}
       </div>
 
-      <div className="story-s6__you">
-        <YouAtDesk lean={rm ? restLean : lean} />
-      </div>
+      {hideYou ? null : (
+        <div className="story-s6__you">
+          <YouAtDesk lean={rm ? restLean : lean} />
+        </div>
+      )}
 
       {rm ? null : (
         <motion.div className="story-s6__big" style={{ opacity: bigOp, scale: bigScale }}>

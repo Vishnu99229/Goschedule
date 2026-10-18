@@ -11,16 +11,10 @@ type SceneProps = {
 const SCENE_LOADERS: Record<string, () => Promise<ComponentType<SceneProps>>> = {
   subscription: () => import('./scenes/SceneSubscription').then((m) => m.SceneSubscription),
   'mom-bills': () => import('./scenes/SceneMomBills').then((m) => m.SceneMomBills),
-  'email-meeting': () => import('./scenes/SceneEmailMeeting').then((m) => m.SceneEmailMeeting),
-  'follow-ups': () => import('./scenes/SceneFollowUps').then((m) => m.SceneFollowUps),
-  'draft-review': () => import('./scenes/SceneDraftReview').then((m) => m.SceneDraftReview),
-  'team-slack': () => import('./scenes/SceneTeamSlack').then((m) => m.SceneTeamSlack),
   ending: () => import('./scenes/SceneEnding').then((m) => m.SceneEnding),
 }
 
 const PERSONAL_SCENES = new Set(['subscription', 'mom-bills'])
-const WORK_SCENES = new Set(['email-meeting', 'follow-ups', 'team-slack'])
-const DRAFT_SCENES = new Set(['draft-review'])
 
 function DeferredScene({
   beatId,
@@ -88,11 +82,9 @@ export function StoryScenePanel({ beat, index }: Props) {
   const ref = useRef<HTMLElement>(null)
   const reduceMotion = useReducedMotion() ?? false
   const isPersonal = PERSONAL_SCENES.has(beat.id)
-  const isWork = WORK_SCENES.has(beat.id)
-  const isDraft = DRAFT_SCENES.has(beat.id)
   const isOpening = beat.id === 'opening'
   const isEnding = beat.id === 'ending'
-  const isStory = isPersonal || isWork || isDraft
+  const isStory = isPersonal
 
   const { scrollY } = useScroll()
   const { scrollYProgress } = useScroll({
@@ -119,9 +111,7 @@ export function StoryScenePanel({ beat, index }: Props) {
       ref={ref}
       className={`home-story__panel home-story__panel--${beat.phase}${
         isOpening ? ' home-story__panel--opening' : ''
-      }${isEnding ? ' home-story__panel--ending' : ''}${
-        isPersonal ? ' home-story__panel--tall' : ''
-      }${isWork ? ' home-story__panel--work' : ''}${isDraft ? ' home-story__panel--draft' : ''}`}
+      }${isEnding ? ' home-story__panel--ending' : ''}${isPersonal ? ' home-story__panel--tall' : ''}`}
       data-scene={beat.id}
       aria-labelledby={`story-beat-${index}`}
     >

@@ -1,8 +1,10 @@
 import { motion, useTransform, type MotionValue } from 'framer-motion'
+import { CarryIn } from '../CarryIn'
 import { AgentOrb } from '../characters/AgentOrb'
 import { MomCharacter } from '../characters/MomCharacter'
 import { YouCharacter } from '../characters/YouCharacter'
 import {
+  BillIcon,
   CardIcon,
   CheckIcon,
   ClockFace,
@@ -55,9 +57,12 @@ export function SceneMomBills({ progress, reduceMotion }: Props) {
   const card1 = useTransform(p, [0.56, 0.6, 0.65], [0, 1, 0])
   const card2 = useTransform(p, [0.66, 0.7, 0.75], [0, 1, 0])
 
-  const heartOp = useTransform(p, [0.78, 0.88, 1], [0, 1, 1])
-  const heartY = useTransform(p, [0.78, 1], [16, -28])
+  const heartOp = useTransform(p, [0.78, 0.86, 0.92], [0, 1, 0.4])
+  const heartY = useTransform(p, [0.78, 0.9], [16, -28])
   const doorCheck = useTransform(p, [0.76, 0.86], [0, 1])
+  const pathOp = useTransform(p, [0, 0.08, 0.2], [1, 1, 0])
+  const bagOp = useTransform(p, [0.9, 0.96], [0, 1])
+  const youPhoneOp = useTransform(p, [0.9, 1], [1, 0])
 
   const bills = [
     { id: 'power', Icon: LightningIcon, y: '16%', x: bill0x, op: bill0op, green: bill0green, face: face0, card: card0 },
@@ -67,6 +72,19 @@ export function SceneMomBills({ progress, reduceMotion }: Props) {
 
   return (
     <div className="story-s2" aria-hidden="true">
+      <CarryIn progress={p} reduceMotion={rm} Icon={BillIcon} />
+      {rm ? null : (
+        <motion.svg className="story-s2__path" viewBox="0 0 200 80" style={{ opacity: pathOp }} aria-hidden="true">
+          <path
+            d="M20 70 C 60 10, 140 10, 190 28"
+            fill="none"
+            stroke="#0a8f7a"
+            strokeWidth="2"
+            strokeDasharray="4 6"
+            strokeLinecap="round"
+          />
+        </motion.svg>
+      )}
       <div className="story-s2__house">
         <div className="story-s2__roof" />
         <div className="story-s2__wall" />
@@ -118,7 +136,18 @@ export function SceneMomBills({ progress, reduceMotion }: Props) {
       ) : null}
 
       <div className="story-s2__you">
-        <YouCharacter pose="phone" />
+        {rm ? (
+          <YouCharacter pose="bag" />
+        ) : (
+          <>
+            <motion.div style={{ opacity: youPhoneOp }}>
+              <YouCharacter pose="phone" />
+            </motion.div>
+            <motion.div className="story-s2__you-bag" style={{ opacity: bagOp }}>
+              <YouCharacter pose="bag" />
+            </motion.div>
+          </>
+        )}
       </div>
 
       {rm ? (

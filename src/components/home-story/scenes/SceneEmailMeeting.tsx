@@ -1,4 +1,5 @@
 import { motion, useTransform, type MotionValue } from 'framer-motion'
+import { CarryIn } from '../CarryIn'
 import { AgentOrb } from '../characters/AgentOrb'
 import { YouAtDesk } from '../characters/YouAtDesk'
 import { AvatarPair, CheckIcon, EnvelopeIcon, VideoCallIcon } from '../icons/StoryIcons'
@@ -6,11 +7,12 @@ import { AvatarPair, CheckIcon, EnvelopeIcon, VideoCallIcon } from '../icons/Sto
 type Props = {
   progress: MotionValue<number>
   reduceMotion: boolean
+  hideYou?: boolean
 }
 
 const CELLS = 12
 
-export function SceneEmailMeeting({ progress, reduceMotion }: Props) {
+export function SceneEmailMeeting({ progress, reduceMotion, hideYou }: Props) {
   const p = progress
   const rm = reduceMotion
 
@@ -43,15 +45,18 @@ export function SceneEmailMeeting({ progress, reduceMotion }: Props) {
 
   return (
     <div className="story-s3" aria-hidden="true">
+      <CarryIn progress={p} reduceMotion={rm} Icon={EnvelopeIcon} />
       <div className="story-s3__busy">
         <span className="home-story__skeleton" />
         <span className="home-story__skeleton home-story__skeleton--wide" />
         <span className="home-story__skeleton home-story__skeleton--short" />
       </div>
 
-      <div className="story-s3__you">
-        <YouAtDesk />
-      </div>
+      {hideYou ? null : (
+        <div className="story-s3__you">
+          <YouAtDesk />
+        </div>
+      )}
 
       {rm ? (
         <>
