@@ -35,6 +35,10 @@
   height: 280vh;
 }
 
+.home-story__panel--work {
+  height: 200vh;
+}
+
 .home-story__pin {
   position: sticky;
   top: 0;
@@ -50,7 +54,7 @@
 }
 
 .home-story__panel--day .home-story__pin {
-  background: linear-gradient(180deg, #edf1f6 0%, #f4f7fa 50%, #eef2f7 100%);
+  background: linear-gradient(180deg, #e8eef8 0%, #f3f6fb 42%, #dfe8f4 100%);
 }
 
 .home-story__panel--evening .home-story__pin {
@@ -412,6 +416,209 @@
   bottom: 36%;
 }
 
+.story-s3,
+.story-s4 {
+  position: absolute;
+  inset: 0;
+}
+
+.story-s3__busy {
+  position: absolute;
+  left: 6%;
+  bottom: 28%;
+  width: 34%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(20, 28, 38, 0.08);
+}
+
+.story-s3__you,
+.story-s4__you {
+  position: absolute;
+  left: 6%;
+  bottom: 4%;
+  width: 96px;
+  z-index: 3;
+}
+
+.story-s3__you svg,
+.story-s4__you svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.story-s3__mail {
+  position: absolute;
+  top: 10%;
+  left: 58%;
+  z-index: 4;
+  translate: -50% 0;
+}
+
+.story-s3__compose {
+  position: absolute;
+  top: 22%;
+  left: 48%;
+  right: 8%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid rgba(20, 28, 38, 0.08);
+  z-index: 4;
+}
+
+.story-s3__calendar {
+  position: absolute;
+  left: 42%;
+  right: 8%;
+  top: 42%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  z-index: 4;
+}
+
+.story-s3__cell {
+  aspect-ratio: 1;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(20, 28, 38, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.story-s3__cell--booked,
+.story-s3__cell-booked {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background: var(--story-agent);
+}
+
+.story-s3__hands {
+  position: absolute;
+  right: 10%;
+  bottom: 10%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 5;
+}
+
+.story-s3__agent,
+.story-s4__agent {
+  position: absolute;
+  z-index: 7;
+  pointer-events: none;
+  translate: -50% -50%;
+}
+
+.story-s4__plane {
+  position: absolute;
+  top: 28%;
+  z-index: 5;
+  translate: -50% -50%;
+}
+
+.story-s4__days {
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  translate: -50% 0;
+  display: flex;
+  gap: 10px;
+  z-index: 4;
+}
+
+.story-s4__day {
+  width: 22px;
+  height: 28px;
+  border-radius: 5px;
+  background: #c8d0db;
+  box-shadow: inset 0 -4px 0 rgba(20, 28, 38, 0.12);
+}
+
+.story-s4__day--on {
+  background: #5a6572;
+}
+
+.story-s4__wait {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 36%;
+  height: 28%;
+}
+
+.story-s4__dots {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 42%;
+  border-top: 2px dotted #b42318;
+  opacity: 0.55;
+}
+
+.story-s4__weed {
+  position: absolute;
+  top: 28%;
+  translate: -50% 0;
+}
+
+.story-s4__weed-ball {
+  display: block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50% 40% 50% 40%;
+  background: #8a7a62;
+  box-shadow: 2px 0 0 #6b5c48;
+}
+
+.story-s4__empty {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 38%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px dashed rgba(180, 35, 24, 0.45);
+}
+
+.story-s4__reply {
+  position: absolute;
+  top: 58%;
+  z-index: 5;
+  translate: -50% -50%;
+}
+
+.story-s4__reply-rest,
+.story-s4__check {
+  position: absolute;
+  left: 36%;
+  top: 58%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  translate: -50% -50%;
+  z-index: 5;
+}
+
 .home-story__scene-index {
   position: absolute;
   bottom: 16px;
@@ -516,5 +723,31 @@
   .story-s2__heart {
     left: 32%;
     bottom: 36%;
+  }
+
+  .story-s3__busy {
+    width: 42%;
+    bottom: 30%;
+    padding: 8px;
+  }
+
+  .story-s3__you,
+  .story-s4__you {
+    width: 78px;
+  }
+
+  .story-s3__compose,
+  .story-s3__calendar {
+    left: 40%;
+    right: 5%;
+  }
+
+  .story-s3__hands {
+    right: 6%;
+    bottom: 8%;
+  }
+
+  .story-s4__empty {
+    width: 46%;
   }
 }

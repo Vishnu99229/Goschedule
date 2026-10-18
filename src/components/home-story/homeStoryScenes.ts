@@ -33,13 +33,13 @@ export const STORY_BEATS: StoryBeat[] = [
     id: 'email-meeting',
     phase: 'day',
     description:
-      'Scene three placeholder: the agent replies to email and books a meeting on your calendar.',
+      'You work at a laptop, busy with other documents. An email lands. The agent opens it, types a reply in grey lines, sends it, and a calendar slot fills with a video-call icon. Two people meet. You never look up.',
   },
   {
     id: 'follow-ups',
     phase: 'day',
     description:
-      'Scene four placeholder: the agent sends a follow-up when no reply arrives after several days.',
+      'You send an email. Three days pass with an empty inbox. The agent sends a smaller follow-up. A reply envelope bounces back. Check.',
   },
   {
     id: 'draft-review',

@@ -3,6 +3,8 @@ import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion
 import type { StoryBeat } from './homeStoryScenes'
 import { AgentOrb } from './characters/AgentOrb'
 import { YouCharacter } from './characters/YouCharacter'
+import { SceneEmailMeeting } from './scenes/SceneEmailMeeting'
+import { SceneFollowUps } from './scenes/SceneFollowUps'
 import { SceneMomBills } from './scenes/SceneMomBills'
 import { SceneSubscription } from './scenes/SceneSubscription'
 
@@ -11,12 +13,15 @@ type Props = {
   index: number
 }
 
-const STORY_SCENES = new Set(['subscription', 'mom-bills'])
+const PERSONAL_SCENES = new Set(['subscription', 'mom-bills'])
+const WORK_SCENES = new Set(['email-meeting', 'follow-ups'])
 
 export function StoryScenePanel({ beat, index }: Props) {
   const ref = useRef<HTMLElement>(null)
   const reduceMotion = useReducedMotion() ?? false
-  const isStory = STORY_SCENES.has(beat.id)
+  const isPersonal = PERSONAL_SCENES.has(beat.id)
+  const isWork = WORK_SCENES.has(beat.id)
+  const isStory = isPersonal || isWork
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -29,7 +34,9 @@ export function StoryScenePanel({ beat, index }: Props) {
   return (
     <section
       ref={ref}
-      className={`home-story__panel home-story__panel--${beat.phase}${isStory ? ' home-story__panel--tall' : ''}`}
+      className={`home-story__panel home-story__panel--${beat.phase}${
+        isPersonal ? ' home-story__panel--tall' : ''
+      }${isWork ? ' home-story__panel--work' : ''}`}
       data-scene={beat.id}
       aria-labelledby={`story-beat-${index}`}
     >
@@ -42,9 +49,16 @@ export function StoryScenePanel({ beat, index }: Props) {
           <div className="home-story__stage home-story__stage--scene">
             {beat.id === 'subscription' ? (
               <SceneSubscription progress={scrollYProgress} reduceMotion={reduceMotion} />
-            ) : (
+            ) : null}
+            {beat.id === 'mom-bills' ? (
               <SceneMomBills progress={scrollYProgress} reduceMotion={reduceMotion} />
-            )}
+            ) : null}
+            {beat.id === 'email-meeting' ? (
+              <SceneEmailMeeting progress={scrollYProgress} reduceMotion={reduceMotion} />
+            ) : null}
+            {beat.id === 'follow-ups' ? (
+              <SceneFollowUps progress={scrollYProgress} reduceMotion={reduceMotion} />
+            ) : null}
           </div>
         ) : (
           <motion.div

@@ -119,3 +119,41 @@ export function ClockFace({
     </svg>
   )
 }
+
+export function EnvelopeIcon({ className = '', size = 28 }: IconProps) {
+  return (
+    <svg className={className} width={size} height={size * 0.75} viewBox="0 0 32 24" aria-hidden="true">
+      <rect x="1" y="3" width="30" height="18" rx="3" fill="#141c26" />
+      <path d="M2 5 16 14 30 5" fill="none" stroke="#edf1f6" strokeWidth="1.8" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
+export function PaperPlaneIcon({ className = '', size = 22 }: IconProps) {
+  return (
+    <svg className={className} width={size} height={size} viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M3 11 21 3 14 21 11 13 3 11z" fill="#141c26" />
+      <path d="M11 13 21 3" stroke="#edf1f6" strokeWidth="1.4" />
+    </svg>
+  )
+}
+
+export function VideoCallIcon({ className = '', size = 16 }: IconProps) {
+  return (
+    <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="2" y="6" width="14" height="12" rx="2" fill="#fff" />
+      <path d="M16 10 22 7v10l-6-3V10z" fill="#fff" />
+    </svg>
+  )
+}
+
+export function AvatarPair({ className = '' }: { className?: string }) {
+  return (
+    <svg className={className} width="56" height="28" viewBox="0 0 56 28" aria-hidden="true">
+      <circle cx="14" cy="14" r="12" fill="#2a3544" />
+      <circle cx="14" cy="11" r="5" fill="#f3d3b8" />
+      <circle cx="42" cy="14" r="12" fill="#0a8f7a" />
+      <circle cx="42" cy="11" r="5" fill="#f3d3b8" />
+    </svg>
+  )
+}
