@@ -1,0 +1,178 @@
+/* Scroll-driven homepage story — visual layer is text-free */
+
+.home-story {
+  --story-agent: #0a8f7a;
+  --story-agent-glow: rgba(10, 143, 122, 0.45);
+  --story-you: #141c26;
+  padding: 0;
+  margin: 0;
+  max-width: none;
+}
+
+.home-story__logo {
+  position: fixed;
+  top: var(--space-2);
+  left: var(--space-2);
+  z-index: 120;
+  padding: var(--space-1);
+  border-radius: var(--radius-sm);
+  color: var(--color-ink);
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 1px 0 rgba(20, 28, 38, 0.06);
+}
+
+.home-story__scroll {
+  width: 100%;
+}
+
+.home-story__panel {
+  height: 130vh;
+  position: relative;
+}
+
+.home-story__pin {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.home-story__panel--morning .home-story__pin {
+  background: linear-gradient(165deg, #fff6eb 0%, #edf1f6 45%, #e8eef5 100%);
+}
+
+.home-story__panel--day .home-story__pin {
+  background: linear-gradient(180deg, #edf1f6 0%, #f4f7fa 50%, #eef2f7 100%);
+}
+
+.home-story__panel--evening .home-story__pin {
+  background: linear-gradient(180deg, #e2e8f0 0%, #d4dce8 40%, #c9d4e4 100%);
+}
+
+.home-story__stage {
+  position: relative;
+  width: min(92vw, 420px);
+  height: min(72vh, 520px);
+  border-radius: 20px;
+  border: 1px solid rgba(20, 28, 38, 0.08);
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 24px 48px rgba(20, 28, 38, 0.06);
+}
+
+.home-story__placeholder-ui {
+  position: absolute;
+  top: 12%;
+  left: 10%;
+  right: 10%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.home-story__skeleton {
+  height: 10px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #c8d0db 0%, #dfe5ec 50%, #c8d0db 100%);
+  opacity: 0.85;
+}
+
+.home-story__skeleton--wide {
+  width: 88%;
+}
+
+.home-story__skeleton--short {
+  width: 42%;
+}
+
+.home-story__cast {
+  position: absolute;
+  bottom: 14%;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 48px;
+  color: var(--story-you);
+}
+
+.home-story__agent-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.home-story__agent-trail {
+  position: absolute;
+  left: -36px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.home-story__agent-orb {
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #5eead4, var(--story-agent) 55%, #066b5c 100%);
+  box-shadow:
+    0 0 24px var(--story-agent-glow),
+    0 0 48px rgba(10, 143, 122, 0.2);
+}
+
+.home-story__scene-index {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.home-story__scene-dot {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--story-agent);
+  opacity: 0.5;
+}
+
+.home-story__ending-mark {
+  position: absolute;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.home-story__mic-placeholder {
+  display: block;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid var(--story-agent);
+  background: rgba(10, 143, 122, 0.12);
+  box-shadow: 0 0 0 8px rgba(10, 143, 122, 0.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-story__agent-orb {
+    animation: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-story__stage {
+    width: 94vw;
+    height: min(68vh, 480px);
+  }
+
+  .home-story__cast {
+    gap: 28px;
+  }
+
+  .home-story__you {
+    width: 64px;
+    height: auto;
+  }
+}

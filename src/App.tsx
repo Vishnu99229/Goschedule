@@ -1,4 +1,4 @@
-import { Navigate, Routes, Route } from 'react-router-dom'
+import { Navigate, Routes, Route, useLocation } from 'react-router-dom'
 import SEO from './components/SEO'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -17,6 +17,7 @@ import EngagementsPage from './pages/EngagementsPage'
 import TermsAndConditions from './components/TermsAndConditions'
 import PrivacyPolicy from './components/PrivacyPolicy'
 import NotFoundPage from './pages/NotFoundPage'
+import { HomeStoryLogo } from './components/home-story/HomeStoryLogo'
 
 const SITE = 'https://www.goschedule.ai'
 
@@ -89,11 +90,14 @@ function HomeRoute() {
 }
 
 function App() {
+  const { pathname } = useLocation()
+  const isHome = pathname === '/'
+
   return (
     <div className="app-shell">
       <a href="#main-content" className="site-skip">Skip to content</a>
       <ScrollToTop />
-      <Navbar />
+      {isHome ? <HomeStoryLogo /> : <Navbar />}
       <Routes>
         <Route path="/" element={<HomeRoute />} />
         <Route path="/work" element={<WorkPage />} />
