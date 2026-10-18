@@ -619,6 +619,145 @@
   z-index: 5;
 }
 
+.story-s5,
+.story-s6 {
+  position: absolute;
+  inset: 0;
+}
+
+.story-s5__you,
+.story-s6__you {
+  position: absolute;
+  left: 6%;
+  bottom: 4%;
+  width: 96px;
+  z-index: 3;
+}
+
+.story-s5__you svg,
+.story-s6__you svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.story-s5__prompt {
+  position: absolute;
+  left: 8%;
+  top: 18%;
+  width: 28%;
+  padding: 10px 12px;
+  border-radius: 14px 14px 14px 4px;
+  background: #fff;
+  border: 1px solid rgba(20, 28, 38, 0.1);
+  z-index: 4;
+}
+
+.story-s5__draft {
+  position: absolute;
+  top: 12%;
+  left: 42%;
+  right: 8%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid rgba(20, 28, 38, 0.08);
+  z-index: 4;
+}
+
+.story-s5__approve {
+  position: absolute;
+  right: 12%;
+  bottom: 22%;
+  z-index: 6;
+}
+
+.story-s5__send {
+  position: absolute;
+  top: 48%;
+  z-index: 5;
+  translate: -50% -50%;
+}
+
+.story-s5__sent {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.story-s5__agent,
+.story-s6__agent {
+  position: absolute;
+  z-index: 7;
+  pointer-events: none;
+  translate: -50% -50%;
+}
+
+.story-s6__channel {
+  position: absolute;
+  inset: 6% 6% 22% 38%;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(20, 28, 38, 0.08);
+}
+
+.story-s6__rail {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 8px;
+  border-radius: 14px 0 0 14px;
+  background: #4a5564;
+}
+
+.story-s6__seat {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  translate: -50% 0;
+}
+
+.story-s6__avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px #fff;
+}
+
+.story-s6__mini {
+  width: 44px;
+}
+
+.story-s6__ring-wrap,
+.story-s6__done {
+  position: absolute;
+  top: -4px;
+  right: -10px;
+}
+
+.story-s6__big {
+  position: absolute;
+  left: 8%;
+  top: 16%;
+  width: 28%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 12px;
+  background: #fff;
+  border: 2px solid rgba(180, 35, 24, 0.35);
+  box-shadow: 0 8px 20px rgba(180, 35, 24, 0.12);
+  z-index: 4;
+}
+
 .home-story__scene-index {
   position: absolute;
   bottom: 16px;
@@ -749,5 +888,35 @@
 
   .story-s4__empty {
     width: 46%;
+  }
+
+  .story-s5__you,
+  .story-s6__you {
+    width: 78px;
+  }
+
+  .story-s5__prompt {
+    width: 36%;
+    top: 12%;
+  }
+
+  .story-s5__draft {
+    left: 40%;
+    right: 5%;
+    top: 10%;
+  }
+
+  .story-s6__channel {
+    inset: 6% 4% 26% 4%;
+  }
+
+  .story-s6__big {
+    left: 10%;
+    top: 8%;
+    width: 36%;
+  }
+
+  .story-s6__you {
+    bottom: 2%;
   }
 }

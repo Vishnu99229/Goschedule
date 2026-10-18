@@ -3,10 +3,12 @@ import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion
 import type { StoryBeat } from './homeStoryScenes'
 import { AgentOrb } from './characters/AgentOrb'
 import { YouCharacter } from './characters/YouCharacter'
+import { SceneDraftReview } from './scenes/SceneDraftReview'
 import { SceneEmailMeeting } from './scenes/SceneEmailMeeting'
 import { SceneFollowUps } from './scenes/SceneFollowUps'
 import { SceneMomBills } from './scenes/SceneMomBills'
 import { SceneSubscription } from './scenes/SceneSubscription'
+import { SceneTeamSlack } from './scenes/SceneTeamSlack'
 
 type Props = {
   beat: StoryBeat
@@ -14,7 +16,7 @@ type Props = {
 }
 
 const PERSONAL_SCENES = new Set(['subscription', 'mom-bills'])
-const WORK_SCENES = new Set(['email-meeting', 'follow-ups'])
+const WORK_SCENES = new Set(['email-meeting', 'follow-ups', 'draft-review', 'team-slack'])
 
 export function StoryScenePanel({ beat, index }: Props) {
   const ref = useRef<HTMLElement>(null)
@@ -58,6 +60,12 @@ export function StoryScenePanel({ beat, index }: Props) {
             ) : null}
             {beat.id === 'follow-ups' ? (
               <SceneFollowUps progress={scrollYProgress} reduceMotion={reduceMotion} />
+            ) : null}
+            {beat.id === 'draft-review' ? (
+              <SceneDraftReview progress={scrollYProgress} reduceMotion={reduceMotion} />
+            ) : null}
+            {beat.id === 'team-slack' ? (
+              <SceneTeamSlack progress={scrollYProgress} reduceMotion={reduceMotion} />
             ) : null}
           </div>
         ) : (

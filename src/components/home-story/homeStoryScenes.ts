@@ -45,13 +45,13 @@ export const STORY_BEATS: StoryBeat[] = [
     id: 'draft-review',
     phase: 'day',
     description:
-      'Scene five placeholder: the agent expands a short prompt into a full draft for you to approve and send.',
+      'You type a short skeleton prompt. The agent expands it into a full draft of grey lines. You approve with one check, and it sends.',
   },
   {
     id: 'team-slack',
     phase: 'day',
     description:
-      'Scene six placeholder: the agent splits work across a team channel and tracks completion.',
+      'A channel with four teammates. One large task splits into four smaller cards that fly to each person. Progress rings fill, then a check appears on each, one by one.',
   },
   {
     id: 'ending',
