@@ -1,7 +1,8 @@
 import type { CSSProperties } from 'react'
-import type { TranscriptLine } from './useMockVoiceSession'
 import { CONTACT_EMAIL } from '../../constants/booking'
 import VoiceMicButton from './VoiceMicButton'
+
+export type TranscriptLine = { id: string; role: 'user' | 'agent'; text: string }
 
 export type VoiceUiState =
   | 'idle'

@@ -14,7 +14,6 @@
     "generate:og": "npx @resvg/resvg-js-cli public/og-image-v4.svg public/og-image-v4.png"
   },
   "dependencies": {
-    "@elevenlabs/client": "^1.26.0",
     "@fontsource/dm-sans": "^5.3.0",
     "@fontsource/ibm-plex-mono": "^5.3.0",
     "@fontsource/newsreader": "^5.3.0",

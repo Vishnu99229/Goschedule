@@ -38,22 +38,24 @@ const JSONLD_HOME_DESCRIPTION =
 
 // ── Shared JSON-LD builders (mirror the client-side <SEO jsonLd> values so
 //    the same schema appears in the raw static HTML, not only after hydration) ──
-const ORG_JSONLD = {
+const HOME_JSONLD = {
   '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: 'Goschedule.ai',
-  url: `${SITE}/`,
-  logo: `${SITE}/favicon.png`,
-  description:
-    'Fractional GTM for AI companies selling into Indian enterprise - pipeline, pricing, compliance readiness, and the sales motion.',
-}
-
-const WEBSITE_JSONLD = {
-  '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  name: 'Goschedule.ai',
-  url: `${SITE}/`,
-  description: JSONLD_HOME_DESCRIPTION,
+  '@graph': [
+    {
+      '@type': 'Organization',
+      name: 'GoSchedule',
+      url: `${SITE}/`,
+      logo: `${SITE}/favicon.png`,
+      description:
+        'GoSchedule is an AI agent that replies to email, books meetings, chases follow-ups, assigns team tasks, and quietly handles bills and forgotten subscriptions.',
+    },
+    {
+      '@type': 'WebSite',
+      name: 'GoSchedule',
+      url: `${SITE}/`,
+      description: 'An AI agent for email, bills and follow-ups.',
+    },
+  ],
 }
 
 const PERSON_JSONLD = {
@@ -69,29 +71,6 @@ const PERSON_JSONLD = {
     name: 'Goschedule.ai',
     url: `${SITE}/`,
   },
-}
-
-const PROFESSIONAL_SERVICE_JSONLD = {
-  '@context': 'https://schema.org',
-  '@type': 'ProfessionalService',
-  name: 'Goschedule.ai',
-  url: `${SITE}/`,
-  description: JSONLD_HOME_DESCRIPTION,
-  image: DEFAULT_OG,
-  provider: {
-    '@type': 'Person',
-    name: 'Vishnu Rajan',
-    url: `${SITE}/`,
-  },
-  areaServed: {
-    '@type': 'Country',
-    name: 'India',
-  },
-  serviceType: [
-    'Fractional GTM leadership',
-    'GTM teardown',
-    'Pipeline sprint',
-  ],
 }
 
 function softwareAppJsonLd({ name, url, description }) {
@@ -149,7 +128,7 @@ const MARKETING_ROUTES = [
     changefreq: 'weekly',
     source: 'index.html',
     imageAlt: DEFAULT_OG_ALT,
-    jsonLd: [ORG_JSONLD, WEBSITE_JSONLD, PERSON_JSONLD, PROFESSIONAL_SERVICE_JSONLD],
+    jsonLd: [HOME_JSONLD],
   },
   // /products/* and /case-studies/cafe-muziris are 301'd in vercel.json.
   {
@@ -175,6 +154,7 @@ const MARKETING_ROUTES = [
     changefreq: 'monthly',
     source: 'src/pages/AboutPage.tsx',
     imageAlt: 'About Vishnu Rajan - fractional GTM and builder',
+    jsonLd: [PERSON_JSONLD],
   },
   {
     path: '/work/replykaro',

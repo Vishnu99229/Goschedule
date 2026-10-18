@@ -26,16 +26,13 @@ function DeferredScene({
   reduceMotion: boolean
 }) {
   const hostRef = useRef<HTMLDivElement>(null)
-  const [near, setNear] = useState(false)
+  const [near, setNear] = useState(() => typeof IntersectionObserver === 'undefined')
   const [Scene, setScene] = useState<ComponentType<SceneProps> | null>(null)
 
   useEffect(() => {
     const el = hostRef.current
     if (!el) return
-    if (typeof IntersectionObserver === 'undefined') {
-      setNear(true)
-      return
-    }
+    if (typeof IntersectionObserver === 'undefined') return
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {

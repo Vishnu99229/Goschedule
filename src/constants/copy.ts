@@ -13,9 +13,14 @@ export const HOME_OG_TITLE = "Put the phone down. The agent's got it."
 export const HOME_OG_DESCRIPTION =
   'Bills, email, follow-ups, drafts, your team channel. Handled. One day with an AI agent.'
 
-/** Frozen JSON-LD copy until the AI-agent schema is approved. */
+/** Person JSON-LD on /about (unchanged GTM copy). */
 export const JSONLD_HOME_DESCRIPTION =
   "Your demo works. Your pipeline doesn't. Fractional GTM for AI and B2B software selling into Indian banks, insurers, and BPOs."
+
+export const JSONLD_ORG_DESCRIPTION =
+  'GoSchedule is an AI agent that replies to email, books meetings, chases follow-ups, assigns team tasks, and quietly handles bills and forgotten subscriptions.'
+
+export const JSONLD_WEBSITE_DESCRIPTION = 'An AI agent for email, bills and follow-ups.'
 
 export const DEFAULT_OG_IMAGE = 'https://www.goschedule.ai/og-image-v4.png'
 
