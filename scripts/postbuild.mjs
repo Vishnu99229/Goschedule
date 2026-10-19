@@ -26,13 +26,13 @@ const CONTENT_BLOG = join(ROOT, 'content', 'blog')
 const SITE = 'https://www.goschedule.ai'
 const DEFAULT_OG = `${SITE}/og-image-v4.png`
 
-const HOME_TITLE = 'GoSchedule: AI agent for email, bills and follow-ups'
+const HOME_TITLE = 'GoSchedule: your own AI agent for email, meetings and bills'
 const HOME_DESCRIPTION =
-  'An AI agent that replies to email, books meetings, chases follow-ups and assigns team tasks, and quietly handles bills and forgotten subscriptions.'
-const HOME_OG_TITLE = "Put the phone down. The agent's got it."
+  'I build personal AI agents that handle your inbox, meetings, follow-ups, bills and team, set up around your life and work.'
+const HOME_OG_TITLE = 'Your own AI agent. Built around your life and your work.'
 const HOME_OG_DESCRIPTION =
-  'Bills, email, follow-ups, drafts, your team channel. Handled. One day with an AI agent.'
-const DEFAULT_OG_ALT = "Put the phone down. The agent's got it. — GoSchedule"
+  "One day with an AI agent that handles the inbox, follow-ups, bills and team. I'll build one for you."
+const DEFAULT_OG_ALT = 'Your own AI agent. Built around your life and your work. — GoSchedule'
 const JSONLD_HOME_DESCRIPTION =
   "Your demo works. Your pipeline doesn't. Fractional GTM for AI and B2B software selling into Indian banks, insurers, and BPOs."
 
@@ -47,13 +47,13 @@ const HOME_JSONLD = {
       url: `${SITE}/`,
       logo: `${SITE}/favicon.png`,
       description:
-        'GoSchedule is an AI agent that replies to email, books meetings, chases follow-ups, assigns team tasks, and quietly handles bills and forgotten subscriptions.',
+        'I build personal AI agents that handle your inbox, meetings, follow-ups, bills and team, set up around your life and work.',
     },
     {
       '@type': 'WebSite',
       name: 'GoSchedule',
       url: `${SITE}/`,
-      description: 'An AI agent for email, bills and follow-ups.',
+      description: 'Your own AI agent for email, meetings and bills.',
     },
   ],
 }

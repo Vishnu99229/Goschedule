@@ -32,6 +32,8 @@ export function StorySky({ progress, reduceMotion }: Props) {
       <motion.div className="story-sky__layer story-sky__layer--morning" style={{ opacity: morning }} />
       <motion.div className="story-sky__layer story-sky__layer--day" style={{ opacity: day }} />
       <motion.div className="story-sky__layer story-sky__layer--evening" style={{ opacity: evening }} />
+      <span className="story-sky__cloud story-sky__cloud--a" />
+      <span className="story-sky__cloud story-sky__cloud--b" />
       <motion.span className="story-sky__sun" style={{ left: sunX, top: sunY, opacity: sunOp }} />
       <motion.span className="story-sky__moon" style={{ left: moonX, top: moonY, opacity: moonOp }} />
     </div>

@@ -34,7 +34,7 @@ export function YouAtDesk({ className = '', lean, lid }: Props) {
       <rect x="28" y="48" width="44" height="26" rx="3" fill="#141c26" />
       <motion.rect x="32" y="52" width="36" rx="2" fill="#9aa8b8" style={{ height: screenH, opacity: screenOp }} />
       <rect x="22" y="74" width="56" height="4" rx="1" fill="#2a3544" />
-      <motion.g style={{ rotate, x, y, originX: 0.5, originY: 0.78 }}>
+      <motion.g className="story-live__body" style={{ rotate, x, y, originX: 0.5, originY: 0.78 }}>
         <circle cx="50" cy="22" r="11" fill="#f3d3b8" />
         <path d="M39 18c4-9 18-9 22 0-7-1.2-15-1.2-22 0z" fill="#141c26" />
         <motion.path
