@@ -106,18 +106,20 @@ export function WorkSpan({ beats, onComplete }: Props) {
         </div>
         <div className="home-story__stage-wrap">
           <div className="home-story__stage home-story__stage--scene">
-            <SceneWorkday
-              reduceMotion={reduceMotion}
-              arrive={arrive.progress}
-              email={email.progress}
-              follow={follow.progress}
-              draft={draft.progress}
-              slack={slack.progress}
-              emailOn={emailOn}
-              followOn={followOn}
-              draftOn={draftOn}
-              slackOn={slackOn}
-            />
+            <div className="home-story__stage-fit">
+              <SceneWorkday
+                reduceMotion={reduceMotion}
+                arrive={arrive.progress}
+                email={email.progress}
+                follow={follow.progress}
+                draft={draft.progress}
+                slack={slack.progress}
+                emailOn={emailOn}
+                followOn={followOn}
+                draftOn={draftOn}
+                slackOn={slackOn}
+              />
+            </div>
           </div>
           <StoryReplay onReplay={current.replay} hidden={reduceMotion} />
         </div>

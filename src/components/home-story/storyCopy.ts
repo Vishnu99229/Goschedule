@@ -15,7 +15,7 @@ export const ENDING_CTA = {
   line2: 'Set up around your email, your calendar, your bills and your team. Live in two weeks.',
   book: 'Book a 20-min call',
   whatsapp: 'WhatsApp me',
-  whatsappHref: 'https://wa.me/[MY NUMBER]',
+  whatsappHref: 'https://wa.me/91XXXXXXXXXX',
 }
 
 export const SCENE_NARRATION: Record<

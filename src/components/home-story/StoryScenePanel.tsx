@@ -66,11 +66,13 @@ function DeferredScene({
 
   return (
     <div ref={hostRef} className="home-story__stage home-story__stage--scene">
-      {Scene ? (
-        <Scene progress={progress} reduceMotion={reduceMotion} />
-      ) : (
-        <div className="home-story__stage-fallback" aria-hidden="true" />
-      )}
+      <div className="home-story__stage-fit">
+        {Scene ? (
+          <Scene progress={progress} reduceMotion={reduceMotion} />
+        ) : (
+          <div className="home-story__stage-fallback" aria-hidden="true" />
+        )}
+      </div>
     </div>
   )
 }
@@ -82,9 +84,10 @@ type Props = {
 
 export function StoryScenePanel({ beat, onComplete }: Props) {
   const ref = useRef<HTMLElement>(null)
+  const stageWrapRef = useRef<HTMLDivElement>(null)
   const reduceMotion = useReducedMotion() ?? false
-  const inView = useInView(ref, 0.35)
   const isOpening = beat.id === 'opening'
+  const inView = useInView(isOpening ? stageWrapRef : ref, 0.35)
   const isEnding = beat.id === 'ending'
   const isPersonal = beat.id === 'subscription' || beat.id === 'mom-bills'
   const copy = SCENE_NARRATION[beat.id]
@@ -119,10 +122,12 @@ export function StoryScenePanel({ beat, onComplete }: Props) {
           {isEnding ? <EndingCta visible={ctaOn} /> : null}
         </div>
 
-        <div className="home-story__stage-wrap">
+        <div className="home-story__stage-wrap" ref={stageWrapRef}>
           {isOpening ? (
             <div className="home-story__stage home-story__stage--scene">
-              <SceneOpening progress={progress} reduceMotion={reduceMotion} />
+              <div className="home-story__stage-fit">
+                <SceneOpening progress={progress} reduceMotion={reduceMotion} />
+              </div>
             </div>
           ) : (
             <DeferredScene beatId={beat.id} progress={progress} reduceMotion={reduceMotion} />
