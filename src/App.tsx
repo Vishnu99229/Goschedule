@@ -1,4 +1,4 @@
-import { Navigate, Routes, Route } from 'react-router-dom'
+import { Navigate, Routes, Route, useLocation } from 'react-router-dom'
 import SEO from './components/SEO'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -17,61 +17,36 @@ import EngagementsPage from './pages/EngagementsPage'
 import TermsAndConditions from './components/TermsAndConditions'
 import PrivacyPolicy from './components/PrivacyPolicy'
 import NotFoundPage from './pages/NotFoundPage'
+import { HomeStoryLogo } from './components/home-story/HomeStoryLogo'
 
 const SITE = 'https://www.goschedule.ai'
 
-import { DEFAULT_OG_IMAGE, HOME_DESCRIPTION, HOME_TITLE } from './constants/copy'
+import {
+  HOME_DESCRIPTION,
+  HOME_OG_DESCRIPTION,
+  HOME_OG_TITLE,
+  HOME_TITLE,
+  JSONLD_ORG_DESCRIPTION,
+  JSONLD_WEBSITE_DESCRIPTION,
+} from './constants/copy'
 
-const organizationJsonLd = {
+const homeJsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: 'Goschedule.ai',
-  url: `${SITE}/`,
-  logo: `${SITE}/favicon.png`,
-  description:
-    'Fractional GTM for AI companies selling into Indian enterprise - pipeline, pricing, compliance readiness, and the sales motion.',
-}
-
-const websiteJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  name: 'Goschedule.ai',
-  url: `${SITE}/`,
-  description: HOME_DESCRIPTION,
-}
-
-const personJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: 'Vishnu Rajan',
-  url: `${SITE}/`,
-  jobTitle: 'Fractional GTM Lead',
-  description: HOME_DESCRIPTION,
-  sameAs: ['https://www.linkedin.com/in/vishnu-rajan-41515048/'],
-  worksFor: {
-    '@type': 'Organization',
-    name: 'Goschedule.ai',
-    url: `${SITE}/`,
-  },
-}
-
-const professionalServiceJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'ProfessionalService',
-  name: 'Goschedule.ai',
-  url: `${SITE}/`,
-  description: HOME_DESCRIPTION,
-  image: DEFAULT_OG_IMAGE,
-  provider: {
-    '@type': 'Person',
-    name: 'Vishnu Rajan',
-    url: `${SITE}/`,
-  },
-  areaServed: {
-    '@type': 'Country',
-    name: 'India',
-  },
-  serviceType: ['Fractional GTM leadership', 'GTM teardown', 'Pipeline sprint'],
+  '@graph': [
+    {
+      '@type': 'Organization',
+      name: 'GoSchedule',
+      url: `${SITE}/`,
+      logo: `${SITE}/favicon.png`,
+      description: JSONLD_ORG_DESCRIPTION,
+    },
+    {
+      '@type': 'WebSite',
+      name: 'GoSchedule',
+      url: `${SITE}/`,
+      description: JSONLD_WEBSITE_DESCRIPTION,
+    },
+  ],
 }
 
 function HomeRoute() {
@@ -80,8 +55,10 @@ function HomeRoute() {
       <SEO
         title={HOME_TITLE}
         description={HOME_DESCRIPTION}
+        ogTitle={HOME_OG_TITLE}
+        ogDescription={HOME_OG_DESCRIPTION}
         canonical="https://www.goschedule.ai/"
-        jsonLd={[organizationJsonLd, websiteJsonLd, personJsonLd, professionalServiceJsonLd]}
+        jsonLd={homeJsonLd}
       />
       <HomePage />
     </>
@@ -89,11 +66,14 @@ function HomeRoute() {
 }
 
 function App() {
+  const { pathname } = useLocation()
+  const isHome = pathname === '/'
+
   return (
     <div className="app-shell">
       <a href="#main-content" className="site-skip">Skip to content</a>
       <ScrollToTop />
-      <Navbar />
+      {isHome ? <HomeStoryLogo /> : <Navbar />}
       <Routes>
         <Route path="/" element={<HomeRoute />} />
         <Route path="/work" element={<WorkPage />} />

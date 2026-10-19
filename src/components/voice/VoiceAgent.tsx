@@ -1,41 +1,36 @@
-import { lazy, Suspense } from 'react'
-import MockVoiceAgent from './MockVoiceAgent'
+import VoiceAgentShell from './VoiceAgentShell'
 
 export { BookCallButton } from './BookingActions'
 
-const ElevenLabsVoiceAgent = lazy(() => import('./ElevenLabsVoiceAgent'))
+export type VoiceProvider = 'vapi' | 'retell'
 
-export type VoiceProvider = 'mock' | 'elevenlabs' | 'vapi' | 'retell'
+export type VoiceAgentVariant = 'default' | 'mic'
 
 type Props = {
   provider?: VoiceProvider
   compact?: boolean
-}
-
-function VoicePlaceholder({ compact }: { compact?: boolean }) {
-  return (
-    <div
-      className="voice-console voice-console--compact"
-      style={{ minHeight: compact ? 'var(--voice-min-height-compact)' : 'var(--voice-min-height)' }}
-      aria-hidden
-    />
-  )
+  variant?: VoiceAgentVariant
 }
 
 /**
- * Provider-agnostic entry. Defaults to mock until ElevenLabs is configured in env.
+ * Provider-agnostic entry. Unused until a voice provider is wired.
+ * Renders the idle shell so the UI building blocks stay compileable.
  */
-export default function VoiceAgent({ provider, compact }: Props) {
-  const envProvider = import.meta.env.VITE_VOICE_PROVIDER as VoiceProvider | undefined
-  const resolved = provider ?? envProvider ?? 'mock'
-
-  if (resolved === 'elevenlabs') {
-    return (
-      <Suspense fallback={<VoicePlaceholder compact={compact} />}>
-        <ElevenLabsVoiceAgent compact={compact} />
-      </Suspense>
-    )
-  }
-
-  return <MockVoiceAgent compact={compact} />
+export default function VoiceAgent({ compact, variant = 'default' }: Props) {
+  return (
+    <VoiceAgentShell
+      compact={compact}
+      variant={variant}
+      uiState="idle"
+      muted={false}
+      lines={[]}
+      errorMessage={null}
+      onBegin={() => {}}
+      onConfirmMic={() => {}}
+      onCancelMic={() => {}}
+      onEnd={() => {}}
+      onToggleMute={() => {}}
+      onBookFallback={() => {}}
+    />
+  )
 }

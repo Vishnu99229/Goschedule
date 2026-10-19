@@ -4,6 +4,8 @@ interface SEOProps {
   title: string
   description: string
   canonical: string
+  ogTitle?: string
+  ogDescription?: string
   ogImage?: string
   ogType?: 'website' | 'article'
   jsonLd?: object | object[]
@@ -32,26 +34,30 @@ export default function SEO({
   title,
   description,
   canonical,
+  ogTitle,
+  ogDescription,
   ogImage = 'https://www.goschedule.ai/og-image-v4.png',
   ogType = 'website',
 }: SEOProps) {
   useEffect(() => {
+    const socialTitle = ogTitle ?? title
+    const socialDescription = ogDescription ?? description
     document.title = title
     setMeta('meta[name="description"]', description)
 
     const canon = document.head.querySelector('link[rel="canonical"]')
     if (canon) canon.setAttribute('href', canonical)
 
-    setMeta('meta[property="og:title"]', title)
-    setMeta('meta[property="og:description"]', description)
+    setMeta('meta[property="og:title"]', socialTitle)
+    setMeta('meta[property="og:description"]', socialDescription)
     setMeta('meta[property="og:url"]', canonical)
     setMeta('meta[property="og:image"]', ogImage)
     setMeta('meta[property="og:type"]', ogType)
-    setMeta('meta[name="twitter:title"]', title)
-    setMeta('meta[name="twitter:description"]', description)
+    setMeta('meta[name="twitter:title"]', socialTitle)
+    setMeta('meta[name="twitter:description"]', socialDescription)
     setMeta('meta[name="twitter:image"]', ogImage)
     setMeta('meta[name="twitter:url"]', canonical)
-  }, [title, description, canonical, ogImage, ogType])
+  }, [title, description, canonical, ogTitle, ogDescription, ogImage, ogType])
 
   return null
 }

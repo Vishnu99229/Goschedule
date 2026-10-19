@@ -1,7 +1,7 @@
 import type { IncomingMessage } from 'node:http'
 import type { VercelRequest } from '@vercel/node'
 
-/** Read unparsed request body (required for ElevenLabs HMAC verification). */
+/** Read unparsed request body (needed for HMAC webhook verification). */
 export async function readRawBody(req: VercelRequest | IncomingMessage): Promise<string> {
   const existing = (req as VercelRequest).body
   if (typeof existing === 'string') return existing

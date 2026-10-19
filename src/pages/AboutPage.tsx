@@ -1,9 +1,27 @@
 import SEO from '../components/SEO'
+import { JSONLD_HOME_DESCRIPTION } from '../constants/copy'
 import { LINKEDIN_URL } from '../constants/links'
 
 const ABOUT_TITLE = 'About - Vishnu Rajan'
 const ABOUT_DESCRIPTION =
   'Bangalore-based GTM operator and builder. Fifteen years in enterprise sales - Concentrix, EY, VP Sales at Vodex.ai - now independent. Fractional GTM and select full-time roles.'
+
+const SITE = 'https://www.goschedule.ai'
+
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Vishnu Rajan',
+  url: `${SITE}/`,
+  jobTitle: 'Fractional GTM Lead',
+  description: JSONLD_HOME_DESCRIPTION,
+  sameAs: ['https://www.linkedin.com/in/vishnu-rajan-41515048/'],
+  worksFor: {
+    '@type': 'Organization',
+    name: 'Goschedule.ai',
+    url: `${SITE}/`,
+  },
+}
 
 export default function AboutPage() {
   return (
@@ -13,6 +31,7 @@ export default function AboutPage() {
         description={ABOUT_DESCRIPTION}
         canonical="https://www.goschedule.ai/about"
         ogImage="https://www.goschedule.ai/og-image-v4.png"
+        jsonLd={personJsonLd}
       />
 
       <section className="home-lp__hero">
