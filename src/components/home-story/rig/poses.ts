@@ -335,6 +335,76 @@ export const POSES: Record<PoseId, PoseAngles> = {
     hold: 'phone',
     anchor: 'feet',
   }),
+
+  standingStretch: pose({
+    spine: 188,
+    neck: -10,
+    head: -8,
+    lArm: 168,
+    rArm: 198,
+    lElbow: 10,
+    rElbow: 14,
+    lWrist: -6,
+    rWrist: 8,
+    face: stretchFace,
+    hold: 'none',
+    anchor: 'feet',
+  }),
+
+  /** Softer, slightly hunched sit — tea on her right, never toward the door. */
+  momArmchair: pose({
+    spine: 158,
+    neck: 10,
+    head: 8,
+    lArm: 42,
+    rArm: 58,
+    lElbow: 48,
+    rElbow: 52,
+    lThigh: 82,
+    rThigh: 98,
+    lKnee: 78,
+    rKnee: 86,
+    face: { lookX: 0.35, lookY: 0.28, brow: -0.08, mouth: 0.22 },
+    hold: 'none',
+    anchor: 'feet',
+  }),
+
+  momSip: pose({
+    spine: 162,
+    neck: 6,
+    head: 14,
+    lArm: 38,
+    rArm: 28,
+    lElbow: 44,
+    rElbow: 118,
+    rWrist: 16,
+    lThigh: 82,
+    rThigh: 98,
+    lKnee: 78,
+    rKnee: 86,
+    face: { lookX: 0.4, lookY: 0.2, brow: -0.1, mouth: 0.18 },
+    hold: 'tea',
+    anchor: 'feet',
+  }),
+
+  momNewspaper: pose({
+    spine: 156,
+    neck: 12,
+    head: 16,
+    lArm: 58,
+    rArm: 64,
+    lElbow: 72,
+    rElbow: 38,
+    lWrist: 22,
+    rWrist: 18,
+    lThigh: 80,
+    rThigh: 96,
+    lKnee: 76,
+    rKnee: 84,
+    face: { lookX: 0.15, lookY: 0.55, brow: 0.05, mouth: 0.12 },
+    hold: 'newspaper',
+    anchor: 'feet',
+  }),
 }
 
 export const POSE_LABELS: Record<PoseId, string> = {
@@ -358,6 +428,10 @@ export const POSE_LABELS: Record<PoseId, string> = {
   deskLean: 'leaning back',
   sofaRelax: 'sofa relaxed',
   placingPhone: 'placing phone face-down',
+  standingStretch: 'standing stretch',
+  momArmchair: 'sitting in the armchair',
+  momSip: 'sipping tea',
+  momNewspaper: 'turning a newspaper page',
 }
 
 export const POSE_SHEET: PoseId[] = [
@@ -381,4 +455,7 @@ export const POSE_SHEET: PoseId[] = [
   'deskLean',
   'sofaRelax',
   'placingPhone',
+  'standingStretch',
 ]
+
+export const MOM_POSE_SHEET: PoseId[] = ['momArmchair', 'momSip', 'momNewspaper']

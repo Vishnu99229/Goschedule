@@ -5,7 +5,7 @@ import { computeSkeleton, plantSkeleton } from './fk'
 import { sampleTrack, walkPose } from './interpolate'
 import { YOU_LOOK, type CharacterLook } from './looks'
 import { POSES } from './poses'
-import type { PoseAngles, PoseId, PoseKeyframe, Skeleton } from './types'
+import type { Hold, PoseAngles, PoseId, PoseKeyframe, Skeleton } from './types'
 
 const INK = '#141c26'
 const FACE = '#f4efe8'
@@ -17,7 +17,8 @@ type Props = {
   progress?: MotionValue<number>
   track?: readonly PoseKeyframe[]
   walk?: boolean
-  wiggle?: boolean
+  wiggle?: boolean | 'scroll' | 'type' | 'sip' | 'page'
+  hold?: Hold
   reduceMotion?: boolean
   look?: CharacterLook
 }
@@ -56,8 +57,24 @@ function sampleFigure(props: Props, phase: number, wiggleT: number): PoseAngles 
   else if (props.poseId) pose = POSES[props.poseId]
   else if (props.progress && props.track) pose = sampleTrack(props.progress.get(), props.track)
   else pose = POSES.standing
-  if (props.wiggle) {
+  if (props.hold) pose = { ...pose, hold: props.hold }
+  const mode = props.wiggle === true ? 'scroll' : props.wiggle
+  if (mode === 'scroll') {
     pose = { ...pose, rWrist: pose.rWrist + Math.sin(wiggleT * 11) * 14 }
+  } else if (mode === 'type') {
+    pose = {
+      ...pose,
+      rWrist: pose.rWrist + Math.sin(wiggleT * 14) * 9,
+      lWrist: pose.lWrist + Math.sin(wiggleT * 14 + 1.2) * 9,
+    }
+  } else if (mode === 'sip') {
+    pose = {
+      ...pose,
+      rArm: pose.rArm + Math.sin(wiggleT * 2.4) * 10,
+      rElbow: pose.rElbow + (Math.sin(wiggleT * 2.4) + 1) * 8,
+    }
+  } else if (mode === 'page') {
+    pose = { ...pose, lWrist: pose.lWrist + Math.sin(wiggleT * 3.2) * 18 }
   }
   return pose
 }
@@ -69,18 +86,19 @@ export function StickFigure({
   track,
   walk = false,
   wiggle = false,
+  hold,
   reduceMotion = false,
   look = YOU_LOOK,
 }: Props) {
   const wiggleRef = useRef(0)
   const fallback = useMotionValue(0)
   const [pose, setPose] = useState<PoseAngles>(() =>
-    sampleFigure({ poseId, progress, track, walk, wiggle }, 0, 0),
+    sampleFigure({ poseId, progress, track, walk, wiggle, hold }, 0, 0),
   )
 
   useMotionValueEvent(progress ?? fallback, 'change', () => {
     if (walk || !progress || !track) return
-    setPose(sampleFigure({ poseId, progress, track, walk, wiggle }, 0, wiggleRef.current))
+    setPose(sampleFigure({ poseId, progress, track, walk, wiggle, hold }, 0, wiggleRef.current))
   })
 
   useAnimationFrame((t) => {
@@ -88,18 +106,19 @@ export function StickFigure({
     const phase = (t / 800) % 1
     const wig = t / 1000
     if (walk) {
-      setPose(sampleFigure({ poseId, progress, track, walk, wiggle }, phase, wig))
+      setPose(sampleFigure({ poseId, progress, track, walk, wiggle, hold }, phase, wig))
       return
     }
     if (wiggle) {
       wiggleRef.current = wig
-      setPose(sampleFigure({ poseId, progress, track, walk, wiggle }, 0, wig))
+      setPose(sampleFigure({ poseId, progress, track, walk, wiggle, hold }, 0, wig))
     }
   })
 
   const raw = computeSkeleton(pose)
   const sk = plantSkeleton(raw, pose.anchor)
   const stroke = BONES.stroke
+  const bodyScale = look.scale ?? 1
   const eyeOffX = sk.face.lookX * 2.2
   const eyeOffY = sk.face.lookY * 1.8
   const eyeL = polar(sk.head.x, sk.head.y, sk.headAngle - 28, BONES.headR * 0.32)
@@ -117,6 +136,7 @@ export function StickFigure({
       preserveAspectRatio="xMidYMax meet"
       aria-hidden="true"
     >
+      <g transform={`scale(${bodyScale})`}>
       <g fill="none" stroke={INK} strokeWidth={stroke} strokeLinecap="round" strokeLinejoin="round">
         <line x1={sk.lHip.x} y1={sk.lHip.y} x2={sk.lKnee.x} y2={sk.lKnee.y} />
         <line x1={sk.lKnee.x} y1={sk.lKnee.y} x2={sk.lAnkle.x} y2={sk.lAnkle.y} />
@@ -133,12 +153,14 @@ export function StickFigure({
 
       <path d={torsoPath(sk)} fill={INK} />
       {look.saree ? (
-        <path
-          d={torsoPath(sk)}
-          fill="#c45c4a"
-          opacity="0.88"
-          transform={`translate(0 ${BONES.shoulderDrop * 0.35})`}
-        />
+        <>
+          <path d={torsoPath(sk)} fill="#c45c4a" />
+          <path
+            d={`M ${sk.lShoulder.x} ${sk.lShoulder.y} Q ${sk.hip.x} ${sk.hip.y + 8} ${sk.rHip.x + 6} ${sk.rHip.y + 10} L ${sk.rHip.x - 4} ${sk.rAnkle.y - 8} Q ${sk.hip.x + 18} ${sk.hip.y + 22} ${sk.rShoulder.x} ${sk.rShoulder.y}`}
+            fill="#a84838"
+            opacity="0.92"
+          />
+        </>
       ) : null}
 
       <circle cx={sk.head.x} cy={sk.head.y} r={BONES.headR} fill={INK} />
@@ -198,6 +220,22 @@ export function StickFigure({
           <path d="M -2 2 Q 1 -6 4 2" fill="none" stroke={INK} strokeWidth="1.8" />
         </g>
       ) : null}
+      {pose.hold === 'tea' ? (
+        <g transform={`translate(${sk.rWrist.x} ${sk.rWrist.y}) rotate(${sk.rForeAngle - 90})`}>
+          <rect x={-5} y={-8} width={11} height={9} rx={2} fill="#f4efe6" stroke={INK} strokeWidth="1.4" />
+          <path d="M 6 -5 h 4 c 2 0 3 2 3 4 s -1 4 -3 4 h -4" fill="none" stroke={INK} strokeWidth="1.4" />
+          <path d="M -1 -10 c 1 -5 4 -5 3 -9" fill="none" stroke="#c4ad90" strokeWidth="1.1" />
+        </g>
+      ) : null}
+      {pose.hold === 'newspaper' ? (
+        <g transform={`translate(${sk.lWrist.x} ${sk.lWrist.y}) rotate(${sk.lForeAngle - 90})`}>
+          <rect x={-12} y={-16} width={24} height={18} rx={1.5} fill="#f4efe6" stroke={INK} strokeWidth="1.3" />
+          <line x1={0} y1={-16} x2={0} y2={2} stroke={INK} strokeWidth="1" />
+          <line x1={-8} y1={-10} x2={-2} y2={-10} stroke="#c4ad90" strokeWidth="1" />
+          <line x1={2} y1={-8} x2={8} y2={-8} stroke="#c4ad90" strokeWidth="1" />
+        </g>
+      ) : null}
+      </g>
     </svg>
   )
 }

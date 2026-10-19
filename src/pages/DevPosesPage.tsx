@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { StickFigure } from '../components/home-story/rig/StickFigure'
-import { YOU_LOOK } from '../components/home-story/rig/looks'
-import { POSE_LABELS, POSE_SHEET } from '../components/home-story/rig/poses'
+import { MOM_LOOK, YOU_LOOK } from '../components/home-story/rig/looks'
+import { MOM_POSE_SHEET, POSE_LABELS, POSE_SHEET } from '../components/home-story/rig/poses'
 
 export default function DevPosesPage() {
   useEffect(() => {
@@ -28,6 +28,11 @@ export default function DevPosesPage() {
         .dev-poses h1 {
           margin: 0 0 6px;
           font-size: 22px;
+          font-weight: 700;
+        }
+        .dev-poses__h2 {
+          margin: 28px 0 10px;
+          font-size: 16px;
           font-weight: 700;
         }
         .dev-poses p {
@@ -71,7 +76,8 @@ export default function DevPosesPage() {
         }
       `}</style>
       <h1>Pose sheet</h1>
-      <p>Forward-kinematics stick rig. Standing ≈ 7H. Walk loops on the last cell.</p>
+      <p>Forward-kinematics stick rig. Standing ≈ 7H. Walk loops on the last You cell.</p>
+      <h2 className="dev-poses__h2">You</h2>
       <div className="dev-poses__grid">
         {POSE_SHEET.map((id) => (
           <figure key={id} className="dev-poses__cell">
@@ -83,6 +89,16 @@ export default function DevPosesPage() {
           <StickFigure walk look={YOU_LOOK} />
           <figcaption className="dev-poses__label">walking cycle</figcaption>
         </figure>
+      </div>
+      <h2 className="dev-poses__h2">Mom</h2>
+      <p>Same bones, bun + glasses + saree, scale 0.9, softer sit.</p>
+      <div className="dev-poses__grid">
+        {MOM_POSE_SHEET.map((id) => (
+          <figure key={id} className="dev-poses__cell">
+            <StickFigure poseId={id} look={MOM_LOOK} reduceMotion />
+            <figcaption className="dev-poses__label">{POSE_LABELS[id]}</figcaption>
+          </figure>
+        ))}
       </div>
     </main>
   )

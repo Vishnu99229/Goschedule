@@ -1,4 +1,4 @@
-export type Hold = 'none' | 'phone' | 'bag'
+export type Hold = 'none' | 'phone' | 'bag' | 'tea' | 'newspaper'
 
 export type FacePose = {
   lookX: number
@@ -53,6 +53,10 @@ export type PoseId =
   | 'deskLean'
   | 'sofaRelax'
   | 'placingPhone'
+  | 'standingStretch'
+  | 'momArmchair'
+  | 'momSip'
+  | 'momNewspaper'
 
 export type PoseKeyframe = {
   at: number

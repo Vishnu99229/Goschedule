@@ -1,7 +1,7 @@
-import { motion, useMotionValue, useTransform, type MotionValue } from 'framer-motion'
+import { motion, type MotionValue, useTransform } from 'framer-motion'
 import { CarryIn } from '../CarryIn'
 import { AgentOrb } from '../characters/AgentOrb'
-import { YouAtDesk } from '../characters/YouAtDesk'
+import { YouRig } from '../characters/YouRig'
 import { ChatBubbleIcon, CheckIcon } from '../icons/StoryIcons'
 
 type Props = {
@@ -11,10 +11,10 @@ type Props = {
 }
 
 const TEAM = [
-  { id: 'a', color: '#2a3544', left: '48%', top: '14%' },
-  { id: 'b', color: '#0a8f7a', left: '72%', top: '14%' },
-  { id: 'c', color: '#5a6572', left: '48%', top: '40%' },
-  { id: 'd', color: '#3d4d62', left: '72%', top: '40%' },
+  { id: 'a', label: 'Landing page → Priya', color: '#2a3544', left: '48%', top: '18%' },
+  { id: 'b', label: 'Pricing deck → Arjun', color: '#0a8f7a', left: '78%', top: '18%' },
+  { id: 'c', label: 'Demo video → Neha', color: '#5a6572', left: '48%', top: '52%' },
+  { id: 'd', label: 'Email campaign → Karan', color: '#3d4d62', left: '78%', top: '52%' },
 ] as const
 
 function ProgressRing({ value }: { value: MotionValue<number> }) {
@@ -59,8 +59,6 @@ export function SceneTeamSlack({ progress, reduceMotion, hideYou }: Props) {
   const check2 = useTransform(p, [0.8, 0.86], [0, 1])
   const check3 = useTransform(p, [0.84, 0.9], [0, 1])
   const checks = [check0, check1, check2, check3]
-  const lean = useTransform(p, [0.9, 0.98], [0, 1])
-  const restLean = useMotionValue(1)
 
   const agentLeft = useTransform(
     p,
@@ -78,19 +76,19 @@ export function SceneTeamSlack({ progress, reduceMotion, hideYou }: Props) {
       <CarryIn progress={p} reduceMotion={rm} Icon={ChatBubbleIcon} />
       <div className="story-s6__channel">
         <span className="story-s6__rail" />
+        <span className="story-s6__hash">#launch</span>
         {TEAM.map((member, i) => (
-          <div
-            key={member.id}
-            className="story-s6__seat"
-            style={{ left: member.left, top: member.top }}
-          >
+          <div key={member.id} className="story-s6__seat" style={{ left: member.left, top: member.top }}>
             <span className="story-s6__avatar" style={{ background: member.color }} />
             {rm ? (
-              <CheckIcon size={18} />
+              <>
+                <span className="story-s6__task">{member.label}</span>
+                <CheckIcon size={18} />
+              </>
             ) : (
               <>
                 <motion.div className="story-s6__mini" style={{ opacity: cardOps[i] }}>
-                  <span className="home-story__skeleton home-story__skeleton--short" />
+                  <span className="story-s6__task">{member.label}</span>
                 </motion.div>
                 <motion.div className="story-s6__ring-wrap" style={{ opacity: rings[i] }}>
                   <ProgressRing value={rings[i]} />
@@ -106,15 +104,13 @@ export function SceneTeamSlack({ progress, reduceMotion, hideYou }: Props) {
 
       {hideYou ? null : (
         <div className="story-s6__you">
-          <YouAtDesk lean={rm ? restLean : lean} />
+          <YouRig progress={p} scene="desk" reduceMotion={rm} lean />
         </div>
       )}
 
       {rm ? null : (
         <motion.div className="story-s6__big" style={{ opacity: bigOp, scale: bigScale }}>
-          <span className="home-story__skeleton home-story__skeleton--wide" />
-          <span className="home-story__skeleton" />
-          <span className="home-story__skeleton home-story__skeleton--short" />
+          Website launch
         </motion.div>
       )}
 

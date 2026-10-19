@@ -1,7 +1,7 @@
 import { motion, useTransform, type MotionValue } from 'framer-motion'
 import { CarryIn } from '../CarryIn'
 import { AgentOrb } from '../characters/AgentOrb'
-import { YouAtDesk } from '../characters/YouAtDesk'
+import { YouRig } from '../characters/YouRig'
 import { CheckIcon, DraftPageIcon, PaperPlaneIcon } from '../icons/StoryIcons'
 
 type Props = {
@@ -9,6 +9,14 @@ type Props = {
   reduceMotion: boolean
   hideYou?: boolean
 }
+
+const DRAFT = [
+  'Hi Rahul —',
+  'Yes, Thursday works. Looking forward to it.',
+  'Could you send the deck beforehand so I can come prepared?',
+  'Thanks,',
+  'You',
+]
 
 export function SceneDraftReview({ progress, reduceMotion, hideYou }: Props) {
   const p = progress
@@ -47,51 +55,42 @@ export function SceneDraftReview({ progress, reduceMotion, hideYou }: Props) {
       <CarryIn progress={p} reduceMotion={rm} Icon={DraftPageIcon} />
       {hideYou ? null : (
         <div className="story-s5__you">
-          <YouAtDesk />
+          <YouRig progress={p} scene="desk" reduceMotion={rm} />
         </div>
       )}
 
       {rm ? (
         <div className="story-s5__draft">
-          <span className="home-story__skeleton" />
-          <span className="home-story__skeleton home-story__skeleton--wide" />
-          <span className="home-story__skeleton" />
-          <span className="home-story__skeleton home-story__skeleton--short" />
+          {DRAFT.map((line) => (
+            <p key={line} className="story-s5__line">
+              {line}
+            </p>
+          ))}
           <span className="story-s5__sent">
             <CheckIcon size={22} />
-            <PaperPlaneIcon size={18} />
+            Approve &amp; send
           </span>
         </div>
       ) : (
         <>
-          <motion.div
-            className="story-s5__prompt"
-            style={{ opacity: promptOp, scale: promptScale }}
-          >
-            <span className="home-story__skeleton home-story__skeleton--short" />
+          <motion.div className="story-s5__prompt" style={{ opacity: promptOp, scale: promptScale }}>
+            reply to Rahul, say yes to Thursday, ask for the deck
           </motion.div>
 
           <motion.div className="story-s5__draft" style={{ opacity: draftOp }}>
-            {lines.map((w, i) => (
-              <motion.span
-                key={i}
-                className={`home-story__skeleton${i === 4 ? ' home-story__skeleton--short' : ''}`}
-                style={{ scaleX: w, originX: 0 }}
-              />
+            {DRAFT.map((line, i) => (
+              <motion.p key={line} className="story-s5__line" style={{ opacity: lines[i] }}>
+                {line}
+              </motion.p>
             ))}
           </motion.div>
 
-          <motion.div
-            className="story-s5__approve"
-            style={{ opacity: approveOp, scale: approveScale }}
-          >
-            <CheckIcon size={28} />
+          <motion.div className="story-s5__approve" style={{ opacity: approveOp, scale: approveScale }}>
+            <CheckIcon size={18} />
+            Approve &amp; send
           </motion.div>
 
-          <motion.div
-            className="story-s5__send"
-            style={{ left: sendLeft, opacity: sendOp }}
-          >
+          <motion.div className="story-s5__send" style={{ left: sendLeft, opacity: sendOp }}>
             <PaperPlaneIcon size={20} />
           </motion.div>
         </>

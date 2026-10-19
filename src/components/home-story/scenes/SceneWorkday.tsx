@@ -1,8 +1,12 @@
 import { useEffect, useState, type ComponentType } from 'react'
-import { motion, useTransform, type MotionValue } from 'framer-motion'
-import { YouAtDesk } from '../characters/YouAtDesk'
-import { YouCharacter } from '../characters/YouCharacter'
+import { motion, useMotionValueEvent, useTransform, type MotionValue } from 'framer-motion'
+import { YouRig } from '../characters/YouRig'
+import { StickFigure } from '../rig/StickFigure'
+import { YOU_LOOK } from '../rig/looks'
+import { ARRIVE_TRACK } from '../rig/tracks'
 import { AgentOrb } from '../characters/AgentOrb'
+import { OfficeSet } from '../rooms/OfficeSet'
+import { StoryClock } from '../StoryClock'
 
 type SceneProps = {
   progress: MotionValue<number>
@@ -23,6 +27,13 @@ type Props = {
   slackOn: boolean
 }
 
+const CLOCK: Record<string, string> = {
+  'email-meeting': '10:12 am',
+  'follow-ups': '2:40 pm',
+  'draft-review': '4:20 pm',
+  'team-slack': '6:10 pm',
+}
+
 export function SceneWorkday({
   reduceMotion,
   arrive,
@@ -40,6 +51,7 @@ export function SceneWorkday({
   const [Follow, setFollow] = useState<ComponentType<SceneProps> | null>(null)
   const [Draft, setDraft] = useState<ComponentType<SceneProps> | null>(null)
   const [Slack, setSlack] = useState<ComponentType<SceneProps> | null>(null)
+  const [walking, setWalking] = useState(true)
 
   useEffect(() => {
     let cancelled = false
@@ -60,29 +72,42 @@ export function SceneWorkday({
     }
   }, [])
 
+  useMotionValueEvent(arrive, 'change', (v) => {
+    const on = v < 0.72
+    setWalking((prev) => (prev === on ? prev : on))
+  })
+
   const arriveOp = useTransform(arrive, [0.55, 1], [1, 0])
   const deskOp = useTransform(arrive, [0.35, 0.85], [0, 1])
-  const arriveX = useTransform(arrive, [0, 1], [28, 0])
-  const lean = useTransform(slack, [0.82, 0.96], [0, 1])
+  const arriveX = useTransform(arrive, [0, 1], [80, 0])
   const lid = useTransform(slack, [0.88, 1], [0, 1])
+  const deskProgress = slackOn ? slack : draftOn ? draft : followOn ? follow : email
+  const clock =
+    CLOCK[slackOn ? 'team-slack' : draftOn ? 'draft-review' : followOn ? 'follow-ups' : 'email-meeting']
 
   return (
     <div className="story-work" aria-hidden="true">
+      <OfficeSet lid={rm ? undefined : lid} />
+      <StoryClock label={clock} />
       {rm ? (
         <>
           <div className="story-work__you">
-            <YouAtDesk />
+            <YouRig progress={email} scene="desk" reduceMotion />
           </div>
           {Slack ? <Slack progress={slack} reduceMotion hideYou /> : null}
         </>
       ) : (
         <>
           <motion.div className="story-work__arrive" style={{ opacity: arriveOp, x: arriveX }}>
-            <YouCharacter pose="bag" />
+            {walking ? (
+              <StickFigure walk hold="bag" look={YOU_LOOK} />
+            ) : (
+              <StickFigure progress={arrive} track={ARRIVE_TRACK} look={YOU_LOOK} />
+            )}
             <AgentOrb size={28} className="story-work__arrive-orb" />
           </motion.div>
           <motion.div className="story-work__you" style={{ opacity: deskOp }}>
-            <YouAtDesk lean={lean} lid={lid} />
+            <YouRig progress={deskProgress} scene="desk" lean={slackOn} />
           </motion.div>
           <motion.div
             className="story-work__chapter"
