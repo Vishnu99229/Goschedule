@@ -1,10 +1,17 @@
 import { useEffect, useRef, useState, type ComponentType } from 'react'
-import { useReducedMotion, useScroll, useTransform } from 'framer-motion'
+import { useMotionValueEvent, useReducedMotion, type MotionValue } from 'framer-motion'
+import { EndingCta } from './EndingCta'
 import type { StoryBeat } from './homeStoryScenes'
 import { SceneOpening } from './scenes/SceneOpening'
+import { StoryCaptions } from './StoryCaptions'
+import { StoryHero } from './StoryHero'
+import { StoryReplay } from './StoryReplay'
+import { SCENE_NARRATION } from './storyCopy'
+import { useInView } from './useInView'
+import { useScenePlayback } from './useScenePlayback'
 
 type SceneProps = {
-  progress: ReturnType<typeof useScroll>['scrollYProgress']
+  progress: MotionValue<number>
   reduceMotion: boolean
 }
 
@@ -13,8 +20,6 @@ const SCENE_LOADERS: Record<string, () => Promise<ComponentType<SceneProps>>> = 
   'mom-bills': () => import('./scenes/SceneMomBills').then((m) => m.SceneMomBills),
   ending: () => import('./scenes/SceneEnding').then((m) => m.SceneEnding),
 }
-
-const PERSONAL_SCENES = new Set(['subscription', 'mom-bills'])
 
 function DeferredScene({
   beatId,
@@ -72,62 +77,58 @@ function DeferredScene({
 
 type Props = {
   beat: StoryBeat
-  index: number
+  onComplete: (id: string) => void
 }
 
-export function StoryScenePanel({ beat, index }: Props) {
+export function StoryScenePanel({ beat, onComplete }: Props) {
   const ref = useRef<HTMLElement>(null)
   const reduceMotion = useReducedMotion() ?? false
-  const isPersonal = PERSONAL_SCENES.has(beat.id)
+  const inView = useInView(ref, 0.35)
   const isOpening = beat.id === 'opening'
   const isEnding = beat.id === 'ending'
-  const isStory = isPersonal
-
-  const { scrollY } = useScroll()
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: isStory ? ['start start', 'end end'] : ['start end', 'end start'],
+  const isPersonal = beat.id === 'subscription' || beat.id === 'mom-bills'
+  const copy = SCENE_NARRATION[beat.id]
+  const { progress, replay } = useScenePlayback({
+    inView,
+    reduceMotion,
+    durationMs: copy?.durationMs ?? 8000,
+    onComplete: () => onComplete(beat.id),
+  })
+  const [ctaOn, setCtaOn] = useState(reduceMotion)
+  useMotionValueEvent(progress, 'change', (v) => {
+    if (isEnding) setCtaOn(v >= 0.8)
   })
 
-  // Opening is exactly 100svh (no pin slack). Ending is a short pin. Map both
-  // from window scrollY so the beats don't stall at 0.
-  const mappedProgress = useTransform(scrollY, (y) => {
-    const el = ref.current
-    if (!el) return 0
-    const start = el.offsetTop
-    const h = el.offsetHeight || 1
-    if (isOpening) {
-      return Math.min(1, Math.max(0, (y - start) / h))
-    }
-    const dist = Math.max(1, h - (typeof window === 'undefined' ? h : window.innerHeight))
-    return Math.min(1, Math.max(0, (y - start) / dist))
-  })
+  const live = inView && !reduceMotion
 
   return (
     <section
       ref={ref}
+      id={beat.id}
       className={`home-story__panel home-story__panel--${beat.phase}${
         isOpening ? ' home-story__panel--opening' : ''
-      }${isEnding ? ' home-story__panel--ending' : ''}${isPersonal ? ' home-story__panel--tall' : ''}`}
+      }${isEnding ? ' home-story__panel--ending' : ''}${isPersonal ? ' home-story__panel--scene' : ''}${
+        live ? ' is-live' : ''
+      }`}
       data-scene={beat.id}
-      aria-labelledby={`story-beat-${index}`}
     >
       <div className="home-story__pin">
-        <p className="sr-only" id={`story-beat-${index}`}>
-          {beat.description}
-        </p>
+        <div className="home-story__copy">
+          {isOpening ? <StoryHero /> : null}
+          {copy ? <StoryCaptions progress={progress} lines={copy.lines} reduceMotion={reduceMotion} /> : null}
+          {isEnding ? <EndingCta visible={ctaOn} /> : null}
+        </div>
 
-        {isOpening ? (
-          <div className="home-story__stage home-story__stage--scene">
-            <SceneOpening progress={mappedProgress} reduceMotion={reduceMotion} />
-          </div>
-        ) : (
-          <DeferredScene
-            beatId={beat.id}
-            progress={isEnding ? mappedProgress : scrollYProgress}
-            reduceMotion={reduceMotion}
-          />
-        )}
+        <div className="home-story__stage-wrap">
+          {isOpening ? (
+            <div className="home-story__stage home-story__stage--scene">
+              <SceneOpening progress={progress} reduceMotion={reduceMotion} />
+            </div>
+          ) : (
+            <DeferredScene beatId={beat.id} progress={progress} reduceMotion={reduceMotion} />
+          )}
+          <StoryReplay onReplay={replay} hidden={reduceMotion} />
+        </div>
       </div>
     </section>
   )

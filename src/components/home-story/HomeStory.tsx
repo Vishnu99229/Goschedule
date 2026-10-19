@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useCallback, useRef, useState } from 'react'
 import { useReducedMotion, useScroll } from 'framer-motion'
 import { STORY_BEATS, WORK_SCENE_IDS } from './homeStoryScenes'
 import { StoryProgress } from './StoryProgress'
@@ -15,6 +15,15 @@ export default function HomeStory() {
     target: scrollRef,
     offset: ['start start', 'end start'],
   })
+  const [done, setDone] = useState<Set<string>>(() => new Set())
+  const markDone = useCallback((id: string) => {
+    setDone((prev) => {
+      if (prev.has(id)) return prev
+      const next = new Set(prev)
+      next.add(id)
+      return next
+    })
+  }, [])
 
   const workBeats = STORY_BEATS.filter((b) => WORK_SET.has(b.id))
   const before = STORY_BEATS.filter((b) => b.id === 'opening' || b.id === 'subscription' || b.id === 'mom-bills')
@@ -23,12 +32,16 @@ export default function HomeStory() {
   return (
     <div className="home-story__scroll" ref={scrollRef}>
       <StorySky progress={scrollYProgress} reduceMotion={reduceMotion} />
-      <StoryProgress progress={scrollYProgress} reduceMotion={reduceMotion} />
-      {before.map((beat, index) => (
-        <StoryScenePanel key={beat.id} beat={beat} index={index} />
+      <StoryProgress
+        completed={done}
+        queueReady={done.has('opening') || reduceMotion}
+        reduceMotion={reduceMotion}
+      />
+      {before.map((beat) => (
+        <StoryScenePanel key={beat.id} beat={beat} onComplete={markDone} />
       ))}
-      <WorkSpan beats={workBeats} />
-      {ending ? <StoryScenePanel beat={ending} index={STORY_BEATS.length - 1} /> : null}
+      <WorkSpan beats={workBeats} onComplete={markDone} />
+      {ending ? <StoryScenePanel beat={ending} onComplete={markDone} /> : null}
     </div>
   )
 }
