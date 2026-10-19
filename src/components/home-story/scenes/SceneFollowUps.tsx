@@ -57,7 +57,7 @@ export function SceneFollowUps({ progress, reduceMotion, hideYou }: Props) {
 
       {rm ? (
         <>
-          <div className="story-s4__send-card">Proposal — Acme x GoSchedule</div>
+          <div className="story-s4__send-card">Proposal — Q4 partnership</div>
           <div className="story-s4__days">
             {DAYS.map((d) => (
               <span key={d} className="story-s4__day story-s4__day--on">
@@ -73,7 +73,7 @@ export function SceneFollowUps({ progress, reduceMotion, hideYou }: Props) {
       ) : (
         <>
           <motion.div className="story-s4__send-card" style={{ left: sendLeft, opacity: sendOp }}>
-            Proposal — Acme x GoSchedule
+            Proposal — Q4 partnership
           </motion.div>
 
           <div className="story-s4__days">
