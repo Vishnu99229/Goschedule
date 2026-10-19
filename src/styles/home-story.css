@@ -260,10 +260,10 @@
 
 .story-s1__you {
   position: absolute;
-  left: 6%;
-  bottom: 8%;
+  left: 8%;
+  bottom: 14%;
   z-index: 4;
-  height: 56%;
+  height: 50%;
   width: auto;
 }
 
@@ -962,9 +962,9 @@
 
 .story-open__you {
   position: absolute;
-  left: 8%;
-  bottom: 8%;
-  height: 58%;
+  left: 10%;
+  bottom: 14%;
+  height: 52%;
   width: auto;
   z-index: 4;
 }
@@ -976,6 +976,10 @@
   width: auto;
   display: block;
   overflow: visible;
+}
+
+.story-rig g {
+  transform-box: fill-box;
 }
 
 .story-open__you-swap {
@@ -1012,10 +1016,10 @@
 
 .story-open__agent {
   position: absolute;
-  left: 72%;
-  top: 22%;
+  left: 54%;
+  top: 20%;
   translate: -50% -50%;
-  z-index: 5;
+  z-index: 7;
 }
 
 .story-end__couch {
@@ -1901,17 +1905,17 @@
 
 .story-open__phone-ui {
   position: absolute;
-  right: 7%;
-  top: 14%;
-  width: min(34%, 210px);
+  right: 26%;
+  top: 12%;
+  width: min(32%, 200px);
   display: flex;
   flex-direction: column;
   gap: 6px;
-  padding: 16px 10px 10px;
+  padding: 18px 10px 10px;
   border-radius: 18px;
   background: #1a1f28;
   z-index: 6;
-  box-shadow: 0 16px 32px rgba(20, 28, 38, 0.18);
+  box-shadow: 0 16px 32px rgba(20, 28, 38, 0.22);
 }
 
 .story-open__phone-notch {

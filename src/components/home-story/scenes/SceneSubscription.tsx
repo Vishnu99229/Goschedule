@@ -32,22 +32,19 @@ export function SceneSubscription({ progress, reduceMotion }: Props) {
   const rows = (
     <>
       <div className="story-s1__tx">
-        <span>Swiggy</span>
-        <span>₹340</span>
+        <span>Swiggy · ₹340</span>
       </div>
       <div className="story-s1__tx">
-        <span>Uber</span>
-        <span>₹210</span>
+        <span>Uber · ₹210</span>
       </div>
       <div className="story-s1__tx story-s1__tx--slot">
         <div className={`story-s1__tx story-s1__tx--red${rm ? ' is-done' : ''}`}>
           <span className="story-s1__tx-main">
-            StreamMax Premium
+            StreamMax Premium · ₹649/mo
             <i className="story-s1__repeat">
               <RepeatIcon size={14} />
             </i>
           </span>
-          <span>₹649/mo</span>
           {rm ? <span className="story-s1__cancelled">Cancelled</span> : null}
         </div>
         {rm ? null : (
@@ -60,8 +57,7 @@ export function SceneSubscription({ progress, reduceMotion }: Props) {
         )}
       </div>
       <div className="story-s1__tx">
-        <span>Groceries</span>
-        <span>₹1,120</span>
+        <span>Groceries · ₹1,120</span>
       </div>
     </>
   )
