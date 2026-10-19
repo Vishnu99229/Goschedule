@@ -91,8 +91,5 @@
       "permanent": true
     }
   ],
-  "rewrites": [
-    { "source": "/api/:path*", "destination": "/404" },
-    { "source": "/(.*)", "destination": "/index.html" }
-  ]
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
