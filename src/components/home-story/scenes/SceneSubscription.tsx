@@ -45,15 +45,16 @@ export function SceneSubscription({ progress, reduceMotion }: Props) {
               <RepeatIcon size={14} />
             </i>
           </span>
-          {rm ? <span className="story-s1__cancelled">Cancelled</span> : null}
-        </div>
-        {rm ? null : (
-          <>
-            <motion.span className="story-s1__problem-glow" style={{ opacity: redGlow, scale: redGlow }} />
+          {rm ? (
+            <span className="story-s1__cancelled">Cancelled</span>
+          ) : (
             <motion.span className="story-s1__cancelled" style={{ opacity: cancelOp }}>
               Cancelled
             </motion.span>
-          </>
+          )}
+        </div>
+        {rm ? null : (
+          <motion.span className="story-s1__problem-glow" style={{ opacity: redGlow, scale: redGlow }} />
         )}
       </div>
       <div className="story-s1__tx">

@@ -53,6 +53,7 @@ export function SceneOpening({ progress, reduceMotion }: Props) {
 
   const agentOp = useTransform(p, [0.56, 0.66], [0, 1])
   const agentScale = useTransform(p, [0.56, 0.64, 0.74], [0.2, 1.28, 1])
+  const youLift = useTransform(p, [0, 0.08, 0.16], ['-30%', '-10%', '0%'])
 
   const badges = QUEUE_TASKS.map((task, i) => {
     const Icon = task.Icon
@@ -72,9 +73,9 @@ export function SceneOpening({ progress, reduceMotion }: Props) {
       <BedroomSet tablePhoneOp={rm ? undefined : tablePhone} />
       <StoryClock label="7:15 am" />
 
-      <div className="story-open__you">
+      <motion.div className="story-open__you" style={rm ? undefined : { y: youLift }}>
         <YouRig progress={p} scene="opening" reduceMotion={rm} />
-      </div>
+      </motion.div>
 
       {rm ? (
         <div className="story-open__phone-ui">
