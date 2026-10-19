@@ -1,14 +1,16 @@
 import { motion, useTransform, type MotionValue } from 'framer-motion'
 import { CarryIn } from '../CarryIn'
 import { AgentOrb } from '../characters/AgentOrb'
-import { YouAtDesk } from '../characters/YouAtDesk'
-import { CheckIcon, EnvelopeIcon, PaperPlaneIcon } from '../icons/StoryIcons'
+import { YouRig } from '../characters/YouRig'
+import { CheckIcon, PaperPlaneIcon } from '../icons/StoryIcons'
 
 type Props = {
   progress: MotionValue<number>
   reduceMotion: boolean
   hideYou?: boolean
 }
+
+const DAYS = ['Mon', 'Tue', 'Wed'] as const
 
 export function SceneFollowUps({ progress, reduceMotion, hideYou }: Props) {
   const p = progress
@@ -23,8 +25,6 @@ export function SceneFollowUps({ progress, reduceMotion, hideYou }: Props) {
   const days = [day1, day2, day3]
 
   const emptyOp = useTransform(p, [0.22, 0.3, 0.62, 0.7], [0, 1, 1, 0])
-  const weedLeft = useTransform(p, [0.28, 0.5], ['12%', '72%'])
-  const weedR = useTransform(p, [0.28, 0.5], [0, 220])
   const dashedOp = useTransform(p, [0.22, 0.32], [0, 1])
 
   const nudgeLeft = useTransform(p, [0.54, 0.68], ['28%', '78%'])
@@ -51,60 +51,52 @@ export function SceneFollowUps({ progress, reduceMotion, hideYou }: Props) {
       <CarryIn progress={p} reduceMotion={rm} Icon={PaperPlaneIcon} />
       {hideYou ? null : (
         <div className="story-s4__you">
-          <YouAtDesk />
+          <YouRig progress={p} scene="desk" reduceMotion={rm} />
         </div>
       )}
 
       {rm ? (
         <>
+          <div className="story-s4__send-card">Proposal — Q4 partnership</div>
           <div className="story-s4__days">
-            <span className="story-s4__day story-s4__day--on" />
-            <span className="story-s4__day story-s4__day--on" />
-            <span className="story-s4__day story-s4__day--on" />
+            {DAYS.map((d) => (
+              <span key={d} className="story-s4__day story-s4__day--on">
+                {d}
+              </span>
+            ))}
           </div>
           <div className="story-s4__reply-rest">
-            <EnvelopeIcon size={28} />
+            <span className="story-s4__reply-card">Sorry for the delay, let&apos;s do it!</span>
             <CheckIcon size={22} />
           </div>
         </>
       ) : (
         <>
-          <motion.div
-            className="story-s4__plane story-s4__plane--out"
-            style={{ left: sendLeft, opacity: sendOp }}
-          >
-            <PaperPlaneIcon size={22} />
+          <motion.div className="story-s4__send-card" style={{ left: sendLeft, opacity: sendOp }}>
+            Proposal — Q4 partnership
           </motion.div>
 
           <div className="story-s4__days">
-            {days.map((op, i) => (
-              <motion.span key={i} className="story-s4__day" style={{ opacity: op, scale: op }} />
+            {DAYS.map((d, i) => (
+              <motion.span key={d} className="story-s4__day" style={{ opacity: days[i], scale: days[i] }}>
+                {d}
+              </motion.span>
             ))}
           </div>
 
           <motion.div className="story-s4__wait" style={{ opacity: dashedOp }}>
             <span className="story-s4__dots" />
-            <motion.span className="story-s4__weed" style={{ left: weedLeft, rotate: weedR, opacity: emptyOp }}>
-              <span className="story-s4__weed-ball" />
-            </motion.span>
             <motion.div className="story-s4__empty" style={{ opacity: emptyOp }}>
-              <span className="home-story__skeleton home-story__skeleton--wide" />
-              <span className="home-story__skeleton home-story__skeleton--short" />
+              <span className="story-s4__empty-label">No reply</span>
             </motion.div>
           </motion.div>
 
-          <motion.div
-            className="story-s4__plane story-s4__plane--nudge"
-            style={{ left: nudgeLeft, opacity: nudgeOp }}
-          >
-            <PaperPlaneIcon size={16} />
+          <motion.div className="story-s4__nudge" style={{ left: nudgeLeft, opacity: nudgeOp }}>
+            Just floating this back to the top of your inbox 🙂
           </motion.div>
 
-          <motion.div
-            className="story-s4__reply"
-            style={{ left: replyLeft, opacity: replyOp, y: replyY }}
-          >
-            <EnvelopeIcon size={28} />
+          <motion.div className="story-s4__reply-card" style={{ left: replyLeft, opacity: replyOp, y: replyY }}>
+            Sorry for the delay, let&apos;s do it!
           </motion.div>
           <motion.div className="story-s4__check" style={{ opacity: checkOp, scale: checkOp }}>
             <CheckIcon size={24} />

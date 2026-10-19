@@ -1,4 +1,6 @@
+import { lazy, Suspense } from 'react'
 import { Navigate, Routes, Route, useLocation } from 'react-router-dom'
+import { ALLOW_DEV_POSES } from './dev/allowDevPoses'
 import SEO from './components/SEO'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -18,9 +20,6 @@ import TermsAndConditions from './components/TermsAndConditions'
 import PrivacyPolicy from './components/PrivacyPolicy'
 import NotFoundPage from './pages/NotFoundPage'
 import { HomeStoryLogo } from './components/home-story/HomeStoryLogo'
-
-const SITE = 'https://www.goschedule.ai'
-
 import {
   HOME_DESCRIPTION,
   HOME_OG_DESCRIPTION,
@@ -29,6 +28,10 @@ import {
   JSONLD_ORG_DESCRIPTION,
   JSONLD_WEBSITE_DESCRIPTION,
 } from './constants/copy'
+
+const SITE = 'https://www.goschedule.ai'
+
+const DevPosesPage = ALLOW_DEV_POSES ? lazy(() => import('./pages/DevPosesPage')) : null
 
 const homeJsonLd = {
   '@context': 'https://schema.org',
@@ -68,13 +71,24 @@ function HomeRoute() {
 function App() {
   const { pathname } = useLocation()
   const isHome = pathname === '/'
+  const isDevPoses = pathname === '/dev/poses'
 
   return (
     <div className="app-shell">
       <a href="#main-content" className="site-skip">Skip to content</a>
       <ScrollToTop />
-      {isHome ? <HomeStoryLogo /> : <Navbar />}
+      {isDevPoses ? null : isHome ? <HomeStoryLogo /> : <Navbar />}
       <Routes>
+        {DevPosesPage ? (
+          <Route
+            path="/dev/poses"
+            element={
+              <Suspense fallback={null}>
+                <DevPosesPage />
+              </Suspense>
+            }
+          />
+        ) : null}
         <Route path="/" element={<HomeRoute />} />
         <Route path="/work" element={<WorkPage />} />
         <Route path="/work/replykaro" element={<ReplykaroPage />} />
@@ -95,7 +109,7 @@ function App() {
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-      <Footer />
+      {isDevPoses ? null : <Footer />}
     </div>
   )
 }

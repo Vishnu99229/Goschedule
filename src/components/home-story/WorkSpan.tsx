@@ -20,7 +20,7 @@ export function WorkSpan({ beats, onComplete }: Props) {
   const draftRef = useRef<HTMLElement>(null)
   const slackRef = useRef<HTMLElement>(null)
   const reduceMotion = useReducedMotion() ?? false
-  const wrapInView = useInView(wrapRef, 0.15)
+  const wrapInView = useInView(wrapRef, 0.28)
   const [active, setActive] = useState(beats[0]?.id ?? 'email-meeting')
 
   useEffect(() => {
@@ -62,28 +62,38 @@ export function WorkSpan({ beats, onComplete }: Props) {
     reduceMotion,
     durationMs: 1600,
   })
+  useEffect(() => {
+    const idx = beats.findIndex((b) => b.id === active)
+    if (idx <= 0) return
+    for (let i = 0; i < idx; i++) onComplete(beats[i].id)
+  }, [active, beats, onComplete])
+
   const email = useScenePlayback({
     inView: wrapInView && emailOn,
     reduceMotion,
     durationMs: SCENE_NARRATION['email-meeting'].durationMs,
+    completeAt: SCENE_NARRATION['email-meeting'].completeAt,
     onComplete: () => onComplete('email-meeting'),
   })
   const follow = useScenePlayback({
     inView: wrapInView && followOn,
     reduceMotion,
     durationMs: SCENE_NARRATION['follow-ups'].durationMs,
+    completeAt: SCENE_NARRATION['follow-ups'].completeAt,
     onComplete: () => onComplete('follow-ups'),
   })
   const draft = useScenePlayback({
     inView: wrapInView && draftOn,
     reduceMotion,
     durationMs: SCENE_NARRATION['draft-review'].durationMs,
+    completeAt: SCENE_NARRATION['draft-review'].completeAt,
     onComplete: () => onComplete('draft-review'),
   })
   const slack = useScenePlayback({
     inView: wrapInView && slackOn,
     reduceMotion,
     durationMs: SCENE_NARRATION['team-slack'].durationMs,
+    completeAt: SCENE_NARRATION['team-slack'].completeAt,
     onComplete: () => onComplete('team-slack'),
   })
 
@@ -101,27 +111,29 @@ export function WorkSpan({ beats, onComplete }: Props) {
   return (
     <div ref={wrapRef} className={`home-story__work-wrap${live ? ' is-live' : ''}`}>
       <div className="home-story__pin home-story__pin--work">
-        <div className="home-story__copy">
-          <StoryCaptions progress={current.progress} lines={activeCopy.lines} reduceMotion={reduceMotion} />
-        </div>
-        <div className="home-story__stage-wrap">
-          <div className="home-story__stage home-story__stage--scene">
-            <div className="home-story__stage-fit">
-              <SceneWorkday
-                reduceMotion={reduceMotion}
-                arrive={arrive.progress}
-                email={email.progress}
-                follow={follow.progress}
-                draft={draft.progress}
-                slack={slack.progress}
-                emailOn={emailOn}
-                followOn={followOn}
-                draftOn={draftOn}
-                slackOn={slackOn}
-              />
-            </div>
+        <div className="home-story__stage-row">
+          <div className="home-story__copy">
+            <StoryCaptions progress={current.progress} lines={activeCopy.lines} reduceMotion={reduceMotion} />
           </div>
-          <StoryReplay onReplay={current.replay} hidden={reduceMotion} />
+          <div className="home-story__stage-wrap">
+            <div className="home-story__stage home-story__stage--scene">
+              <div className="home-story__stage-fit">
+                <SceneWorkday
+                  reduceMotion={reduceMotion}
+                  arrive={arrive.progress}
+                  email={email.progress}
+                  follow={follow.progress}
+                  draft={draft.progress}
+                  slack={slack.progress}
+                  emailOn={emailOn}
+                  followOn={followOn}
+                  draftOn={draftOn}
+                  slackOn={slackOn}
+                />
+              </div>
+            </div>
+            <StoryReplay onReplay={current.replay} hidden={reduceMotion} />
+          </div>
         </div>
       </div>
       {beats.map((beat, i) => (

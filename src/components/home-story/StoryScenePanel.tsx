@@ -3,6 +3,8 @@ import { useMotionValueEvent, useReducedMotion, type MotionValue } from 'framer-
 import { EndingCta } from './EndingCta'
 import type { StoryBeat } from './homeStoryScenes'
 import { SceneOpening } from './scenes/SceneOpening'
+import { SceneSubscription } from './scenes/SceneSubscription'
+import { StageIdleFrame } from './StageIdleFrame'
 import { StoryCaptions } from './StoryCaptions'
 import { StoryHero } from './StoryHero'
 import { StoryReplay } from './StoryReplay'
@@ -16,7 +18,6 @@ type SceneProps = {
 }
 
 const SCENE_LOADERS: Record<string, () => Promise<ComponentType<SceneProps>>> = {
-  subscription: () => import('./scenes/SceneSubscription').then((m) => m.SceneSubscription),
   'mom-bills': () => import('./scenes/SceneMomBills').then((m) => m.SceneMomBills),
   ending: () => import('./scenes/SceneEnding').then((m) => m.SceneEnding),
 }
@@ -45,7 +46,7 @@ function DeferredScene({
           io.disconnect()
         }
       },
-      { rootMargin: '160% 0px' },
+      { rootMargin: '150% 0px' },
     )
     io.observe(el)
     return () => io.disconnect()
@@ -67,11 +68,7 @@ function DeferredScene({
   return (
     <div ref={hostRef} className="home-story__stage home-story__stage--scene">
       <div className="home-story__stage-fit">
-        {Scene ? (
-          <Scene progress={progress} reduceMotion={reduceMotion} />
-        ) : (
-          <div className="home-story__stage-fallback" aria-hidden="true" />
-        )}
+        {Scene ? <Scene progress={progress} reduceMotion={reduceMotion} /> : <StageIdleFrame />}
       </div>
     </div>
   )
@@ -84,23 +81,28 @@ type Props = {
 
 export function StoryScenePanel({ beat, onComplete }: Props) {
   const ref = useRef<HTMLElement>(null)
-  const stageWrapRef = useRef<HTMLDivElement>(null)
   const reduceMotion = useReducedMotion() ?? false
   const isOpening = beat.id === 'opening'
-  const inView = useInView(isOpening ? stageWrapRef : ref, 0.35)
   const isEnding = beat.id === 'ending'
   const isPersonal = beat.id === 'subscription' || beat.id === 'mom-bills'
+  const inView = useInView(ref, 0.28)
   const copy = SCENE_NARRATION[beat.id]
   const { progress, replay } = useScenePlayback({
     inView,
     reduceMotion,
     durationMs: copy?.durationMs ?? 8000,
+    completeAt: copy?.completeAt ?? 1,
     onComplete: () => onComplete(beat.id),
   })
   const [ctaOn, setCtaOn] = useState(reduceMotion)
   useMotionValueEvent(progress, 'change', (v) => {
     if (isEnding) setCtaOn(v >= 0.8)
   })
+
+  useEffect(() => {
+    if (beat.id === 'subscription') void import('./scenes/SceneMomBills')
+    if (beat.id === 'mom-bills') void import('./scenes/SceneEnding')
+  }, [beat.id])
 
   const live = inView && !reduceMotion
 
@@ -116,23 +118,30 @@ export function StoryScenePanel({ beat, onComplete }: Props) {
       data-scene={beat.id}
     >
       <div className="home-story__pin">
-        <div className="home-story__copy">
-          {isOpening ? <StoryHero /> : null}
-          {copy ? <StoryCaptions progress={progress} lines={copy.lines} reduceMotion={reduceMotion} /> : null}
-          {isEnding ? <EndingCta visible={ctaOn} /> : null}
-        </div>
-
-        <div className="home-story__stage-wrap" ref={stageWrapRef}>
-          {isOpening ? (
-            <div className="home-story__stage home-story__stage--scene">
-              <div className="home-story__stage-fit">
-                <SceneOpening progress={progress} reduceMotion={reduceMotion} />
+        <div className="home-story__stage-row">
+          <div className="home-story__copy">
+            {isOpening ? <StoryHero /> : null}
+            {copy ? <StoryCaptions progress={progress} lines={copy.lines} reduceMotion={reduceMotion} /> : null}
+            {isEnding ? <EndingCta visible={ctaOn} /> : null}
+          </div>
+          <div className="home-story__stage-wrap">
+            {isOpening ? (
+              <div className="home-story__stage home-story__stage--scene">
+                <div className="home-story__stage-fit">
+                  <SceneOpening progress={progress} reduceMotion={reduceMotion} />
+                </div>
               </div>
-            </div>
-          ) : (
-            <DeferredScene beatId={beat.id} progress={progress} reduceMotion={reduceMotion} />
-          )}
-          <StoryReplay onReplay={replay} hidden={reduceMotion} />
+            ) : beat.id === 'subscription' ? (
+              <div className="home-story__stage home-story__stage--scene">
+                <div className="home-story__stage-fit">
+                  <SceneSubscription progress={progress} reduceMotion={reduceMotion} />
+                </div>
+              </div>
+            ) : (
+              <DeferredScene beatId={beat.id} progress={progress} reduceMotion={reduceMotion} />
+            )}
+            <StoryReplay onReplay={replay} hidden={reduceMotion} />
+          </div>
         </div>
       </div>
     </section>

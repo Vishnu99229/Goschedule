@@ -1,6 +1,6 @@
 import { useEffect, useState, type RefObject } from 'react'
 
-export function useInView(ref: RefObject<Element | null>, amount = 0.4) {
+export function useInView(ref: RefObject<Element | null>, amount = 0.4, rootMargin = '0px') {
   const [inView, setInView] = useState(() => typeof IntersectionObserver === 'undefined')
 
   useEffect(() => {
@@ -11,11 +11,11 @@ export function useInView(ref: RefObject<Element | null>, amount = 0.4) {
       ([entry]) => {
         setInView(entry.isIntersecting)
       },
-      { threshold: amount },
+      { threshold: amount, rootMargin },
     )
     io.observe(el)
     return () => io.disconnect()
-  }, [ref, amount])
+  }, [ref, amount, rootMargin])
 
   return inView
 }

@@ -1,6 +1,7 @@
 import { useCallback, useRef, useState } from 'react'
 import { useReducedMotion, useScroll } from 'framer-motion'
 import { STORY_BEATS, WORK_SCENE_IDS } from './homeStoryScenes'
+import { completeInOrder } from './queueTasks'
 import { StoryProgress } from './StoryProgress'
 import { StoryScenePanel } from './StoryScenePanel'
 import { StorySky } from './StorySky'
@@ -18,9 +19,8 @@ export default function HomeStory() {
   const [done, setDone] = useState<Set<string>>(() => new Set())
   const markDone = useCallback((id: string) => {
     setDone((prev) => {
-      if (prev.has(id)) return prev
-      const next = new Set(prev)
-      next.add(id)
+      const next = completeInOrder(prev, id)
+      if (next.size === prev.size && prev.has(id)) return prev
       return next
     })
   }, [])
