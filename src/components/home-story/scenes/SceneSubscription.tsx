@@ -1,8 +1,10 @@
 import { motion, useTransform, type MotionValue } from 'framer-motion'
 import { CarryIn } from '../CarryIn'
 import { AgentOrb } from '../characters/AgentOrb'
-import { YouCharacter } from '../characters/YouCharacter'
-import { CheckIcon, CoinIcon, ReceiptIcon, RepeatIcon, WalletIcon } from '../icons/StoryIcons'
+import { YouRig } from '../characters/YouRig'
+import { ReceiptIcon, RepeatIcon, WalletIcon } from '../icons/StoryIcons'
+import { BedroomSet } from '../rooms/BedroomSet'
+import { StoryClock } from '../StoryClock'
 
 type Props = {
   progress: MotionValue<number>
@@ -13,121 +15,83 @@ export function SceneSubscription({ progress, reduceMotion }: Props) {
   const p = progress
   const rm = reduceMotion
 
-  const statementX = useTransform(p, [0, 0.08, 0.22, 1], ['8%', '8%', '0%', '0%'])
-  const statementY = useTransform(p, [0, 0.08, 0.22], ['42%', '42%', '0%'])
-  const statementScale = useTransform(p, [0, 0.08, 0.22], [0.28, 0.32, 1])
-  const statementOp = useTransform(p, [0, 0.04, 0.12, 1], [0, 1, 1, 1])
+  const statementOp = useTransform(p, [0, 0.06, 1], [0, 1, 1])
+  const statementY = useTransform(p, [0, 0.1], [18, 0])
+  const redGlow = useTransform(p, [0.2, 0.28, 0.5, 0.6], [0, 1, 1, 0.2])
+  const cancelOp = useTransform(p, [0.58, 0.68], [0, 1])
+  const refundOp = useTransform(p, [0.62, 0.7, 0.86, 0.94], [0, 1, 1, 0])
+  const refundX = useTransform(p, [0.62, 0.82], [0, 86])
+  const refundY = useTransform(p, [0.62, 0.82], [0, 92])
+  const walletPop = useTransform(p, [0.74, 0.84, 1], [1, 1.12, 1])
   const photoOp = useTransform(p, [0.84, 0.92], [0, 1])
   const pathOp = useTransform(p, [0.88, 0.96], [0, 1])
+  const agentLeft = useTransform(p, [0, 0.22, 0.36, 0.58, 0.78], ['28%', '28%', '58%', '58%', '30%'])
+  const agentTop = useTransform(p, [0, 0.22, 0.36, 0.58, 0.78], ['62%', '62%', '28%', '28%', '62%'])
+  const agentScale = useTransform(p, [0.32, 0.4, 0.62, 0.72], [1, 1.18, 1.18, 1])
 
-  const problemGlow = useTransform(p, [0.24, 0.3, 0.38, 0.5, 0.58], [0, 1, 1.12, 1, 0])
-  const problemOp = useTransform(p, [0.22, 0.28, 0.52, 0.62], [0, 1, 1, 0])
-  const problemScale = useTransform(p, [0.5, 0.62], [1, 0.2])
-  const problemRotate = useTransform(p, [0.5, 0.62], [0, 18])
-
-  const checkOp = useTransform(p, [0.6, 0.7, 1], [0, 1, 1])
-  const checkScale = useTransform(p, [0.6, 0.72], [0.4, 1])
-
-  const coinLeft = useTransform(p, [0.6, 0.78], ['48%', '82%'])
-  const coinTop = useTransform(p, [0.6, 0.78], ['32%', '82%'])
-  const coinOp = useTransform(p, [0.58, 0.64, 0.82, 0.9], [0, 1, 1, 0])
-  const coinScale = useTransform(p, [0.6, 0.7, 0.82], [0.6, 1, 0.5])
-
-  const walletPop = useTransform(p, [0.74, 0.84, 1], [1, 1.12, 1])
-
-  const agentLeft = useTransform(p, [0, 0.4, 0.5, 0.62, 0.8, 1], ['32%', '32%', '52%', '52%', '28%', '28%'])
-  const agentTop = useTransform(p, [0, 0.4, 0.5, 0.62, 0.8, 1], ['74%', '74%', '34%', '34%', '74%', '74%'])
-  const agentScale = useTransform(p, [0.48, 0.54, 0.64, 0.72], [1, 1.15, 1.15, 1])
-
-  const calmYou = useTransform(p, [0.76, 0.86], [1, 0])
-  const smileYou = useTransform(p, [0.76, 0.86], [0, 1])
+  const rows = (
+    <>
+      <div className="story-s1__tx">
+        <span>Swiggy</span>
+        <span>₹340</span>
+      </div>
+      <div className="story-s1__tx">
+        <span>Uber</span>
+        <span>₹210</span>
+      </div>
+      <div className="story-s1__tx story-s1__tx--slot">
+        <div className={`story-s1__tx story-s1__tx--red${rm ? ' is-done' : ''}`}>
+          <span className="story-s1__tx-main">
+            StreamMax Premium
+            <i className="story-s1__repeat">
+              <RepeatIcon size={14} />
+            </i>
+          </span>
+          <span>₹649/mo</span>
+          {rm ? <span className="story-s1__cancelled">Cancelled</span> : null}
+        </div>
+        {rm ? null : (
+          <>
+            <motion.span className="story-s1__problem-glow" style={{ opacity: redGlow, scale: redGlow }} />
+            <motion.span className="story-s1__cancelled" style={{ opacity: cancelOp }}>
+              Cancelled
+            </motion.span>
+          </>
+        )}
+      </div>
+      <div className="story-s1__tx">
+        <span>Groceries</span>
+        <span>₹1,120</span>
+      </div>
+    </>
+  )
 
   return (
     <div className="story-s1" aria-hidden="true">
+      <BedroomSet />
+      <StoryClock label="7:40 am" />
       <CarryIn progress={p} reduceMotion={rm} Icon={ReceiptIcon} />
+
       <motion.div
         className="story-s1__statement"
-        style={
-          rm
-            ? undefined
-            : { x: statementX, y: statementY, scale: statementScale, opacity: statementOp, originX: 0, originY: 1 }
-        }
+        style={rm ? undefined : { opacity: statementOp, y: statementY }}
       >
-        <div className="story-s1__row">
-          <span className="home-story__skeleton home-story__skeleton--wide" />
-          <span className="home-story__skeleton home-story__skeleton--short" />
-        </div>
-        <div className="story-s1__row">
-          <span className="home-story__skeleton" />
-          <span className="home-story__skeleton home-story__skeleton--short" />
-        </div>
-        <div className="story-s1__row story-s1__row--slot">
-          {rm ? (
-            <div className="story-s1__check-slot">
-              <CheckIcon size={26} />
-            </div>
-          ) : (
-            <>
-              <motion.div
-                className="story-s1__problem"
-                style={{
-                  opacity: problemOp,
-                  scale: problemScale,
-                  rotate: problemRotate,
-                }}
-              >
-                <motion.span className="story-s1__problem-glow" style={{ opacity: problemGlow, scale: problemGlow }} />
-                <span className="home-story__skeleton story-s1__problem-bar" />
-                <span className="story-s1__repeat">
-                  <RepeatIcon size={16} />
-                </span>
-              </motion.div>
-              <motion.div
-                className="story-s1__check-slot"
-                style={{ opacity: checkOp, scale: checkScale }}
-              >
-                <CheckIcon size={26} />
-              </motion.div>
-            </>
-          )}
-        </div>
-        <div className="story-s1__row">
-          <span className="home-story__skeleton home-story__skeleton--wide" />
-          <span className="home-story__skeleton home-story__skeleton--short" />
-        </div>
+        <p className="story-s1__bank">Apex Bank · March</p>
+        {rows}
       </motion.div>
 
-      {!rm ? (
-        <motion.div
-          className="story-s1__coin"
-          style={{ left: coinLeft, top: coinTop, opacity: coinOp, scale: coinScale }}
-        >
-          <CoinIcon size={20} />
+      {rm ? null : (
+        <motion.div className="story-s1__refund" style={{ opacity: refundOp, x: refundX, y: refundY }}>
+          +₹649
         </motion.div>
-      ) : null}
+      )}
 
       <motion.div className="story-s1__wallet" style={rm ? undefined : { scale: walletPop }}>
-        <WalletIcon size={44} />
-        {rm ? (
-          <span className="story-s1__coin-rest">
-            <CoinIcon size={16} />
-          </span>
-        ) : null}
+        <WalletIcon size={40} />
       </motion.div>
 
       <div className="story-s1__you">
-        {rm ? (
-          <YouCharacter pose="phone-smile" />
-        ) : (
-          <>
-            <motion.div className="story-s1__you-layer" style={{ opacity: calmYou }}>
-              <YouCharacter pose="phone" />
-            </motion.div>
-            <motion.div className="story-s1__you-layer" style={{ opacity: smileYou }}>
-              <YouCharacter pose="phone-smile" />
-            </motion.div>
-          </>
-        )}
+        <YouRig progress={p} scene="subscription" reduceMotion={rm} />
       </div>
 
       {rm ? null : (
@@ -151,11 +115,7 @@ export function SceneSubscription({ progress, reduceMotion }: Props) {
       <AgentOrb
         size={32}
         className="story-s1__agent"
-        style={
-          rm
-            ? { left: '28%', top: '74%' }
-            : { left: agentLeft, top: agentTop, scale: agentScale }
-        }
+        style={rm ? { left: '30%', top: '62%' } : { left: agentLeft, top: agentTop, scale: agentScale }}
       />
     </div>
   )
