@@ -26,13 +26,13 @@ const CONTENT_BLOG = join(ROOT, 'content', 'blog')
 const SITE = 'https://www.goschedule.ai'
 const DEFAULT_OG = `${SITE}/og-image-v4.png`
 
-const HOME_TITLE = 'GoSchedule: your own AI agent for email, meetings and bills'
+const HOME_TITLE = 'Aadi — Autonomous Agent Harness | GoSchedule'
 const HOME_DESCRIPTION =
-  'I build personal AI agents that handle your inbox, meetings, follow-ups, bills and team, set up around your life and work.'
-const HOME_OG_TITLE = 'Your own AI agent. Built around your life and your work.'
+  'Aadi is a deterministic agent harness. It combines multi-model LLM routing with strict, rule-based guardrails to execute complex tasks, manage your calendar, and handle outbound GTM autonomously.'
+const HOME_OG_TITLE = 'Stop prompting. Start delegating.'
 const HOME_OG_DESCRIPTION =
-  "One day with an AI agent that handles the inbox, follow-ups, bills and team. I'll build one for you."
-const DEFAULT_OG_ALT = 'Your own AI agent. Built around your life and your work. — GoSchedule'
+  'Aadi is a deterministic agent harness with multi-model LLM routing and rule-based guardrails.'
+const DEFAULT_OG_ALT = 'Stop prompting. Start delegating. — Aadi on GoSchedule'
 const JSONLD_HOME_DESCRIPTION =
   "Your demo works. Your pipeline doesn't. Fractional GTM for AI and B2B software selling into Indian banks, insurers, and BPOs."
 
@@ -47,13 +47,13 @@ const HOME_JSONLD = {
       url: `${SITE}/`,
       logo: `${SITE}/favicon.png`,
       description:
-        'I build personal AI agents that handle your inbox, meetings, follow-ups, bills and team, set up around your life and work.',
+        'Aadi is a deterministic agent harness that routes, acts, and verifies through strict guardrails.',
     },
     {
       '@type': 'WebSite',
       name: 'GoSchedule',
       url: `${SITE}/`,
-      description: 'Your own AI agent for email, meetings and bills.',
+      description: 'Stop prompting. Start delegating. Aadi, the autonomous agent harness.',
     },
   ],
 }

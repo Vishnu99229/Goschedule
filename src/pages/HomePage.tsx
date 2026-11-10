@@ -1,9 +1,22 @@
-import HomeStory from '../components/home-story/HomeStory'
+import { FooterCta } from '../components/aadi/FooterCta'
+import { Hero } from '../components/aadi/Hero'
+import { TerminalFlex } from '../components/aadi/TerminalFlex'
+import { Ticker } from '../components/aadi/Ticker'
+import { Vision } from '../components/aadi/Vision'
+import { WaveBackground } from '../components/aadi/WaveBackground'
+import '../styles/aadi.css'
 
 export default function HomePage() {
   return (
-    <main id="main-content" className="home-story">
-      <HomeStory />
-    </main>
+    <div className="aadi-root">
+      <WaveBackground />
+      <main id="main-content" className="relative z-10 flex flex-col">
+        <Hero />
+        <Vision />
+        <TerminalFlex />
+        <Ticker />
+        <FooterCta />
+      </main>
+    </div>
   )
 }

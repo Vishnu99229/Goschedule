@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useEffect } from 'react'
 import { Navigate, Routes, Route, useLocation } from 'react-router-dom'
 import { ALLOW_DEV_POSES } from './dev/allowDevPoses'
 import SEO from './components/SEO'
@@ -19,7 +19,6 @@ import EngagementsPage from './pages/EngagementsPage'
 import TermsAndConditions from './components/TermsAndConditions'
 import PrivacyPolicy from './components/PrivacyPolicy'
 import NotFoundPage from './pages/NotFoundPage'
-import { HomeStoryLogo } from './components/home-story/HomeStoryLogo'
 import {
   HOME_DESCRIPTION,
   HOME_OG_DESCRIPTION,
@@ -73,11 +72,16 @@ function App() {
   const isHome = pathname === '/'
   const isDevPoses = pathname === '/dev/poses'
 
+  useEffect(() => {
+    document.documentElement.classList.toggle('aadi-home', isHome)
+    return () => document.documentElement.classList.remove('aadi-home')
+  }, [isHome])
+
   return (
-    <div className="app-shell">
+    <div className={isHome ? 'app-shell aadi-home' : 'app-shell'}>
       <a href="#main-content" className="site-skip">Skip to content</a>
       <ScrollToTop />
-      {isDevPoses ? null : isHome ? <HomeStoryLogo /> : <Navbar />}
+      {isHome || isDevPoses ? null : <Navbar />}
       <Routes>
         {DevPosesPage ? (
           <Route
@@ -109,7 +113,7 @@ function App() {
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-      {isDevPoses ? null : <Footer />}
+      {isHome || isDevPoses ? null : <Footer />}
     </div>
   )
 }
