@@ -1,6 +1,5 @@
 import { FooterCta } from '../components/aadi/FooterCta'
 import { Hero } from '../components/aadi/Hero'
-import { TerminalFlex } from '../components/aadi/TerminalFlex'
 import { Ticker } from '../components/aadi/Ticker'
 import { Vision } from '../components/aadi/Vision'
 import { WaveBackground } from '../components/aadi/WaveBackground'
@@ -13,7 +12,6 @@ export default function HomePage() {
       <main id="main-content" className="relative z-10 flex flex-col">
         <Hero />
         <Vision />
-        <TerminalFlex />
         <Ticker />
         <FooterCta />
       </main>

@@ -37,53 +37,54 @@ export function FooterCta() {
   };
 
   return (
-    <SectionReveal id="early-access" className="relative z-10 px-6 pt-28 pb-10">
-      <div className="mx-auto max-w-3xl text-center">
-        <h2 className="font-heading text-4xl font-extrabold tracking-tight text-white sm:text-6xl">
-          Ready to get your time back?
-        </h2>
-        <p className="mt-5 text-lg text-muted">
-          Aadi is currently onboarding a limited number of pilot users.
-        </p>
-
-        {submitted ? (
-          <p className="mt-10 rounded-2xl border border-emerald/30 bg-emerald/10 px-6 py-4 text-emerald">
-            You&apos;re on the list. We&apos;ll reach out shortly.
+    <SectionReveal id="early-access" className="relative z-10">
+      <div className="py-24 relative z-10">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 text-center flex flex-col items-center">
+          <h2 className="font-heading text-4xl md:text-5xl font-semibold mb-6 tracking-tight text-white">
+            Ready to get your time back?
+          </h2>
+          <p className="text-base md:text-lg text-slate-400">
+            Aadi is currently onboarding a limited number of pilot users.
           </p>
-        ) : (
-          <form
-            onSubmit={onSubmit}
-            className="mx-auto mt-10 flex w-full max-w-xl flex-col gap-3 sm:flex-row"
-          >
-            <label htmlFor="email" className="sr-only">
-              Enter your email
-            </label>
-            <input
-              id="email"
-              type="email"
-              required
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-              placeholder="Enter your email"
-              className="glass h-14 flex-1 rounded-full px-6 text-sm text-white outline-none placeholder:text-muted focus:border-violet/50 focus:shadow-[0_0_28px_rgba(139,92,246,0.35)]"
-            />
-            <button
-              type="submit"
-              className="h-14 shrink-0 rounded-full bg-violet px-7 text-sm font-semibold text-white transition-shadow duration-300 hover:shadow-[0_0_36px_rgba(139,92,246,0.65)]"
-            >
-              Request Early Access
-            </button>
-          </form>
-        )}
+
+          {submitted ? (
+            <p className="mt-8 w-full max-w-md rounded-lg border border-emerald/30 bg-emerald/10 px-6 py-4 text-emerald">
+              You&apos;re on the list. We&apos;ll reach out shortly.
+            </p>
+          ) : (
+            <form onSubmit={onSubmit} className="w-full">
+              <div className="flex flex-col sm:flex-row gap-3 w-full max-w-md mx-auto mt-8">
+                <label htmlFor="email" className="sr-only">
+                  Enter your email
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                  placeholder="Enter your email"
+                  className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-slate-400 focus:outline-none focus:border-violet-500"
+                />
+                <button
+                  type="submit"
+                  className="px-6 py-3 rounded-lg bg-violet-600 hover:bg-violet-700 text-white font-medium transition-colors whitespace-nowrap"
+                >
+                  Request Early Access
+                </button>
+              </div>
+            </form>
+          )}
+        </div>
       </div>
 
-      <footer className="mx-auto mt-24 flex max-w-6xl flex-col items-center justify-between gap-6 border-t border-white/10 pt-8 sm:flex-row">
-        <p className="font-heading text-sm font-bold tracking-tight text-white">
+      <footer className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 flex flex-col items-center justify-between gap-6 border-t border-white/10 py-8 sm:flex-row">
+        <p className="font-heading text-sm font-semibold tracking-tight text-white">
           Aadi
         </p>
         <nav
           aria-label="Footer"
-          className="flex flex-wrap items-center justify-center gap-6 text-sm text-muted"
+          className="flex flex-wrap items-center justify-center gap-6 text-sm text-slate-400"
         >
           <Link to="/privacy-policy" className="transition-colors hover:text-white">
             Privacy
