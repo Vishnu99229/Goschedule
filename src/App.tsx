@@ -18,6 +18,8 @@ import AboutPage from './pages/AboutPage'
 import EngagementsPage from './pages/EngagementsPage'
 import TermsAndConditions from './components/TermsAndConditions'
 import PrivacyPolicy from './components/PrivacyPolicy'
+import PrivacyPage from './pages/PrivacyPage'
+import TermsPage from './pages/TermsPage'
 import NotFoundPage from './pages/NotFoundPage'
 import {
   HOME_DESCRIPTION,
@@ -70,18 +72,19 @@ function HomeRoute() {
 function App() {
   const { pathname } = useLocation()
   const isHome = pathname === '/'
+  const isAadi = isHome || pathname === '/privacy' || pathname === '/terms'
   const isDevPoses = pathname === '/dev/poses'
 
   useEffect(() => {
-    document.documentElement.classList.toggle('aadi-home', isHome)
+    document.documentElement.classList.toggle('aadi-home', isAadi)
     return () => document.documentElement.classList.remove('aadi-home')
-  }, [isHome])
+  }, [isAadi])
 
   return (
-    <div className={isHome ? 'app-shell aadi-home' : 'app-shell'}>
+    <div className={isAadi ? 'app-shell aadi-home' : 'app-shell'}>
       <a href="#main-content" className="site-skip">Skip to content</a>
       <ScrollToTop />
-      {isHome || isDevPoses ? null : <Navbar />}
+      {isAadi || isDevPoses ? null : <Navbar />}
       <Routes>
         {DevPosesPage ? (
           <Route
@@ -111,9 +114,11 @@ function App() {
         <Route path="/docs/resound" element={<Navigate to="/docs" replace />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/privacy" element={<PrivacyPage />} />
+        <Route path="/terms" element={<TermsPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-      {isHome || isDevPoses ? null : <Footer />}
+      {isAadi || isDevPoses ? null : <Footer />}
     </div>
   )
 }

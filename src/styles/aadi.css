@@ -4,6 +4,8 @@
 @import "tailwindcss/utilities.css" layer(utilities) important source(none);
 @source "../components/aadi";
 @source "../pages/HomePage.tsx";
+@source "../pages/PrivacyPage.tsx";
+@source "../pages/TermsPage.tsx";
 
 @theme inline {
   --color-navy: #0a0d14;

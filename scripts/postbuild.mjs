@@ -264,6 +264,30 @@ const MARKETING_ROUTES = [
     source: 'src/components/PrivacyPolicy.tsx',
     imageAlt: 'Privacy policy - Goschedule.ai',
   },
+  {
+    path: '/privacy',
+    title: 'Privacy Policy — Aadi | GoSchedule',
+    description:
+      'How Aadi handles messages, voice notes, calendar events, and multi-model LLM routing.',
+    canonical: `${SITE}/privacy`,
+    ogType: 'website',
+    priority: 0.4,
+    changefreq: 'yearly',
+    source: 'src/pages/PrivacyPage.tsx',
+    imageAlt: 'Aadi privacy policy',
+  },
+  {
+    path: '/terms',
+    title: 'Terms & Conditions — Aadi | GoSchedule',
+    description:
+      'Terms for using Aadi, including early access, liability, acceptable use, and API costs.',
+    canonical: `${SITE}/terms`,
+    ogType: 'website',
+    priority: 0.4,
+    changefreq: 'yearly',
+    source: 'src/pages/TermsPage.tsx',
+    imageAlt: 'Aadi terms and conditions',
+  },
 ]
 
 function escapeHtml(str) {
